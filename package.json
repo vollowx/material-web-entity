@@ -1,7 +1,7 @@
 {
   "name": "material-web-udp",
   "version": "0.0.1",
-  "description": "A component library based on Material Design & Web Components",
+  "description": "A component library based on Material Design 3 & Web Components",
   "main": "./src/index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
@@ -19,12 +19,8 @@
   "keywords": [
     "material design",
     "web components",
-    "custom elements",
-    "button",
-    "menu",
-    "dialog",
-    "drawer",
-    "tabs"
+    "components library",
+    "ui"
   ],
   "homepage": "https://github.com/huge-pancake/material-web-udp#readme"
 }
