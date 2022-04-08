@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" as="style" type="text/css" />
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" as="style" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
+    <link rel="stylesheet" href="../src/index.css" />
+
+    <style>
+      :root {
+        --md-font-family: 'Roboto Mono';
+      }
+    </style>
+  </head>
+  <body>
+    <md-button toggleTheme label="Toggle theme" outlined></md-button>
+    <md-button label="Filled"></md-button>
+    <md-button label="Tonal" tonal></md-button>
+    <md-button label="Elevated" elevated></md-button>
+    <md-button label="Outlined" outlined></md-button>
+    <md-button label="Text" text></md-button>
+    <md-button label="Disabled" disabled></md-button>
+
+    <script type="module">
+      import '../src/index.js';
+      import { MUtils } from '../src/index.js';
+
+      console.log('URL | test value: ' + MUtils.getUrlValue('test'));
+
+      const toggleThemeBtn = document.querySelector('[toggleTheme]');
+      toggleThemeBtn.addEventListener('click', () => {
+        MUtils.toggleTheme();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+/* Light theme */
+:root {
+  --md-primary-rgb: 103, 81, 164;
+  --md-primary-container-rgb: 234, 221, 255;
+  --md-secondary-rgb: 98, 91, 113;
+  --md-secondary-container-rgb: 232, 222, 248;
+  --md-tertiary-rgb: 125, 82, 96;
+  --md-tertiary-container-rgb: 255, 216, 228;
+  --md-surface-rgb: 255, 251, 254;
+  --md-surface-variant-rgb: 231, 224, 236;
+  --md-background-rgb: 255, 251, 254;
+  --md-error-rgb: 179, 38, 30;
+  --md-error-container-rgb: 249, 222, 220;
+
+  --md-on-primary-rgb: 255, 255, 255;
+  --md-on-primary-container-rgb: 33, 0, 94;
+  --md-on-secondary-rgb: 255, 255, 255;
+  --md-on-secondary-container-rgb: 30, 25, 43;
+  --md-on-tertiary-rgb: 255, 255, 255;
+  --md-on-tertiary-container-rgb: 55, 11, 30;
+  --md-on-surface-rgb: 28, 27, 31;
+  --md-on-surface-variant-rgb: 73, 69, 78;
+  --md-on-background-rgb: 28, 27, 31;
+  --md-on-error-rgb: 255, 255, 255;
+  --md-on-error-container-rgb: 55, 11, 30;
+
+  --md-outline-rgb: 121, 116, 126;
+}
+/* Dark theme */
+:root [dark] {
+  --md-primary-rgb: 208, 188, 255;
+  --md-primary-container-rgb: 79, 55, 139;
+  --md-secondary-rgb: 204, 194, 220;
+  --md-secondary-container-rgb: 74, 68, 88;
+  --md-tertiary-rgb: 239, 184, 200;
+  --md-tertiary-container-rgb: 99, 59, 72;
+  --md-surface-rgb: 28, 27, 31;
+  --md-surface-variant-rgb: 73, 69, 79;
+  --md-background-rgb: 28, 27, 31;
+  --md-error-rgb: 242, 184, 181;
+  --md-error-container-rgb: 140, 29, 24;
+
+  --md-on-primary-rgb: 55, 30, 115;
+  --md-on-primary-container-rgb: 234, 221, 255;
+  --md-on-secondary-rgb: 51, 45, 65;
+  --md-on-secondary-container-rgb: 232, 222, 248;
+  --md-on-tertiary-rgb: 73, 37, 50;
+  --md-on-tertiary-container-rgb: 255, 216, 228;
+  --md-on-surface-rgb: 230, 225, 229;
+  --md-on-surface-variant-rgb: 202, 196, 208;
+  --md-on-background-rgb: 230, 225, 229;
+  --md-on-error-rgb: 96, 20, 16;
+  --md-on-error-container-rgb: 249, 222, 220;
+
+  --md-outline-rgb: 147, 143, 153;
+}
+/* All the time */
+body {
+  color: rgb(var(--md-on-background-rgb));
+  background-color: rgb(var(--md-background-rgb));
+}
