@@ -4,6 +4,7 @@
 
 ![](https://img.shields.io/badge/version-0.0.1-blue)
 ![](https://img.shields.io/badge/npm-unpublished-red)
+[![](https://img.shields.io/badge/demo-GithubPage-white)](./demos/index.html)
 
 ## Installation
 
