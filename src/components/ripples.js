@@ -56,6 +56,44 @@ class Ripple extends HTMLElement {
     .md-ripple--focus::before {
       opacity: 0.12;
     }
+    :host(:not([unbounded])) .md-ripple__container {
+      overflow: hidden;
+    }
+    .md-ripple__itself {
+      position: absolute;
+      background: currentColor;
+      border-radius: 50%;
+      transform: scale(0);
+      opacity: 0;
+      transition: transform 0ms cubic-bezier(0, 0, 0.2, 1);
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+    .md-ripple__itself--active {
+      top: var(--md-ripple-top);
+      left: var(--md-ripple-left);
+      width: var(--md-ripple-size);
+      height: var(--md-ripple-size);
+      opacity: 0.16;
+      transform: scale(1);
+      transition-duration: 240ms;
+    }
+    :host([centered]) .md-ripple__itself--active {
+      top: var(--md-ripple-top-centered);
+      left: var(--md-ripple-left-centered);
+      width: var(--md-ripple-size-centered);
+      height: var(--md-ripple-size-centered);
+    }
+    :host([circle]) .md-ripple__itself--active {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .md-ripple__itself--removing {
+      opacity: 0;
+      transition: opacity 120ms linear;
+    }
     `;
 
     let template = document.createElement('template');
@@ -70,14 +108,50 @@ class Ripple extends HTMLElement {
   addHoverLayer() {
     this.containerE.classList.add('md-ripple--hover');
   }
-  addFocusLayer() {
-    this.containerE.classList.add('md-ripple--focus');
-  }
   removeHoverLayer() {
     this.containerE.classList.remove('md-ripple--hover');
   }
+  addFocusLayer() {
+    this.containerE.classList.add('md-ripple--focus');
+  }
   removeFocusLayer() {
     this.containerE.classList.remove('md-ripple--focus');
+  }
+  addActiveLayer(_event) {
+    let ripple = document.createElement('span');
+    ripple.classList.add('md-ripple__itself');
+
+    let rect = this.parentE.getBoundingClientRect();
+    let x = _event.clientX - rect.left,
+      y = _event.clientY - rect.top;
+    let radius = Math.max(Math.sqrt(x ** 2 + y ** 2), Math.sqrt((rect.width - x) ** 2 + y ** 2), Math.sqrt((rect.height - y) ** 2 + x ** 2), Math.sqrt((rect.width - x) ** 2 + (rect.height - y) ** 2));
+    let centerRadius = Math.sqrt(rect.width ** 2 + rect.height ** 2);
+
+    this.containerE.appendChild(ripple);
+    setTimeout(() => {
+      ripple.classList.add('md-ripple__itself--active');
+      ripple.style.cssText = `
+      --md-ripple-top: ${y - radius}px;
+      --md-ripple-left: ${x - radius}px;
+      --md-ripple-size: ${2 * radius}px;
+      --md-ripple-top-centered: ${rect.height / 2 - centerRadius}px;
+      --md-ripple-left-centered: ${rect.width / 2 - centerRadius}px;
+      --md-ripple-size-centered: ${2 * centerRadius}px;`;
+    }, 0);
+    this.parentE.addEventListener('mouseleave', () => this.removeActiveLayer(ripple));
+    this.parentE.addEventListener('mouseup', () => this.removeActiveLayer(ripple));
+    this.parentE.addEventListener('touchmove', () => this.removeActiveLayer(ripple));
+    this.parentE.addEventListener('touchend', () => this.removeActiveLayer(ripple));
+  }
+  removeActiveLayer(_ripple) {
+    if (_ripple) {
+      setTimeout(() => {
+        _ripple.classList.add('md-ripple__itself--removing');
+        setTimeout(() => {
+          _ripple.remove();
+        }, 240);
+      }, 180);
+    }
   }
 
   get disabled() {
@@ -104,6 +178,8 @@ class Ripple extends HTMLElement {
     this.parentE.addEventListener('mouseleave', () => this.removeHoverLayer());
     this.parentE.addEventListener('focus', () => this.addFocusLayer());
     this.parentE.addEventListener('blur', () => this.removeFocusLayer());
+    this.parentE.addEventListener('mousedown', (event) => this.addActiveLayer(event));
+    this.parentE.addEventListener('touchstart', (event) => this.addActiveLayer(event));
   }
   attributeChangedCallback(attrName, oldVal, newVal) {}
   adoptedCallback() {}

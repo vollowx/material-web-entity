@@ -31,6 +31,11 @@
       [demo-btn] {
         margin: 0 4px;
       }
+      [demo-ripple] {
+        position: relative;
+        width: 200px;
+        height: 200px;
+      }
     </style>
   </head>
   <body>
@@ -45,6 +50,12 @@
           <md-button demo-btn label="Outlined" outlined></md-button>
           <md-button demo-btn label="Text" text></md-button>
           <md-button demo-btn label="Disabled" disabled></md-button>
+        </code-example>
+        <md-typo rule="region" dp-lg>Ripples</md-typo>
+        <code-example rule="region">
+          <div demo-ripple><md-ripple></md-ripple>Normal</div>
+          <div demo-ripple><md-ripple centered></md-ripple>Centered</div>
+          <div demo-ripple><md-ripple unbounded></md-ripple>Unbounded</div>
         </code-example>
       </div>
     </main>
