@@ -1,4 +1,6 @@
 /**
+ * Ripple component.
+ *
  * Button, Card and Menu are all request define this component as 'md-ripple'
  */
 
@@ -10,9 +12,9 @@ class Ripple extends HTMLElement {
   }
 
   /**
-   * Render the contents and define the contents (container, parent)
+   * Render the contents
    */
-  renderAndDefine() {
+  render() {
     let styles = document.createElement('style');
     styles.textContent = `
     :host {
@@ -56,27 +58,26 @@ class Ripple extends HTMLElement {
     }
     `;
 
-    let container = document.createElement('div');
-    container.classList.add('md-ripple__container');
+    let template = document.createElement('template');
+    template.innerHTML = `
+    <div class="md-ripple__container" id="md-ripple__container"></div>
+    `;
 
     this.shadowRoot.appendChild(styles);
-    this.shadowRoot.appendChild(container);
+    this.shadowRoot.innerHTML += template.innerHTML;
+  }
 
-    this.containerE = container;
-    this.parentE = this.parentNode.host || this.parentNode;
-
-    this.parentE.addEventListener('mouseover', () => {
-      this.containerE.classList.add('md-ripple--hover');
-    });
-    this.parentE.addEventListener('mouseleave', () => {
-      this.containerE.classList.remove('md-ripple--hover');
-    });
-    this.parentE.addEventListener('focus', () => {
-      this.containerE.classList.add('md-ripple--focus');
-    });
-    this.parentE.addEventListener('blur', () => {
-      this.containerE.classList.remove('md-ripple--focus');
-    });
+  addHoverLayer() {
+    this.containerE.classList.add('md-ripple--hover');
+  }
+  addFocusLayer() {
+    this.containerE.classList.add('md-ripple--focus');
+  }
+  removeHoverLayer() {
+    this.containerE.classList.remove('md-ripple--hover');
+  }
+  removeFocusLayer() {
+    this.containerE.classList.remove('md-ripple--focus');
   }
 
   get disabled() {
@@ -94,7 +95,15 @@ class Ripple extends HTMLElement {
     return [];
   }
   connectedCallback() {
-    this.renderAndDefine();
+    this.render();
+
+    this.parentE = this.parentNode.host || this.parentNode;
+    this.containerE = this.shadowRoot.getElementById('md-ripple__container');
+
+    this.parentE.addEventListener('mouseover', () => this.addHoverLayer());
+    this.parentE.addEventListener('mouseleave', () => this.removeHoverLayer());
+    this.parentE.addEventListener('focus', () => this.addFocusLayer());
+    this.parentE.addEventListener('blur', () => this.removeFocusLayer());
   }
   attributeChangedCallback(attrName, oldVal, newVal) {}
   adoptedCallback() {}

@@ -1,5 +1,5 @@
 /**
- * Nothing
+ * Typography component.
  */
 
 class Typography extends HTMLElement {
@@ -10,9 +10,9 @@ class Typography extends HTMLElement {
   }
 
   /**
-   * Render the contents and define the contents (slot)
+   * Render the contents
    */
-  renderAndDefine() {
+  render() {
     let styles = document.createElement('style');
     styles.textContent = `
     :host {
@@ -101,16 +101,19 @@ class Typography extends HTMLElement {
     }
     `;
 
-    let slot = document.createElement('slot');
+    let template = document.createElement('template');
+    template.innerHTML = `
+    <slot></slot>
+    `;
 
     this.shadowRoot.appendChild(styles);
-    this.shadowRoot.appendChild(slot);
-
-    this.slotE = slot;
+    this.shadowRoot.innerHTML += template.innerHTML;
   }
 
   connectedCallback() {
-    this.renderAndDefine();
+    this.render();
+
+    this.slotE = this.shadowRoot.querySelector('slot');
   }
 }
 

@@ -1,5 +1,7 @@
 /**
- * Describe the component
+ * ComponentName component.
+ *
+ * Description.
  */
 
 class ComponentName extends HTMLElement {
@@ -10,9 +12,9 @@ class ComponentName extends HTMLElement {
   }
 
   /**
-   * Render the contents and define the contents (what you defined in the function)
+   * Render the contents
    */
-  renderAndDefine() {
+  render() {
     let styles = document.createElement('style');
     styles.textContent = `
     :host {
@@ -22,9 +24,12 @@ class ComponentName extends HTMLElement {
     }
     `;
 
-    this.shadowRoot.appendChild(styles);
+    let template = document.createElement('template');
+    template.innerHTML = `
+    `;
 
-    // this.sth = sth;
+    this.shadowRoot.appendChild(styles);
+    this.shadowRoot.innerHTML += template.innerHTML;
   }
 
   // get disabled() {
@@ -42,13 +47,11 @@ class ComponentName extends HTMLElement {
     return [];
   }
   connectedCallback() {
-    this.renderAndDefine();
+    this.render();
+
+    // this.sthE = this.shadowRoot.getElementById('sth');
   }
-  attributeChangedCallback(attrName, oldVal, newVal) {
-    // if (attrName === 'disabled' && this.sth) {
-    //   this.sth.disabled = this.disabled;
-    // }
-  }
+  attributeChangedCallback(attrName, oldVal, newVal) {}
   adoptedCallback() {}
   disconnectedCallback() {}
 }

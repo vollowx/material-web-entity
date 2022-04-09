@@ -1,4 +1,6 @@
 /**
+ * Button component.
+ *
  * Request also defined Ripple component as 'md-ripple' (./ripples.js)
  */
 
@@ -10,9 +12,9 @@ class Button extends HTMLElement {
   }
 
   /**
-   * Render the contents and define the contents (button, label)
+   * Render the contents
    */
-  renderAndDefine() {
+  render() {
     let styles = document.createElement('style');
     styles.textContent = `
     :host {
@@ -58,7 +60,7 @@ class Button extends HTMLElement {
     .md-button:hover {
       box-shadow: var(--md-elevation-2);
     }
-    .md-button:focus {
+    .md-button:focus-visible {
       box-shadow: none;
     }
     .md-button:active {
@@ -73,7 +75,7 @@ class Button extends HTMLElement {
     :host([elevated]) .md-button:hover {
       box-shadow: var(--md-elevation-2);
     }
-    :host([elevated]) .md-button:focus {
+    :host([elevated]) .md-button:focus-visible {
       box-shadow: var(--md-elevation-1);
     }
     :host([elevated]) .md-button:active {
@@ -86,7 +88,7 @@ class Button extends HTMLElement {
       border: 1px solid rgb(var(--md-outline-rgb));
       box-shadow: none;
     }
-    :host([outlined]) .md-button:focus {
+    :host([outlined]) .md-button:focus-visible {
       border-color: rgb(var(--md-primary-rgb));
     }
     :host([outlined]) .md-button:disabled {
@@ -121,31 +123,27 @@ class Button extends HTMLElement {
     }
     `;
 
-    let button = document.createElement('button');
-    button.classList.add('md-button');
-    button.disabled = this.disabled;
-
-    let label = document.createElement('span');
-    label.classList.add('md-button__label');
-    label.textContent = this.getAttribute('label');
-
-    let slot = document.createElement('slot');
-
-    let ripple = document.createElement('md-ripple');
+    let template = document.createElement('template');
+    template.innerHTML = `
+    <button class="md-button" ${this.disabled ? 'disabled' : ''}>
+      <md-ripple></md-ripple>
+      <span class="md-button__label">${this.label}</span>
+      <slot></slot>
+    </button>
+    `;
 
     this.shadowRoot.appendChild(styles);
-    this.shadowRoot.appendChild(button);
-    button.appendChild(ripple);
-    button.appendChild(label);
-    button.appendChild(slot);
-
-    this.buttonE = button;
-    this.labelE = label;
-    this.slotE = slot;
+    this.shadowRoot.innerHTML += template.innerHTML;
   }
 
+  get label() {
+    return this.getAttribute('label');
+  }
   get disabled() {
     return this.getAttribute('disabled') != undefined;
+  }
+  set label(value) {
+    this.setAttribute('label', value);
   }
   set disabled(value) {
     if (value) {
@@ -159,7 +157,11 @@ class Button extends HTMLElement {
     return ['label', 'disabled', 'icon', 'loading'];
   }
   connectedCallback() {
-    this.renderAndDefine();
+    this.render();
+
+    this.buttonE = this.shadowRoot.querySelector('.md-button');
+    this.labelE = this.shadowRoot.querySelector('.md-button__label');
+    this.slotE = this.shadowRoot.querySelector('slot');
   }
   attributeChangedCallback(attrName, oldVal, newVal) {
     if (attrName === 'label' && this.buttonE) {
