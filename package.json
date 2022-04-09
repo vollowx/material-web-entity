@@ -3,10 +3,6 @@
   "version": "0.0.1",
   "description": "A component library based on Material Design 3 & Web Components",
   "main": "./src/index.js",
-  "scripts": {
-    "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production"
-  },
   "repository": {
     "type": "git",
     "url": "git+//github.com/huge-pancake/material-web-udp.git"
