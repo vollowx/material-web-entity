@@ -58,7 +58,7 @@ class Button extends HTMLElement {
     .md-button:hover {
       box-shadow: var(--md-elevation-2);
     }
-    .md-button:focus-visible {
+    .md-button:focus {
       box-shadow: none;
     }
     .md-button:active {
@@ -73,7 +73,7 @@ class Button extends HTMLElement {
     :host([elevated]) .md-button:hover {
       box-shadow: var(--md-elevation-2);
     }
-    :host([elevated]) .md-button:focus-visible {
+    :host([elevated]) .md-button:focus {
       box-shadow: var(--md-elevation-1);
     }
     :host([elevated]) .md-button:active {
@@ -86,7 +86,7 @@ class Button extends HTMLElement {
       border: 1px solid rgb(var(--md-outline-rgb));
       box-shadow: none;
     }
-    :host([outlined]) .md-button:focus-visible {
+    :host([outlined]) .md-button:focus {
       border-color: rgb(var(--md-primary-rgb));
     }
     :host([outlined]) .md-button:disabled {
