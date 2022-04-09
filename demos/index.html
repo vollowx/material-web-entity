@@ -3,37 +3,61 @@
   <head>
     <title>Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" as="style" type="text/css" />
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" as="style" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
     <link rel="stylesheet" href="../src/index.css" />
 
     <style>
       :root {
-        --md-font-family: 'Roboto Mono';
+        --md-font-family: 'Poppins';
+      }
+      main {
+        margin: 24px 0;
+      }
+      .main-content {
+        max-width: 800px;
+        margin: 0 24px;
+      }
+      [rule='region'] {
+        margin-bottom: 24px;
+      }
+      code-example {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      [demo-btn] {
+        margin: 0 4px;
       }
     </style>
   </head>
   <body>
-    <md-button toggleTheme label="Toggle theme" outlined></md-button>
-    <md-button label="Filled"></md-button>
-    <md-button label="Tonal" tonal></md-button>
-    <md-button label="Elevated" elevated></md-button>
-    <md-button label="Outlined" outlined></md-button>
-    <md-button label="Text" text></md-button>
-    <md-button label="Disabled" disabled></md-button>
+    <main>
+      <div class="main-content">
+        <md-button rule="region" toggleTheme label="Toggle theme" outlined></md-button>
+        <md-typo rule="region" dp-lg>Common buttons</md-typo>
+        <code-example rule="region">
+          <md-button demo-btn label="Filled"></md-button>
+          <md-button demo-btn label="Tonal" tonal></md-button>
+          <md-button demo-btn label="Elevated" elevated></md-button>
+          <md-button demo-btn label="Outlined" outlined></md-button>
+          <md-button demo-btn label="Text" text></md-button>
+          <md-button demo-btn label="Disabled" disabled></md-button>
+        </code-example>
+      </div>
+    </main>
 
     <script type="module">
       import '../src/index.js';
-      import { MUtils } from '../src/index.js';
+      import { M } from '../src/index.js';
 
-      console.log('URL | test value: ' + MUtils.getUrlValue('test'));
+      console.log('URL | test value: ' + M.getUrlValue('test'));
 
       const toggleThemeBtn = document.querySelector('[toggleTheme]');
       toggleThemeBtn.addEventListener('click', () => {
-        MUtils.toggleTheme();
+        M.toggleTheme();
       });
     </script>
   </body>

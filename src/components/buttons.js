@@ -37,20 +37,19 @@ class Button extends HTMLElement {
       font-weight: calc(var(--md-font-base-weight) + 500);
       letter-spacing: 0.0892857143em;
       text-decoration: none;
-      text-transform: uppercase;
       background: rgb(var(--md-primary-rgb));
       border: none;
       border-radius: 20px;
-      outline: none;
+      outline: 0;
       -webkit-user-select: none;
       user-select: none;
       cursor: pointer;
       vertical-align: middle;
       overflow: visible;
       transition: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+      -webkit-tap-highlight-color: transparent;
       -webkit-appearance: none;
       -moz-appearance: none;
-      -webkit-tap-highlight-color: transparent;
     }
     :host([tonal]) .md-button {
       color: rgb(var(--md-on-secondary-container-rgb));
@@ -130,15 +129,19 @@ class Button extends HTMLElement {
     label.classList.add('md-button__label');
     label.textContent = this.getAttribute('label');
 
+    let slot = document.createElement('slot');
+
     let ripple = document.createElement('md-ripple');
 
     this.shadowRoot.appendChild(styles);
     this.shadowRoot.appendChild(button);
-    button.appendChild(label);
     button.appendChild(ripple);
+    button.appendChild(label);
+    button.appendChild(slot);
 
-    this.button = button;
-    this.label = label;
+    this.buttonE = button;
+    this.labelE = label;
+    this.slotE = slot;
   }
 
   get disabled() {
@@ -159,11 +162,11 @@ class Button extends HTMLElement {
     this.renderAndDefine();
   }
   attributeChangedCallback(attrName, oldVal, newVal) {
-    if (attrName === 'label' && this.button) {
+    if (attrName === 'label' && this.buttonE) {
       this.shadowRoot.querySelector('.md-button__label').textContent = newVal;
     }
-    if (attrName === 'disabled' && this.button) {
-      this.button.disabled = this.disabled;
+    if (attrName === 'disabled' && this.buttonE) {
+      this.buttonE.disabled = this.disabled;
     }
   }
   adoptedCallback() {}
