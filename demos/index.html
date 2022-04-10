@@ -13,8 +13,15 @@
       :root {
         --md-font-family: 'Poppins';
       }
+      [toggleTheme] {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 12;
+      }
       main {
         padding: 24px 0;
+        overflow: hidden;
       }
       .main-content {
         max-width: 800px;
