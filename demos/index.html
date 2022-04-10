@@ -24,9 +24,12 @@
         margin-bottom: 24px;
       }
       code-example {
+        padding: 24px 48px;
         display: flex;
         justify-content: center;
         align-items: center;
+        border: 1px solid rgba(var(--md-outline-rgb), 0.12);
+        border-radius: 24px;
       }
       [demo-btn] {
         margin: 0 4px;
@@ -63,6 +66,35 @@
           <div demo-ripple><md-ripple></md-ripple>Normal</div>
           <div demo-ripple><md-ripple centered></md-ripple>Centered</div>
           <div demo-ripple><md-ripple unbounded></md-ripple>Unbounded</div>
+        </code-example>
+        <md-typo rule="region" dp-lg>Typography</md-typo>
+        <code-example rule="region">
+          <div>
+            <md-typo dp-lg>Display large</md-typo>
+            <md-typo dp-md>Display medium</md-typo>
+            <md-typo dp-sm>Display small</md-typo>
+            <md-typo hd-lg>Headline large</md-typo>
+            <md-typo hd-md>Headline medium</md-typo>
+            <md-typo hd-sm>Headline small</md-typo>
+            <md-typo tt-lg>Title large</md-typo>
+            <md-typo tt-md>Title medium</md-typo>
+            <md-typo tt-sm>Title small</md-typo>
+            <md-typo lb-lg>Label large</md-typo>
+            <md-typo lb-md>Label medium</md-typo>
+            <md-typo lb-sm>Label small</md-typo>
+            <md-typo bd-lg
+              >Body large. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+              dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</md-typo
+            >
+            <md-typo bd-md
+              >Body medium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate
+              numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</md-typo
+            >
+            <md-typo bd-sm
+              >Body small. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+              dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</md-typo
+            >
+          </div>
         </code-example>
       </div>
     </main>
