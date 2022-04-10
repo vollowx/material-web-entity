@@ -178,8 +178,7 @@ class Ripple extends HTMLElement {
     this.parentE.addEventListener('mouseleave', () => this.removeHoverLayer());
     this.parentE.addEventListener('focus', () => this.addFocusLayer());
     this.parentE.addEventListener('blur', () => this.removeFocusLayer());
-    this.parentE.addEventListener('mousedown', (event) => this.addActiveLayer(event));
-    this.parentE.addEventListener('touchstart', (event) => this.addActiveLayer(event));
+    this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));
   }
   attributeChangedCallback(attrName, oldVal, newVal) {}
   adoptedCallback() {}
