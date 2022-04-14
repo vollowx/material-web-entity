@@ -3,8 +3,12 @@
 @import url(./styles/typography-system.css);
 
 body {
+  /* Position & size */
   margin: 0;
   min-height: 100vh;
+  /* Color */
+  color: rgb(var(--md-c-on-background-rgb));
+  background-color: rgb(var(--md-c-background-rgb));
 }
 
 ::selection {

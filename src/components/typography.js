@@ -19,7 +19,7 @@ class Typography extends HTMLElement {
       position: relative;
       box-sizing: border-box;
       display: block;
-      font-family: var(--md-font-family);
+      font-family: var(--md-t-font-family);
     }
     :host([dp-lg]) {
       font-size: 3.5625rem;

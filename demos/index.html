@@ -11,7 +11,7 @@
 
     <style>
       :root {
-        --md-font-family: 'Poppins';
+        --md-t-font-family: 'Poppins';
       }
       [toggleTheme] {
         position: fixed;
@@ -35,7 +35,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 1px solid rgba(var(--md-outline-rgb), 0.12);
+        border: 1px solid rgba(var(--md-c-outline-rgb), 0.12);
         border-radius: 24px;
       }
       [demo-btn] {
@@ -49,8 +49,9 @@
         align-items: center;
         width: 200px;
         height: 200px;
+        background: var(--md-e-surface-2);
+        box-shadow: var(--md-e-shadow-2);
         cursor: pointer;
-        box-shadow: var(--md-elevation-2);
         border-radius: 4px;
       }
     </style>

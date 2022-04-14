@@ -31,15 +31,15 @@ class Button extends HTMLElement {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: rgb(var(--md-on-primary-rgb));
-      font-family: var(--md-font-family);
+      color: rgb(var(--md-c-on-primary-rgb));
+      font-family: var(--md-t-font-family);
       -moz-osx-font-smoothing: grayscale;
       -webkit-font-smoothing: antialiased;
       font-size: 0.875rem;
       font-weight: calc(var(--md-font-base-weight) + 500);
       letter-spacing: 0.0892857143em;
       text-decoration: none;
-      background: rgb(var(--md-primary-rgb));
+      background: rgb(var(--md-c-primary-rgb));
       border: none;
       border-radius: 20px;
       outline: 0;
@@ -54,11 +54,11 @@ class Button extends HTMLElement {
       -moz-appearance: none;
     }
     :host([tonal]) .md-button {
-      color: rgb(var(--md-on-secondary-container-rgb));
-      background: rgb(var(--md-secondary-container-rgb));
+      color: rgb(var(--md-c-on-secondary-container-rgb));
+      background: rgb(var(--md-c-secondary-container-rgb));
     }
     .md-button:hover {
-      box-shadow: var(--md-elevation-2);
+      box-shadow: var(--md-e-shadow-2);
     }
     .md-button:focus-visible {
       box-shadow: none;
@@ -68,32 +68,32 @@ class Button extends HTMLElement {
     }
     :host([elevated]) .md-button {
       padding: 0 23px;
-      color: rgb(var(--md-primary-rgb));
-      background-color: rgb(var(--md-surface-rgb));
-      box-shadow: var(--md-elevation-1);
+      color: rgb(var(--md-c-primary-rgb));
+      background-color: rgb(var(--md-c-surface-rgb));
+      box-shadow: var(--md-e-shadow-1);
     }
     :host([elevated]) .md-button:hover {
-      box-shadow: var(--md-elevation-2);
+      box-shadow: var(--md-e-shadow-2);
     }
     :host([elevated]) .md-button:focus-visible {
-      box-shadow: var(--md-elevation-1);
+      box-shadow: var(--md-e-shadow-1);
     }
     :host([elevated]) .md-button:active {
-      box-shadow: var(--md-elevation-1);
+      box-shadow: var(--md-e-shadow-1);
     }
     :host([outlined]) .md-button {
       padding: 0 23px;
-      color: rgb(var(--md-ipt-color, var(--md-primary-rgb)));
-      background-color: rgb(var(--md-surface-rgb));
-      border: 1px solid rgb(var(--md-outline-rgb));
+      color: rgb(var(--md-c-important-color, var(--md-c-primary-rgb)));
+      background-color: rgb(var(--md-c-surface-rgb));
+      border: 1px solid rgb(var(--md-c-outline-rgb));
       box-shadow: none;
     }
     :host([outlined]) .md-button:focus-visible {
-      border-color: rgb(var(--md-primary-rgb));
+      border-color: rgb(var(--md-c-primary-rgb));
     }
     :host([outlined]) .md-button:disabled {
-      color: rgba(var(--md-on-surface-rgb), 0.38);
-      border: 1px solid rgba(var(--md-on-surface-rgb), 0.12);
+      color: rgba(var(--md-c-on-surface-rgb), 0.38);
+      border: 1px solid rgba(var(--md-c-on-surface-rgb), 0.12);
     }
     :host([outlined]) md-ripple {
       top: -1px;
@@ -103,18 +103,18 @@ class Button extends HTMLElement {
     }
     :host([text]) .md-button {
       padding: 0 12px;
-      color: rgb(var(--md-ipt-color, var(--md-primary-rgb)));
+      color: rgb(var(--md-c-important-color, var(--md-c-primary-rgb)));
       background: transparent;
       box-shadow: none;
     }
     :host([text]) .md-button:disabled {
-      color: rgba(var(--md-on-surface-rgb), 0.38);
+      color: rgba(var(--md-c-on-surface-rgb), 0.38);
     }
     .md-button:disabled,
     :host([tonal]) .md-button:disabled,
     :host([elevated]) .md-button:disabled {
-      color: rgba(var(--md-on-surface-rgb), 0.38);
-      background-color: rgba(var(--md-on-surface-rgb), 0.12);
+      color: rgba(var(--md-c-on-surface-rgb), 0.38);
+      background-color: rgba(var(--md-c-on-surface-rgb), 0.12);
       cursor: auto;
       box-shadow: none;
     }
