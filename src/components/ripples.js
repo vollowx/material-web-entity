@@ -102,8 +102,6 @@ class Ripple extends HTMLElement {
     this.containerE.classList.remove('md-ripple--focus');
   }
   addActiveLayer(_event) {
-    this.containerE.classList.add('md-ripple--active');
-
     let ripple = document.createElement('span');
     ripple.classList.add('md-ripple__itself');
 
@@ -133,7 +131,6 @@ class Ripple extends HTMLElement {
     if (_ripple) {
       setTimeout(() => {
         _ripple.classList.add('md-ripple__itself--removing');
-        this.containerE.classList.remove('md-ripple--active');
         setTimeout(() => {
           _ripple.remove();
         }, 240);

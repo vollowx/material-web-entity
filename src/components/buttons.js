@@ -110,6 +110,9 @@ class Button extends HTMLElement {
     :host([outlined]) .md-button:focus-visible {
       border-color: rgb(var(--md-c-primary-rgb));
     }
+    :host([outlined]) .md-button:active {
+      border-color: rgb(var(--md-c-outline-rgb));
+    }
     :host([outlined]) .md-button:disabled {
       color: rgba(var(--md-c-on-surface-rgb), 0.38);
       border: 1px solid rgba(var(--md-c-on-surface-rgb), 0.12);

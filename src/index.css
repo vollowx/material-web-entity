@@ -9,6 +9,8 @@ body {
   /* Color */
   color: rgb(var(--md-c-on-background-rgb));
   background-color: rgb(var(--md-c-background-rgb));
+  /* Font */
+  font-family: var(--md-t-font-family);
 }
 
 ::selection {
