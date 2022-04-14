@@ -43,10 +43,10 @@ function getUrlValue(name) {
  * Toggle the theme
  */
 function toggleTheme() {
-  if (document.body.getAttribute('dark') != null) {
-    document.body.removeAttribute('dark');
+  if (document.body.getAttribute('data-dark') == 'true') {
+    document.body.removeAttribute('data-dark');
   } else {
-    document.body.setAttribute('dark', '');
+    document.body.setAttribute('data-dark', 'true');
   }
 }
 

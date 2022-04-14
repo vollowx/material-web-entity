@@ -53,6 +53,27 @@ class Button extends HTMLElement {
       -webkit-appearance: none;
       -moz-appearance: none;
     }
+    .md-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: currentColor;
+      border-radius: inherit;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .md-button:hover::before {
+      opacity: 0.08;
+    }
+    :host(.focus-visible) .md-button::before {
+      opacity: 0.12;
+    }
+    .md-button:active::before {
+      opacity: 0;
+    }
     :host([tonal]) .md-button {
       color: rgb(var(--md-c-on-secondary-container-rgb));
       background: rgb(var(--md-c-secondary-container-rgb));
@@ -95,7 +116,8 @@ class Button extends HTMLElement {
       color: rgba(var(--md-c-on-surface-rgb), 0.38);
       border: 1px solid rgba(var(--md-c-on-surface-rgb), 0.12);
     }
-    :host([outlined]) md-ripple {
+    :host([outlined]) md-ripple,
+    :host([outlined]) .md-button::before {
       top: -1px;
       left: -1px;
       right: -1px;
@@ -118,7 +140,8 @@ class Button extends HTMLElement {
       cursor: auto;
       box-shadow: none;
     }
-    .md-button:disabled md-ripple {
+    .md-button:disabled md-ripple,
+    :host([outlined]) .md-button:disabled::before {
       display: none;
     }
     `;

@@ -27,7 +27,7 @@
   --md-c-outline-rgb: 121, 116, 126;
 }
 /* Dark theme */
-:root [dark] {
+:root [data-dark] {
   --md-c-primary-rgb: 208, 188, 255;
   --md-c-primary-container-rgb: 79, 55, 139;
   --md-c-secondary-rgb: 204, 194, 220;

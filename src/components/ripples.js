@@ -37,25 +37,6 @@ class Ripple extends HTMLElement {
       border-radius: inherit;
       pointer-events: none;
     }
-    .md-ripple__container::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: currentColor;
-      border-radius: inherit;
-      opacity: 0;
-      transition: opacity 240ms cubic-bezier(0.4, 0, 0.2, 1);
-      pointer-events: none;
-    }
-    .md-ripple--hover::before {
-      opacity: 0.08;
-    }
-    .md-ripple--focus::before {
-      opacity: 0.12;
-    }
     :host(:not([unbounded])) .md-ripple__container {
       overflow: hidden;
     }
@@ -98,7 +79,10 @@ class Ripple extends HTMLElement {
 
     let template = document.createElement('template');
     template.innerHTML = `
-    <div class="md-ripple__container" id="md-ripple__container"></div>
+    <div class="md-ripple__container" id="md-ripple__container">
+      <!-- -->
+      <!-- -->
+    </div>
     `;
 
     this.shadowRoot.appendChild(styles);
@@ -118,6 +102,8 @@ class Ripple extends HTMLElement {
     this.containerE.classList.remove('md-ripple--focus');
   }
   addActiveLayer(_event) {
+    this.containerE.classList.add('md-ripple--active');
+
     let ripple = document.createElement('span');
     ripple.classList.add('md-ripple__itself');
 
@@ -147,6 +133,7 @@ class Ripple extends HTMLElement {
     if (_ripple) {
       setTimeout(() => {
         _ripple.classList.add('md-ripple__itself--removing');
+        this.containerE.classList.remove('md-ripple--active');
         setTimeout(() => {
           _ripple.remove();
         }, 240);

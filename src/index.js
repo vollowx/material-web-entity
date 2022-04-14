@@ -1,5 +1,6 @@
 import * as MComponents from './components/index.js';
 import * as M from './utils/index.js';
+import './libs/focus-visible.js';
 
 export { MComponents, M };
 
