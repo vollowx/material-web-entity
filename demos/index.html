@@ -54,6 +54,14 @@
         cursor: pointer;
         border-radius: 4px;
       }
+      fieldset {
+        border-radius: 8px;
+        border: 1px solid rgba(var(--md-c-outline-rgb), 0.24);
+      }
+      legend {
+        padding: 0 8px;
+        color: var(--md-e-on-surface-2);
+      }
     </style>
   </head>
   <body>
@@ -72,8 +80,18 @@
         <md-typo rule="region" dp-lg>Ripples</md-typo>
         <code-example rule="region">
           <div demo-ripple><md-ripple></md-ripple>Normal</div>
-          <div demo-ripple><md-ripple centered></md-ripple>Centered</div>
-          <div demo-ripple><md-ripple unbounded></md-ripple>Unbounded</div>
+          <fieldset>
+            <legend>attr</legend>
+            <label for="c1">
+              <input type="checkbox" name="" id="c1" />
+              <span>Centered</span>
+            </label>
+            <br />
+            <label for="c2">
+              <input type="checkbox" name="" id="c2" />
+              <span>Unbounded</span>
+            </label>
+          </fieldset>
         </code-example>
         <md-typo rule="region" dp-lg>Typography</md-typo>
         <code-example rule="region">
@@ -116,6 +134,23 @@
       const toggleThemeBtn = document.querySelector('[toggleTheme]');
       toggleThemeBtn.addEventListener('click', () => {
         M.toggleTheme();
+      });
+      const ripple = document.querySelector('[demo-ripple] > md-ripple');
+      const centeredAttrCtrler = document.querySelector('[id="c1"]');
+      const unboundedAttrCtrler = document.querySelector('[id="c2"]');
+      centeredAttrCtrler.addEventListener('click', () => {
+        if (centeredAttrCtrler.checked) {
+          ripple.setAttribute('centered', '');
+        } else {
+          ripple.removeAttribute('centered');
+        }
+      });
+      unboundedAttrCtrler.addEventListener('click', () => {
+        if (unboundedAttrCtrler.checked) {
+          ripple.setAttribute('unbounded', '');
+        } else {
+          ripple.removeAttribute('unbounded');
+        }
       });
     </script>
   </body>

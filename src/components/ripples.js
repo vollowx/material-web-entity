@@ -111,7 +111,7 @@ class Ripple extends HTMLElement {
     let x = _event.clientX - rect.left,
       y = _event.clientY - rect.top;
     let radius = Math.max(Math.sqrt(x ** 2 + y ** 2), Math.sqrt((rect.width - x) ** 2 + y ** 2), Math.sqrt((rect.height - y) ** 2 + x ** 2), Math.sqrt((rect.width - x) ** 2 + (rect.height - y) ** 2));
-    let centerRadius = Math.sqrt(rect.width ** 2 + rect.height ** 2);
+    let centerRadius = Math.sqrt((rect.width / 2) ** 2 + (rect.height / 2) ** 2);
 
     this.containerE.appendChild(ripple);
     setTimeout(() => {
