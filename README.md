@@ -2,6 +2,7 @@
 
 ![](https://img.shields.io/badge/version-dev-blue)
 ![](https://img.shields.io/badge/npm-unpublished-red)
+![](https://img.shields.io/github/stars/huge-pancake/material-web-udp.svg?color=yellow)
 [![](https://img.shields.io/badge/demo-github%20pages-white)](./demos/index.html)
 
 > Material Web Undepend
