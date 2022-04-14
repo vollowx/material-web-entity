@@ -63,6 +63,7 @@ class Button extends HTMLElement {
       background: currentColor;
       border-radius: inherit;
       opacity: 0;
+      transition: opacity 240ms cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: none;
     }
     .md-button:hover::before {
@@ -70,9 +71,6 @@ class Button extends HTMLElement {
     }
     :host(.focus-visible) .md-button::before {
       opacity: 0.12;
-    }
-    .md-button:active::before {
-      opacity: 0;
     }
     :host([tonal]) .md-button {
       color: rgb(var(--md-c-on-secondary-container-rgb));
@@ -141,7 +139,7 @@ class Button extends HTMLElement {
       box-shadow: none;
     }
     .md-button:disabled md-ripple,
-    :host([outlined]) .md-button:disabled::before {
+    .md-button:disabled::before {
       display: none;
     }
     `;
