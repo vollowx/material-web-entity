@@ -1,22 +1,32 @@
 # material-web-udp
 
-*A component library based on Material Design & Web Components*
+_A component library based on Material Design & Web Components_
 
-![](https://img.shields.io/badge/version-0.0.1-blue)
+![](https://img.shields.io/badge/version-dev-blue)
 ![](https://img.shields.io/badge/npm-unpublished-red)
-[![](https://img.shields.io/badge/demo-GithubPage-white)](./demos/index.html)
-
-## Installation
-
-TODO
+[![](https://img.shields.io/badge/demo-github%20pages-white)](./demos/index.html)
 
 ## Usage
 
-TODO
+Anywhere in `<head>` tag
+
+```html
+<link rel="stylesheet" href="https://huge-pancake.github.io/material-web-udp/src/index.css" />
+<!-- use this url(from github page) or local css file(download this repositories) -->
+```
+
+End of `<body>` tag
+
+```html
+<script type="module">
+  import 'https://huge-pancake.github.io/material-web-udp/src/index.js';
+  // use this url(from github page) or local css file(download this repositories)
+</script>
+```
 
 ## Credits
 
-**HugePancake** - 
+**HugePancake** -
 [Github](https://github.com/huge-pancake) / [NPM](https://www.npmjs.com/~huge-pancake)
 
 ## About
