@@ -40,10 +40,16 @@
         display: block;
         flex-shrink: 0;
         width: 100%;
-        height: 4px;
+        height: 0;
       }
-      [demo-4] {
-        margin: 0 4px;
+      [m-2] {
+        margin: 2px;
+      }
+      [m-4] {
+        margin: 4px;
+      }
+      [m-8] {
+        margin: 8px;
       }
       [demo-ripple] {
         margin: 8px;
@@ -75,127 +81,127 @@
 
         <md-typo rule="region" dp-lg>Avatars</md-typo>
         <code-example rule="region">
-          <md-avatar demo-4>A</md-avatar>
-          <md-avatar demo-4 square>SQ</md-avatar>
-          <md-avatar demo-4 full-img small url="./assets/dog.gif"></md-avatar>
-          <md-avatar demo-4 large>LG</md-avatar>
+          <md-avatar m-4>A</md-avatar>
+          <md-avatar m-4 square>SQ</md-avatar>
+          <md-avatar m-4 full-img small url="./assets/dog.gif"></md-avatar>
+          <md-avatar m-4 large>LG</md-avatar>
         </code-example>
 
         <md-typo rule="region" dp-lg>Common buttons</md-typo>
         <code-example rule="region">
-          <md-button demo-4 label="Filled"></md-button>
-          <md-button demo-4>
+          <md-button m-4 label="Filled"></md-button>
+          <md-button m-4>
             <md-icon before>add</md-icon>
             Icon left
           </md-button>
-          <md-button demo-4>
+          <md-button m-4>
             Icon right
             <md-icon after>add</md-icon>
           </md-button>
-          <md-button demo-4 label="Disabled" disabled></md-button>
+          <md-button m-4 label="Disabled" disabled></md-button>
           <flex-spacer></flex-spacer>
-          <md-button demo-4 label="Tonal" tonal></md-button>
-          <md-button demo-4 tonal>
+          <md-button m-4 label="Tonal" tonal></md-button>
+          <md-button m-4 tonal>
             <md-icon before>add</md-icon>
             Icon left
           </md-button>
-          <md-button demo-4 tonal>
+          <md-button m-4 tonal>
             Icon right
             <md-icon after>add</md-icon>
           </md-button>
-          <md-button demo-4 label="Disabled" tonal disabled></md-button>
+          <md-button m-4 label="Disabled" tonal disabled></md-button>
           <flex-spacer></flex-spacer>
-          <md-button demo-4 label="Elevated" elevated></md-button>
-          <md-button demo-4 elevated>
+          <md-button m-4 label="Elevated" elevated></md-button>
+          <md-button m-4 elevated>
             <md-icon before>add</md-icon>
             Icon left
           </md-button>
-          <md-button demo-4 elevated>
+          <md-button m-4 elevated>
             Icon right
             <md-icon after>add</md-icon>
           </md-button>
-          <md-button demo-4 label="Disabled" elevated disabled></md-button>
+          <md-button m-4 label="Disabled" elevated disabled></md-button>
           <flex-spacer></flex-spacer>
-          <md-button demo-4 label="Outlined" outlined></md-button>
-          <md-button demo-4 outlined>
+          <md-button m-4 label="Outlined" outlined></md-button>
+          <md-button m-4 outlined>
             <md-icon before>add</md-icon>
             Icon left
           </md-button>
-          <md-button demo-4 outlined>
+          <md-button m-4 outlined>
             Icon right
             <md-icon after>add</md-icon>
           </md-button>
-          <md-button demo-4 label="Disabled" outlined disabled></md-button>
+          <md-button m-4 label="Disabled" outlined disabled></md-button>
           <flex-spacer></flex-spacer>
-          <md-button demo-4 label="Text" text></md-button>
-          <md-button demo-4 text>
+          <md-button m-4 label="Text" text></md-button>
+          <md-button m-4 text>
             <md-icon before>add</md-icon>
             Icon left
           </md-button>
-          <md-button demo-4 text>
+          <md-button m-4 text>
             Icon right
             <md-icon after>add</md-icon>
           </md-button>
-          <md-button demo-4 label="Disabled" text disabled></md-button>
+          <md-button m-4 label="Disabled" text disabled></md-button>
         </code-example>
 
         <md-typo rule="region" dp-lg>Chips</md-typo>
         <code-example>
-          <md-chip demo-4 label="Outlined"></md-chip>
-          <md-chip demo-4>
+          <md-chip m-4 label="Outlined"></md-chip>
+          <md-chip m-4>
             <md-icon before>add</md-icon>
             Icon left
           </md-chip>
-          <md-chip demo-4>
+          <md-chip m-4>
             Icon right
             <md-icon after>add</md-icon>
           </md-chip>
-          <md-chip demo-4>
+          <md-chip m-4>
             Or img
             <md-icon after url="./assets/google-drive.svg"></md-icon>
           </md-chip>
-          <md-chip demo-4 label="Disabled" disabled></md-chip>
+          <md-chip m-4 label="Disabled" disabled></md-chip>
           <flex-spacer></flex-spacer>
-          <md-chip demo-4 label="Elevated" elevated></md-chip>
-          <md-chip demo-4 elevated>
+          <md-chip m-4 label="Elevated" elevated></md-chip>
+          <md-chip m-4 elevated>
             <md-icon before>add</md-icon>
             Icon left
           </md-chip>
-          <md-chip demo-4 elevated>
+          <md-chip m-4 elevated>
             Icon right
             <md-icon after>add</md-icon>
           </md-chip>
-          <md-chip demo-4 elevated>
+          <md-chip m-4 elevated>
             Or img
             <md-icon after url="./assets/google-drive.svg"></md-icon>
           </md-chip>
-          <md-chip demo-4 label="Disabled" elevated disabled></md-chip>
+          <md-chip m-4 label="Disabled" elevated disabled></md-chip>
           <flex-spacer></flex-spacer>
-          <md-chip demo-4 label="(Checked)" checked></md-chip>
-          <md-chip demo-4 checked>
+          <md-chip m-4 label="(Checked)" checked></md-chip>
+          <md-chip m-4 checked>
             <md-icon before>add</md-icon>
             Icon left
           </md-chip>
-          <md-chip demo-4 checked>
+          <md-chip m-4 checked>
             Icon right
             <md-icon after>add</md-icon>
           </md-chip>
-          <md-chip demo-4 checked>
+          <md-chip m-4 checked>
             Or img
             <md-icon after url="./assets/google-drive.svg"></md-icon>
           </md-chip>
-          <md-chip demo-4 label="Disabled" checked disabled></md-chip>
+          <md-chip m-4 label="Disabled" checked disabled></md-chip>
         </code-example>
 
         <md-typo rule="region" dp-lg>Icons</md-typo>
         <code-example rule="region">
-          <md-icon demo-4>menu</md-icon>
-          <md-icon demo-4>settings</md-icon>
-          <md-icon demo-4>done</md-icon>
-          <md-icon demo-4>code</md-icon>
-          <md-icon demo-4>tab</md-icon>
+          <md-icon m-4>menu</md-icon>
+          <md-icon m-4>settings</md-icon>
+          <md-icon m-4>done</md-icon>
+          <md-icon m-4>code</md-icon>
+          <md-icon m-4>tab</md-icon>
           <flex-spacer></flex-spacer>
-          <md-icon demo-4 url="./assets/google-drive.svg"></md-icon>
+          <md-icon m-4 url="./assets/google-drive.svg"></md-icon>
         </code-example>
 
         <md-typo rule="region" dp-lg>Ripples</md-typo>
