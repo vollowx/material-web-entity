@@ -68,8 +68,10 @@ class Button extends HTMLElement {
       transition: opacity 240ms cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: none;
     }
-    .md-button:hover::before {
-      opacity: 0.08;
+    @media screen and (min-width: 1240px) {
+      .md-button:hover::before {
+        opacity: 0.08;
+      }
     }
     :host(.focus-visible) .md-button::before {
       opacity: 0.12;
@@ -78,8 +80,10 @@ class Button extends HTMLElement {
       color: rgb(var(--md-c-on-secondary-container-rgb));
       background: rgb(var(--md-c-secondary-container-rgb));
     }
-    .md-button:hover {
-      box-shadow: var(--md-e-shadow-2);
+    @media screen and (min-width: 1240px) {
+      .md-button:hover {
+        box-shadow: var(--md-e-shadow-2);
+      }
     }
     .md-button:focus-visible {
       box-shadow: none;
@@ -92,8 +96,10 @@ class Button extends HTMLElement {
       background-color: rgb(var(--md-c-surface-rgb));
       box-shadow: var(--md-e-shadow-1);
     }
-    :host([elevated]) .md-button:hover {
-      box-shadow: var(--md-e-shadow-2);
+    @media screen and (min-width: 1240px) {
+      :host([elevated]) .md-button:hover {
+        box-shadow: var(--md-e-shadow-2);
+      }
     }
     :host([elevated]) .md-button:focus-visible {
       box-shadow: var(--md-e-shadow-1);

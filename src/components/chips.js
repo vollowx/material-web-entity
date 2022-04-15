@@ -69,8 +69,10 @@
       transition: opacity 240ms cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: none;
     }
-    .md-chip:hover::before {
-      opacity: 0.08;
+    @media screen and (min-width: 1240px) {
+      .md-chip:hover::before {
+        opacity: 0.08;
+      }
     }
     :host(.focus-visible) .md-chip::before {
       opacity: 0.12;
