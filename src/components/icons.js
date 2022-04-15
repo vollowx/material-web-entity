@@ -20,7 +20,18 @@
     :host {
       position: relative;
       box-sizing: border-box;
-      display: inline-flex;
+      display: inline-block;
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--md-icon-size, inherit);
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      font-feature-settings: 'liga';
     }
     `;
 

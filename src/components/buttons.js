@@ -36,11 +36,12 @@ class Button extends HTMLElement {
       -moz-osx-font-smoothing: grayscale;
       -webkit-font-smoothing: antialiased;
       font-size: 0.875rem;
-      font-weight: calc(var(--md-font-base-weight) + 500);
-      letter-spacing: 0.0892857143em;
+      font-weight: calc(var(--md-t-font-base-weight) + 500);
+      line-height: 1.428571428571429;
+      letter-spacing: 0.1px;
       text-decoration: none;
       background: rgb(var(--md-c-primary-rgb));
-      border: none;
+      border: 0;
       border-radius: 20px;
       outline: 0;
       -webkit-user-select: none;
