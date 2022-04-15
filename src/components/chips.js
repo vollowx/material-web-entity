@@ -1,10 +1,10 @@
 /**
- * Button component.
+ * Chip component.
  *
  * Request also defined Ripple component as 'md-ripple' (./ripples.js)
  */
 
-class Button extends HTMLElement {
+ class Chip extends HTMLElement {
   constructor() {
     super();
 
@@ -22,11 +22,11 @@ class Button extends HTMLElement {
       box-sizing: border-box;
       display: inline-flex;
     }
-    .md-button {
-      padding: 0 24px;
+    .md-chip {
+      padding: 0 12px;
       position: relative;
       box-sizing: border-box;
-      height: 40px;
+      height: 32px;
       flex-shrink: 0;
       display: inline-flex;
       align-items: center;
@@ -41,9 +41,10 @@ class Button extends HTMLElement {
       line-height: 1.428571428571429;
       letter-spacing: 0.1px;
       text-decoration: none;
-      background-color: rgb(var(--md-c-primary-rgb));
-      border: 0;
-      border-radius: 20px;
+      color: rgb(var(--md-c-important-color, var(--md-c-on-surface-rgb)));
+      background-color: rgb(var(--md-c-surface-rgb));
+      border: 1px solid rgb(var(--md-c-outline-rgb));
+      border-radius: 8px;
       outline: 0;
       -webkit-user-select: none;
       user-select: none;
@@ -55,7 +56,7 @@ class Button extends HTMLElement {
       -webkit-appearance: none;
       -moz-appearance: none;
     }
-    .md-button::before {
+    .md-chip::before {
       content: "";
       position: absolute;
       top: 0;
@@ -68,101 +69,51 @@ class Button extends HTMLElement {
       transition: opacity 240ms cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: none;
     }
-    .md-button:hover::before {
+    .md-chip:hover::before {
       opacity: 0.08;
     }
-    :host(.focus-visible) .md-button::before {
+    :host(.focus-visible) .md-chip::before {
       opacity: 0.12;
     }
-    :host([tonal]) .md-button {
-      color: rgb(var(--md-c-on-secondary-container-rgb));
-      background: rgb(var(--md-c-secondary-container-rgb));
-    }
-    .md-button:hover {
-      box-shadow: var(--md-e-shadow-2);
-    }
-    .md-button:focus-visible {
-      box-shadow: none;
-    }
-    .md-button:active {
-      box-shadow: none;
-    }
-    :host([elevated]) .md-button {
-      color: rgb(var(--md-c-primary-rgb));
-      background-color: rgb(var(--md-c-surface-rgb));
-      box-shadow: var(--md-e-shadow-1);
-    }
-    :host([elevated]) .md-button:hover {
-      box-shadow: var(--md-e-shadow-2);
-    }
-    :host([elevated]) .md-button:focus-visible {
-      box-shadow: var(--md-e-shadow-1);
-    }
-    :host([elevated]) .md-button:active {
-      box-shadow: var(--md-e-shadow-1);
-    }
-    :host([outlined]) .md-button {
-      padding: 0 23px;
-      color: rgb(var(--md-c-important-color, var(--md-c-primary-rgb)));
-      background-color: rgb(var(--md-c-surface-rgb));
-      border: 1px solid rgb(var(--md-c-outline-rgb));
-      box-shadow: none;
-    }
-    :host([outlined]) .md-button:focus-visible {
-      border-color: rgb(var(--md-c-primary-rgb));
-    }
-    :host([outlined]) .md-button:active {
-      border-color: rgb(var(--md-c-outline-rgb));
-    }
-    :host([outlined]) .md-button:disabled {
+    .md-chip:disabled {
       color: rgba(var(--md-c-on-surface-rgb), 0.38);
       border: 1px solid rgba(var(--md-c-on-surface-rgb), 0.12);
+      cursor: default;
     }
-    :host([outlined]) md-ripple,
-    :host([outlined]) .md-button::before {
+    :host(:not([elevated]):not([checked])) md-ripple,
+    :host(:not([elevated]):not([checked])) .md-chip::before {
       top: -1px;
       left: -1px;
       right: -1px;
       bottom: -1px;
     }
-    :host([text]) .md-button {
-      padding: 0 12px;
-      color: rgb(var(--md-c-important-color, var(--md-c-primary-rgb)));
-      background: transparent;
-      box-shadow: none;
+    :host([elevated]) .md-chip {
+      border: none;
+      box-shadow: var(--md-e-shadow-1);
     }
-    :host([text]) .md-button:disabled {
-      color: rgba(var(--md-c-on-surface-rgb), 0.38);
+    :host([checked]) .md-chip {
+      color: rgb(var(--md-c-on-secondary-container-rgb));
+      background-color: rgb(var(--md-c-secondary-container-rgb));
+      border: none;
     }
-    .md-button:disabled,
-    :host([tonal]) .md-button:disabled,
-    :host([elevated]) .md-button:disabled {
+    :host([elevated]) .md-chip:disabled,
+    :host([checked]) .md-chip:disabled {
       color: rgba(var(--md-c-on-surface-rgb), 0.38);
       background-color: rgba(var(--md-c-on-surface-rgb), 0.12);
       cursor: default;
       box-shadow: none;
     }
-    .md-button:disabled md-ripple,
-    .md-button:disabled::before {
+    .md-chip:disabled md-ripple,
+    .md-chip:disabled::before {
       display: none;
     }
     ::slotted(md-icon),
     ::slotted(md-avatar) {
-      margin-left: -8px;
+      margin-left: -4px;
       margin-right: 8px;
     }
     ::slotted(md-icon[after]),
     ::slotted(md-avatar[after]) {
-      margin-left: 8px;
-      margin-right: -8px;
-    }
-    :host([text]) ::slotted(md-icon),
-    :host([text]) ::slotted(md-avatar) {
-      margin-left: -4px;
-      margin-right: 8px;
-    }
-    :host([text]) ::slotted(md-icon[after]),
-    :host([text]) ::slotted(md-avatar[after]) {
       margin-left: 8px;
       margin-right: -4px;
     }
@@ -170,7 +121,7 @@ class Button extends HTMLElement {
 
     let template = document.createElement('template');
     template.innerHTML = `
-    <button class="md-button" ${this.disabled ? 'disabled' : ''}>
+    <button class="md-chip" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
       <span class="md-button__label">${this.label ? this.label : ''}</span>
       <slot></slot>
@@ -204,7 +155,7 @@ class Button extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.buttonE = this.shadowRoot.querySelector('.md-button');
+    this.buttonE = this.shadowRoot.querySelector('.md-chip');
     this.labelE = this.shadowRoot.querySelector('.md-button__label');
     this.slotE = this.shadowRoot.querySelector('slot');
   }
@@ -222,4 +173,4 @@ class Button extends HTMLElement {
   disconnectedCallback() {}
 }
 
-export default Button;
+export default Chip;

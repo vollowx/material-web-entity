@@ -4,7 +4,7 @@
  * Description.
  */
 
- class Icon extends HTMLElement {
+class Icon extends HTMLElement {
   constructor() {
     super();
 
@@ -49,8 +49,6 @@
   }
   connectedCallback() {
     this.render();
-
-    // this.sthE = this.shadowRoot.getElementById('sth');
   }
   attributeChangedCallback(attrName, oldVal, newVal) {}
   adoptedCallback() {}

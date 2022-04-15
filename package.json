@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "A component library based on Material Design 3 & Web Components",
   "main": "./src/index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --hot --mode development",
+    "serve": "webpack-dev-server --mode production"
+  },
   "repository": {
     "type": "git",
     "url": "git+//github.com/huge-pancake/material-web-udp.git"
@@ -18,5 +22,11 @@
     "components library",
     "ui"
   ],
-  "homepage": "https://github.com/huge-pancake/material-web-udp#readme"
+  "homepage": "https://github.com/huge-pancake/material-web-udp#readme",
+  "dependencies": {
+    "webpack-dev-server": "^4.8.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.9.2"
+  }
 }
