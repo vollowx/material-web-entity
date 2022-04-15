@@ -131,7 +131,7 @@
   </head>
   <body>
     <md-typo hd-lg>Try to right click</md-typo>
-    <div class="md-menu" dense>
+    <div class="md-menu" menu dense>
       <button class="md-menu__item">
         <md-ripple></md-ripple>
         <div class="md-menu__item__icon">
@@ -160,6 +160,17 @@
         <div class="md-menu__item__tip">⌘V</div>
       </button>
       <div class="md-menu__divider"></div>
+      <button class="md-menu__item" sub toggles>
+        <md-ripple></md-ripple>
+        <div class="md-menu__item__icon"></div>
+        <div class="md-menu__item__label">Toggles</div>
+        <div class="md-menu__item__spacer"></div>
+        <div class="md-menu__item__icon">
+          <md-icon>arrow_right</md-icon>
+        </div>
+      </button>
+    </div>
+    <div class="md-menu" subMenu dense>
       <button class="md-menu__item" toggleDense>
         <md-ripple></md-ripple>
         <div class="md-menu__item__icon"></div>
@@ -185,10 +196,16 @@
       function toggleDense() {
         if (menu.getAttribute('dense') !== null) {
           menu.removeAttribute('dense');
+          subMenu.removeAttribute('dense');
         } else {
           menu.setAttribute('dense', '');
+          subMenu.setAttribute('dense', '');
         }
       }
+
+      const menu = document.querySelector('[menu]');
+      const subMenu = document.querySelector('[subMenu]');
+      const items = document.querySelectorAll('.md-menu__item:not([sub])');
 
       const toggleThemeBtn = document.querySelector('[toggleTheme]');
       toggleThemeBtn.addEventListener('click', () => M.toggleTheme());
@@ -198,8 +215,29 @@
         shortcut.add('Ctrl+D', () => toggleDense());
         shortcut.add('Ctrl+M', () => M.toggleTheme());
       };
+      const toggles = document.querySelector('[toggles]');
+      toggles.addEventListener('mouseover', (e) => {
+        subMenu.classList.remove('md-menu--top', 'md-menu--right');
+        let top = e.clientY + 4;
+        let left = e.clientX + 4;
+        if (top + subMenu.offsetHeight > window.innerHeight) {
+          top -= subMenu.offsetHeight;
+          subMenu.classList.add('md-menu--top');
+        }
+        if (left + subMenu.offsetWidth > window.innerWidth) {
+          left -= subMenu.offsetWidth;
+          subMenu.classList.add('md-menu--right');
+        }
+        subMenu.style.top = top + 'px';
+        subMenu.style.left = left + 'px';
+        subMenu.setAttribute('open', '');
+      });
+      toggles.addEventListener('mouseout', (e) => {
+        if (e.target == subMenu || subMenu.contains(e.target)) {
+          subMenu.removeAttribute('open');
+        }
+      });
 
-      const menu = document.querySelector('.md-menu');
       document.addEventListener('contextmenu', (e) => {
         menu.classList.remove('md-menu--top', 'md-menu--right');
         let top = e.clientY;
@@ -217,8 +255,17 @@
         event.preventDefault();
         menu.setAttribute('open', '');
       });
-      document.addEventListener('click', () => {
-        menu.removeAttribute('open');
+      items.forEach((item) => {
+        item.addEventListener('click', () => {
+          menu.removeAttribute('open');
+          subMenu.removeAttribute('open');
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (e.target !== menu && !menu.contains(e.target)) {
+          menu.removeAttribute('open');
+          subMenu.removeAttribute('open');
+        }
       });
     </script>
   </body>
