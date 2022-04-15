@@ -146,13 +146,31 @@ class Button extends HTMLElement {
     .md-button:disabled::before {
       display: none;
     }
+    ::slotted(md-icon) {
+      margin-left: -8px;
+      margin-right: 8px;
+      font-size: 1rem;
+    }
+    ::slotted(md-icon[after]) {
+      margin-left: 8px;
+      margin-right: -8px;
+    }
+    :host([text]) ::slotted(md-icon) {
+      margin-left: -4px;
+      margin-right: 8px;
+      font-size: 1rem;
+    }
+    :host([text]) ::slotted(md-icon[after]) {
+      margin-left: 8px;
+      margin-right: -4px;
+    }
     `;
 
     let template = document.createElement('template');
     template.innerHTML = `
     <button class="md-button" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
-      <span class="md-button__label">${this.label}</span>
+      <span class="md-button__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>
     `;
@@ -190,7 +208,9 @@ class Button extends HTMLElement {
   }
   attributeChangedCallback(attrName, oldVal, newVal) {
     if (attrName === 'label' && this.buttonE) {
-      this.shadowRoot.querySelector('.md-button__label').textContent = newVal;
+      if (newVal) {
+        this.shadowRoot.querySelector('.md-button__label').textContent = newVal;
+      }
     }
     if (attrName === 'disabled' && this.buttonE) {
       this.buttonE.disabled = this.disabled;
