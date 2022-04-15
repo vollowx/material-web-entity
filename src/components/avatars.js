@@ -38,12 +38,12 @@ class Avatar extends HTMLElement {
       border-radius: 0;
     }
     :host([small]) {
-      width: 0.75rem;
-      height: 0.75rem;
+      width: 30px;
+      height: 30px;
     }
     :host([large]) {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 60px;
+      height: 60px;
     }
     .md-avatar {
       box-sizing: border-box;
