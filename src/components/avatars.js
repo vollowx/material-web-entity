@@ -20,9 +20,22 @@ class Avatar extends HTMLElement {
     :host {
       position: relative;
       box-sizing: border-box;
-      display: inline-block;
-      width: var(--md-avatar-size, 1rem);
-      height: var(--md-avatar-size, 1rem);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--md-avatar-size, 40px);
+      height: var(--md-avatar-size, 40px);
+      color: rgb(var(--md-c-on-primary-rgb));
+      font-size: 1rem;
+      font-weight: calc(var(--md-font-weight-base) + 500);
+      letter-spacing: 0.1px;
+      background-color: var(--md-avatar-bg-color, rgb(var(--md-c-primary-rgb)));
+      border-radius: 50%;
+      user-select: none;
+      overflow: hidden;
+    }
+    :host([square]) {
+      border-radius: 0;
     }
     :host([small]) {
       width: 0.75rem;
@@ -34,6 +47,10 @@ class Avatar extends HTMLElement {
     }
     .md-avatar {
       box-sizing: border-box;
+      width: 1rem;
+      height: 1rem;
+    }
+    :host([full-img]) .md-avatar {
       width: 100%;
       height: 100%;
     }
@@ -41,8 +58,9 @@ class Avatar extends HTMLElement {
 
     let template = document.createElement('template');
     template.innerHTML = `
-    <slot></slot>
-    <img src="${this.url}" class="md-avatar" id="md-avatar"></img>
+    <slot>
+      <img src="${this.url}" class="md-avatar" id="md-avatar"></img>
+    </slot>
     `;
 
     this.shadowRoot.appendChild(styles);
