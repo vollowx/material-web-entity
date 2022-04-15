@@ -14,7 +14,7 @@ body {
 }
 
 ::selection {
-  background-color: rgba(var(--md-primary-rgb), 0.16);
+  background-color: rgba(var(--md-c-primary-rgb), 0.16);
 }
 ::-webkit-scrollbar {
   background: transparent;
