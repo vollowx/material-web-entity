@@ -55,6 +55,9 @@ class Button extends HTMLElement {
       -webkit-appearance: none;
       -moz-appearance: none;
     }
+    .md-button * {
+      pointer-events: none;
+    }
     .md-button::before {
       content: "";
       position: absolute;

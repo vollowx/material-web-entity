@@ -22,18 +22,6 @@ class Menu extends HTMLElement {
       --md-menu-padding: 20px;
       z-index: 12;
     }
-    .md-menu__layer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 12;
-      pointer-events: none;
-    }
-    :host([open]) .md-menu__layer {
-      pointer-events: all;
-    }
     .md-menu {
       display: flex;
       flex-direction: column;
@@ -79,6 +67,13 @@ class Menu extends HTMLElement {
     :host([dense]) ::slotted(md-menu-item) {
       height: 36px;
     }
+    :host([fast]) {
+      --md-hover-transition-time: 0ms;
+    }
+    :host([fast]) .md-menu {
+      transition-duration: 0ms;
+      transition-delay: 0ms !important;
+    }
     ::slotted(md-divider) {
       display: block;
       height: 1px;
@@ -89,7 +84,6 @@ class Menu extends HTMLElement {
 
     let template = document.createElement('template');
     template.innerHTML = `
-    <div class="md-menu__layer" id="md-menu__layer"></div>
     <div class="md-menu" id="md-menu">
       <slot></slot>
     </div>
@@ -102,12 +96,103 @@ class Menu extends HTMLElement {
   get open() {
     return this.getAttribute('open') != undefined;
   }
+  get dense() {
+    return this.getAttribute('dense') != undefined;
+  }
+  get fast() {
+    return this.getAttribute('fast') != undefined;
+  }
+  get sub() {
+    return this.getAttribute('sub') != undefined;
+  }
+  /**
+   * @param value {Boolean}
+   */
   set open(value) {
     if (value) {
       this.setAttribute('open', '');
     } else {
       this.removeAttribute('open');
     }
+  }
+  /**
+   * @param value {Boolean}
+   */
+  set dense(value) {
+    if (value) {
+      this.setAttribute('dense', '');
+    } else {
+      this.removeAttribute('dense');
+    }
+  }
+  /**
+   * @param value {Boolean}
+   */
+  set fast(value) {
+    if (value) {
+      this.setAttribute('fast', '');
+    } else {
+      this.removeAttribute('fast');
+    }
+  }
+  /**
+   * @param value {Boolean}
+   */
+  set sub(value) {
+    if (value) {
+      this.setAttribute('sub', '');
+    } else {
+      this.removeAttribute('sub');
+    }
+  }
+
+  /**
+   * @param isSub {Boolean}
+   */
+  setPosition(isSub = false) {
+    this.menuE.removeAttribute('style');
+    this.menuE.classList.remove('md-menu--bottom', 'md-menu--right');
+    let rect = this.controllerE.getBoundingClientRect();
+    let top, left;
+    if (isSub) {
+      top = rect.top - 8;
+      left = rect.left + rect.width - 4;
+    } else {
+      top = rect.top + rect.height;
+      left = rect.left;
+    }
+    if (top + this.menuE.offsetHeight > window.innerHeight) {
+      this.menuE.classList.add('md-menu--bottom');
+      if (isSub) {
+        top += 16 + rect.height;
+      }
+    }
+    if (left + this.menuE.offsetWidth > window.innerWidth) {
+      this.menuE.classList.add('md-menu--right');
+      if (isSub && this.dense) {
+        left -= rect.width * 2 - 52;
+      } else if (isSub) {
+        left -= rect.width * 2 - 48;
+      }
+    }
+    while (top + this.menuE.offsetHeight > window.innerHeight) {
+      top -= this.menuE.offsetHeight;
+    }
+    while (left + this.menuE.offsetWidth > window.innerWidth) {
+      left -= this.menuE.offsetWidth;
+    }
+    if (top < 0) {
+      top = 8;
+    }
+    if (this.menuE.offsetHeight + top > window.innerHeight) {
+      this.menuE.style.bottom = '8px';
+    }
+    if (left < 0) {
+      left = 8;
+    }
+    this.menuE.style.top = top + 'px';
+    this.menuE.style.left = left + 'px';
+    this.open = true;
   }
 
   static get observedAttributes() {
@@ -117,56 +202,30 @@ class Menu extends HTMLElement {
     this.render();
 
     this.menuE = this.shadowRoot.getElementById('md-menu');
-    this.layerE = this.shadowRoot.getElementById('md-menu__layer');
-    this.layerE.addEventListener('click', (e) => {
-      if (this.open && !this.contains(e.target)) {
+    document.addEventListener('click', (e) => {
+      if (this.open && !this.contains(e.target) && e.target !== this.controllerE) {
         this.open = false;
       }
     });
-
     this.addEventListener('click', (e) => {
       let path = e.composedPath();
-      if (path.indexOf(this) == 6) {
+      if (path.indexOf(this) == 6 && e.target.getAttribute('subber') == undefined) {
         this.open = false;
       }
     });
 
     window.addEventListener('load', () => {
-      this.controller = document.querySelector(`#${this.id}`);
+      this.controllerE = document.querySelector(`#${this.id}`);
 
-      if (this.controller) {
-        this.controller.addEventListener('click', (e) => {
-          this.menuE.removeAttribute('style');
-          this.menuE.classList.remove('md-menu--bottom', 'md-menu--right');
-          let rect = this.controller.getBoundingClientRect();
-          let top = rect.top + rect.height;
-          let left = rect.left;
-          if (top + this.menuE.offsetHeight > window.innerHeight) {
-            this.menuE.classList.add('md-menu--bottom');
-          }
-          if (left + this.menuE.offsetWidth > window.innerWidth) {
-            this.menuE.classList.add('md-menu--right');
-          }
-          while (top + this.menuE.offsetHeight > window.innerHeight) {
-            top -= this.menuE.offsetHeight;
-          }
-          while (left + this.menuE.offsetWidth > window.innerWidth) {
-            left -= this.menuE.offsetWidth;
-          }
-          if (top < 0) {
-            top = 8;
-          }
-          if (this.menuE.offsetHeight + top > window.innerHeight) {
-            this.menuE.style.bottom = '8px';
-          }
-          if (left < 0) {
-            left = 8;
-          }
-          this.menuE.style.top = top + 'px';
-          this.menuE.style.left = left + 'px';
-          e.preventDefault();
-          this.open = true;
-        });
+      if (this.controllerE) {
+        if (this.sub) {
+          this.controllerE.addEventListener('mouseover', (e) => this.setPosition(true));
+          this.controllerE.addEventListener('mouseout', (e) => (this.open = false));
+          this.addEventListener('mouseover', () => (this.open = true));
+          this.addEventListener('mouseout', () => (this.open = false));
+        } else {
+          this.controllerE.addEventListener('click', (e) => this.setPosition());
+        }
       }
     });
   }
@@ -236,7 +295,7 @@ class MenuItem extends HTMLElement {
       background: currentColor;
       border-radius: inherit;
       opacity: 0;
-      transition: opacity 120ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity var(--md-hover-transition-time, 120ms) cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: none;
     }
     @media screen and (min-width: 1240px) {

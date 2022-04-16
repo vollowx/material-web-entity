@@ -81,7 +81,7 @@
   <body>
     <main>
       <div class="main-content">
-        <md-button rule="region" toggleTheme label="Toggle theme" outlined></md-button>
+        <md-button toggleTheme label="Toggle theme" outlined></md-button>
 
         <md-typo rule="region" dp-lg>Avatars</md-typo>
         <code-example rule="region">
@@ -304,7 +304,7 @@
                 <span slot="after">⌘I</span>
               </md-menu-item>
             </md-menu>
-            
+
             <md-button outlined id="demo-menu2">Toggle menu with divider</md-button>
             <md-menu id="demo-menu2" dense>
               <md-menu-item>
@@ -344,10 +344,22 @@
                 <span slot="label">Inspect</span>
               </md-menu-item>
               <md-divider></md-divider>
-              <md-menu-item suber>
+              <md-menu-item subber id="demo-menu2-sub1">
                 <md-icon slot="icon-before">tune</md-icon>
                 <span slot="label">Options</span>
                 <md-icon slot="after">arrow_right</md-icon>
+              </md-menu-item>
+            </md-menu>
+            <md-menu sub id="demo-menu2-sub1" dense>
+              <md-menu-item toggleDense>
+                <span slot="icon-before"></span>
+                <span slot="label">Toggle dense</span>
+                <span slot="after">⌘D</span>
+              </md-menu-item>
+              <md-menu-item toggleFast>
+                <span slot="icon-before"></span>
+                <span slot="label">Toggle fast</span>
+                <span slot="after">⌘F</span>
               </md-menu-item>
             </md-menu>
           </div>
@@ -407,26 +419,53 @@
 
       console.log('URL | test value: ' + M.getUrlValue('test'));
 
-      const toggleMenuBtn = document.querySelector('[toggleMenu]');
       const toggleThemeBtn = document.querySelector('[toggleTheme]');
       toggleThemeBtn.addEventListener('click', () => {
         M.toggleTheme();
       });
-      const ripple = document.querySelector('[demo-ripple] > md-ripple');
+
+      const menu2 = document.querySelector('md-menu#demo-menu2');
+      const menu2Sub1 = document.querySelector('md-menu#demo-menu2-sub1');
+
+      function toggleMenusDense() {
+        if (menu2.dense) {
+          menu2.dense = false;
+          menu2Sub1.dense = false;
+        } else {
+          menu2.dense = true;
+          menu2Sub1.dense = true;
+        }
+      }
+      function toggleMenusFast() {
+        if (menu2.fast) {
+          menu2.fast = false;
+          menu2Sub1.fast = false;
+        } else {
+          menu2.fast = true;
+          menu2Sub1.fast = true;
+        }
+      }
+
+      const toggleDenseBtn = document.querySelector('[toggleDense]');
+      toggleDenseBtn.addEventListener('click', () => toggleMenusDense());
+      const toggleFastBtn = document.querySelector('[toggleFast]');
+      toggleFastBtn.addEventListener('click', () => toggleMenusFast());
+
+      const demoRipple = document.querySelector('[demo-ripple] > md-ripple');
       const centeredAttrCtrler = document.querySelector('[id="c1"]');
       const unboundedAttrCtrler = document.querySelector('[id="c2"]');
       centeredAttrCtrler.addEventListener('click', () => {
         if (centeredAttrCtrler.checked) {
-          ripple.setAttribute('centered', '');
+          demoRipple.setAttribute('centered', '');
         } else {
-          ripple.removeAttribute('centered');
+          demoRipple.removeAttribute('centered');
         }
       });
       unboundedAttrCtrler.addEventListener('click', () => {
         if (unboundedAttrCtrler.checked) {
-          ripple.setAttribute('unbounded', '');
+          demoRipple.setAttribute('unbounded', '');
         } else {
-          ripple.removeAttribute('unbounded');
+          demoRipple.removeAttribute('unbounded');
         }
       });
     </script>

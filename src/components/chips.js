@@ -56,6 +56,9 @@
       -webkit-appearance: none;
       -moz-appearance: none;
     }
+    .md-chip * {
+      pointer-events: none;
+    }
     .md-chip::before {
       content: "";
       position: absolute;
