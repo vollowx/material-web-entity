@@ -37,13 +37,13 @@
         opacity: 0;
         pointer-events: none;
       }
-      .md-menu.md-menu--top {
+      .md-menu.md-menu--bottom {
         transform-origin: bottom left;
       }
       .md-menu.md-menu--right {
         transform-origin: top right;
       }
-      .md-menu.md-menu--top.md-menu--right {
+      .md-menu.md-menu--bottom.md-menu--right {
         transform-origin: bottom right;
       }
       .md-menu[open] {
@@ -73,6 +73,9 @@
         -webkit-tap-highlight-color: transparent;
         -webkit-appearance: none;
         -moz-appearance: none;
+      }
+      .md-menu__item * {
+        pointer-events: none;
       }
       .md-menu[dense] {
         padding: 2px 0;
@@ -169,6 +172,14 @@
           <md-icon>arrow_right</md-icon>
         </div>
       </button>
+      <button class="md-menu__item">
+        <md-ripple></md-ripple>
+        <div class="md-menu__item__icon">
+          <md-icon>cloud</md-icon>
+        </div>
+        <div class="md-menu__item__label">Cloud driver</div>
+        <div class="md-menu__item__spacer"></div>
+      </button>
     </div>
     <div class="md-menu" subMenu dense>
       <button class="md-menu__item" toggleDense>
@@ -217,12 +228,13 @@
       };
       const toggles = document.querySelector('[toggles]');
       toggles.addEventListener('mouseover', (e) => {
-        subMenu.classList.remove('md-menu--top', 'md-menu--right');
-        let top = e.clientY + 4;
-        let left = e.clientX + 4;
+        subMenu.classList.remove('md-menu--bottom', 'md-menu--right');
+        let rect = toggles.getBoundingClientRect();
+        let top = rect.top - 4;
+        let left = rect.left + rect.width - 4;
         if (top + subMenu.offsetHeight > window.innerHeight) {
           top -= subMenu.offsetHeight;
-          subMenu.classList.add('md-menu--top');
+          subMenu.classList.add('md-menu--bottom');
         }
         if (left + subMenu.offsetWidth > window.innerWidth) {
           left -= subMenu.offsetWidth;
@@ -232,19 +244,23 @@
         subMenu.style.left = left + 'px';
         subMenu.setAttribute('open', '');
       });
+      subMenu.addEventListener('mouseover', (e) => {
+        subMenu.setAttribute('open', '');
+      });
       toggles.addEventListener('mouseout', (e) => {
-        if (e.target == subMenu || subMenu.contains(e.target)) {
-          subMenu.removeAttribute('open');
-        }
+        subMenu.removeAttribute('open');
+      });
+      subMenu.addEventListener('mouseout', (e) => {
+        subMenu.removeAttribute('open');
       });
 
       document.addEventListener('contextmenu', (e) => {
-        menu.classList.remove('md-menu--top', 'md-menu--right');
+        menu.classList.remove('md-menu--bottom', 'md-menu--right');
         let top = e.clientY;
         let left = e.clientX;
         if (top + menu.offsetHeight > window.innerHeight) {
           top -= menu.offsetHeight;
-          menu.classList.add('md-menu--top');
+          menu.classList.add('md-menu--bottom');
         }
         if (left + menu.offsetWidth > window.innerWidth) {
           left -= menu.offsetWidth;
