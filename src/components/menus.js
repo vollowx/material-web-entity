@@ -80,6 +80,23 @@ class Menu extends HTMLElement {
       background-color: rgba(var(--md-c-on-surface-rgb), 0.08);
       margin: 7.5px 0;
     }
+    ::-webkit-scrollbar {
+      background: transparent;
+      width: 12px;
+    }
+    ::-webkit-scrollbar-thumb {
+      height: 56px;
+      border-radius: 8px;
+      border: 4px solid transparent;
+      background-clip: content-box;
+      background-color: #808080;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #a9a9a9;
+    }
+    ::-webkit-scrollbar-thumb:active {
+      background-color: #c0c0c0;
+    }
     `;
 
     let template = document.createElement('template');
@@ -165,6 +182,8 @@ class Menu extends HTMLElement {
       this.menuE.classList.add('md-menu--bottom');
       if (isSub) {
         top += 16 + rect.height;
+      } else {
+        top -= rect.height
       }
     }
     if (left + this.menuE.offsetWidth > window.innerWidth) {
