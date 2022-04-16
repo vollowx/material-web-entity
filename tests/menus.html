@@ -28,6 +28,8 @@
         flex-direction: column;
         padding: 8px 0;
         width: max-content;
+        max-height: 100vh;
+        overflow-y: auto;
         background-color: rgb(var(--md-c-surface-variant-rgb));
         box-shadow: var(--md-e-shadow-2);
         border-radius: 4px;
@@ -163,22 +165,50 @@
         <div class="md-menu__item__tip">⌘V</div>
       </button>
       <div class="md-menu__divider"></div>
-      <button class="md-menu__item" sub toggles>
+      <button class="md-menu__item">
         <md-ripple></md-ripple>
-        <div class="md-menu__item__icon"></div>
-        <div class="md-menu__item__label">Toggles</div>
-        <div class="md-menu__item__spacer"></div>
         <div class="md-menu__item__icon">
-          <md-icon>arrow_right</md-icon>
+          <md-icon>download</md-icon>
         </div>
+        <div class="md-menu__item__label">Save as</div>
+        <div class="md-menu__item__spacer"></div>
       </button>
       <button class="md-menu__item">
         <md-ripple></md-ripple>
         <div class="md-menu__item__icon">
-          <md-icon>cloud</md-icon>
+          <md-icon>paint</md-icon>
         </div>
-        <div class="md-menu__item__label">Cloud driver</div>
+        <div class="md-menu__item__label">Paint</div>
         <div class="md-menu__item__spacer"></div>
+      </button>
+      <div class="md-menu__divider"></div>
+      <button class="md-menu__item">
+        <md-ripple></md-ripple>
+        <div class="md-menu__item__icon">
+          <md-icon>source</md-icon>
+        </div>
+        <div class="md-menu__item__label">View page source</div>
+        <div class="md-menu__item__spacer"></div>
+        <div class="md-menu__item__tip">⌘U</div>
+      </button>
+      <button class="md-menu__item">
+        <md-ripple></md-ripple>
+        <div class="md-menu__item__icon">
+          <md-icon>visibility</md-icon>
+        </div>
+        <div class="md-menu__item__label">Inspect</div>
+      </button>
+      <div class="md-menu__divider"></div>
+      <button class="md-menu__item" sub toggles>
+        <md-ripple></md-ripple>
+        <div class="md-menu__item__icon">
+          <md-icon>tune</md-icon>
+        </div>
+        <div class="md-menu__item__label">Options</div>
+        <div class="md-menu__item__spacer"></div>
+        <div class="md-menu__item__icon">
+          <md-icon>arrow_right</md-icon>
+        </div>
       </button>
     </div>
     <div class="md-menu" subMenu dense>
@@ -233,7 +263,7 @@
         let top = rect.top - 4;
         let left = rect.left + rect.width - 4;
         if (top + subMenu.offsetHeight > window.innerHeight) {
-          top -= subMenu.offsetHeight;
+          top -= subMenu.offsetHeight - rect.height;
           subMenu.classList.add('md-menu--bottom');
         }
         if (left + subMenu.offsetWidth > window.innerWidth) {
