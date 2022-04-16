@@ -11,9 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
     <link rel="stylesheet" href="../src/index.css" />
     <style>
-      :root {
-        --md-menu-base-spacing: 12px;
-      }
       md-typo {
         position: fixed;
         top: 50%;
@@ -38,6 +35,10 @@
         transform-origin: top left;
         opacity: 0;
         pointer-events: none;
+        box-sizing: border-box;
+      }
+      .md-menu[sub][open] {
+        transition-delay: 240ms;
       }
       .md-menu.md-menu--bottom {
         transform-origin: bottom left;
@@ -54,10 +55,11 @@
         pointer-events: initial;
       }
       .md-menu__item {
+        flex-shrink: 0;
         display: flex;
         align-items: center;
         position: relative;
-        padding-right: var(--md-menu-base-spacing);
+        padding: 0;
         width: 100%;
         height: 48px;
         color: rgb(var(--md-c-on-surface-variant-rgb));
@@ -78,20 +80,6 @@
       }
       .md-menu__item * {
         pointer-events: none;
-      }
-      .md-menu[dense] {
-        padding: 2px 0;
-        border-radius: 2px;
-        --md-menu-base-spacing: 6px;
-      }
-      .md-menu[dense] .md-menu__item {
-        height: 24px;
-      }
-      .md-menu[dense] .md-menu__item__icon {
-        --md-icon-size: 16px;
-      }
-      .md-menu[fast] {
-        transition-duration: 0ms;
       }
       .md-menu__item::before {
         content: '';
@@ -115,18 +103,33 @@
         opacity: 0.12;
       }
       .md-menu__item__icon {
-        margin-left: var(--md-menu-base-spacing);
+        margin-left: 16px;
         width: 24px;
         display: flex;
         justify-content: center;
         --md-icon-size: 24px;
       }
       .md-menu__item__label {
-        margin-left: var(--md-menu-base-spacing);
+        margin-left: 20px;
       }
       .md-menu__item__spacer {
         flex: 1;
         min-width: 80px;
+      }
+      .md-menu__item__tip {
+        margin-right: 16px;
+      }
+      .md-menu[dense] .md-menu__item {
+        height: 32px;
+      }
+      .md-menu[dense] .md-menu__item__icon {
+        --md-icon-size: 16px;
+      }
+      .md-menu[fast] {
+        transition-duration: 0ms;
+      }
+      .md-menu[fast] .md-menu__item::before {
+        transition-duration: 0ms;
       }
       .md-menu__divider {
         display: block;
@@ -175,14 +178,16 @@
         </div>
         <div class="md-menu__item__label">Save as</div>
         <div class="md-menu__item__spacer"></div>
+        <div class="md-menu__item__tip">⌘S</div>
       </button>
       <button class="md-menu__item">
         <md-ripple></md-ripple>
         <div class="md-menu__item__icon">
-          <md-icon>paint</md-icon>
+          <md-icon>brush</md-icon>
         </div>
         <div class="md-menu__item__label">Paint</div>
         <div class="md-menu__item__spacer"></div>
+        <div class="md-menu__item__tip">⌘P</div>
       </button>
       <div class="md-menu__divider"></div>
       <button class="md-menu__item">
@@ -202,7 +207,7 @@
         <div class="md-menu__item__label">Inspect</div>
       </button>
       <div class="md-menu__divider"></div>
-      <button class="md-menu__item" sub toggles>
+      <button class="md-menu__item" suber toggles>
         <md-ripple></md-ripple>
         <div class="md-menu__item__icon">
           <md-icon>tune</md-icon>
@@ -214,7 +219,8 @@
         </div>
       </button>
     </div>
-    <div class="md-menu" subMenu dense>
+
+    <div class="md-menu" sub dense>
       <button class="md-menu__item" toggleDense>
         <md-ripple></md-ripple>
         <div class="md-menu__item__icon"></div>
@@ -255,8 +261,8 @@
       }
 
       const menu = document.querySelector('[menu]');
-      const subMenu = document.querySelector('[subMenu]');
-      const items = document.querySelectorAll('.md-menu__item:not([sub])');
+      const subMenu = document.querySelector('[sub]');
+      const items = document.querySelectorAll('.md-menu__item:not([suber])');
 
       const toggleThemeBtn = document.querySelector('[toggleTheme]');
       toggleThemeBtn.addEventListener('click', () => M.toggleTheme());
@@ -273,19 +279,27 @@
       toggles.addEventListener('mouseover', (e) => {
         subMenu.classList.remove('md-menu--bottom', 'md-menu--right');
         let rect = toggles.getBoundingClientRect();
-        let top = rect.top - 4;
+        let top = rect.top - 8;
         let left = rect.left + rect.width - 4;
         if (top + subMenu.offsetHeight > window.innerHeight) {
           subMenu.classList.add('md-menu--bottom');
+          top += 16;
         }
         if (left + subMenu.offsetWidth > window.innerWidth) {
           subMenu.classList.add('md-menu--right');
+          left -= rect.width * 2 - 28;
         }
         while (top + subMenu.offsetHeight > window.innerHeight) {
           top -= subMenu.offsetHeight - rect.height;
         }
         while (left + subMenu.offsetWidth > window.innerWidth) {
           left -= subMenu.offsetWidth;
+        }
+        if (top < 0) {
+          top = 0;
+        }
+        if (left < 0) {
+          left = 0;
         }
         subMenu.style.top = top + 'px';
         subMenu.style.left = left + 'px';
@@ -306,12 +320,22 @@
         let top = e.clientY;
         let left = e.clientX;
         if (top + menu.offsetHeight > window.innerHeight) {
-          top -= menu.offsetHeight;
           menu.classList.add('md-menu--bottom');
         }
         if (left + menu.offsetWidth > window.innerWidth) {
-          left -= menu.offsetWidth;
           menu.classList.add('md-menu--right');
+        }
+        while (top + menu.offsetHeight > window.innerHeight) {
+          top -= menu.offsetHeight;
+        }
+        while (left + menu.offsetWidth > window.innerWidth) {
+          left -= menu.offsetWidth;
+        }
+        if (top < 0) {
+          top = 8;
+        }
+        if (left < 0) {
+          left = 8;
         }
         menu.style.top = top + 'px';
         menu.style.left = left + 'px';

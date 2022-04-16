@@ -66,6 +66,7 @@
         -webkit-tap-highlight-color: transparent;
         -webkit-appearance: none;
         -moz-appearance: none;
+        z-index: 1;
       }
       fieldset {
         border-radius: 8px;
@@ -207,6 +208,151 @@
           <md-icon m-4 url="./assets/google-drive.svg"></md-icon>
         </code-example>
 
+        <md-typo rule="region" dp-lg>Menus</md-typo>
+        <code-example rule="region">
+          <div>
+            <md-button outlined id="demo-menu1">Toggle long menu</md-button>
+            <md-menu id="demo-menu1">
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">add</md-icon>
+                <span slot="label">Item</span>
+                <span slot="after">⌘I</span>
+              </md-menu-item>
+            </md-menu>
+            
+            <md-button outlined id="demo-menu2">Toggle menu with divider</md-button>
+            <md-menu id="demo-menu2" dense>
+              <md-menu-item>
+                <md-icon slot="icon-before">content_copy</md-icon>
+                <span slot="label">Cut</span>
+                <span slot="after">⌘C</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">content_cut</md-icon>
+                <span slot="label">Copy</span>
+                <span slot="after">⌘X</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">content_paste</md-icon>
+                <span slot="label">Paste</span>
+                <span slot="after">⌘V</span>
+              </md-menu-item>
+              <md-divider></md-divider>
+              <md-menu-item>
+                <md-icon slot="icon-before">download</md-icon>
+                <span slot="label">Save as</span>
+                <span slot="after">⌘S</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">brush</md-icon>
+                <span slot="label">Paint</span>
+                <span slot="after">⌘P</span>
+              </md-menu-item>
+              <md-divider></md-divider>
+              <md-menu-item>
+                <md-icon slot="icon-before">source</md-icon>
+                <span slot="label">View page source</span>
+                <span slot="after">⌘U</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">visibility</md-icon>
+                <span slot="label">Inspect</span>
+              </md-menu-item>
+              <md-divider></md-divider>
+              <md-menu-item suber>
+                <md-icon slot="icon-before">tune</md-icon>
+                <span slot="label">Options</span>
+                <md-icon slot="after">arrow_right</md-icon>
+              </md-menu-item>
+            </md-menu>
+          </div>
+        </code-example>
+
         <md-typo rule="region" dp-lg>Ripples</md-typo>
         <code-example rule="region">
           <div demo-ripple><md-ripple></md-ripple>Normal</div>
@@ -261,6 +407,7 @@
 
       console.log('URL | test value: ' + M.getUrlValue('test'));
 
+      const toggleMenuBtn = document.querySelector('[toggleMenu]');
       const toggleThemeBtn = document.querySelector('[toggleTheme]');
       toggleThemeBtn.addEventListener('click', () => {
         M.toggleTheme();

@@ -38,7 +38,7 @@ function getUrlValue(name) {
   if (r != null) return decodeURIComponent(r[2]);
   return null;
 }
-// Theme
+// Toggles
 /**
  * Toggle the theme
  */
@@ -49,6 +49,16 @@ function toggleTheme() {
     document.body.setAttribute('data-dark', 'true');
   }
 }
+/**
+ * Toggle one's attribute
+ */
+function toggleAttr(element, attribute) {
+  if (element.getAttribute(attribute) != null) {
+    element.removeAttribute(attribute);
+  } else {
+    element.setAttribute(attribute, '');
+  }
+}
 
 export { getUrlHref, getUrlHost, getUrlHash, getUrlSearch, getUrlValue };
-export { toggleTheme };
+export { toggleTheme, toggleAttr };
