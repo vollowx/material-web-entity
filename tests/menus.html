@@ -90,6 +90,9 @@
       .md-menu[dense] .md-menu__item__icon {
         --md-icon-size: 16px;
       }
+      .md-menu[fast] {
+        transition-duration: 0ms;
+      }
       .md-menu__item::before {
         content: '';
         position: absolute;
@@ -135,7 +138,7 @@
     <script src="./shortcut.js"></script>
   </head>
   <body>
-    <md-typo hd-lg>Try to right click</md-typo>
+    <md-typo hd-lg>Try to right click<br />also try to use hotkey (in Options)</md-typo>
     <div class="md-menu" menu dense>
       <button class="md-menu__item">
         <md-ripple></md-ripple>
@@ -219,6 +222,13 @@
         <div class="md-menu__item__spacer"></div>
         <div class="md-menu__item__tip">⌘D</div>
       </button>
+      <button class="md-menu__item" toggleFast>
+        <md-ripple></md-ripple>
+        <div class="md-menu__item__icon"></div>
+        <div class="md-menu__item__label">Toggle fast</div>
+        <div class="md-menu__item__spacer"></div>
+        <div class="md-menu__item__tip">⌘F</div>
+      </button>
       <button class="md-menu__item" toggleTheme>
         <md-ripple></md-ripple>
         <div class="md-menu__item__icon">
@@ -234,13 +244,13 @@
       import '../src/index.js';
       import { M } from '../src/index.js';
 
-      function toggleDense() {
-        if (menu.getAttribute('dense') !== null) {
-          menu.removeAttribute('dense');
-          subMenu.removeAttribute('dense');
+      function toggleSth(sth) {
+        if (menu.getAttribute(sth) !== null) {
+          menu.removeAttribute(sth);
+          subMenu.removeAttribute(sth);
         } else {
-          menu.setAttribute('dense', '');
-          subMenu.setAttribute('dense', '');
+          menu.setAttribute(sth, '');
+          subMenu.setAttribute(sth, '');
         }
       }
 
@@ -251,9 +261,12 @@
       const toggleThemeBtn = document.querySelector('[toggleTheme]');
       toggleThemeBtn.addEventListener('click', () => M.toggleTheme());
       const toggleDenseBtn = document.querySelector('[toggleDense]');
-      toggleDenseBtn.addEventListener('click', () => toggleDense());
+      toggleDenseBtn.addEventListener('click', () => toggleSth('dense'));
+      const toggleFastBtn = document.querySelector('[toggleFast]');
+      toggleFastBtn.addEventListener('click', () => toggleSth('fast'));
       window.onload = () => {
-        shortcut.add('Ctrl+D', () => toggleDense());
+        shortcut.add('Ctrl+D', () => toggleSth('dense'));
+        shortcut.add('Ctrl+F', () => toggleSth('fast'));
         shortcut.add('Ctrl+M', () => M.toggleTheme());
       };
       const toggles = document.querySelector('[toggles]');
@@ -263,12 +276,16 @@
         let top = rect.top - 4;
         let left = rect.left + rect.width - 4;
         if (top + subMenu.offsetHeight > window.innerHeight) {
-          top -= subMenu.offsetHeight - rect.height;
           subMenu.classList.add('md-menu--bottom');
         }
         if (left + subMenu.offsetWidth > window.innerWidth) {
-          left -= subMenu.offsetWidth;
           subMenu.classList.add('md-menu--right');
+        }
+        while (top + subMenu.offsetHeight > window.innerHeight) {
+          top -= subMenu.offsetHeight - rect.height;
+        }
+        while (left + subMenu.offsetWidth > window.innerWidth) {
+          left -= subMenu.offsetWidth;
         }
         subMenu.style.top = top + 'px';
         subMenu.style.left = left + 'px';

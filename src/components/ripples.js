@@ -89,18 +89,6 @@ class Ripple extends HTMLElement {
     this.shadowRoot.innerHTML += template.innerHTML;
   }
 
-  addHoverLayer() {
-    this.containerE.classList.add('md-ripple--hover');
-  }
-  removeHoverLayer() {
-    this.containerE.classList.remove('md-ripple--hover');
-  }
-  addFocusLayer() {
-    this.containerE.classList.add('md-ripple--focus');
-  }
-  removeFocusLayer() {
-    this.containerE.classList.remove('md-ripple--focus');
-  }
   addActiveLayer(_event) {
     let ripple = document.createElement('span');
     ripple.classList.add('md-ripple__itself');
@@ -158,10 +146,6 @@ class Ripple extends HTMLElement {
     this.parentE = this.parentNode.host || this.parentNode;
     this.containerE = this.shadowRoot.getElementById('md-ripple__container');
 
-    this.parentE.addEventListener('mouseover', () => this.addHoverLayer());
-    this.parentE.addEventListener('mouseleave', () => this.removeHoverLayer());
-    this.parentE.addEventListener('focus', () => this.addFocusLayer());
-    this.parentE.addEventListener('blur', () => this.removeFocusLayer());
     this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));
   }
   attributeChangedCallback(attrName, oldVal, newVal) {}

@@ -30,16 +30,8 @@ Anywhere in `<head>` tag
 
 ```html
 <link rel="stylesheet" href="https://huge-pancake.github.io/material-web-udp/src/index.css" />
+<script type="module" src="https://huge-pancake.github.io/material-web-udp/src/index.js"></script>
 <!-- use this url(from github page) or local css file(download this repositories) -->
-```
-
-End of `<body>` tag
-
-```html
-<script type="module">
-  import 'https://huge-pancake.github.io/material-web-udp/src/index.js';
-  // use this url(from github page) or local css file(download this repositories)
-</script>
 ```
 
 ## Credits
