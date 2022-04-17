@@ -212,100 +212,9 @@
         <code-example rule="region">
           <div>
             <md-button outlined id="demo-menu1">long Menu</md-button>
-            <md-menu id="demo-menu1">
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">add</md-icon>
-                <span slot="label">Item</span>
-                <span slot="after">⌘I</span>
-              </md-menu-item>
-            </md-menu>
+            <md-menu id="demo-menu1"></md-menu>
 
-            <md-button outlined id="demo-menu2">sub Menu</md-button>
+            <md-button outlined id="demo-menu2">sub Menu (testing)</md-button>
             <md-menu id="demo-menu2" dense>
               <md-menu-item>
                 <md-icon slot="icon-before">content_copy</md-icon>
@@ -423,6 +332,13 @@
       toggleThemeBtn.addEventListener('click', () => {
         M.toggleTheme();
       });
+
+      const menu1 = document.querySelector('md-menu#demo-menu1');
+      let str = ``;
+      for (let i = 0; i < 100; i++) {
+        str += `<md-menu-item><md-icon slot="icon-before">add</md-icon><span slot="label">Item ${i}</span><span slot="after">⌘I</span></md-menu-item>`;
+      }
+      menu1.innerHTML = str;
 
       const menu2 = document.querySelector('md-menu#demo-menu2');
       const menu2Sub1 = document.querySelector('md-menu#demo-menu2-sub1');

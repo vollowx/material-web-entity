@@ -178,22 +178,34 @@ class Menu extends HTMLElement {
       top = rect.top + rect.height;
       left = rect.left;
     }
-    if (top + this.menuE.offsetHeight > window.innerHeight) {
+    if (top > window.innerHeight / 2) {
       this.menuE.classList.add('md-menu--bottom');
-      if (isSub) {
-        top += 16 + rect.height;
-      } else {
-        top -= rect.height
-      }
+      top = rect.top - this.menuE.offsetHeight;
+    } else {
+      top = rect.top + rect.height;
     }
-    if (left + this.menuE.offsetWidth > window.innerWidth) {
+    if (left > window.innerWidth / 2) {
       this.menuE.classList.add('md-menu--right');
-      if (isSub && this.dense) {
-        left -= rect.width * 2 - 52;
-      } else if (isSub) {
-        left -= rect.width * 2 - 48;
-      }
+      left = rect.left - this.menuE.offsetWidth + rect.width;
+    } else {
+      left = rect.left;
     }
+    // if (top + this.menuE.offsetHeight > window.innerHeight) {
+    //   this.menuE.classList.add('md-menu--bottom');
+    //   if (isSub) {
+    //     top += 16 + rect.height;
+    //   } else {
+    //     top -= rect.height
+    //   }
+    // }
+    // if (left + this.menuE.offsetWidth > window.innerWidth) {
+    //   this.menuE.classList.add('md-menu--right');
+    //   if (isSub && this.dense) {
+    //     left -= rect.width * 2 - 52;
+    //   } else if (isSub) {
+    //     left -= rect.width * 2 - 48;
+    //   }
+    // }
     while (top + this.menuE.offsetHeight > window.innerHeight) {
       top -= this.menuE.offsetHeight;
     }
