@@ -91,7 +91,6 @@ class Ripple extends HTMLElement {
     this.parentE.addEventListener('touchend', () => this.removeActiveLayer(ripple));
   }
   /**
-   *
    * @param {HTMLElement} _ripple
    */
   removeActiveLayer(_ripple) {
