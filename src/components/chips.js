@@ -143,9 +143,15 @@
   get disabled() {
     return this.getAttribute('disabled') != undefined;
   }
+  /**
+   * @param {Boolean} value
+   */
   set label(value) {
     this.setAttribute('label', value);
   }
+  /**
+   * @param {Boolean} value
+   */
   set disabled(value) {
     if (value) {
       this.setAttribute('disabled', '');

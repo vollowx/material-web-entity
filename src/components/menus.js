@@ -67,9 +67,6 @@ class Menu extends HTMLElement {
     :host([dense]) ::slotted(md-menu-item) {
       height: 36px;
     }
-    :host([fast]) {
-      --md-hover-transition-time: 0ms;
-    }
     :host([fast]) .md-menu {
       transition-duration: 0ms;
       transition-delay: 0ms !important;
@@ -164,7 +161,9 @@ class Menu extends HTMLElement {
   }
 
   /**
-   * @param {Boolean} isSub
+   * Set the menu position.
+   * TODO: Add support for other positions. (sub menus)
+   * @param {Boolean} isSub - Is the menu a sub menu? (default: false)
    */
   setPosition(isSub = false) {
     this.menuE.removeAttribute('style');
@@ -185,12 +184,7 @@ class Menu extends HTMLElement {
     if (isSub) {
       this.menuE.style.left = rect.left + rect.width + 'px';
     } else {
-      if (rect.left + rect.width / 2 > window.innerWidth / 2) {
-        this.menuE.classList.add('md-menu--right');
-        this.menuE.style.right = window.innerWidth - rect.left + 'px';
-      } else {
-        this.menuE.style.left = rect.left + 'px';
-      }
+      this.menuE.style.left = rect.left + 'px';
     }
     this.open = true;
   }
@@ -295,7 +289,6 @@ class MenuItem extends HTMLElement {
       background: currentColor;
       border-radius: inherit;
       opacity: 0;
-      transition: opacity var(--md-hover-transition-time, 120ms) cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: none;
     }
     @media screen and (min-width: 1240px) {
