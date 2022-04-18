@@ -45,35 +45,10 @@ class Ripple extends HTMLElement {
       background: currentColor;
       border-radius: 50%;
       transform: scale(0);
-      opacity: 0;
-      transition: transform 0ms cubic-bezier(0, 0, 0.2, 1);
+      opacity: 0.1;
+      transition: opacity, transform 0ms cubic-bezier(0, 0, .2, 1);
       will-change: transform, opacity;
       pointer-events: none;
-    }
-    .md-ripple__itself--active {
-      top: var(--md-ripple-top);
-      left: var(--md-ripple-left);
-      width: var(--md-ripple-size);
-      height: var(--md-ripple-size);
-      opacity: 0.16;
-      transform: scale(1);
-      transition-duration: 240ms;
-    }
-    :host([centered]) .md-ripple__itself--active {
-      top: var(--md-ripple-top-centered);
-      left: var(--md-ripple-left-centered);
-      width: var(--md-ripple-size-centered);
-      height: var(--md-ripple-size-centered);
-    }
-    :host([circle]) .md-ripple__itself--active {
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-    .md-ripple__itself--removing {
-      opacity: 0;
-      transition: opacity 120ms linear;
     }
     `;
 
@@ -101,33 +76,63 @@ class Ripple extends HTMLElement {
 
     this.containerE.appendChild(ripple);
     setTimeout(() => {
-      ripple.classList.add('md-ripple__itself--active');
       ripple.style.cssText = `
-      --md-ripple-top: ${y - radius}px;
-      --md-ripple-left: ${x - radius}px;
-      --md-ripple-size: ${2 * radius}px;
-      --md-ripple-top-centered: ${rect.height / 2 - centerRadius}px;
-      --md-ripple-left-centered: ${rect.width / 2 - centerRadius}px;
-      --md-ripple-size-centered: ${2 * centerRadius}px;`;
+      top: ${this.centered ? rect.height / 2 - centerRadius : y - radius}px;
+      left: ${this.centered ? rect.width / 2 - centerRadius : x - radius}px;
+      width: ${this.centered ? centerRadius * 2 : radius * 2}px;
+      height: ${this.centered ? centerRadius * 2 : radius * 2}px;
+      transition-duration: 225ms;
+      transform: scale3d(1, 1, 1);
+      `;
     }, 0);
     this.parentE.addEventListener('mouseleave', () => this.removeActiveLayer(ripple));
     this.parentE.addEventListener('mouseup', () => this.removeActiveLayer(ripple));
     this.parentE.addEventListener('touchmove', () => this.removeActiveLayer(ripple));
     this.parentE.addEventListener('touchend', () => this.removeActiveLayer(ripple));
   }
+  /**
+   *
+   * @param {HTMLElement} _ripple
+   */
   removeActiveLayer(_ripple) {
     if (_ripple) {
-      setTimeout(() => {
-        _ripple.classList.add('md-ripple__itself--removing');
+      _ripple.addEventListener('transitionend', () => {
+        _ripple.style.opacity = '0';
         setTimeout(() => {
           _ripple.remove();
-        }, 240);
-      }, 180);
+        }, 225);
+      });
+      setTimeout(() => {
+        _ripple.style.opacity = '0';
+        setTimeout(() => {
+          _ripple.remove();
+        }, 225);
+      }, 225);
     }
   }
 
+  get unbounded() {
+    return this.hasAttribute('unbounded');
+  }
+  get centered() {
+    return this.hasAttribute('centered');
+  }
   get disabled() {
-    return this.getAttribute('disabled') != undefined;
+    return this.hasAttribute('disabled');
+  }
+  set unbounded(value) {
+    if (value) {
+      this.setAttribute('unbounded', '');
+    } else {
+      this.removeAttribute('unbounded');
+    }
+  }
+  set centered(value) {
+    if (value) {
+      this.setAttribute('centered', '');
+    } else {
+      this.removeAttribute('centered');
+    }
   }
   set disabled(value) {
     if (value) {
@@ -148,9 +153,6 @@ class Ripple extends HTMLElement {
 
     this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));
   }
-  attributeChangedCallback(attrName, oldVal, newVal) {}
-  adoptedCallback() {}
-  disconnectedCallback() {}
 }
 
 export default Ripple;
