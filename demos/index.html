@@ -258,17 +258,44 @@
                 <span slot="label">Options</span>
                 <md-icon slot="after">arrow_right</md-icon>
               </md-menu-item>
+              <md-menu-item subber id="demo-menu2-sub2">
+                <md-icon slot="icon-before">more_horiz</md-icon>
+                <span slot="label">Sub 2</span>
+                <md-icon slot="after">arrow_right</md-icon>
+              </md-menu-item>
             </md-menu>
             <md-menu sub id="demo-menu2-sub1" dense>
               <md-menu-item toggleDense>
-                <span slot="icon-before"></span>
+                <md-icon slot="icon-before">vertical_distribute</md-icon>
                 <span slot="label">Toggle dense</span>
                 <span slot="after">⌘D</span>
               </md-menu-item>
               <md-menu-item toggleFast>
-                <span slot="icon-before"></span>
+                <md-icon slot="icon-before">bolt</md-icon>
                 <span slot="label">Toggle fast</span>
                 <span slot="after">⌘F</span>
+              </md-menu-item>
+            </md-menu>
+            <md-menu sub id="demo-menu2-sub2" dense>
+              <md-menu-item>
+                <md-icon slot="icon-before">list</md-icon>
+                <span slot="label">Item 1</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">list</md-icon>
+                <span slot="label">Item 2</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">list</md-icon>
+                <span slot="label">Item 3</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">list</md-icon>
+                <span slot="label">Item 4</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">list</md-icon>
+                <span slot="label">Item 5</span>
               </md-menu-item>
             </md-menu>
           </div>
@@ -342,23 +369,28 @@
 
       const menu2 = document.querySelector('md-menu#demo-menu2');
       const menu2Sub1 = document.querySelector('md-menu#demo-menu2-sub1');
+      const menu2Sub2 = document.querySelector('md-menu#demo-menu2-sub2');
 
       function toggleMenusDense() {
         if (menu2.dense) {
           menu2.dense = false;
           menu2Sub1.dense = false;
+          menu2Sub2.dense = false;
         } else {
           menu2.dense = true;
           menu2Sub1.dense = true;
+          menu2Sub2.dense = true;
         }
       }
       function toggleMenusFast() {
         if (menu2.fast) {
           menu2.fast = false;
           menu2Sub1.fast = false;
+          menu2Sub2.fast = false;
         } else {
           menu2.fast = true;
           menu2Sub1.fast = true;
+          menu2Sub2.fast = true;
         }
       }
 

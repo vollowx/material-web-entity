@@ -123,7 +123,7 @@ class Menu extends HTMLElement {
     return this.getAttribute('sub') != undefined;
   }
   /**
-   * @param value {Boolean}
+   * @param {Boolean} value
    */
   set open(value) {
     if (value) {
@@ -133,7 +133,7 @@ class Menu extends HTMLElement {
     }
   }
   /**
-   * @param value {Boolean}
+   * @param {Boolean} value
    */
   set dense(value) {
     if (value) {
@@ -143,7 +143,7 @@ class Menu extends HTMLElement {
     }
   }
   /**
-   * @param value {Boolean}
+   * @param {Boolean} value
    */
   set fast(value) {
     if (value) {
@@ -153,7 +153,7 @@ class Menu extends HTMLElement {
     }
   }
   /**
-   * @param value {Boolean}
+   * @param {Boolean} value
    */
   set sub(value) {
     if (value) {
@@ -164,65 +164,34 @@ class Menu extends HTMLElement {
   }
 
   /**
-   * @param isSub {Boolean}
+   * @param {Boolean} isSub
    */
   setPosition(isSub = false) {
     this.menuE.removeAttribute('style');
     this.menuE.classList.remove('md-menu--bottom', 'md-menu--right');
     let rect = this.controllerE.getBoundingClientRect();
-    let top, left;
-    if (isSub) {
-      top = rect.top - 8;
-      left = rect.left + rect.width - 4;
-    } else {
-      top = rect.top + rect.height;
-      left = rect.left;
-    }
-    if (top > window.innerHeight / 2) {
+    if (rect.top + rect.height / 2 > window.innerHeight / 2) {
       this.menuE.classList.add('md-menu--bottom');
-      top = rect.top - this.menuE.offsetHeight;
+      this.menuE.style.bottom = window.innerHeight - rect.top + 'px';
+      if (this.menuE.offsetTop < 8) {
+        this.menuE.style.top = '8px';
+      }
     } else {
-      top = rect.top + rect.height;
+      this.menuE.style.top = rect.top + rect.height + 'px';
+      if (window.innerHeight - this.menuE.offsetTop - this.menuE.offsetHeight < 8) {
+        this.menuE.style.bottom = '8px';
+      }
     }
-    if (left > window.innerWidth / 2) {
-      this.menuE.classList.add('md-menu--right');
-      left = rect.left - this.menuE.offsetWidth + rect.width;
+    if (isSub) {
+      this.menuE.style.left = rect.left + rect.width + 'px';
     } else {
-      left = rect.left;
+      if (rect.left + rect.width / 2 > window.innerWidth / 2) {
+        this.menuE.classList.add('md-menu--right');
+        this.menuE.style.right = window.innerWidth - rect.left + 'px';
+      } else {
+        this.menuE.style.left = rect.left + 'px';
+      }
     }
-    // if (top + this.menuE.offsetHeight > window.innerHeight) {
-    //   this.menuE.classList.add('md-menu--bottom');
-    //   if (isSub) {
-    //     top += 16 + rect.height;
-    //   } else {
-    //     top -= rect.height
-    //   }
-    // }
-    // if (left + this.menuE.offsetWidth > window.innerWidth) {
-    //   this.menuE.classList.add('md-menu--right');
-    //   if (isSub && this.dense) {
-    //     left -= rect.width * 2 - 52;
-    //   } else if (isSub) {
-    //     left -= rect.width * 2 - 48;
-    //   }
-    // }
-    while (top + this.menuE.offsetHeight > window.innerHeight) {
-      top -= this.menuE.offsetHeight;
-    }
-    while (left + this.menuE.offsetWidth > window.innerWidth) {
-      left -= this.menuE.offsetWidth;
-    }
-    if (top < 0) {
-      top = 8;
-    }
-    if (this.menuE.offsetHeight + top > window.innerHeight) {
-      this.menuE.style.bottom = '8px';
-    }
-    if (left < 0) {
-      left = 8;
-    }
-    this.menuE.style.top = top + 'px';
-    this.menuE.style.left = left + 'px';
     this.open = true;
   }
 
@@ -245,7 +214,7 @@ class Menu extends HTMLElement {
       }
     });
 
-    window.addEventListener('load', () => {
+    document.addEventListener('DOMContentLoaded', () => {
       this.controllerE = document.querySelector(`#${this.id}`);
 
       if (this.controllerE) {
