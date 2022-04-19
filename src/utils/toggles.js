@@ -1,7 +1,7 @@
 /**
  * Toggle the theme
  */
- function toggleTheme() {
+function toggleTheme() {
   if (document.body.getAttribute('data-dark') == 'true') {
     document.body.removeAttribute('data-dark');
   } else {

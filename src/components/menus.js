@@ -78,6 +78,9 @@ class Menu extends HTMLElement {
       transition-duration: 0ms;
       transition-delay: 0ms !important;
     }
+    :host([no-icon]) {
+      --md3-menu-item-before-display: none;
+    }
     ::-webkit-scrollbar {
       background: transparent;
       width: 12px;
@@ -167,7 +170,6 @@ class Menu extends HTMLElement {
    * ! Need more testing.
    */
   openMenu() {
-    this.querySelector('md-menu-item').itemE.focus();
     this.menuE.removeAttribute('style');
     this.menuE.classList.remove('md3-menu--bottom', 'md3-menu--right');
     let rect = this.controllerE.getBoundingClientRect();
@@ -178,8 +180,8 @@ class Menu extends HTMLElement {
       } else {
         this.menuE.style.bottom = window.innerHeight - rect.top + 'px';
       }
-      if (this.menuE.offsetTop < 8) {
-        this.menuE.style.top = 8 + 'px';
+      if (this.menuE.offsetTop < rect.height) {
+        this.menuE.style.top = rect.height + 'px';
       }
     } else {
       if (this.sub) {
@@ -187,8 +189,8 @@ class Menu extends HTMLElement {
       } else {
         this.menuE.style.top = rect.top + rect.height + 'px';
       }
-      if (window.innerHeight - this.menuE.offsetTop - this.menuE.offsetHeight < 8) {
-        this.menuE.style.bottom = '8px';
+      if (window.innerHeight - this.menuE.offsetTop - this.menuE.offsetHeight < rect.height) {
+        this.menuE.style.bottom = rect.height + 'px';
       }
     }
     if (this.sub) {
@@ -197,6 +199,7 @@ class Menu extends HTMLElement {
       this.menuE.style.left = rect.left + 'px';
     }
     this.open = true;
+    this.querySelector('md-menu-item').itemE.focus();
   }
 
   static get observedAttributes() {
@@ -207,6 +210,18 @@ class Menu extends HTMLElement {
 
     this.layerE = this.shadowRoot.getElementById('md3-menu__layer');
     this.menuE = this.shadowRoot.getElementById('md3-menu');
+    this.controllerE = document.getElementById(this.id);
+
+    this.addEventListener('keydown', (e) => {
+      if (e.keyCode == 27) {
+        this.open = false;
+      }
+    })
+    document.addEventListener('click', (e) => {
+      if (this.open && !this.contains(e.target) && e.target !== this.controllerE) {
+        this.open = false;
+      }
+    });
     this.layerE.addEventListener('pointerdown', (e) => {
       if (this.open && !this.contains(e.target) && e.target !== this.controllerE) {
         this.open = false;
@@ -218,21 +233,14 @@ class Menu extends HTMLElement {
         this.open = false;
       }
     });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      this.controllerE = document.querySelector(`#${this.id}`);
-
-      if (this.controllerE) {
-        if (this.sub) {
-          this.controllerE.addEventListener('mouseover', () => this.openMenu());
-          this.controllerE.addEventListener('mouseout', () => (this.open = false));
-          this.addEventListener('mouseover', () => (this.open = true));
-          this.addEventListener('mouseout', () => (this.open = false));
-        } else {
-          this.controllerE.addEventListener('click', () => this.openMenu());
-        }
+    if (this.controllerE) {
+      if (this.sub) {
+        this.controllerE.addEventListener('mouseenter', () => this.openMenu());
+        this.addEventListener('mouseover', () => (this.open = true));
+      } else {
+        this.controllerE.addEventListener('click', () => this.openMenu());
       }
-    });
+    }
   }
 }
 
@@ -307,12 +315,12 @@ class MenuItem extends HTMLElement {
     .md3-menu__item:focus::before {
       opacity: 0.12;
     }
-    [name="icon-before"] {
+    [name="before"] {
       margin-left: 16px;
-      display: flex;
+      display: var(--md3-menu-item-before-display, inline);
       justify-content: center;
-      width: var(--md3-icon-size);
-      height: var(--md3-icon-size);
+      width: 24px;
+      height: 24px;
     }
     [name="label"] {
       display: flex;
@@ -333,7 +341,7 @@ class MenuItem extends HTMLElement {
     template.innerHTML = `
     <button class="md3-menu__item" id="md3-menu__item">
       <md-ripple></md-ripple>
-      <slot name="icon-before"></slot>
+      <slot name="before"></slot>
       <slot name="label"></slot>
       <div class="md3-menu__item__spacer"></div>
       <slot name="after"></slot>
