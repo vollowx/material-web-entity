@@ -223,7 +223,7 @@ class Menu extends HTMLElement {
         e.preventDefault();
         let focusItem = this.querySelector('md-menu-item:focus');
         let items = this.querySelectorAll('md-menu-item');
-        let index = [].indexOf.call(focusItem.parentNode.children, focusItem);
+        let index = [].indexOf.call(items, focusItem);
         e.key == 'ArrowDown' ? index++ : index--;
         if (index < 0) {
           index = 0;
@@ -233,16 +233,19 @@ class Menu extends HTMLElement {
         items[index].focus();
       } else if (e.key == 'Escape') {
         // Menu closing
+        e.preventDefault();
         this.closeMenu();
       } else if (e.key == 'ArrowLeft') {
         // Submenu closing
         if (this.sub) {
+          e.preventDefault();
           this.closeMenu();
         }
       } else if (e.key == 'Enter' || e.key == 'ArrowRight') {
         // Submenu opening
         let focusItem = this.querySelector('md-menu-item:focus');
         if (focusItem.hasAttribute('subber')) {
+          e.preventDefault();
           document.querySelector(`md-menu#${focusItem.id}`).openMenu();
         }
       }
