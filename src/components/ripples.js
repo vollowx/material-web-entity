@@ -16,7 +16,7 @@ class Ripple extends HTMLElement {
    */
   render() {
     let styles = document.createElement('style');
-    styles.textContent = `
+    styles.textContent = /* css */`
     :host {
       position: absolute;
       top: 0;
@@ -53,7 +53,7 @@ class Ripple extends HTMLElement {
     `;
 
     let template = document.createElement('template');
-    template.innerHTML = `
+    template.innerHTML = /* html */`
     <div class="md3-ripple__container" id="md3-ripple__container">
       <!-- -->
       <!-- -->

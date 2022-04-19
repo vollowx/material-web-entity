@@ -14,7 +14,7 @@ class Typography extends HTMLElement {
    */
   render() {
     let styles = document.createElement('style');
-    styles.textContent = `
+    styles.textContent = /* css */`
     :host {
       position: relative;
       box-sizing: border-box;
@@ -102,7 +102,7 @@ class Typography extends HTMLElement {
     `;
 
     let template = document.createElement('template');
-    template.innerHTML = `
+    template.innerHTML = /* html */`
     <slot></slot>
     `;
 

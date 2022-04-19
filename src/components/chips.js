@@ -16,7 +16,7 @@
    */
   render() {
     let styles = document.createElement('style');
-    styles.textContent = `
+    styles.textContent = /* css */`
     :host {
       position: relative;
       box-sizing: border-box;
@@ -123,7 +123,7 @@
     `;
 
     let template = document.createElement('template');
-    template.innerHTML = `
+    template.innerHTML = /* html */`
     <button class="md3-chip" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
       <span class="md3-button__label">${this.label ? this.label : ''}</span>

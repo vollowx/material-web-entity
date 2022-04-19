@@ -16,7 +16,7 @@ class Menu extends HTMLElement {
    */
   render() {
     let styles = document.createElement('style');
-    styles.textContent = `
+    styles.textContent = /* css */`
     :host {
       --md3-icon-size: 24px;
       --md3-menu-padding: 16px;
@@ -101,7 +101,7 @@ class Menu extends HTMLElement {
     `;
 
     let template = document.createElement('template');
-    template.innerHTML = `
+    template.innerHTML = /* html */`
     <div class="md3-menu__layer" id="md3-menu__layer"></div>
     <div class="md3-menu" id="md3-menu">
       <slot></slot>
