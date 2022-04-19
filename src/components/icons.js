@@ -1,7 +1,7 @@
 /**
  * Icon component.
  *
- * Button and Chip are both request define this component as 'md-icon'
+ * Button and Chip are both request define this component as 'md3-icon'
  */
 
 class Icon extends HTMLElement {
@@ -21,14 +21,14 @@ class Icon extends HTMLElement {
       position: relative;
       box-sizing: border-box;
       display: inline-block;
-      width: var(--md-icon-size, 1rem);
-      height: var(--md-icon-size, 1rem);
+      width: var(--md3-icon-size, 1rem);
+      height: var(--md3-icon-size, 1rem);
     }
     slot {
       font-family: "Material Icons";
       font-weight: normal;
       font-style: normal;
-      font-size: var(--md-icon-size, inherit);
+      font-size: var(--md3-icon-size, inherit);
       line-height: 1;
       letter-spacing: normal;
       text-transform: none;
@@ -37,8 +37,8 @@ class Icon extends HTMLElement {
       direction: ltr;
       font-feature-settings: 'liga';
     }
-    .md-icon,
-    .md-icon__img {
+    .md3-icon,
+    .md3-icon__img {
       box-sizing: border-box;
       width: 100%;
       height: 100%;
@@ -47,9 +47,9 @@ class Icon extends HTMLElement {
 
     let template = document.createElement('template');
     template.innerHTML = `
-    <span class="md-icon">
+    <span class="md3-icon">
       <slot>
-        <img src="${this.url}" class="md-icon__img" id="md-icon__img"></img>
+        <img src="${this.url}" class="md3-icon__img" id="md3-icon__img"></img>
       </slot>
     </span>
     `;
@@ -71,7 +71,7 @@ class Icon extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.imgE = this.shadowRoot.getElementById('md-icon__img');
+    this.imgE = this.shadowRoot.getElementById('md3-icon__img');
   }
   attributeChangedCallback(attrName, oldVal, newVal) {
     if (attrName === 'url' && this.imgE) {
@@ -80,8 +80,6 @@ class Icon extends HTMLElement {
       }
     }
   }
-  adoptedCallback() {}
-  disconnectedCallback() {}
 }
 
 export default Icon;

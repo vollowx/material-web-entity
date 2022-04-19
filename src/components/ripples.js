@@ -1,7 +1,7 @@
 /**
  * Ripple component.
  *
- * Button, Card and Menu are all request define this component as 'md-ripple'
+ * Button, Card and Menu are all request define this component as 'md3-ripple'
  */
 
 class Ripple extends HTMLElement {
@@ -28,7 +28,7 @@ class Ripple extends HTMLElement {
       border-radius: inherit;
       pointer-events: none;
     }
-    .md-ripple__container {
+    .md3-ripple__container {
       position: absolute;
       top: 0;
       left: 0;
@@ -37,15 +37,15 @@ class Ripple extends HTMLElement {
       border-radius: inherit;
       pointer-events: none;
     }
-    :host(:not([unbounded])) .md-ripple__container {
+    :host(:not([unbounded])) .md3-ripple__container {
       overflow: hidden;
     }
-    .md-ripple__itself {
+    .md3-ripple__itself {
       position: absolute;
       background: currentColor;
       border-radius: 50%;
       transform: scale(0);
-      opacity: 0.1;
+      opacity: 0.12;
       transition: opacity, transform 0ms cubic-bezier(0, 0, .2, 1);
       will-change: transform, opacity;
       pointer-events: none;
@@ -54,7 +54,7 @@ class Ripple extends HTMLElement {
 
     let template = document.createElement('template');
     template.innerHTML = `
-    <div class="md-ripple__container" id="md-ripple__container">
+    <div class="md3-ripple__container" id="md3-ripple__container">
       <!-- -->
       <!-- -->
     </div>
@@ -66,7 +66,7 @@ class Ripple extends HTMLElement {
 
   addActiveLayer(_event) {
     let ripple = document.createElement('span');
-    ripple.classList.add('md-ripple__itself');
+    ripple.classList.add('md3-ripple__itself');
 
     let rect = this.parentE.getBoundingClientRect();
     let x = _event.clientX - rect.left,
@@ -148,9 +148,12 @@ class Ripple extends HTMLElement {
     this.render();
 
     this.parentE = this.parentNode.host || this.parentNode;
-    this.containerE = this.shadowRoot.getElementById('md-ripple__container');
+    this.containerE = this.shadowRoot.getElementById('md3-ripple__container');
 
     this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));
+  }
+  disconnectedCallback() {
+    this.parentE.removeEventListener('pointerdown', (event) => this.addActiveLayer(event));
   }
 }
 

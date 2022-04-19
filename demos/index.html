@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../src/index.css" />
 
     <style>
-      [toggleTheme] {
+      [theme-toggler] {
         position: fixed;
         top: 16px;
         right: 16px;
@@ -18,11 +18,15 @@
       }
       main {
         padding: 24px 0;
-        overflow: hidden;
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+        box-sizing: border-box;
       }
       .main-content {
         max-width: 800px;
         margin: 0 auto;
+        overflow: visible;
       }
       [rule='region'] {
         margin-bottom: 24px;
@@ -33,7 +37,7 @@
         justify-content: center;
         flex-wrap: wrap;
         align-items: center;
-        border: 1px solid rgba(var(--md-c-outline-rgb), 0.24);
+        border: 1px solid rgba(var(--md3-c-outline-rgb), 0.24);
         border-radius: 24px;
       }
       flex-spacer {
@@ -59,8 +63,8 @@
         align-items: center;
         width: 200px;
         height: 200px;
-        background: var(--md-e-surface-2);
-        box-shadow: var(--md-e-shadow-2);
+        background: var(--md3-e-surface-2);
+        box-shadow: var(--md3-e-shadow-2);
         cursor: pointer;
         border-radius: 4px;
         -webkit-tap-highlight-color: transparent;
@@ -71,19 +75,18 @@
       }
       fieldset {
         border-radius: 8px;
-        border: 1px solid rgba(var(--md-c-outline-rgb), 0.24);
+        border: 1px solid rgba(var(--md3-c-outline-rgb), 0.24);
       }
       legend {
         padding: 0 8px;
-        color: var(--md-e-on-surface-2);
+        color: var(--md3-e-on-surface-2);
       }
     </style>
   </head>
   <body>
     <main>
+      <md-button theme-toggler label="Toggle theme" outlined></md-button>
       <div class="main-content">
-        <md-button toggleTheme label="Toggle theme" outlined></md-button>
-
         <md-typo rule="region" dp-lg>Avatars</md-typo>
         <code-example rule="region">
           <md-avatar m-4>A</md-avatar>
@@ -212,10 +215,10 @@
         <md-typo rule="region" dp-lg>Menus</md-typo>
         <code-example rule="region">
           <div>
-            <md-button outlined id="demo-menu1">long Menu</md-button>
+            <md-button text id="demo-menu1">long Menu</md-button>
             <md-menu id="demo-menu1"></md-menu>
 
-            <md-button outlined id="demo-menu2">sub Menu (testing)</md-button>
+            <md-button text id="demo-menu2">sub Menu (testing)</md-button>
             <md-menu id="demo-menu2" dense>
               <md-menu-item>
                 <md-icon slot="icon-before">content_copy</md-icon>
@@ -233,27 +236,6 @@
                 <span slot="after">⌘V</span>
               </md-menu-item>
               <md-divider></md-divider>
-              <md-menu-item>
-                <md-icon slot="icon-before">download</md-icon>
-                <span slot="label">Save as</span>
-                <span slot="after">⌘S</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">brush</md-icon>
-                <span slot="label">Paint</span>
-                <span slot="after">⌘P</span>
-              </md-menu-item>
-              <md-divider></md-divider>
-              <md-menu-item>
-                <md-icon slot="icon-before">source</md-icon>
-                <span slot="label">View page source</span>
-                <span slot="after">⌘U</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="icon-before">visibility</md-icon>
-                <span slot="label">Inspect</span>
-              </md-menu-item>
-              <md-divider></md-divider>
               <md-menu-item subber id="demo-menu2-sub1">
                 <md-icon slot="icon-before">tune</md-icon>
                 <span slot="label">Options</span>
@@ -266,12 +248,12 @@
               </md-menu-item>
             </md-menu>
             <md-menu sub id="demo-menu2-sub1" dense>
-              <md-menu-item toggleDense>
+              <md-menu-item dense-toggler>
                 <md-icon slot="icon-before">vertical_distribute</md-icon>
                 <span slot="label">Toggle dense</span>
                 <span slot="after">⌘D</span>
               </md-menu-item>
-              <md-menu-item toggleFast>
+              <md-menu-item fast-toggler>
                 <md-icon slot="icon-before">bolt</md-icon>
                 <span slot="label">Toggle fast</span>
                 <span slot="after">⌘F</span>
@@ -297,6 +279,18 @@
               <md-menu-item>
                 <md-icon slot="icon-before">list</md-icon>
                 <span slot="label">Item 5</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">list</md-icon>
+                <span slot="label">Item 6</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">list</md-icon>
+                <span slot="label">Item 7</span>
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="icon-before">list</md-icon>
+                <span slot="label">Item 8</span>
               </md-menu-item>
             </md-menu>
           </div>
@@ -356,7 +350,7 @@
 
       console.log('URL | test value: ' + M.getUrlValue('test'));
 
-      const toggleThemeBtn = document.querySelector('[toggleTheme]');
+      const toggleThemeBtn = document.querySelector('[theme-toggler]');
       toggleThemeBtn.addEventListener('click', () => {
         M.toggleTheme();
       });
@@ -395,9 +389,9 @@
         }
       }
 
-      const toggleDenseBtn = document.querySelector('[toggleDense]');
+      const toggleDenseBtn = document.querySelector('[dense-toggler]');
       toggleDenseBtn.addEventListener('click', () => toggleMenusDense());
-      const toggleFastBtn = document.querySelector('[toggleFast]');
+      const toggleFastBtn = document.querySelector('[fast-toggler]');
       toggleFastBtn.addEventListener('click', () => toggleMenusFast());
 
       const demoRipple = document.querySelector('[demo-ripple] > md-ripple');

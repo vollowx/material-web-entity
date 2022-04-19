@@ -1,10 +1,10 @@
 /**
- * Chip component.
+ * FAB (Floating action button) component.
  *
- * Request also defined Ripple component as 'md-ripple' (./ripples.js)
+ * Request also defined Ripple component as 'md3-ripple' (./ripples.js)
  */
 
- class Chip extends HTMLElement {
+class FAB extends HTMLElement {
   constructor() {
     super();
 
@@ -22,16 +22,15 @@
       box-sizing: border-box;
       display: inline-flex;
     }
-    .md3-chip {
-      padding: 0 12px;
+    .md3-fab {
+      padding: 0 24px;
       position: relative;
       box-sizing: border-box;
-      height: 32px;
+      height: 40px;
       flex-shrink: 0;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: rgb(var(--md3-c-on-primary-rgb));
       font-family: var(--md3-t-font-family);
       -moz-osx-font-smoothing: grayscale;
       -webkit-font-smoothing: antialiased;
@@ -41,10 +40,8 @@
       line-height: 1.428571428571429;
       letter-spacing: 0.1px;
       text-decoration: none;
-      color: rgb(var(--md3-c-important-color, var(--md3-c-on-surface-rgb)));
-      background-color: rgb(var(--md3-c-surface-rgb));
-      border: 1px solid rgb(var(--md3-c-outline-rgb));
-      border-radius: 8px;
+      border: 0;
+      border-radius: 20px;
       outline: 0;
       -webkit-user-select: none;
       user-select: none;
@@ -56,10 +53,10 @@
       -webkit-appearance: none;
       -moz-appearance: none;
     }
-    .md3-chip * {
+    .md3-fab * {
       pointer-events: none;
     }
-    .md3-chip::before {
+    .md3-fab::before {
       content: "";
       position: absolute;
       top: 0;
@@ -73,62 +70,24 @@
       pointer-events: none;
     }
     @media screen and (min-width: 1240px) {
-      .md3-chip:hover::before {
+      .md3-fab:hover::before {
         opacity: 0.08;
       }
     }
-    :host(.focus-visible) .md3-chip::before {
+    :host(.focus-visible) .md3-fab::before {
       opacity: 0.12;
     }
-    .md3-chip:disabled {
-      color: rgba(var(--md3-c-on-surface-rgb), 0.38);
-      border: 1px solid rgba(var(--md3-c-on-surface-rgb), 0.12);
-      cursor: default;
-    }
-    :host(:not([elevated]):not([checked])) md-ripple,
-    :host(:not([elevated]):not([checked])) .md3-chip::before {
-      top: -1px;
-      left: -1px;
-      right: -1px;
-      bottom: -1px;
-    }
-    :host([elevated]) .md3-chip {
-      border: none;
-      box-shadow: var(--md3-e-shadow-1);
-    }
-    :host([checked]) .md3-chip {
-      color: rgb(var(--md3-c-on-secondary-container-rgb));
-      background-color: rgb(var(--md3-c-secondary-container-rgb));
-      border: none;
-    }
-    :host([elevated]) .md3-chip:disabled,
-    :host([checked]) .md3-chip:disabled {
-      color: rgba(var(--md3-c-on-surface-rgb), 0.38);
-      background-color: rgba(var(--md3-c-on-surface-rgb), 0.12);
-      cursor: default;
-      box-shadow: none;
-    }
-    .md3-chip:disabled md-ripple,
-    .md3-chip:disabled::before {
+    .md3-fab:disabled md3-ripple,
+    .md3-fab:disabled::before {
       display: none;
-    }
-    ::slotted(md3-icon),
-    ::slotted(md3-avatar) {
-      margin-left: -4px;
-      margin-right: 8px;
-    }
-    ::slotted(md3-icon[after]),
-    ::slotted(md3-avatar[after]) {
-      margin-left: 8px;
-      margin-right: -4px;
     }
     `;
 
     let template = document.createElement('template');
     template.innerHTML = `
-    <button class="md3-chip" ${this.disabled ? 'disabled' : ''}>
-      <md-ripple></md-ripple>
-      <span class="md3-button__label">${this.label ? this.label : ''}</span>
+    <button class="md3-fab" ${this.disabled ? 'disabled' : ''}>
+      <md3-ripple></md3-ripple>
+      <span class="md3-fab__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>
     `;
@@ -141,7 +100,7 @@
     return this.getAttribute('label');
   }
   get disabled() {
-    return this.hasAttribute('disabled');
+    return this.getAttribute('disabled') != undefined;
   }
   /**
    * @param {Boolean} value
@@ -166,20 +125,22 @@
   connectedCallback() {
     this.render();
 
-    this.buttonE = this.shadowRoot.querySelector('.md3-chip');
-    this.labelE = this.shadowRoot.querySelector('.md3-button__label');
+    this.fabE = this.shadowRoot.querySelector('.md3-fab');
+    this.labelE = this.shadowRoot.querySelector('.md3-fab__label');
     this.slotE = this.shadowRoot.querySelector('slot');
   }
   attributeChangedCallback(attrName, oldVal, newVal) {
-    if (attrName === 'label' && this.buttonE) {
+    if (attrName === 'label' && this.fabE) {
       if (newVal) {
-        this.shadowRoot.querySelector('.md3-button__label').textContent = newVal;
+        this.shadowRoot.querySelector('.md3-fab__label').textContent = newVal;
       }
     }
-    if (attrName === 'disabled' && this.buttonE) {
-      this.buttonE.disabled = this.disabled;
+    if (attrName === 'disabled' && this.fabE) {
+      this.fabE.disabled = this.disabled;
     }
   }
+  adoptedCallback() {}
+  disconnectedCallback() {}
 }
 
-export default Chip;
+export default FAB;

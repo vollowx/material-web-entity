@@ -18,11 +18,25 @@ class Menu extends HTMLElement {
     let styles = document.createElement('style');
     styles.textContent = `
     :host {
-      --md-icon-size: 24px;
-      --md-menu-padding: 20px;
-      z-index: 12;
+      --md3-icon-size: 24px;
+      --md3-menu-padding: 16px;
+      z-index: 1000;
     }
-    .md-menu {
+    .md3-menu__layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: auto;
+      z-index: 1000;
+      -webkit-tap-highlight-color: transparent;
+      visibility: hidden;
+    }
+    :host([open]:not([sub])) .md3-menu__layer {
+      visibility: visible;
+    }
+    .md3-menu {
       display: flex;
       flex-direction: column;
       position: fixed;
@@ -30,52 +44,39 @@ class Menu extends HTMLElement {
       width: max-content;
       max-height: 100vh;
       overflow-y: auto;
-      background-color: rgb(var(--md-c-surface-variant-rgb));
-      box-shadow: var(--md-e-shadow-2);
+      background-color: rgb(var(--md3-c-surface-variant-rgb));
+      box-shadow: var(--md3-e-shadow-2);
       border-radius: 4px;
       transition: transform 120ms cubic-bezier(0.4, 0, 0.2, 1), opacity 120ms cubic-bezier(0.4, 0, 0.2, 1);
       transform: scale(0.9, 0.9);
       transform-origin: top left;
       opacity: 0;
       pointer-events: none;
-      visibility: invisible;
+      visibility: hidden;
       box-sizing: border-box;
-      z-index: 14;
+      z-index: 1000;
     }
-    .md-menu.md-menu--bottom {
+    .md3-menu.md3-menu--bottom {
       transform-origin: bottom left;
     }
-    .md-menu.md-menu--right {
+    .md3-menu.md3-menu--right {
       transform-origin: top right;
     }
-    .md-menu.md-menu--bottom.md-menu--right {
+    .md3-menu.md3-menu--bottom.md3-menu--right {
       transform-origin: bottom right;
     }
-    :host([open]) .md-menu {
+    :host([open]) .md3-menu {
       transform: scale(1, 1);
       opacity: 1;
-      pointer-events: initial;
+      pointer-events: auto;
       visibility: visible;
-    }
-    :host([sub][open]) .md-menu {
-      transition-delay: 240ms;
-    }
-    :host([dense]) {
-      --md-icon-size: 16px;
-      --md-menu-padding: 16px;
     }
     :host([dense]) ::slotted(md-menu-item) {
       height: 36px;
     }
-    :host([fast]) .md-menu {
+    :host([fast]) .md3-menu {
       transition-duration: 0ms;
       transition-delay: 0ms !important;
-    }
-    ::slotted(md-divider) {
-      display: block;
-      height: 1px;
-      background-color: rgba(var(--md-c-on-surface-rgb), 0.08);
-      margin: 7.5px 0;
     }
     ::-webkit-scrollbar {
       background: transparent;
@@ -98,7 +99,8 @@ class Menu extends HTMLElement {
 
     let template = document.createElement('template');
     template.innerHTML = `
-    <div class="md-menu" id="md-menu">
+    <div class="md3-menu__layer" id="md3-menu__layer"></div>
+    <div class="md3-menu" id="md3-menu">
       <slot></slot>
     </div>
     `;
@@ -162,26 +164,34 @@ class Menu extends HTMLElement {
 
   /**
    * Set the menu position.
-   * TODO: Add support for other positions. (sub menus)
-   * @param {Boolean} isSub - Is the menu a sub menu? (default: false)
+   * ! Need more testing.
    */
-  setPosition(isSub = false) {
+  openMenu() {
+    this.querySelector('md-menu-item').itemE.focus();
     this.menuE.removeAttribute('style');
-    this.menuE.classList.remove('md-menu--bottom', 'md-menu--right');
+    this.menuE.classList.remove('md3-menu--bottom', 'md3-menu--right');
     let rect = this.controllerE.getBoundingClientRect();
     if (rect.top + rect.height / 2 > window.innerHeight / 2) {
-      this.menuE.classList.add('md-menu--bottom');
-      this.menuE.style.bottom = window.innerHeight - rect.top + 'px';
+      this.menuE.classList.add('md3-menu--bottom');
+      if (this.sub) {
+        this.menuE.style.bottom = window.innerHeight - rect.top - rect.height - 8 + 'px';
+      } else {
+        this.menuE.style.bottom = window.innerHeight - rect.top + 'px';
+      }
       if (this.menuE.offsetTop < 8) {
-        this.menuE.style.top = '8px';
+        this.menuE.style.top = 8 + 'px';
       }
     } else {
-      this.menuE.style.top = rect.top + rect.height + 'px';
+      if (this.sub) {
+        this.menuE.style.top = rect.top - 8 + 'px';
+      } else {
+        this.menuE.style.top = rect.top + rect.height + 'px';
+      }
       if (window.innerHeight - this.menuE.offsetTop - this.menuE.offsetHeight < 8) {
         this.menuE.style.bottom = '8px';
       }
     }
-    if (isSub) {
+    if (this.sub) {
       this.menuE.style.left = rect.left + rect.width + 'px';
     } else {
       this.menuE.style.left = rect.left + 'px';
@@ -195,8 +205,14 @@ class Menu extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.menuE = this.shadowRoot.getElementById('md-menu');
-    document.addEventListener('click', (e) => {
+    this.layerE = this.shadowRoot.getElementById('md3-menu__layer');
+    this.menuE = this.shadowRoot.getElementById('md3-menu');
+    this.addEventListener('keydown', (e) => {
+      if (e.keyCode == 27) {
+        this.open = false;
+      }
+    });
+    this.layerE.addEventListener('click', (e) => {
       if (this.open && !this.contains(e.target) && e.target !== this.controllerE) {
         this.open = false;
       }
@@ -213,25 +229,22 @@ class Menu extends HTMLElement {
 
       if (this.controllerE) {
         if (this.sub) {
-          this.controllerE.addEventListener('mouseover', (e) => this.setPosition(true));
-          this.controllerE.addEventListener('mouseout', (e) => (this.open = false));
+          this.controllerE.addEventListener('mouseover', () => this.openMenu());
+          this.controllerE.addEventListener('mouseout', () => (this.open = false));
           this.addEventListener('mouseover', () => (this.open = true));
           this.addEventListener('mouseout', () => (this.open = false));
         } else {
-          this.controllerE.addEventListener('click', (e) => this.setPosition());
+          this.controllerE.addEventListener('click', () => this.openMenu());
         }
       }
     });
   }
-  attributeChangedCallback(attrName, oldVal, newVal) {}
-  adoptedCallback() {}
-  disconnectedCallback() {}
 }
 
 /**
- * Menu component.
+ * MenuItem component.
  *
- * Description.
+ * The item in the menu.
  */
 
 class MenuItem extends HTMLElement {
@@ -253,17 +266,17 @@ class MenuItem extends HTMLElement {
       flex-shrink: 0;
       height: 48px;
     }
-    .md-menu__item {
+    .md3-menu__item {
       display: flex;
       align-items: center;
       position: relative;
       padding: 0;
       width: 100%;
       height: 100%;
-      color: rgb(var(--md-c-on-surface-variant-rgb));
-      font-family: var(--md-t-font-family);
+      color: rgb(var(--md3-c-on-surface-variant-rgb));
+      font-family: var(--md3-t-font-family);
       font-size: 0.875rem;
-      font-weight: calc(var(--md-t-font-base-weight) + 500);
+      font-weight: calc(var(--md3-t-font-base-weight) + 500);
       line-height: 1.428571428571429;
       letter-spacing: 0.1px;
       background-color: transparent;
@@ -276,10 +289,10 @@ class MenuItem extends HTMLElement {
       -webkit-appearance: none;
       -moz-appearance: none;
     }
-    .md-menu__item * {
+    .md3-menu__item * {
       pointer-events: none;
     }
-    .md-menu__item::before {
+    .md3-menu__item::before {
       content: '';
       position: absolute;
       top: 0;
@@ -292,28 +305,30 @@ class MenuItem extends HTMLElement {
       pointer-events: none;
     }
     @media screen and (min-width: 1240px) {
-      .md-menu__item:hover::before {
+      .md3-menu__item:hover::before {
         opacity: 0.08;
       }
     }
-    :host(.focus-visible) .md-menu__item::before {
+    .md3-menu__item:focus::before {
       opacity: 0.12;
     }
     [name="icon-before"] {
-      margin-left: var(--md-menu-padding);
+      margin-left: 16px;
       display: flex;
       justify-content: center;
-    }
-    [name="after"] {
-      display: flex;
-      margin-right: var(--md-menu-padding);
-      justify-content: center;
+      width: var(--md3-icon-size);
+      height: var(--md3-icon-size);
     }
     [name="label"] {
-      display: inline;
+      display: flex;
       margin-left: 20px;
     } 
-    .md-menu__item__spacer {
+    [name="after"] {
+      display: flex;
+      margin-right: 20px;
+      justify-content: center;
+    }
+    .md3-menu__item__spacer {
       flex: 1;
       min-width: 80px;
     }
@@ -321,11 +336,11 @@ class MenuItem extends HTMLElement {
 
     let template = document.createElement('template');
     template.innerHTML = `
-    <button class="md-menu__item" id="md-menu__item">
+    <button class="md3-menu__item" id="md3-menu__item">
       <md-ripple></md-ripple>
       <slot name="icon-before"></slot>
       <slot name="label"></slot>
-      <div class="md-menu__item__spacer"></div>
+      <div class="md3-menu__item__spacer"></div>
       <slot name="after"></slot>
     </button>
     `;
@@ -335,7 +350,7 @@ class MenuItem extends HTMLElement {
   }
 
   get disabled() {
-    return this.getAttribute('disabled') != undefined;
+    return this.hasAttribute('disabled');
   }
   set disabled(value) {
     if (value) {
@@ -351,11 +366,8 @@ class MenuItem extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    // this.sthE = this.shadowRoot.getElementById('sth');
+    this.itemE = this.shadowRoot.getElementById('md3-menu__item');
   }
-  attributeChangedCallback(attrName, oldVal, newVal) {}
-  adoptedCallback() {}
-  disconnectedCallback() {}
 }
 
 export { Menu, MenuItem };
