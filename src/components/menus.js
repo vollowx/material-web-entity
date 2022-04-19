@@ -209,9 +209,6 @@ class Menu extends HTMLElement {
     this.controllerE.focus();
   }
 
-  static get observedAttributes() {
-    return [];
-  }
   connectedCallback() {
     this.render();
 
@@ -234,10 +231,14 @@ class Menu extends HTMLElement {
           index = items.length - 1;
         }
         items[index].focus();
-      } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
+      } else if (e.key == 'Escape') {
         // Menu closing
         this.closeMenu();
-        this.controllerE.focus();
+      } else if (e.key == 'ArrowLeft') {
+        // Submenu closing
+        if (this.sub) {
+          this.closeMenu();
+        }
       } else if (e.key == 'Enter' || e.key == 'ArrowRight') {
         // Submenu opening
         let focusItem = this.querySelector('md-menu-item:focus');
@@ -396,9 +397,6 @@ class MenuItem extends HTMLElement {
     }
   }
 
-  static get observedAttributes() {
-    return [];
-  }
   connectedCallback() {
     this.render();
 
