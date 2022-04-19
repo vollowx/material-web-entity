@@ -85,12 +85,15 @@
       border: 1px solid rgba(var(--md3-c-on-surface-rgb), 0.12);
       cursor: default;
     }
-    :host(:not([elevated]):not([checked])) md-ripple,
-    :host(:not([elevated]):not([checked])) .md3-chip::before {
+    :host(:not([text]):not([elevated]):not([checked])) md-ripple,
+    :host(:not([text]):not([elevated]):not([checked])) .md3-chip::before {
       top: -1px;
       left: -1px;
       right: -1px;
       bottom: -1px;
+    }
+    :host([text]) .md3-chip {
+      border: none;
     }
     :host([elevated]) .md3-chip {
       border: none;
