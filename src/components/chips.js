@@ -135,6 +135,10 @@
     this.shadowRoot.innerHTML += template.innerHTML;
   }
 
+  focus() {
+    this.chipE.focus();
+  }
+
   get label() {
     return this.getAttribute('label');
   }
@@ -164,18 +168,18 @@
   connectedCallback() {
     this.render();
 
-    this.buttonE = this.shadowRoot.querySelector('.md3-chip');
+    this.chipE = this.shadowRoot.querySelector('.md3-chip');
     this.labelE = this.shadowRoot.querySelector('.md3-button__label');
     this.slotE = this.shadowRoot.querySelector('slot');
   }
   attributeChangedCallback(attrName, oldVal, newVal) {
-    if (attrName === 'label' && this.buttonE) {
+    if (attrName === 'label' && this.chipE) {
       if (newVal) {
         this.shadowRoot.querySelector('.md3-button__label').textContent = newVal;
       }
     }
-    if (attrName === 'disabled' && this.buttonE) {
-      this.buttonE.disabled = this.disabled;
+    if (attrName === 'disabled' && this.chipE) {
+      this.chipE.disabled = this.disabled;
     }
   }
 }

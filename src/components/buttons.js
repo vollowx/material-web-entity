@@ -186,6 +186,10 @@ class Button extends HTMLElement {
     this.shadowRoot.innerHTML += template.innerHTML;
   }
 
+  focus() {
+    this.buttonE.focus();
+  }
+
   get label() {
     return this.getAttribute('label');
   }

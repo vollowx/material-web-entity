@@ -201,6 +201,13 @@ class Menu extends HTMLElement {
     this.open = true;
     this.querySelector('md-menu-item').itemE.focus();
   }
+  /**
+   * Close the menu.
+   */
+  closeMenu() {
+    this.open = false;
+    this.controllerE.focus();
+  }
 
   static get observedAttributes() {
     return [];
@@ -213,24 +220,46 @@ class Menu extends HTMLElement {
     this.controllerE = document.getElementById(this.id);
 
     this.addEventListener('keydown', (e) => {
-      if (e.keyCode == 27) {
-        this.open = false;
+      if (e.key == 'ArrowDown' || e.key == 'ArrowUp') {
+        // Focus moving
+        // TODO: check for divider
+        e.preventDefault();
+        let focusItem = this.querySelector('md-menu-item:focus');
+        let items = this.querySelectorAll('md-menu-item');
+        let index = [].indexOf.call(focusItem.parentNode.children, focusItem);
+        e.key == 'ArrowDown' ? index++ : index--;
+        if (index < 0) {
+          index = 0;
+        } else if (index >= items.length) {
+          index = items.length - 1;
+        }
+        items[index].focus();
+      } else if (e.key == 'Escape' || e.key == 'ArrowLeft') {
+        // Menu closing
+        this.closeMenu();
+        this.controllerE.focus();
+      } else if (e.key == 'Enter' || e.key == 'ArrowRight') {
+        // Submenu opening
+        let focusItem = this.querySelector('md-menu-item:focus');
+        if (focusItem.hasAttribute('subber')) {
+          document.querySelector(`md-menu#${focusItem.id}`).openMenu();
+        }
       }
-    })
+    });
     document.addEventListener('click', (e) => {
       if (this.open && !this.contains(e.target) && e.target !== this.controllerE) {
-        this.open = false;
+        this.closeMenu();
       }
     });
     this.layerE.addEventListener('pointerdown', (e) => {
       if (this.open && !this.contains(e.target) && e.target !== this.controllerE) {
-        this.open = false;
+        this.closeMenu();
       }
     });
     this.addEventListener('click', (e) => {
       let path = e.composedPath();
       if (path.indexOf(this) == 6 && e.target.getAttribute('subber') == undefined) {
-        this.open = false;
+        this.closeMenu();
       }
     });
     if (this.controllerE) {
@@ -350,6 +379,10 @@ class MenuItem extends HTMLElement {
 
     this.shadowRoot.appendChild(styles);
     this.shadowRoot.innerHTML += template.innerHTML;
+  }
+
+  focus() {
+    this.itemE.focus();
   }
 
   get disabled() {
