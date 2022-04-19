@@ -112,13 +112,11 @@
     .md3-chip:disabled::before {
       display: none;
     }
-    ::slotted(md3-icon),
-    ::slotted(md3-avatar) {
+    ::slotted(md-icon) {
       margin-left: -4px;
       margin-right: 8px;
     }
-    ::slotted(md3-icon[after]),
-    ::slotted(md3-avatar[after]) {
+    ::slotted(md-icon[after]) {
       margin-left: 8px;
       margin-right: -4px;
     }

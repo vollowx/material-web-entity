@@ -155,23 +155,19 @@ class Button extends HTMLElement {
     .md3-button:disabled::before {
       display: none;
     }
-    ::slotted(md3-icon),
-    ::slotted(md3-avatar) {
+    ::slotted(md-icon) {
       margin-left: -8px;
       margin-right: 8px;
     }
-    ::slotted(md3-icon[after]),
-    ::slotted(md3-avatar[after]) {
+    ::slotted(md-icon[after]) {
       margin-left: 8px;
       margin-right: -8px;
     }
-    :host([text]) ::slotted(md3-icon),
-    :host([text]) ::slotted(md3-avatar) {
+    :host([text]) ::slotted(md-icon) {
       margin-left: -4px;
       margin-right: 8px;
     }
-    :host([text]) ::slotted(md3-icon[after]),
-    :host([text]) ::slotted(md3-avatar[after]) {
+    :host([text]) ::slotted(md-icon[after]) {
       margin-left: 8px;
       margin-right: -4px;
     }

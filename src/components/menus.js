@@ -207,7 +207,7 @@ class Menu extends HTMLElement {
 
     this.layerE = this.shadowRoot.getElementById('md3-menu__layer');
     this.menuE = this.shadowRoot.getElementById('md3-menu');
-    this.layerE.addEventListener('click', (e) => {
+    this.layerE.addEventListener('pointerdown', (e) => {
       if (this.open && !this.contains(e.target) && e.target !== this.controllerE) {
         this.open = false;
       }
