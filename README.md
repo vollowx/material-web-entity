@@ -1,17 +1,17 @@
-# material-web-udp
+# material-web-entity
 
 ![](https://img.shields.io/badge/version-dev-blue)
 ![](https://img.shields.io/badge/npm-unpublished-red)
-![](https://img.shields.io/github/stars/huge-pancake/material-web-udp.svg?color=yellow)
+![](https://img.shields.io/github/stars/huge-pancake/material-web-entity.svg?color=yellow)
 [![](https://img.shields.io/badge/demo-github%20pages-white)](./demos/index.html)
 
-> Material Web Undepend
+> Material Web Entity
 
 _A component library based on Material Design & Web Components_
 
 ## Table of Contents
 
-- [material-web-udp](#material-web-udp)
+- [material-web-entity](#material-web-entity)
   - [Table of Contents](#table-of-contents)
   - [About](#about)
   - [Usage](#usage)
@@ -29,8 +29,8 @@ The first version will be released after most components are complete.
 Anywhere in `<head>` tag
 
 ```html
-<link rel="stylesheet" href="https://huge-pancake.github.io/material-web-udp/src/index.css" />
-<script type="module" src="https://huge-pancake.github.io/material-web-udp/src/index.js"></script>
+<link rel="stylesheet" href="https://huge-pancake.github.io/material-web-entity/src/index.css" />
+<script type="module" src="https://huge-pancake.github.io/material-web-entity/src/index.js"></script>
 <!-- use this url(from github page) or local css file(download this repositories) -->
 ```
 

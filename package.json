@@ -1,5 +1,5 @@
 {
-  "name": "material-web-udp",
+  "name": "material-web-entity",
   "version": "0.0.1",
   "description": "A component library based on Material Design 3 & Web Components",
   "main": "./src/index.js",
@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+//github.com/huge-pancake/material-web-udp.git"
+    "url": "git+//github.com/huge-pancake/material-web-entity.git"
   },
   "author": "huge-pancake",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/huge-pancake/material-web-udp/issues"
+    "url": "https://github.com/huge-pancake/material-web-entity/issues"
   },
   "keywords": [
     "material design",
@@ -22,7 +22,7 @@
     "components library",
     "ui"
   ],
-  "homepage": "https://github.com/huge-pancake/material-web-udp#readme",
+  "homepage": "https://github.com/huge-pancake/material-web-entity#readme",
   "dependencies": {
     "webpack-dev-server": "^4.8.1"
   },
