@@ -21,14 +21,14 @@ class Icon extends HTMLElement {
       position: relative;
       box-sizing: border-box;
       display: inline-block;
-      width: var(--md3-icon-size, 1rem);
-      height: var(--md3-icon-size, 1rem);
+      width: var(--md-icon-size, 1rem);
+      height: var(--md-icon-size, 1rem);
     }
     slot {
       font-family: "Material Icons";
       font-weight: normal;
       font-style: normal;
-      font-size: var(--md3-icon-size, inherit);
+      font-size: var(--md-icon-size, inherit);
       line-height: 1;
       letter-spacing: normal;
       text-transform: none;

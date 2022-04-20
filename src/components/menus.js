@@ -18,8 +18,8 @@ class Menu extends HTMLElement {
     let styles = document.createElement('style');
     styles.textContent = /* css */ `
     :host {
-      --md3-icon-size: 24px;
-      --md3-menu-padding: 16px;
+      --md-icon-size: 24px;
+      --md-menu-padding: 16px;
       z-index: 1000;
     }
     .md3-menu__layer {
@@ -44,8 +44,8 @@ class Menu extends HTMLElement {
       width: max-content;
       max-height: 100vh;
       overflow-y: auto;
-      background-color: rgb(var(--md3-c-surface-variant-rgb));
-      box-shadow: var(--md3-e-shadow-2);
+      background-color: rgb(var(--md-c-surface-variant-rgb));
+      box-shadow: var(--md-e-shadow-2);
       border-radius: 4px;
       transition: transform 120ms cubic-bezier(0.4, 0, 0.2, 1), opacity 120ms cubic-bezier(0.4, 0, 0.2, 1);
       transform: scale(0.9, 0.9);
@@ -79,7 +79,7 @@ class Menu extends HTMLElement {
       transition-delay: 0ms !important;
     }
     :host([no-icon]) {
-      --md3-menu-item-before-display: none;
+      --md-menu-item-before-display: none;
     }
     ::-webkit-scrollbar {
       background: transparent;
@@ -318,10 +318,10 @@ class MenuItem extends HTMLElement {
       padding: 0;
       width: 100%;
       height: 100%;
-      color: rgb(var(--md3-c-on-surface-variant-rgb));
-      font-family: var(--md3-t-font-family);
+      color: rgb(var(--md-c-on-surface-variant-rgb));
+      font-family: var(--md-t-font-family);
       font-size: 0.875rem;
-      font-weight: calc(var(--md3-t-font-base-weight) + 500);
+      font-weight: calc(var(--md-t-font-base-weight) + 500);
       line-height: 1.428571428571429;
       letter-spacing: 0.1px;
       background-color: transparent;
@@ -333,6 +333,7 @@ class MenuItem extends HTMLElement {
       -webkit-tap-highlight-color: transparent;
       -webkit-appearance: none;
       -moz-appearance: none;
+      appearance: none;
     }
     .md3-menu__item * {
       pointer-events: none;
@@ -359,7 +360,7 @@ class MenuItem extends HTMLElement {
     }
     [name="before"] {
       margin-left: 16px;
-      display: var(--md3-menu-item-before-display, inline);
+      display: var(--md-menu-item-before-display, inline);
       justify-content: center;
       width: 24px;
       height: 24px;

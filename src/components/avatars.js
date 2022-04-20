@@ -23,13 +23,13 @@ class Avatar extends HTMLElement {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      width: var(--md3-avatar-size, 40px);
-      height: var(--md3-avatar-size, 40px);
-      color: rgb(var(--md3-c-on-primary-rgb));
+      width: var(--md-avatar-size, 40px);
+      height: var(--md-avatar-size, 40px);
+      color: rgb(var(--md-c-on-primary-rgb));
       font-size: 1rem;
-      font-weight: calc(var(--md3-font-weight-base) + 500);
+      font-weight: calc(var(--md-font-weight-base) + 500);
       letter-spacing: 0.1px;
-      background-color: var(--md3-avatar-bg-color, rgb(var(--md3-c-primary-rgb)));
+      background-color: var(--md-avatar-bg-color, rgb(var(--md-c-primary-rgb)));
       border-radius: 50%;
       user-select: none;
       overflow: hidden;

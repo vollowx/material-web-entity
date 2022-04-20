@@ -9,85 +9,27 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
     <link rel="stylesheet" href="../src/index.css" />
 
-    <style>
-      [theme-toggler] {
-        position: fixed;
-        top: 16px;
-        right: 16px;
-        z-index: 12;
-      }
-      main {
-        padding: 24px 0;
-        width: 100%;
-        height: 100vh;
-        overflow: auto;
-        box-sizing: border-box;
-      }
-      .main-content {
-        max-width: 800px;
-        margin: 0 auto;
-        overflow: visible;
-      }
-      [rule='region'] {
-        margin-bottom: 24px;
-      }
-      code-example {
-        padding: 24px 48px;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: center;
-        border: 1px solid rgba(var(--md3-c-outline-rgb), 0.24);
-        border-radius: 24px;
-      }
-      flex-spacer {
-        display: block;
-        flex-shrink: 0;
-        width: 100%;
-        height: 0;
-      }
-      [m-2] {
-        margin: 2px;
-      }
-      [m-4] {
-        margin: 4px;
-      }
-      [m-8] {
-        margin: 8px;
-      }
-      [demo-ripple] {
-        margin: 8px;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 200px;
-        height: 200px;
-        background: var(--md3-e-surface-2);
-        box-shadow: var(--md3-e-shadow-2);
-        cursor: pointer;
-        border-radius: 4px;
-        -webkit-tap-highlight-color: transparent;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        z-index: 1;
-        user-select: none;
-      }
-      fieldset {
-        border-radius: 8px;
-        border: 1px solid rgba(var(--md3-c-outline-rgb), 0.24);
-      }
-      legend {
-        padding: 0 8px;
-        color: var(--md3-e-on-surface-2);
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css">
   </head>
-  <body data-dark="true">
+  <body>
+    <aside>
+      <ul>
+        <li><md-ripple></md-ripple><a href="#avatars">Avatars</a></li>
+        <li><md-ripple></md-ripple><a href="#common-buttons">Common buttons</a></li>
+        <li><md-ripple></md-ripple><a href="#chips">Chips</a></li>
+        <li><md-ripple></md-ripple><a href="#fabs">FABs</a></li>
+        <li><md-ripple></md-ripple><a href="#icons">Icons</a></li>
+        <li><md-ripple></md-ripple><a href="#menus">Menus</a></li>
+        <li><md-ripple></md-ripple><a href="#ripples">Ripples</a></li>
+        <li><md-ripple></md-ripple><a href="#typography">Typography</a></li>
+      </ul>
+    </aside>
     <main>
-      <md-button theme-toggler label="Toggle theme" outlined></md-button>
+      <md-fab theme-toggler>
+        <md-icon>brightness_6</md-icon>
+      </md-fab>
       <div class="main-content">
-        <md-typo rule="region" dp-lg>Avatars</md-typo>
+        <md-typo rule="region" dp-lg id="avatars">Avatars</md-typo>
         <code-example rule="region">
           <md-avatar m-4>A</md-avatar>
           <md-avatar m-4 square>SQ</md-avatar>
@@ -95,128 +37,89 @@
           <md-avatar m-4 large>LG</md-avatar>
         </code-example>
 
-        <md-typo rule="region" dp-lg>Common buttons</md-typo>
-        <code-example rule="region">
-          <md-button m-4 label="Filled"></md-button>
-          <md-button m-4>
-            <md-icon before>add</md-icon>
-            Icon left
-          </md-button>
-          <md-button m-4>
-            Icon right
-            <md-icon after>add</md-icon>
-          </md-button>
-          <md-button m-4 label="Disabled" disabled></md-button>
-          <flex-spacer></flex-spacer>
-          <md-button m-4 label="Tonal" tonal></md-button>
-          <md-button m-4 tonal>
-            <md-icon before>add</md-icon>
-            Icon left
-          </md-button>
-          <md-button m-4 tonal>
-            Icon right
-            <md-icon after>add</md-icon>
-          </md-button>
-          <md-button m-4 label="Disabled" tonal disabled></md-button>
-          <flex-spacer></flex-spacer>
-          <md-button m-4 label="Elevated" elevated></md-button>
-          <md-button m-4 elevated>
-            <md-icon before>add</md-icon>
-            Icon left
-          </md-button>
-          <md-button m-4 elevated>
-            Icon right
-            <md-icon after>add</md-icon>
-          </md-button>
-          <md-button m-4 label="Disabled" elevated disabled></md-button>
-          <flex-spacer></flex-spacer>
-          <md-button m-4 label="Outlined" outlined></md-button>
-          <md-button m-4 outlined>
-            <md-icon before>add</md-icon>
-            Icon left
-          </md-button>
-          <md-button m-4 outlined>
-            Icon right
-            <md-icon after>add</md-icon>
-          </md-button>
-          <md-button m-4 label="Disabled" outlined disabled></md-button>
-          <flex-spacer></flex-spacer>
-          <md-button m-4 label="Text" text></md-button>
-          <md-button m-4 text>
-            <md-icon before>add</md-icon>
-            Icon left
-          </md-button>
-          <md-button m-4 text>
-            Icon right
-            <md-icon after>add</md-icon>
-          </md-button>
-          <md-button m-4 label="Disabled" text disabled></md-button>
-        </code-example>
+        <md-typo rule="region" dp-lg id="common-buttons">Common buttons</md-typo>
+        <code-example rule="region" id="cbtn-demo"></code-example>
+        <script id="cbtn-demo-ctrler">
+          const CBtnDemo = document.getElementById('cbtn-demo');
+          let cb1 = '',
+            cbE = '';
+          for (let i = 0; i < 5; i++) {
+            cb1 = ['', 'tonal', 'elevated', 'outlined', 'text'][i];
+            for (let j = 0; j < 4; j++) {
+              switch (j) {
+                case 0:
+                  cbE = `<md-button m-4 label="${cb1 !== '' ? cb1.replace(cb1[0], cb1[0].toUpperCase()) : 'Filled'}" ${cb1}></md-butt>`;
+                  break;
+                case 1:
+                  cbE = `<md-button m-4 ${cb1}><md-icon before>add</md-icon>Icon left</md-button>`;
+                  break;
+                case 2:
+                  cbE = `<md-button m-4 ${cb1}>Icon right<md-icon after>add</md-icon></md-button>`;
+                  break;
+                case 3:
+                  cbE = `<md-button m-4 label="Disabled" ${cb1} disabled></md-button>`;
+                  break;
+              }
+              CBtnDemo.innerHTML += cbE;
+            }
+            CBtnDemo.innerHTML += `<flex-spacer></flex-spacer>`;
+          }
+          document.getElementById('cbtn-demo-ctrler').remove();
+        </script>
 
-        <md-typo rule="region" dp-lg>Chips</md-typo>
-        <code-example>
-          <md-chip m-4 label="Outlined"></md-chip>
-          <md-chip m-4>
-            <md-icon before>add</md-icon>
-            Icon left
-          </md-chip>
-          <md-chip m-4>
-            Icon right
-            <md-icon after>add</md-icon>
-          </md-chip>
-          <md-chip m-4>
-            Or img
-            <md-icon after url="./assets/google-drive.svg"></md-icon>
-          </md-chip>
-          <md-chip m-4 label="Disabled" disabled></md-chip>
-          <flex-spacer></flex-spacer>
-          <md-chip m-4 label="Elevated" elevated></md-chip>
-          <md-chip m-4 elevated>
-            <md-icon before>add</md-icon>
-            Icon left
-          </md-chip>
-          <md-chip m-4 elevated>
-            Icon right
-            <md-icon after>add</md-icon>
-          </md-chip>
-          <md-chip m-4 elevated>
-            Or img
-            <md-icon after url="./assets/google-drive.svg"></md-icon>
-          </md-chip>
-          <md-chip m-4 label="Disabled" elevated disabled></md-chip>
-          <flex-spacer></flex-spacer>
-          <md-chip m-4 label="(Checked)" checked></md-chip>
-          <md-chip m-4 checked>
-            <md-icon before>add</md-icon>
-            Icon left
-          </md-chip>
-          <md-chip m-4 checked>
-            Icon right
-            <md-icon after>add</md-icon>
-          </md-chip>
-          <md-chip m-4 checked>
-            Or img
-            <md-icon after url="./assets/google-drive.svg"></md-icon>
-          </md-chip>
-          <md-chip m-4 label="Disabled" checked disabled></md-chip>
-          <flex-spacer></flex-spacer>
-          <md-chip m-4 label="(Text)" text></md-chip>
-          <md-chip m-4 text>
-            <md-icon before>add</md-icon>
-            Icon left
-          </md-chip>
-          <md-chip m-4 text>
-            Icon right
-            <md-icon after>add</md-icon>
-          </md-chip>
-          <md-chip m-4 text>
-            Or img
-            <md-icon after url="./assets/google-drive.svg"></md-icon>
-          </md-chip>
-          <md-chip m-4 label="Disabled" text disabled></md-chip>
-        </code-example>
+        <md-typo rule="region" dp-lg id="chips">Chips</md-typo>
+        <code-example rule="region" id="chip-demo"></code-example>
+        <script id="chip-demo-ctrler">
+          const ChipDemo = document.getElementById('chip-demo');
+          let ch1 = '',
+            chE = '';
+          for (let i = 0; i < 4; i++) {
+            ch1 = ['', 'elevated', 'checked', 'text'][i];
+            for (let j = 0; j < 5; j++) {
+              switch (j) {
+                case 0:
+                  chE = `<md-chip m-4 label="${ch1 !== '' ? ch1.replace(ch1[0], ch1[0].toUpperCase()) : 'Outlined'}" ${ch1}></md-chip>`;
+                  break;
+                case 1:
+                  chE = `<md-chip m-4 ${ch1}><md-icon before>add</md-icon>Icon left</md-chip>`;
+                  break;
+                case 2:
+                  chE = `<md-chip m-4 ${ch1}>Icon right<md-icon after>add</md-icon></md-chip>`;
+                  break;
+                case 3:
+                  chE = `<md-chip m-4 ${ch1}>Or img<md-icon after url="./assets/google-drive.svg"></md-icon></md-chip>`;
+                  break;
+                case 4:
+                  chE = `<md-chip m-4 label="Disabled" ${ch1} disabled></md-chip>`;
+                  break;
+              }
+              ChipDemo.innerHTML += chE;
+            }
+            ChipDemo.innerHTML += `<flex-spacer></flex-spacer>`;
+          }
+          document.getElementById('chip-demo-ctrler').remove();
+        </script>
 
-        <md-typo rule="region" dp-lg>Icons</md-typo>
+        <md-typo rule="region" dp-lg id="fabs">FABs (Floating action buttons)</md-typo>
+        <code-example rule="region" id="fab-demo"> </code-example>
+        <script id="fab-demo-ctrler">
+          const FABDemo = document.getElementById('fab-demo');
+          let fa1 = '';
+          let fa2 = '';
+          let symbol = '';
+          for (let i = 0; i < 4; i++) {
+            fa1 = ['', 'surface', 'secondary', 'tertiary'][i];
+            for (let j = 0; j < 5; j++) {
+              fa2 = ['', 'lower', 'lowest', 'small', 'large'][j];
+              symbol = ['arrow_upward', 'remove', 'arrow_downward', 'close', 'add'][j];
+              FABDemo.innerHTML += `<md-fab m-4 ${fa1} ${fa2}><md-icon>${symbol}</md-icon></md-fab>`;
+            }
+            FABDemo.innerHTML += '<flex-spacer></flex-spacer>';
+          }
+          document.getElementById('fab-demo-ctrler').remove();
+        </script>
+
+        <md-typo rule="region" dp-lg id="icons">Icons</md-typo>
         <code-example rule="region">
           <md-icon m-4>menu</md-icon>
           <md-icon m-4>settings</md-icon>
@@ -227,7 +130,7 @@
           <md-icon m-4 url="./assets/google-drive.svg"></md-icon>
         </code-example>
 
-        <md-typo rule="region" dp-lg>Menus</md-typo>
+        <md-typo rule="region" dp-lg id="menus">Menus</md-typo>
         <code-example rule="region">
           <div>
             <md-chip text id="demo-menu1">long Menu</md-chip>
@@ -306,7 +209,7 @@
           </div>
         </code-example>
 
-        <md-typo rule="region" dp-lg>Ripples</md-typo>
+        <md-typo rule="region" dp-lg id="ripples">Ripples</md-typo>
         <code-example rule="region">
           <div demo-ripple><md-ripple></md-ripple>Normal</div>
           <fieldset>
@@ -322,7 +225,7 @@
             </label>
           </fieldset>
         </code-example>
-        <md-typo rule="region" dp-lg>Typography</md-typo>
+        <md-typo rule="region" dp-lg id="typography">Typography</md-typo>
         <code-example rule="region">
           <div>
             <md-typo dp-lg>Display large</md-typo>

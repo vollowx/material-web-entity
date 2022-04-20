@@ -21,6 +21,8 @@ class Button extends HTMLElement {
       position: relative;
       box-sizing: border-box;
       display: inline-flex;
+      -webkit-tap-highlight-color: transparent;
+      --md-icon-size: 1rem;
     }
     .md3-button {
       padding: 0 24px;
@@ -31,29 +33,25 @@ class Button extends HTMLElement {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: rgb(var(--md3-c-on-primary-rgb));
-      font-family: var(--md3-t-font-family);
+      color: rgb(var(--md-c-on-primary-rgb));
+      font-family: var(--md-t-font-family);
       -moz-osx-font-smoothing: grayscale;
       -webkit-font-smoothing: antialiased;
-      --md3-icon-size: 1rem;
       font-size: 0.875rem;
-      font-weight: calc(var(--md3-t-font-base-weight) + 500);
+      font-weight: calc(var(--md-t-font-base-weight) + 500);
       line-height: 1.428571428571429;
       letter-spacing: 0.1px;
       text-decoration: none;
-      background-color: rgb(var(--md3-c-primary-rgb));
+      background-color: rgb(var(--md-c-primary-rgb));
       border: 0;
       border-radius: 20px;
       outline: 0;
-      -webkit-user-select: none;
       user-select: none;
       cursor: pointer;
       vertical-align: middle;
       overflow: visible;
       transition: 240ms cubic-bezier(0.4, 0, 0.2, 1);
-      -webkit-tap-highlight-color: transparent;
-      -webkit-appearance: none;
-      -moz-appearance: none;
+      appearance: none;
     }
     .md3-button * {
       pointer-events: none;
@@ -80,52 +78,52 @@ class Button extends HTMLElement {
       opacity: 0.12;
     }
     :host([tonal]) .md3-button {
-      color: rgb(var(--md3-c-on-secondary-container-rgb));
-      background: rgb(var(--md3-c-secondary-container-rgb));
+      color: rgb(var(--md-c-on-secondary-container-rgb));
+      background: rgb(var(--md-c-secondary-container-rgb));
     }
     @media screen and (min-width: 1240px) {
       .md3-button:hover {
-        box-shadow: var(--md3-e-shadow-2);
+        box-shadow: var(--md-e-shadow-2);
       }
     }
-    .md3-button:focus-visible {
+    :host(.focus-visible) .md3-button {
       box-shadow: none;
     }
     .md3-button:active {
       box-shadow: none;
     }
     :host([elevated]) .md3-button {
-      color: rgb(var(--md3-c-primary-rgb));
-      background-color: rgb(var(--md3-c-surface-rgb));
-      box-shadow: var(--md3-e-shadow-1);
+      color: rgb(var(--md-c-primary-rgb));
+      background-color: rgb(var(--md-c-surface-rgb));
+      box-shadow: var(--md-e-shadow-1);
     }
     @media screen and (min-width: 1240px) {
       :host([elevated]) .md3-button:hover {
-        box-shadow: var(--md3-e-shadow-2);
+        box-shadow: var(--md-e-shadow-2);
       }
     }
     :host([elevated]) .md3-button:focus-visible {
-      box-shadow: var(--md3-e-shadow-1);
+      box-shadow: var(--md-e-shadow-1);
     }
     :host([elevated]) .md3-button:active {
-      box-shadow: var(--md3-e-shadow-1);
+      box-shadow: var(--md-e-shadow-1);
     }
     :host([outlined]) .md3-button {
       padding: 0 23px;
-      color: rgb(var(--md3-c-important-color, var(--md3-c-primary-rgb)));
-      background-color: rgb(var(--md3-c-surface-rgb));
-      border: 1px solid rgb(var(--md3-c-outline-rgb));
+      color: rgb(var(--md-c-important-color, var(--md-c-primary-rgb)));
+      background-color: rgb(var(--md-c-surface-rgb));
+      border: 1px solid rgb(var(--md-c-outline-rgb));
       box-shadow: none;
     }
     :host([outlined]) .md3-button:focus-visible {
-      border-color: rgb(var(--md3-c-primary-rgb));
+      border-color: rgb(var(--md-c-primary-rgb));
     }
     :host([outlined]) .md3-button:active {
-      border-color: rgb(var(--md3-c-outline-rgb));
+      border-color: rgb(var(--md-c-outline-rgb));
     }
     :host([outlined]) .md3-button:disabled {
-      color: rgba(var(--md3-c-on-surface-rgb), 0.38);
-      border: 1px solid rgba(var(--md3-c-on-surface-rgb), 0.12);
+      color: rgba(var(--md-c-on-surface-rgb), 0.38);
+      border: 1px solid rgba(var(--md-c-on-surface-rgb), 0.12);
     }
     :host([outlined]) md-ripple,
     :host([outlined]) .md3-button::before {
@@ -136,18 +134,18 @@ class Button extends HTMLElement {
     }
     :host([text]) .md3-button {
       padding: 0 12px;
-      color: rgb(var(--md3-c-important-color, var(--md3-c-primary-rgb)));
+      color: rgb(var(--md-c-important-color, var(--md-c-primary-rgb)));
       background: transparent;
       box-shadow: none;
     }
     :host([text]) .md3-button:disabled {
-      color: rgba(var(--md3-c-on-surface-rgb), 0.38);
+      color: rgba(var(--md-c-on-surface-rgb), 0.38);
     }
     .md3-button:disabled,
     :host([tonal]) .md3-button:disabled,
     :host([elevated]) .md3-button:disabled {
-      color: rgba(var(--md3-c-on-surface-rgb), 0.38);
-      background-color: rgba(var(--md3-c-on-surface-rgb), 0.12);
+      color: rgba(var(--md-c-on-surface-rgb), 0.38);
+      background-color: rgba(var(--md-c-on-surface-rgb), 0.12);
       cursor: default;
       box-shadow: none;
     }

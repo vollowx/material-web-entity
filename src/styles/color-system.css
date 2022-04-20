@@ -1,56 +1,56 @@
 /* Light theme */
 :root {
-  --md3-c-primary-rgb: 103, 81, 164;
-  --md3-c-primary-container-rgb: 234, 221, 255;
-  --md3-c-secondary-rgb: 98, 91, 113;
-  --md3-c-secondary-container-rgb: 232, 222, 248;
-  --md3-c-tertiary-rgb: 125, 82, 96;
-  --md3-c-tertiary-container-rgb: 255, 216, 228;
-  --md3-c-surface-rgb: 255, 251, 254;
-  --md3-c-surface-variant-rgb: 231, 224, 236;
-  --md3-c-background-rgb: 255, 251, 254;
-  --md3-c-error-rgb: 179, 38, 30;
-  --md3-c-error-container-rgb: 249, 222, 220;
+  --md-c-primary-rgb: 103, 81, 164;
+  --md-c-primary-container-rgb: 234, 221, 255;
+  --md-c-secondary-rgb: 98, 91, 113;
+  --md-c-secondary-container-rgb: 232, 222, 248;
+  --md-c-tertiary-rgb: 125, 82, 96;
+  --md-c-tertiary-container-rgb: 255, 216, 228;
+  --md-c-surface-rgb: 255, 251, 254;
+  --md-c-surface-variant-rgb: 231, 224, 236;
+  --md-c-background-rgb: 255, 251, 254;
+  --md-c-error-rgb: 179, 38, 30;
+  --md-c-error-container-rgb: 249, 222, 220;
 
-  --md3-c-on-primary-rgb: 255, 255, 255;
-  --md3-c-on-primary-container-rgb: 33, 0, 94;
-  --md3-c-on-secondary-rgb: 255, 255, 255;
-  --md3-c-on-secondary-container-rgb: 30, 25, 43;
-  --md3-c-on-tertiary-rgb: 255, 255, 255;
-  --md3-c-on-tertiary-container-rgb: 55, 11, 30;
-  --md3-c-on-surface-rgb: 28, 27, 31;
-  --md3-c-on-surface-variant-rgb: 73, 69, 78;
-  --md3-c-on-background-rgb: 28, 27, 31;
-  --md3-c-on-error-rgb: 255, 255, 255;
-  --md3-c-on-error-container-rgb: 55, 11, 30;
+  --md-c-on-primary-rgb: 255, 255, 255;
+  --md-c-on-primary-container-rgb: 33, 0, 94;
+  --md-c-on-secondary-rgb: 255, 255, 255;
+  --md-c-on-secondary-container-rgb: 30, 25, 43;
+  --md-c-on-tertiary-rgb: 255, 255, 255;
+  --md-c-on-tertiary-container-rgb: 55, 11, 30;
+  --md-c-on-surface-rgb: 28, 27, 31;
+  --md-c-on-surface-variant-rgb: 73, 69, 78;
+  --md-c-on-background-rgb: 28, 27, 31;
+  --md-c-on-error-rgb: 255, 255, 255;
+  --md-c-on-error-container-rgb: 55, 11, 30;
 
-  --md3-c-outline-rgb: 121, 116, 126;
+  --md-c-outline-rgb: 121, 116, 126;
 }
 /* Dark theme */
 :root [data-dark] {
-  --md3-c-primary-rgb: 208, 188, 255;
-  --md3-c-primary-container-rgb: 79, 55, 139;
-  --md3-c-secondary-rgb: 204, 194, 220;
-  --md3-c-secondary-container-rgb: 74, 68, 88;
-  --md3-c-tertiary-rgb: 239, 184, 200;
-  --md3-c-tertiary-container-rgb: 99, 59, 72;
-  --md3-c-surface-rgb: 28, 27, 31;
-  --md3-c-surface-variant-rgb: 73, 69, 79;
-  --md3-c-background-rgb: 28, 27, 31;
-  --md3-c-error-rgb: 242, 184, 181;
-  --md3-c-error-container-rgb: 140, 29, 24;
+  --md-c-primary-rgb: 208, 188, 255;
+  --md-c-primary-container-rgb: 79, 55, 139;
+  --md-c-secondary-rgb: 204, 194, 220;
+  --md-c-secondary-container-rgb: 74, 68, 88;
+  --md-c-tertiary-rgb: 239, 184, 200;
+  --md-c-tertiary-container-rgb: 99, 59, 72;
+  --md-c-surface-rgb: 28, 27, 31;
+  --md-c-surface-variant-rgb: 73, 69, 79;
+  --md-c-background-rgb: 28, 27, 31;
+  --md-c-error-rgb: 242, 184, 181;
+  --md-c-error-container-rgb: 140, 29, 24;
 
-  --md3-c-on-primary-rgb: 55, 30, 115;
-  --md3-c-on-primary-container-rgb: 234, 221, 255;
-  --md3-c-on-secondary-rgb: 51, 45, 65;
-  --md3-c-on-secondary-container-rgb: 232, 222, 248;
-  --md3-c-on-tertiary-rgb: 73, 37, 50;
-  --md3-c-on-tertiary-container-rgb: 255, 216, 228;
-  --md3-c-on-surface-rgb: 230, 225, 229;
-  --md3-c-on-surface-variant-rgb: 202, 196, 208;
-  --md3-c-on-background-rgb: 230, 225, 229;
-  --md3-c-on-error-rgb: 96, 20, 16;
-  --md3-c-on-error-container-rgb: 249, 222, 220;
+  --md-c-on-primary-rgb: 55, 30, 115;
+  --md-c-on-primary-container-rgb: 234, 221, 255;
+  --md-c-on-secondary-rgb: 51, 45, 65;
+  --md-c-on-secondary-container-rgb: 232, 222, 248;
+  --md-c-on-tertiary-rgb: 73, 37, 50;
+  --md-c-on-tertiary-container-rgb: 255, 216, 228;
+  --md-c-on-surface-rgb: 230, 225, 229;
+  --md-c-on-surface-variant-rgb: 202, 196, 208;
+  --md-c-on-background-rgb: 230, 225, 229;
+  --md-c-on-error-rgb: 96, 20, 16;
+  --md-c-on-error-container-rgb: 249, 222, 220;
 
-  --md3-c-outline-rgb: 147, 143, 153;
+  --md-c-outline-rgb: 147, 143, 153;
 }
