@@ -16,7 +16,7 @@ class Menu extends HTMLElement {
    */
   render() {
     let styles = document.createElement('style');
-    styles.textContent = /* css */`
+    styles.textContent = /* css */ `
     :host {
       --md3-icon-size: 24px;
       --md3-menu-padding: 16px;
@@ -101,7 +101,7 @@ class Menu extends HTMLElement {
     `;
 
     let template = document.createElement('template');
-    template.innerHTML = /* html */`
+    template.innerHTML = /* html */ `
     <div class="md3-menu__layer" id="md3-menu__layer"></div>
     <div class="md3-menu" id="md3-menu">
       <slot></slot>
@@ -168,6 +168,7 @@ class Menu extends HTMLElement {
   /**
    * Set the menu position.
    * ! Need more testing.
+   * TODO: Need more position.
    */
   openMenu() {
     this.menuE.removeAttribute('style');
@@ -215,11 +216,11 @@ class Menu extends HTMLElement {
     this.layerE = this.shadowRoot.getElementById('md3-menu__layer');
     this.menuE = this.shadowRoot.getElementById('md3-menu');
     this.controllerE = document.getElementById(this.id);
+    this.controllerE ? (this.controllerFriendsE = this.controllerE.parentNode.querySelectorAll(`md-menu-item[subber]:not(#${this.id})`)) : null;
 
     this.addEventListener('keydown', (e) => {
       if (e.key == 'ArrowDown' || e.key == 'ArrowUp') {
         // Focus moving
-        // TODO: check for divider
         e.preventDefault();
         let focusItem = this.querySelector('md-menu-item:focus');
         let items = this.querySelectorAll('md-menu-item');
@@ -268,10 +269,18 @@ class Menu extends HTMLElement {
     });
     if (this.controllerE) {
       if (this.sub) {
+        if (this.controllerFriendsE) {
+          this.controllerFriendsE.forEach((item) => {
+            item.addEventListener('mouseenter', () => (this.open = false));
+          });
+        }
         this.controllerE.addEventListener('mouseenter', () => this.openMenu());
-        this.addEventListener('mouseover', () => (this.open = true));
+        this.addEventListener('mouseenter', () => (this.open = true));
       } else {
-        this.controllerE.addEventListener('click', () => this.openMenu());
+        this.controllerE.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.openMenu();
+        });
       }
     }
   }
