@@ -16,7 +16,7 @@ class Button extends HTMLElement {
    */
   render() {
     let styles = document.createElement('style');
-    styles.textContent = /* css */`
+    styles.textContent = /* css */ `
     :host {
       position: relative;
       box-sizing: border-box;
@@ -172,7 +172,7 @@ class Button extends HTMLElement {
     `;
 
     let template = document.createElement('template');
-    template.innerHTML = /* html */`
+    template.innerHTML = /* html */ `
     <button class="md3-button" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
       <span class="md3-button__label">${this.label ? this.label : ''}</span>

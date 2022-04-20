@@ -16,7 +16,7 @@ class Icon extends HTMLElement {
    */
   render() {
     let styles = document.createElement('style');
-    styles.textContent = /* css */`
+    styles.textContent = /* css */ `
     :host {
       position: relative;
       box-sizing: border-box;
@@ -46,7 +46,7 @@ class Icon extends HTMLElement {
     `;
 
     let template = document.createElement('template');
-    template.innerHTML = /* html */`
+    template.innerHTML = /* html */ `
     <span class="md3-icon">
       <slot>
         <img src="${this.url}" class="md3-icon__img" id="md3-icon__img"></img>

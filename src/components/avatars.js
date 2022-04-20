@@ -16,7 +16,7 @@ class Avatar extends HTMLElement {
    */
   render() {
     let styles = document.createElement('style');
-    styles.textContent = /* css */`
+    styles.textContent = /* css */ `
     :host {
       position: relative;
       box-sizing: border-box;
@@ -57,7 +57,7 @@ class Avatar extends HTMLElement {
     `;
 
     let template = document.createElement('template');
-    template.innerHTML = /* html */`
+    template.innerHTML = /* html */ `
     <slot>
       <img src="${this.url}" class="md3-avatar" id="md3-avatar"></img>
     </slot>

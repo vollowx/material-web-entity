@@ -16,7 +16,7 @@ class Ripple extends HTMLElement {
    */
   render() {
     let styles = document.createElement('style');
-    styles.textContent = /* css */`
+    styles.textContent = /* css */ `
     :host {
       position: absolute;
       top: 0;
@@ -53,7 +53,7 @@ class Ripple extends HTMLElement {
     `;
 
     let template = document.createElement('template');
-    template.innerHTML = /* html */`
+    template.innerHTML = /* html */ `
     <div class="md3-ripple__container" id="md3-ripple__container">
       <!-- -->
       <!-- -->
@@ -71,7 +71,12 @@ class Ripple extends HTMLElement {
     let rect = this.parentE.getBoundingClientRect();
     let x = _event.clientX - rect.left,
       y = _event.clientY - rect.top;
-    let radius = Math.max(Math.sqrt(x ** 2 + y ** 2), Math.sqrt((rect.width - x) ** 2 + y ** 2), Math.sqrt((rect.height - y) ** 2 + x ** 2), Math.sqrt((rect.width - x) ** 2 + (rect.height - y) ** 2));
+    let radius = Math.max(
+      Math.sqrt(x ** 2 + y ** 2),
+      Math.sqrt((rect.width - x) ** 2 + y ** 2),
+      Math.sqrt((rect.height - y) ** 2 + x ** 2),
+      Math.sqrt((rect.width - x) ** 2 + (rect.height - y) ** 2)
+    );
     let centerRadius = Math.sqrt((rect.width / 2) ** 2 + (rect.height / 2) ** 2);
 
     this.containerE.appendChild(ripple);

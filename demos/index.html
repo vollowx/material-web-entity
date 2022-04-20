@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
     <link rel="stylesheet" href="../src/index.css" />
 
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <aside>
@@ -48,7 +48,9 @@
             for (let j = 0; j < 4; j++) {
               switch (j) {
                 case 0:
-                  cbE = `<md-button m-4 label="${cb1 !== '' ? cb1.replace(cb1[0], cb1[0].toUpperCase()) : 'Filled'}" ${cb1}></md-butt>`;
+                  cbE = `<md-button m-4 label="${
+                    cb1 !== '' ? cb1.replace(cb1[0], cb1[0].toUpperCase()) : 'Filled'
+                  }" ${cb1}></md-butt>`;
                   break;
                 case 1:
                   cbE = `<md-button m-4 ${cb1}><md-icon before>add</md-icon>Icon left</md-button>`;
@@ -78,7 +80,9 @@
             for (let j = 0; j < 5; j++) {
               switch (j) {
                 case 0:
-                  chE = `<md-chip m-4 label="${ch1 !== '' ? ch1.replace(ch1[0], ch1[0].toUpperCase()) : 'Outlined'}" ${ch1}></md-chip>`;
+                  chE = `<md-chip m-4 label="${
+                    ch1 !== '' ? ch1.replace(ch1[0], ch1[0].toUpperCase()) : 'Outlined'
+                  }" ${ch1}></md-chip>`;
                   break;
                 case 1:
                   chE = `<md-chip m-4 ${ch1}><md-icon before>add</md-icon>Icon left</md-chip>`;
@@ -241,16 +245,19 @@
             <md-typo lb-md>Label medium</md-typo>
             <md-typo lb-sm>Label small</md-typo>
             <md-typo bd-lg>
-              Body large. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-              dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+              Body large. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+              suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum
+              fugiat deleniti? Eum quasi quidem quibusdam.
             </md-typo>
             <md-typo bd-md>
-              Body medium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-              dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+              Body medium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+              suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum
+              fugiat deleniti? Eum quasi quidem quibusdam.
             </md-typo>
             <md-typo bd-sm>
-              Body small. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-              dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+              Body small. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+              suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum
+              fugiat deleniti? Eum quasi quidem quibusdam.
             </md-typo>
           </div>
         </code-example>

@@ -216,7 +216,11 @@ class Menu extends HTMLElement {
     this.layerE = this.shadowRoot.getElementById('md3-menu__layer');
     this.menuE = this.shadowRoot.getElementById('md3-menu');
     this.controllerE = document.getElementById(this.id);
-    this.controllerE ? (this.controllerFriendsE = this.controllerE.parentNode.querySelectorAll(`md-menu-item[subber]:not(#${this.id})`)) : null;
+    this.controllerE
+      ? (this.controllerFriendsE = this.controllerE.parentNode.querySelectorAll(
+          `md-menu-item[subber]:not(#${this.id})`
+        ))
+      : null;
 
     this.addEventListener('keydown', (e) => {
       if (e.key == 'ArrowDown' || e.key == 'ArrowUp') {
