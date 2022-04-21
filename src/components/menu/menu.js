@@ -84,6 +84,11 @@ class Menu extends HTMLElement {
    * TODO: Need more position.
    */
   openMenu() {
+    this.dispatchEvent(
+      new CustomEvent('open', {
+        detail: {},
+      })
+    );
     this.menuE.removeAttribute('style');
     this.menuE.classList.remove('md3-menu--bottom', 'md3-menu--right');
     let rect = this.controllerE.getBoundingClientRect();
@@ -113,12 +118,19 @@ class Menu extends HTMLElement {
       this.menuE.style.left = rect.left + 'px';
     }
     this.open = true;
-    this.querySelector('md-menu-item').itemE.focus();
+    this.querySelector('md-menu-item').focus();
+    this.querySelector('md-menu-item').tabIndex = 0;
   }
   /**
    * Close the menu.
    */
   closeMenu() {
+    this.dispatchEvent(
+      new CustomEvent('close', {
+        detail: {},
+      })
+    );
+    this.querySelector('md-menu-item[focused]') ? (this.querySelector('md-menu-item[focused]').tabIndex = 0) : null;
     this.open = false;
     this.controllerE.focus();
   }
@@ -144,11 +156,13 @@ class Menu extends HTMLElement {
         let index = [].indexOf.call(items, focusItem);
         e.key == 'ArrowDown' ? index++ : index--;
         if (index < 0) {
-          index = 0;
-        } else if (index >= items.length) {
           index = items.length - 1;
+        } else if (index >= items.length) {
+          index = 0;
         }
+        items[index].tabIndex = 0;
         items[index].focus();
+        focusItem.tabIndex = -1;
       } else if (e.key == 'Escape') {
         // Menu closing
         e.preventDefault();
@@ -166,6 +180,9 @@ class Menu extends HTMLElement {
           e.preventDefault();
           document.querySelector(`md-menu#${focusItem.id}`).openMenu();
         }
+      } else if (e.key == 'Tab') {
+        // Blur as Menu closing
+        this.closeMenu();
       }
     });
     document.addEventListener('click', (e) => {

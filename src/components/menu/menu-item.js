@@ -32,8 +32,14 @@ class MenuItem extends HTMLElement {
     this.itemE.focus();
   }
 
+  get tabIndex() {
+    return this.itemE.tabIndex;
+  }
   get disabled() {
     return this.hasAttribute('disabled');
+  }
+  set tabIndex(value) {
+    this.itemE.tabIndex = value;
   }
   set disabled(value) {
     if (value) {
@@ -47,6 +53,9 @@ class MenuItem extends HTMLElement {
     this.render();
 
     this.itemE = this.shadowRoot.getElementById('md3-menu__item');
+    this.tabIndex = -1;
+    this.itemE.addEventListener('focus', () => this.setAttribute('focused', ''));
+    this.itemE.addEventListener('blur', () => this.removeAttribute('focused'));
   }
 }
 
