@@ -38,7 +38,17 @@ body {
 /* CSS Components */
 md-divider {
   display: block;
+  width: 100%;
   height: 1px;
   background-color: rgba(var(--md-c-on-surface), 0.08);
+}
+md-divider[margin] {
   margin: 7.5px 0;
+}
+md-divider[vertical] {
+  width: 1px;
+  height: 100%;
+}
+md-divider[vertical][margin] {
+  margin: 0 7.5px;
 }

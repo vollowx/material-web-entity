@@ -7,7 +7,8 @@
 
 > Material Web Entity
 
-_A component library based on Material Design & Web Components_
+_A component library based on Material Design & Web Components_  
+_Go to [link](./src/components/README.md) to see what components this library supported._
 
 ## Table of Contents
 
@@ -20,7 +21,7 @@ _A component library based on Material Design & Web Components_
 
 ## About
 
-Inspired by [xy-ui](https://github.com/XboxYan/xy-ui) and [Elix](https://github.com/elix/elix) projects
+Inspired by [xy-ui](https://github.com/XboxYan/xy-ui) and [Elix](https://github.com/elix/elix) projects.
 
 The first version will be released after most components are complete.
 
