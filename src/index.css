@@ -10,14 +10,14 @@ body {
   margin: 0;
   min-height: 100vh;
   /* Color */
-  color: rgb(var(--md-c-on-background-rgb));
-  background-color: rgb(var(--md-c-background-rgb));
+  color: rgb(var(--md-c-on-background));
+  background-color: rgb(var(--md-c-background));
   /* Font */
   font-family: var(--md-t-font-family);
 }
 
 ::selection {
-  background-color: rgba(var(--md-c-primary-rgb), 0.24);
+  background-color: rgba(var(--md-c-primary), 0.24);
 }
 ::-webkit-scrollbar {
   background: transparent;
@@ -41,6 +41,6 @@ body {
 md-divider {
   display: block;
   height: 1px;
-  background-color: rgba(var(--md-c-on-surface-rgb), 0.08);
+  background-color: rgba(var(--md-c-on-surface), 0.08);
   margin: 7.5px 0;
 }

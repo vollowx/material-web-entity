@@ -43,7 +43,7 @@
   width: max-content;
   max-height: 100vh;
   overflow-y: auto;
-  background-color: rgb(var(--md-c-surface-variant-rgb));
+  background-color: rgb(var(--md-c-surface-variant));
   box-shadow: var(--md-e-shadow-2);
   border-radius: 4px;
   transition: transform 120ms cubic-bezier(0.4, 0, 0.2, 1), opacity 120ms cubic-bezier(0.4, 0, 0.2, 1);

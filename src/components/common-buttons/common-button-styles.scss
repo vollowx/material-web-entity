@@ -14,7 +14,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: rgb(var(--md-c-on-primary-rgb));
+  color: rgb(var(--md-c-on-primary));
   font-family: var(--md-t-font-family);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +23,7 @@
   line-height: 1.428571428571429;
   letter-spacing: 0.1px;
   text-decoration: none;
-  background-color: rgb(var(--md-c-primary-rgb));
+  background-color: rgb(var(--md-c-primary));
   border: 0;
   border-radius: 20px;
   outline: 0;
@@ -71,13 +71,13 @@
 }
 
 :host([tonal]) .md3-button {
-  color: rgb(var(--md-c-on-secondary-container-rgb));
-  background: rgb(var(--md-c-secondary-container-rgb));
+  color: rgb(var(--md-c-on-secondary-container));
+  background: rgb(var(--md-c-secondary-container));
 }
 
 :host([elevated]) .md3-button {
-  color: rgb(var(--md-c-primary-rgb));
-  background-color: rgb(var(--md-c-surface-rgb));
+  color: rgb(var(--md-c-primary));
+  background-color: rgb(var(--md-c-surface));
   box-shadow: var(--md-e-shadow-1);
 }
 @media screen and (min-width: 1240px) {
@@ -94,20 +94,20 @@
 
 :host([outlined]) .md3-button {
   padding: 0 23px;
-  color: rgb(var(--md-c-important-color, var(--md-c-primary-rgb)));
-  background-color: rgb(var(--md-c-surface-rgb));
-  border: 1px solid rgb(var(--md-c-outline-rgb));
+  color: rgb(var(--md-c-important-color, var(--md-c-primary)));
+  background-color: rgb(var(--md-c-surface));
+  border: 1px solid rgb(var(--md-c-outline));
   box-shadow: none;
 }
 :host([outlined].focus-visible) .md3-button {
-  border-color: rgb(var(--md-c-primary-rgb));
+  border-color: rgb(var(--md-c-primary));
 }
 :host([outlined]) .md3-button:active {
-  border-color: rgb(var(--md-c-outline-rgb));
+  border-color: rgb(var(--md-c-outline));
 }
 :host([outlined]) .md3-button:disabled {
-  color: rgba(var(--md-c-on-surface-rgb), 0.38);
-  border: 1px solid rgba(var(--md-c-on-surface-rgb), 0.12);
+  color: rgba(var(--md-c-on-surface), 0.38);
+  border: 1px solid rgba(var(--md-c-on-surface), 0.12);
 }
 :host([outlined]) md-ripple,
 :host([outlined]) .md3-button::before {
@@ -119,19 +119,19 @@
 
 :host([text]) .md3-button {
   padding: 0 12px;
-  color: rgb(var(--md-c-important-color, var(--md-c-primary-rgb)));
+  color: rgb(var(--md-c-important-color, var(--md-c-primary)));
   background: transparent;
   box-shadow: none;
 }
 
 :host([text]) .md3-button:disabled {
-  color: rgba(var(--md-c-on-surface-rgb), 0.38);
+  color: rgba(var(--md-c-on-surface), 0.38);
 }
 .md3-button:disabled,
 :host([tonal]) .md3-button:disabled,
 :host([elevated]) .md3-button:disabled {
-  color: rgba(var(--md-c-on-surface-rgb), 0.38);
-  background-color: rgba(var(--md-c-on-surface-rgb), 0.12);
+  color: rgba(var(--md-c-on-surface), 0.38);
+  background-color: rgba(var(--md-c-on-surface), 0.12);
   cursor: default;
   box-shadow: none;
 }

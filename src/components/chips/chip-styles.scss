@@ -12,7 +12,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: rgb(var(--md-c-on-primary-rgb));
+  color: rgb(var(--md-c-on-primary));
   font-family: var(--md-t-font-family);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -22,9 +22,9 @@
   line-height: 1.428571428571429;
   letter-spacing: 0.1px;
   text-decoration: none;
-  color: rgb(var(--md-c-important-color, var(--md-c-on-surface-rgb)));
-  background-color: rgb(var(--md-c-surface-rgb));
-  border: 1px solid rgb(var(--md-c-outline-rgb));
+  color: rgb(var(--md-c-important-color, var(--md-c-on-surface)));
+  background-color: rgb(var(--md-c-surface));
+  border: 1px solid rgb(var(--md-c-outline));
   border-radius: 8px;
   outline: 0;
   -webkit-user-select: none;
@@ -65,8 +65,8 @@
   opacity: 0.12;
 }
 .md3-chip:disabled {
-  color: rgba(var(--md-c-on-surface-rgb), 0.38);
-  border: 1px solid rgba(var(--md-c-on-surface-rgb), 0.12);
+  color: rgba(var(--md-c-on-surface), 0.38);
+  border: 1px solid rgba(var(--md-c-on-surface), 0.12);
   cursor: default;
 }
 :host(:not([text]):not([elevated]):not([checked])) md-ripple,
@@ -84,14 +84,14 @@
   box-shadow: var(--md-e-shadow-1);
 }
 :host([checked]) .md3-chip {
-  color: rgb(var(--md-c-on-secondary-container-rgb));
-  background-color: rgb(var(--md-c-secondary-container-rgb));
+  color: rgb(var(--md-c-on-secondary-container));
+  background-color: rgb(var(--md-c-secondary-container));
   border: none;
 }
 :host([elevated]) .md3-chip:disabled,
 :host([checked]) .md3-chip:disabled {
-  color: rgba(var(--md-c-on-surface-rgb), 0.38);
-  background-color: rgba(var(--md-c-on-surface-rgb), 0.12);
+  color: rgba(var(--md-c-on-surface), 0.38);
+  background-color: rgba(var(--md-c-on-surface), 0.12);
   cursor: default;
   box-shadow: none;
 }

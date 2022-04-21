@@ -42,7 +42,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--md-t-font-family);
-  color: rgb(var(--md-c-on-primary-container-rgb));
+  color: rgb(var(--md-c-on-primary-container));
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-size: 0.875rem;
@@ -50,7 +50,7 @@
   line-height: 1.428571428571429;
   letter-spacing: 0.1px;
   text-decoration: none;
-  background-color: rgb(var(--md-c-primary-container-rgb));
+  background-color: rgb(var(--md-c-primary-container));
   box-shadow: var(--md-fab-shadow-enabled);
   border: 0;
   border-radius: var(--md-fab-border-radius, 16px);
@@ -105,14 +105,14 @@
   display: none;
 }
 :host([surface]) .md3-fab {
-  color: rgb(var(--md-c-primary-rgb));
-  background-color: rgb(var(--md-c-surface-rgb));
+  color: rgb(var(--md-c-primary));
+  background-color: rgb(var(--md-c-surface));
 }
 :host([secondary]) .md3-fab {
-  color: rgb(var(--md-c-on-secondary-container-rgb));
-  background-color: rgb(var(--md-c-secondary-container-rgb));
+  color: rgb(var(--md-c-on-secondary-container));
+  background-color: rgb(var(--md-c-secondary-container));
 }
 :host([tertiary]) .md3-fab {
-  color: rgb(var(--md-c-on-tertiary-container-rgb));
-  background-color: rgb(var(--md-c-tertiary-container-rgb));
+  color: rgb(var(--md-c-on-tertiary-container));
+  background-color: rgb(var(--md-c-tertiary-container));
 }

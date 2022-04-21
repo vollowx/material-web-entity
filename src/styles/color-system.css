@@ -1,56 +1,56 @@
 /* Light theme */
 :root {
-  --md-c-primary-rgb: 103, 81, 164;
-  --md-c-primary-container-rgb: 234, 221, 255;
-  --md-c-secondary-rgb: 98, 91, 113;
-  --md-c-secondary-container-rgb: 232, 222, 248;
-  --md-c-tertiary-rgb: 125, 82, 96;
-  --md-c-tertiary-container-rgb: 255, 216, 228;
-  --md-c-surface-rgb: 255, 251, 254;
-  --md-c-surface-variant-rgb: 231, 224, 236;
-  --md-c-background-rgb: 255, 251, 254;
-  --md-c-error-rgb: 179, 38, 30;
-  --md-c-error-container-rgb: 249, 222, 220;
+  --md-c-primary: 103, 81, 164;
+  --md-c-primary-container: 234, 221, 255;
+  --md-c-secondary: 98, 91, 113;
+  --md-c-secondary-container: 232, 222, 248;
+  --md-c-tertiary: 125, 82, 96;
+  --md-c-tertiary-container: 255, 216, 228;
+  --md-c-surface: 255, 251, 254;
+  --md-c-surface-variant: 231, 224, 236;
+  --md-c-background: 255, 251, 254;
+  --md-c-error: 179, 38, 30;
+  --md-c-error-container: 249, 222, 220;
 
-  --md-c-on-primary-rgb: 255, 255, 255;
-  --md-c-on-primary-container-rgb: 33, 0, 94;
-  --md-c-on-secondary-rgb: 255, 255, 255;
-  --md-c-on-secondary-container-rgb: 30, 25, 43;
-  --md-c-on-tertiary-rgb: 255, 255, 255;
-  --md-c-on-tertiary-container-rgb: 55, 11, 30;
-  --md-c-on-surface-rgb: 28, 27, 31;
-  --md-c-on-surface-variant-rgb: 73, 69, 78;
-  --md-c-on-background-rgb: 28, 27, 31;
-  --md-c-on-error-rgb: 255, 255, 255;
-  --md-c-on-error-container-rgb: 55, 11, 30;
+  --md-c-on-primary: 255, 255, 255;
+  --md-c-on-primary-container: 33, 0, 94;
+  --md-c-on-secondary: 255, 255, 255;
+  --md-c-on-secondary-container: 30, 25, 43;
+  --md-c-on-tertiary: 255, 255, 255;
+  --md-c-on-tertiary-container: 55, 11, 30;
+  --md-c-on-surface: 28, 27, 31;
+  --md-c-on-surface-variant: 73, 69, 78;
+  --md-c-on-background: 28, 27, 31;
+  --md-c-on-error: 255, 255, 255;
+  --md-c-on-error-container: 55, 11, 30;
 
-  --md-c-outline-rgb: 121, 116, 126;
+  --md-c-outline: 121, 116, 126;
 }
 /* Dark theme */
 :root [data-dark] {
-  --md-c-primary-rgb: 208, 188, 255;
-  --md-c-primary-container-rgb: 79, 55, 139;
-  --md-c-secondary-rgb: 204, 194, 220;
-  --md-c-secondary-container-rgb: 74, 68, 88;
-  --md-c-tertiary-rgb: 239, 184, 200;
-  --md-c-tertiary-container-rgb: 99, 59, 72;
-  --md-c-surface-rgb: 28, 27, 31;
-  --md-c-surface-variant-rgb: 73, 69, 79;
-  --md-c-background-rgb: 28, 27, 31;
-  --md-c-error-rgb: 242, 184, 181;
-  --md-c-error-container-rgb: 140, 29, 24;
+  --md-c-primary: 208, 188, 255;
+  --md-c-primary-container: 79, 55, 139;
+  --md-c-secondary: 204, 194, 220;
+  --md-c-secondary-container: 74, 68, 88;
+  --md-c-tertiary: 239, 184, 200;
+  --md-c-tertiary-container: 99, 59, 72;
+  --md-c-surface: 28, 27, 31;
+  --md-c-surface-variant: 73, 69, 79;
+  --md-c-background: 28, 27, 31;
+  --md-c-error: 242, 184, 181;
+  --md-c-error-container: 140, 29, 24;
 
-  --md-c-on-primary-rgb: 55, 30, 115;
-  --md-c-on-primary-container-rgb: 234, 221, 255;
-  --md-c-on-secondary-rgb: 51, 45, 65;
-  --md-c-on-secondary-container-rgb: 232, 222, 248;
-  --md-c-on-tertiary-rgb: 73, 37, 50;
-  --md-c-on-tertiary-container-rgb: 255, 216, 228;
-  --md-c-on-surface-rgb: 230, 225, 229;
-  --md-c-on-surface-variant-rgb: 202, 196, 208;
-  --md-c-on-background-rgb: 230, 225, 229;
-  --md-c-on-error-rgb: 96, 20, 16;
-  --md-c-on-error-container-rgb: 249, 222, 220;
+  --md-c-on-primary: 55, 30, 115;
+  --md-c-on-primary-container: 234, 221, 255;
+  --md-c-on-secondary: 51, 45, 65;
+  --md-c-on-secondary-container: 232, 222, 248;
+  --md-c-on-tertiary: 73, 37, 50;
+  --md-c-on-tertiary-container: 255, 216, 228;
+  --md-c-on-surface: 230, 225, 229;
+  --md-c-on-surface-variant: 202, 196, 208;
+  --md-c-on-background: 230, 225, 229;
+  --md-c-on-error: 96, 20, 16;
+  --md-c-on-error-container: 249, 222, 220;
 
-  --md-c-outline-rgb: 147, 143, 153;
+  --md-c-outline: 147, 143, 153;
 }
