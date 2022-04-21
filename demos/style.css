@@ -7,6 +7,17 @@
 body {
   display: flex;
 }
+kbd {
+  padding: 0 2px;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--md-e-surface-1);
+  box-shadow: var(--md-e-shadow-1);
+  vertical-align: middle;
+  border-radius: 4px;
+}
 aside {
   flex-shrink: 0;
   width: 280px;

@@ -1,9 +1,10 @@
+import styles from './icon-styles.scss';
+
 /**
  * Icon component.
  *
  * Button and Chip are both request define this component as 'md3-icon'
  */
-
 class Icon extends HTMLElement {
   constructor() {
     super();
@@ -15,47 +16,14 @@ class Icon extends HTMLElement {
    * Render the contents
    */
   render() {
-    let styles = document.createElement('style');
-    styles.textContent = /* css */ `
-    :host {
-      position: relative;
-      box-sizing: border-box;
-      display: inline-block;
-      width: var(--md-icon-size, 1rem);
-      height: var(--md-icon-size, 1rem);
-    }
-    slot {
-      font-family: "Material Icons";
-      font-weight: normal;
-      font-style: normal;
-      font-size: var(--md-icon-size, inherit);
-      line-height: 1;
-      letter-spacing: normal;
-      text-transform: none;
-      white-space: nowrap;
-      word-wrap: normal;
-      direction: ltr;
-      font-feature-settings: 'liga';
-    }
-    .md3-icon,
-    .md3-icon__img {
-      box-sizing: border-box;
-      width: 100%;
-      height: 100%;
-    }
-    `;
-
-    let template = document.createElement('template');
-    template.innerHTML = /* html */ `
+    this.shadowRoot.innerHTML = /* html */ `
+    <style>${styles}</style>
     <span class="md3-icon">
       <slot>
         <img src="${this.url}" class="md3-icon__img" id="md3-icon__img"></img>
       </slot>
     </span>
     `;
-
-    this.shadowRoot.appendChild(styles);
-    this.shadowRoot.innerHTML += template.innerHTML;
   }
 
   get url() {

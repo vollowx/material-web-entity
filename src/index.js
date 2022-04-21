@@ -3,6 +3,10 @@ import * as M from './utils/index.js';
 import './libs/focus-visible.js';
 
 export { MComponents, M };
+onload = () => {
+  window.MComponents = MComponents;
+  window.M = M;
+}
 
 customElements.define('md-avatar', MComponents.Avatar);
 customElements.define('md-button', MComponents.Button);

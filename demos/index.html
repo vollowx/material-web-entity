@@ -135,6 +135,9 @@
         </code-example>
 
         <md-typo rule="region" dp-lg id="menus">Menus</md-typo>
+        <md-typo rule="region" bd-lg>
+          Also supported keyboard action: <kbd>Enter</kbd>, <kbd>ESC</kbd>, <kbd><md-icon>arrow_upward</md-icon></kbd>, <kbd><md-icon>arrow_downward</md-icon></kbd>, <kbd><md-icon>arrow_back</md-icon></kbd>, <kbd><md-icon>arrow_forward</md-icon></kbd>
+        </md-typo>
         <code-example rule="region">
           <div>
             <md-chip text id="demo-menu1">long Menu</md-chip>
@@ -265,10 +268,7 @@
     </main>
 
     <script type="module">
-      import '../src/index.js';
-      import { M } from '../src/index.js';
-
-      console.log('URL | test value: ' + M.getUrlValue('test'));
+      import '../dist/mwu-bundle.min.js';
 
       const toggleThemeBtn = document.querySelector('[theme-toggler]');
       toggleThemeBtn.addEventListener('click', () => {

@@ -1,10 +1,11 @@
-import Avatar from './avatars.js';
-import Button from './buttons.js';
-import Chip from './chips.js';
-import FAB from './fabs.js';
-import Icon from './icons.js';
-import { Menu, MenuItem } from './menus.js';
-import Ripple from './ripples.js';
-import Typography from './typography.js';
+import Avatar     from './avatars/avatar.js';
+import Button     from './common-buttons/common-button.js';
+import Chip       from './chips/chip.js';
+import FAB        from './fabs/fab.js';
+import Icon       from './icons/icon.js';
+import Menu       from './menus/menu.js';
+import MenuItem   from './menus/menu-item.js';
+import Ripple     from './ripples/ripple.js';
+import Typography from './typography/typography.js';
 
 export { Avatar, Button, Chip, FAB, Icon, Menu, MenuItem, Ripple, Typography };

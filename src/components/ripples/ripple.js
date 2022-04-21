@@ -1,9 +1,10 @@
+import styles from './ripple-styles.scss';
+
 /**
  * Ripple component.
  *
  * Button, Card and Menu are all request define this component as 'md3-ripple'
  */
-
 class Ripple extends HTMLElement {
   constructor() {
     super();
@@ -15,53 +16,13 @@ class Ripple extends HTMLElement {
    * Render the contents
    */
   render() {
-    let styles = document.createElement('style');
-    styles.textContent = /* css */ `
-    :host {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      box-sizing: border-box;
-      display: inline-flex;
-      border-radius: inherit;
-      pointer-events: none;
-    }
-    .md3-ripple__container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: inherit;
-      pointer-events: none;
-    }
-    :host(:not([unbounded])) .md3-ripple__container {
-      overflow: hidden;
-    }
-    .md3-ripple__itself {
-      position: absolute;
-      background: currentColor;
-      border-radius: 50%;
-      transform: scale(0);
-      opacity: 0.12;
-      transition: opacity, transform 0ms cubic-bezier(0, 0, .2, 1);
-      will-change: transform, opacity;
-      pointer-events: none;
-    }
-    `;
-
-    let template = document.createElement('template');
-    template.innerHTML = /* html */ `
+    this.shadowRoot.innerHTML = /* html */ `
+    <style>${styles}</style>
     <div class="md3-ripple__container" id="md3-ripple__container">
       <!-- -->
       <!-- -->
     </div>
     `;
-
-    this.shadowRoot.appendChild(styles);
-    this.shadowRoot.innerHTML += template.innerHTML;
   }
 
   addActiveLayer(_event) {
