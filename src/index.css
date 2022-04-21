@@ -5,20 +5,18 @@
 @import url(./styles/typography-system.css);
 /* -t- means 'typography' */
 
+*,
+:after,
+:before,
+::after,
+::before {
+  box-sizing: border-box;
+}
 body {
-  /* Position & size */
   margin: 0;
   min-height: 100vh;
-  /* Color */
-  color: rgb(var(--md-c-on-background));
-  background-color: rgb(var(--md-c-background));
-  /* Font */
-  font-family: var(--md-t-font-family);
 }
 
-::selection {
-  background-color: rgba(var(--md-c-primary), 0.24);
-}
 ::-webkit-scrollbar {
   background: transparent;
   width: 12px;

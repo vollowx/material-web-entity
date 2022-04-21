@@ -1,3 +1,7 @@
+body {
+  color: rgb(var(--md-c-on-background));
+  background-color: rgb(var(--md-c-background));
+}
 /* Light theme */
 :root {
   --md-c-primary: 103, 81, 164;

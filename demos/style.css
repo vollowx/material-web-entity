@@ -29,14 +29,12 @@ aside ul {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
 }
 aside ul li {
   position: relative;
   width: 100%;
   height: 56px;
   border-radius: 28px;
-  box-sizing: border-box;
 }
 aside ul li a {
   display: flex;
@@ -46,10 +44,9 @@ aside ul li a {
   height: 100%;
   text-decoration: none;
   color: rgb(var(--md-c-on-surface-variant));
-  border-radius: 28px;
+  border-radius: inherit;
   -webkit-tap-highlight-color: transparent;
   appearance: none;
-  box-sizing: border-box;
 }
 a::before {
   content: '';
