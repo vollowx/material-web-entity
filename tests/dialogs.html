@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dialog test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
+    <link rel="stylesheet" href="../src/index.css" />
+    <script type="module" src="../dist/mwu-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="./dislogs.css" />
+  </head>
+  <body data-dark="true">
+    <div class="md3-dialog__container">
+      <!-- <dialog open class="md3-dialog md3-dialog__hero">
+        <md-icon class="md3-dialog__part">mobile_friendly</md-icon>
+        <md-typo class="md3-dialog__part" hd-sm>Dialog with hero icon</md-typo>
+        <md-typo class="md3-dialog__part" bd-md>
+          A dialog is a type of modal window that appears in front of app content to provide critical information, or
+          prompt for a decision to be made.
+        </md-typo>
+        <div class="md3-dialog__part md3-dialog__actions">
+          <md-button text>Action 1</md-button>
+          <md-button text>Action 2</md-button>
+        </div>
+      </dialog> -->
+      <dialog open class="md3-dialog">
+        <md-typo class="md3-dialog__part" bd-md>Discard draft?</md-typo>
+        <div class="md3-dialog__part md3-dialog__actions">
+          <md-button text>Cancel</md-button>
+          <md-button text>Discard</md-button>
+        </div>
+      </dialog>
+    </div>
+
+    <md-fab
+      style="position: fixed; right: 16px; bottom: 16px"
+      onclick="M.toggleAttr(document.querySelector('.md3-dialog:not(.md3-dialog__hero)'), 'open')">
+      <md-icon>toggle_on</md-icon>
+    </md-fab>
+  </body>
+</html>
