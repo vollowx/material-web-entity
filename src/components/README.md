@@ -18,7 +18,7 @@ tips: the `/* html */` in javascript files means highlight CSS & HTML in JS, I u
 | Chip               | √              | √         |
 | Data table         | will           | ×         |
 | Date picker        | will           | ×         |
-| Dialog             | √              | ×         |
+| Dialog             | √              | testing   |
 | Divider            | will           | √         |
 | Image list         | will           | ×         |
 | List               | will           | ×         |

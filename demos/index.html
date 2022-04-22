@@ -111,6 +111,17 @@
           document.getElementById('chip-demo-ctrler').remove();
         </script>
 
+        <md-typo rule="region" dp-lg id="dialog">Dialogs</md-typo>
+        <code-example rule="region" id="dialog-demo">
+          <md-button text label="Open dialog" id="demo-dialog1"></md-button>
+          <md-dialog id="demo-dialog1" hero-icon="refresh" headline="Reset settings?">
+            <md-typo slot="body" bd-md> This will reset your app preferences back to their default settings. </md-typo>
+
+            <md-button text slot="secondaryAction" label="Cancel"></md-button>
+            <md-button text slot="primaryAction" label="Yes, I'm sure"></md-button>
+          </md-dialog>
+        </code-example>
+
         <md-typo rule="region" dp-lg id="fabs">FABs (Floating action buttons)</md-typo>
         <code-example rule="region" id="fab-demo"> </code-example>
         <script id="fab-demo-ctrler">

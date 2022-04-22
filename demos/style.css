@@ -7,7 +7,7 @@
 body {
   display: flex;
 }
-md-typo[bd-md] {
+[rule="region"] > md-typo[bd-md] {
   text-align: center;
 }
 [color-primary] {

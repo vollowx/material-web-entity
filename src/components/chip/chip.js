@@ -18,9 +18,9 @@ class Chip extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = /* html */ `
     <style>${styles}</style>
-    <button class="md3-chip" ${this.disabled ? 'disabled' : ''}>
+    <button class="md3-chip" id="md3-chip" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
-      <span class="md3-button__label">${this.label ? this.label : ''}</span>
+      <span class="md3-chip__label" id="md3-chip__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>
     `;
@@ -37,7 +37,7 @@ class Chip extends HTMLElement {
     return this.hasAttribute('disabled');
   }
   /**
-   * @param {Boolean} value
+   * @param {String} value
    */
   set label(value) {
     this.setAttribute('label', value);
@@ -59,14 +59,14 @@ class Chip extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.chipE = this.shadowRoot.querySelector('.md3-chip');
-    this.labelE = this.shadowRoot.querySelector('.md3-button__label');
+    this.chipE = this.shadowRoot.getElementById('md3-chip');
+    this.labelE = this.shadowRoot.getElementById('md3-chip__label');
     this.slotE = this.shadowRoot.querySelector('slot');
   }
   attributeChangedCallback(attrName, oldVal, newVal) {
     if (attrName === 'label' && this.chipE) {
       if (newVal) {
-        this.shadowRoot.querySelector('.md3-button__label').textContent = newVal;
+        this.labelE.textContent = newVal;
       }
     }
     if (attrName === 'disabled' && this.chipE) {

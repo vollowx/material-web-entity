@@ -18,9 +18,9 @@ class FAB extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = /* html */ `
     <style>${styles}</style>
-    <button class="md3-fab" ${this.disabled ? 'disabled' : ''}>
+    <button class="md3-fab" id="md3-fab" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
-      <span class="md3-fab__label">${this.label ? this.label : ''}</span>
+      <span class="md3-fab__label" id="md3-fab__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>
     `;
@@ -30,10 +30,10 @@ class FAB extends HTMLElement {
     return this.getAttribute('label');
   }
   get disabled() {
-    return this.getAttribute('disabled') != undefined;
+    return this.hasAttribute('disabled');
   }
   /**
-   * @param {Boolean} value
+   * @param {String} value
    */
   set label(value) {
     this.setAttribute('label', value);
@@ -55,14 +55,14 @@ class FAB extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.fabE = this.shadowRoot.querySelector('.md3-fab');
-    this.labelE = this.shadowRoot.querySelector('.md3-fab__label');
+    this.fabE = this.shadowRoot.getElementById('md3-fab');
+    this.labelE = this.shadowRoot.getElementById('md3-fab__label');
     this.slotE = this.shadowRoot.querySelector('slot');
   }
   attributeChangedCallback(attrName, oldVal, newVal) {
     if (attrName === 'label' && this.fabE) {
       if (newVal) {
-        this.shadowRoot.querySelector('.md3-fab__label').textContent = newVal;
+        this.labelE.textContent = newVal;
       }
     }
     if (attrName === 'disabled' && this.fabE) {
