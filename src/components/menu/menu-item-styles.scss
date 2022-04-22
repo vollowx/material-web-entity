@@ -62,11 +62,12 @@
   height: 24px;
 }
 [name='label'] {
-  display: flex;
+  display: inline;
+  white-space: nowrap;
   margin-left: 20px;
 }
 [name='after'] {
-  display: flex;
+  display: inline;
   margin-right: 20px;
   justify-content: center;
 }
