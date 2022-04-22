@@ -2,8 +2,8 @@
   position: relative;
   box-sizing: border-box;
   display: inline-flex;
-  width: var(--md-icon-size, inherit);
-  height: var(--md-icon-size, inherit);
+  width: var(--md-icon-size, 1rem);
+  height: var(--md-icon-size, 1rem);
 }
 slot {
   width: 100%;
@@ -11,7 +11,7 @@ slot {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: var(--md-icon-size, inherit);
+  font-size: var(--md-icon-size, 1rem);
   line-height: 1;
   display: inline;
   letter-spacing: normal;
