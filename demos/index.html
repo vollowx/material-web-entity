@@ -18,6 +18,7 @@
         <li><md-ripple></md-ripple><a href="#avatars">Avatars</a></li>
         <li><md-ripple></md-ripple><a href="#common-buttons">Common buttons</a></li>
         <li><md-ripple></md-ripple><a href="#chips">Chips</a></li>
+        <li><md-ripple></md-ripple><a href="#dialogs">Dialogs</a></li>
         <li><md-ripple></md-ripple><a href="#fabs">FABs</a></li>
         <li><md-ripple></md-ripple><a href="#icons">Icons</a></li>
         <li><md-ripple></md-ripple><a href="#menus">Menus</a></li>
@@ -111,11 +112,19 @@
           document.getElementById('chip-demo-ctrler').remove();
         </script>
 
-        <md-typo rule="region" dp-lg id="dialog">Dialogs</md-typo>
+        <md-typo rule="region" dp-lg id="dialogs">Dialogs</md-typo>
         <code-example rule="region" id="dialog-demo">
-          <md-button text label="Open dialog" id="demo-dialog1"></md-button>
-          <md-dialog id="demo-dialog1" hero-icon="refresh" headline="Reset settings?">
-            <md-typo slot="body" bd-md> This will reset your app preferences back to their default settings. </md-typo>
+          <md-button text label="Delete" id="demo-dialog1"></md-button>
+          <md-dialog id="demo-dialog1">
+            <md-typo slot="body" bd-md>Delete this file?</md-typo>
+
+            <md-button text slot="secondaryAction" label="Cancel"></md-button>
+            <md-button text slot="primaryAction" label="Yes, I'm sure"></md-button>
+          </md-dialog>
+
+          <md-button text label="Open dialog with hero icon" id="demo-dialog2"></md-button>
+          <md-dialog id="demo-dialog2" hero-icon="refresh" headline="Reset settings?">
+            <md-typo slot="body" bd-md>This will reset your app preferences back to their default settings.</md-typo>
 
             <md-button text slot="secondaryAction" label="Cancel"></md-button>
             <md-button text slot="primaryAction" label="Yes, I'm sure"></md-button>
@@ -123,7 +132,17 @@
         </code-example>
 
         <md-typo rule="region" dp-lg id="fabs">FABs (Floating action buttons)</md-typo>
-        <code-example rule="region" id="fab-demo"> </code-example>
+        <code-example rule="region" id="fab-demo">
+          <md-fab label="Extended" m-4></md-fab>
+          <md-fab m-4 extended>
+            <md-icon>add</md-icon>
+            Extended
+          </md-fab>
+          <md-fab m-4 extended>
+            Extended
+            <md-icon before>add</md-icon>
+          </md-fab>
+        </code-example>
         <script id="fab-demo-ctrler">
           const FABDemo = document.getElementById('fab-demo');
           let fa1 = '';

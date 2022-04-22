@@ -32,6 +32,9 @@ class FAB extends HTMLElement {
   get disabled() {
     return this.hasAttribute('disabled');
   }
+  get tabIndex() {
+    return this.fabE.tabIndex;
+  }
   /**
    * @param {String} value
    */
@@ -47,6 +50,12 @@ class FAB extends HTMLElement {
     } else {
       this.removeAttribute('disabled');
     }
+  }
+  /**
+   * @param {Number} value
+   */
+  set tabIndex(value) {
+    this.buttonE.tabIndex = value;
   }
 
   static get observedAttributes() {

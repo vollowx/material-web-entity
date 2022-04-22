@@ -18,7 +18,7 @@ class Dialog extends HTMLElement {
     <style>${styles}</style>
     <div class="md3-dialog__scrim" id="md3-dialog__scrim"></div>
     <div class="md3-dialog__container">
-      <div role="alertdialog" class="md3-dialog" id="md3-dialog" tabindex="0">
+      <div role="alertdialog" class="md3-dialog" id="md3-dialog" tabindex="-1">
         <div class="md3-dialog__hero-icon" id="md3-dialog__hero-icon">
           <md-icon>${this.heroIcon ? this.heroIcon : ''}</md-icon>
         </div>
@@ -79,6 +79,9 @@ class Dialog extends HTMLElement {
   openDialog() {
     this.open = true;
     this.dialogE.focus();
+    this.dialogE.tabIndex = 0;
+    this.primaryActionE.tabIndex = 0;
+    this.secondaryActionE.tabIndex = 0;
   }
   /**
    * Close the dialog.
@@ -86,6 +89,9 @@ class Dialog extends HTMLElement {
   closeDialog() {
     this.open = false;
     this.controllerE.focus();
+    this.dialogE.tabIndex = -1;
+    this.primaryActionE.tabIndex = -1;
+    this.secondaryActionE.tabIndex = -1;
   }
 
   static get observedAttributes() {
@@ -104,6 +110,9 @@ class Dialog extends HTMLElement {
     this.secondaryActionE = this.shadowRoot.querySelector('[name="secondaryAction"]');
     this.controllerE = document.getElementById(this.id);
 
+    this.primaryActionE.tabIndex = -1;
+    this.secondaryActionE.tabIndex = -1;
+
     this.controllerE.addEventListener('click', () => this.openDialog());
     this.scrimE.addEventListener('click', () => this.closeDialog());
     this.primaryActionE.addEventListener('click', () => this.closeDialog());
@@ -111,7 +120,7 @@ class Dialog extends HTMLElement {
     this.addEventListener('keydown', (e) => {
       if (e.key == 'Escape') {
         this.closeDialog();
-      } else if (e.key == 'Tab') {
+      } else if (e.key == 'Tab' && this.dialogE.tabIndex == 0) {
         e.preventDefault();
         if (this.querySelector('[slot="secondaryAction"]:focus')) {
           this.querySelector('[slot="primaryAction"]').focus();

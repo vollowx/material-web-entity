@@ -116,3 +116,10 @@
   color: rgb(var(--md-c-on-tertiary-container));
   background-color: rgb(var(--md-c-tertiary-container));
 }
+:host([extended]) ::slotted(md-icon) {
+  margin-right: 8px;
+}
+:host([extended]) ::slotted(md-icon[before]) {
+  margin-left: 8px;
+  margin-right: 0;
+}

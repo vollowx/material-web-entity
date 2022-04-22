@@ -36,6 +36,9 @@ class Chip extends HTMLElement {
   get disabled() {
     return this.hasAttribute('disabled');
   }
+  get tabIndex() {
+    return this.chipE.tabIndex;
+  }
   /**
    * @param {String} value
    */
@@ -51,6 +54,12 @@ class Chip extends HTMLElement {
     } else {
       this.removeAttribute('disabled');
     }
+  }
+  /**
+   * @param {Number} value
+   */
+   set tabIndex(value) {
+    this.buttonE.tabIndex = value;
   }
 
   static get observedAttributes() {

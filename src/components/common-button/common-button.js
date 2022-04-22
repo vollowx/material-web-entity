@@ -36,6 +36,9 @@ class Button extends HTMLElement {
   get disabled() {
     return this.hasAttribute('disabled');
   }
+  get tabIndex() {
+    return this.buttonE.tabIndex;
+  }
   /**
    * @param {String} value
    */
@@ -51,6 +54,12 @@ class Button extends HTMLElement {
     } else {
       this.removeAttribute('disabled');
     }
+  }
+  /**
+   * @param {Number} value
+   */
+  set tabIndex(value) {
+    this.buttonE.tabIndex = value;
   }
 
   static get observedAttributes() {
