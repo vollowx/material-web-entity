@@ -51,13 +51,9 @@ class Ripple extends HTMLElement {
       transform: scale3d(1, 1, 1);
       `;
     }, 0);
-    this.parentE.addEventListener('mouseleave', () => this.removeActiveLayer(ripple));
-    this.parentE.addEventListener('mouseup', () => this.removeActiveLayer(ripple));
-    this.parentE.addEventListener('touchmove', () => this.removeActiveLayer(ripple));
-    this.parentE.addEventListener('touchend', () => this.removeActiveLayer(ripple));
   }
   /**
-   * @param {HTMLElement} _ripple
+   * Remove the active layer
    */
   removeActiveLayer(_ripple) {
     if (_ripple) {
@@ -74,6 +70,13 @@ class Ripple extends HTMLElement {
         }, 225);
       }, 225);
     }
+  }
+  /**
+   * Remove all of the active layers
+   */
+  removeAllActiveLayers() {
+    let _ripples = this.containerE.querySelectorAll('.md3-ripple__itself');
+    _ripples.forEach((_ripple) => this.removeActiveLayer(_ripple));
   }
 
   get unbounded() {
@@ -117,6 +120,10 @@ class Ripple extends HTMLElement {
     this.containerE = this.shadowRoot.getElementById('md3-ripple__container');
 
     this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));
+    this.parentE.addEventListener('mouseleave', () => this.removeAllActiveLayers());
+    this.parentE.addEventListener('mouseup', () => this.removeAllActiveLayers());
+    this.parentE.addEventListener('touchmove', () => this.removeAllActiveLayers());
+    this.parentE.addEventListener('touchend', () => this.removeAllActiveLayers());
   }
   disconnectedCallback() {
     this.parentE.removeEventListener('pointerdown', (event) => this.addActiveLayer(event));
