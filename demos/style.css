@@ -7,6 +7,13 @@
 body {
   display: flex;
 }
+md-typo[bd-md] {
+  text-align: center;
+}
+[color-primary] {
+  color: rgb(var(--md-c-tertiary));
+  font-weight: 500;
+}
 kbd {
   padding: 0 2px;
   height: 1.5rem;

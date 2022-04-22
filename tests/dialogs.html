@@ -13,10 +13,21 @@
     <script type="module" src="../dist/mwu-bundle.min.js"></script>
 
     <link rel="stylesheet" href="./dislogs.css" />
+
+    <style>
+      .ctrler {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
   </head>
   <body data-dark="true">
+    <md-button text class="ctrler">Open dialog</md-button>
     <div class="md3-dialog__container">
-      <!-- <dialog open class="md3-dialog md3-dialog__hero">
+      <div class="md3-dialog__layer"></div>
+      <!-- <dialog class="md3-dialog md3-dialog__hero" tabindex="0">
         <md-icon class="md3-dialog__part">mobile_friendly</md-icon>
         <md-typo class="md3-dialog__part" hd-sm>Dialog with hero icon</md-typo>
         <md-typo class="md3-dialog__part" bd-md>
@@ -24,23 +35,60 @@
           prompt for a decision to be made.
         </md-typo>
         <div class="md3-dialog__part md3-dialog__actions">
-          <md-button text>Action 1</md-button>
-          <md-button text>Action 2</md-button>
+          <md-button text class="md3-dialog__actions__false">Action 1</md-button>
+          <md-button text class="md3-dialog__actions__true">Action 2</md-button>
         </div>
       </dialog> -->
       <dialog open class="md3-dialog">
         <md-typo class="md3-dialog__part" bd-md>Discard draft?</md-typo>
         <div class="md3-dialog__part md3-dialog__actions">
-          <md-button text>Cancel</md-button>
-          <md-button text>Discard</md-button>
+          <md-button text class="md3-dialog__actions__false">Cancel</md-button>
+          <md-button text class="md3-dialog__actions__true">Discard</md-button>
         </div>
       </dialog>
     </div>
 
-    <md-fab
+    <!-- <md-fab
       style="position: fixed; right: 16px; bottom: 16px"
       onclick="M.toggleAttr(document.querySelector('.md3-dialog:not(.md3-dialog__hero)'), 'open')">
       <md-icon>toggle_on</md-icon>
-    </md-fab>
+    </md-fab> -->
+
+    <script>
+      const containerE = document.querySelector('.md3-dialog__container');
+      const dialogE = document.querySelector('.md3-dialog');
+      const layerE = document.querySelector('.md3-dialog__layer');
+      const ctrler = document.querySelector('md-button');
+      const actionFalse = document.querySelector('.md3-dialog__actions__false');
+      const actionTrue = document.querySelector('.md3-dialog__actions__true');
+
+      layerE.addEventListener('pointerdown', () => {
+        dialogE.removeAttribute('open');
+        containerE.removeAttribute('open');
+        ctrler.focus();
+      });
+      ctrler.addEventListener('click', () => {
+        dialogE.setAttribute('open', '');
+        containerE.setAttribute('open', '');
+        dialogE.focus();
+      });
+      actionFalse.addEventListener('click', () => {
+        dialogE.removeAttribute('open');
+        containerE.removeAttribute('open');
+        ctrler.focus();
+      });
+      actionTrue.addEventListener('click', () => {
+        dialogE.removeAttribute('open');
+        containerE.removeAttribute('open');
+        ctrler.focus();
+      });
+      dialogE.addEventListener('keydown', (e) => {
+        if (e.key == 'Escape') {
+          dialogE.removeAttribute('open');
+          containerE.removeAttribute('open');
+          ctrler.focus();
+        }
+      });
+    </script>
   </body>
 </html>
