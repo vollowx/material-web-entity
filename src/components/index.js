@@ -1,6 +1,6 @@
 import Avatar     from './avatar/avatar.ts';
 import Button     from './button/button';
-import Chip       from './chip/chip.js';
+import Chip       from './chip/chip.ts';
 import Dialog     from './dialog/dialog.js';
 import FAB        from './fab/fab.js';
 import Icon       from './icon/icon.js';
