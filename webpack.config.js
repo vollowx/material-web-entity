@@ -8,6 +8,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.ts?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.scss$/,
         use: [
           'raw-loader',
@@ -22,5 +27,8 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
   },
 };

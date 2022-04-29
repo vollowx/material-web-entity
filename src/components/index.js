@@ -1,5 +1,5 @@
-import Avatar     from './avatar/avatar.js';
-import Button     from './common-button/common-button.js';
+import Avatar     from './avatar/avatar.ts';
+import Button     from './button/button';
 import Chip       from './chip/chip.js';
 import Dialog     from './dialog/dialog.js';
 import FAB        from './fab/fab.js';

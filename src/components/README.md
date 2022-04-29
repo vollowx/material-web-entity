@@ -1,6 +1,4 @@
-This components folder has component files and an `index.js` file, import it to get all the components
-
-tips: the `/* html */` in javascript files means highlight CSS & HTML in JS, I use `es6-string-html` extension (VSCode) to do that.
+This components folder has component files and an `index.ts` file, import it to get all the components
 
 **Components list** (paint a rosy picture :D)
 
@@ -26,14 +24,14 @@ tips: the `/* html */` in javascript files means highlight CSS & HTML in JS, I u
 | Navigation bar     | √              | ×         |
 | Navigation drawer  | √              | ×         |
 | Navigation rail    | √              | ×         |
-| Progress indicator | ×              | ×         |
-| Radio button       | ×              | ×         |
-| Side sheet         | ×              | ×         |
-| Slider             | ×              | ×         |
-| Snackbar           | ×              | ×         |
-| Switch             | ×              | ×         |
-| Tab                | ×              | ×         |
-| Text field         | ×              | ×         |
-| Time picker        | ×              | ×         |
-| Tooltip            | ×              | ×         |
-| Top app bar        | ×              | ×         |
+| Progress indicator | will           | ×         |
+| Radio button       | will           | ×         |
+| Side sheet         | will           | ×         |
+| Slider             | will           | ×         |
+| Snackbar           | will           | ×         |
+| Switch             | will           | ×         |
+| Tab                | will           | ×         |
+| Text field         | will           | ×         |
+| Time picker        | will           | ×         |
+| Tooltip            | will           | ×         |
+| Top app bar        | will           | ×         |
