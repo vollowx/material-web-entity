@@ -26,9 +26,6 @@ class Button extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
 
-  /**
-   * Render the contents
-   */
   protected render(): void {
     render(
       html`

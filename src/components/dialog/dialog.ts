@@ -1,75 +1,78 @@
 import styles from './dialog-styles.scss';
+import { html, render } from 'lit';
 
 /**
  * Dialog component.
  */
 class Dialog extends HTMLElement {
+  dialogE: HTMLElement;
+  primaryActionE: HTMLSpanElement;
+  secondaryActionE: HTMLSpanElement;
+  controllerE: HTMLElement;
+  scrimE: HTMLElement;
+  heroIconE: HTMLElement;
+  headlineE: HTMLElement;
+  bodyE: HTMLElement;
+  actionsE: HTMLElement;
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
 
-  /**
-   * Render the contents
-   */
   render() {
-    this.shadowRoot.innerHTML = /* html */ `
-    <style>${styles}</style>
-    <div class="md3-dialog__scrim" id="md3-dialog__scrim"></div>
-    <div class="md3-dialog__container">
-      <div role="alertdialog" class="md3-dialog" id="md3-dialog" tabindex="-1">
-        <div class="md3-dialog__hero-icon" id="md3-dialog__hero-icon">
-          <md-icon>${this.heroIcon ? this.heroIcon : ''}</md-icon>
+    render(
+      html`
+        <style>
+          ${styles}
+        </style>
+        <div class="md3-dialog__scrim" id="md3-dialog__scrim"></div>
+        <div class="md3-dialog__container">
+          <div role="alertdialog" class="md3-dialog" id="md3-dialog" tabindex="-1">
+            <div class="md3-dialog__hero-icon" id="md3-dialog__hero-icon">
+              <md-icon>${this.heroIcon ? this.heroIcon : ''}</md-icon>
+            </div>
+            <div class="md3-dialog__headline" id="md3-dialog__headline">
+              <md-typo hd-sm>${this.headline ? this.headline : ''}</md-typo>
+            </div>
+            <div class="md3-dialog__body" id="md3-dialog__body">
+              <slot name="body"></slot>
+            </div>
+            <footer class="md3-dialog__actions" id="md3-dialog__actions">
+              <span>
+                <slot name="secondaryAction"></slot>
+              </span>
+              <span>
+                <slot name="primaryAction"></slot>
+              </span>
+            </footer>
+          </div>
         </div>
-        <div class="md3-dialog__headline" id="md3-dialog__headline">
-          <md-typo hd-sm>${this.headline ? this.headline : ''}</md-typo>
-        </div>
-        <div class="md3-dialog__body" id="md3-dialog__body">
-          <slot name="body"></slot>
-        </div>
-        <footer class="md3-dialog__actions" id="md3-dialog__actions">
-          <span>
-            <slot name="secondaryAction"></slot>
-          </span>
-          <span>
-            <slot name="primaryAction"></slot>
-          </span>
-        </footer>
-      </div>
-    </div>
-    `;
+      `,
+      this.shadowRoot
+    );
   }
 
   get open() {
     return this.hasAttribute('open');
   }
-  get heroIcon() {
-    return this.getAttribute('hero-icon');
-  }
-  get headline() {
-    return this.getAttribute('headline');
-  }
-  /**
-   * @param {Boolean} value
-   */
-  set open(value) {
+  set open(value: boolean) {
     if (value) {
       this.setAttribute('open', '');
     } else {
       this.removeAttribute('open');
     }
   }
-  /**
-   * @param {String} value
-   */
-  set heroIcon(value) {
+  get heroIcon() {
+    return this.getAttribute('hero-icon');
+  }
+  set heroIcon(value: string) {
     this.setAttribute('hero-icon', value);
   }
-  /**
-   * @param {String} value
-   */
-  set headline(value) {
+  get headline() {
+    return this.getAttribute('headline');
+  }
+  set headline(value: string) {
     this.setAttribute('headline', value);
   }
 
@@ -123,14 +126,14 @@ class Dialog extends HTMLElement {
       } else if (e.key == 'Tab' && this.dialogE.tabIndex == 0) {
         e.preventDefault();
         if (this.querySelector('[slot="secondaryAction"]:focus')) {
-          this.querySelector('[slot="primaryAction"]').focus();
+          (this.querySelector('[slot="primaryAction"]') as HTMLButtonElement).focus();
         } else {
-          this.querySelector('[slot="secondaryAction"]').focus();
+          (this.querySelector('[slot="secondaryAction"]') as HTMLButtonElement).focus();
         }
       }
     });
   }
-  attributeChangedCallback(attrName, oldVal, newVal) {
+  attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {
     if (attrName === 'hero-icon' && this.heroIconE && newVal) {
       this.heroIconE.textContent = newVal;
     }
@@ -138,8 +141,24 @@ class Dialog extends HTMLElement {
       this.headlineE.textContent = newVal;
     }
   }
-  adoptedCallback() {}
-  disconnectedCallback() {}
+  disconnectedCallback() {
+    this.controllerE.removeEventListener('click', () => this.openDialog());
+    this.scrimE.removeEventListener('click', () => this.closeDialog());
+    this.primaryActionE.removeEventListener('click', () => this.closeDialog());
+    this.secondaryActionE.removeEventListener('click', () => this.closeDialog());
+    this.removeEventListener('keydown', (e) => {
+      if (e.key == 'Escape') {
+        this.closeDialog();
+      } else if (e.key == 'Tab' && this.dialogE.tabIndex == 0) {
+        e.preventDefault();
+        if (this.querySelector('[slot="secondaryAction"]:focus')) {
+          (this.querySelector('[slot="primaryAction"]') as HTMLButtonElement).focus();
+        } else {
+          (this.querySelector('[slot="secondaryAction"]') as HTMLButtonElement).focus();
+        }
+      }
+    });
+  }
 }
 
 export default Dialog;
