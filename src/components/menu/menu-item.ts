@@ -4,19 +4,19 @@ import styles from './menu-item-styles.scss';
  * MenuItem component.
  *
  * The item in the menu.
+ * TODO: be 'list-item'
  */
 class MenuItem extends HTMLElement {
+  itemE: HTMLButtonElement;
+
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
 
-  /**
-   * Render the contents
-   */
   render() {
-    this.shadowRoot.innerHTML = /* html */ `
+    this.shadowRoot.innerHTML = `
     <style>${styles}</style>
     <button class="md3-menu__item" id="md3-menu__item">
       <md-ripple></md-ripple>
@@ -35,13 +35,13 @@ class MenuItem extends HTMLElement {
   get tabIndex() {
     return this.itemE.tabIndex;
   }
+  set tabIndex(value: number) {
+    this.itemE.tabIndex = value;
+  }
   get disabled() {
     return this.hasAttribute('disabled');
   }
-  set tabIndex(value) {
-    this.itemE.tabIndex = value;
-  }
-  set disabled(value) {
+  set disabled(value: boolean) {
     if (value) {
       this.setAttribute('disabled', '');
     } else {
@@ -52,7 +52,8 @@ class MenuItem extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.itemE = this.shadowRoot.getElementById('md3-menu__item');
+    this.itemE = this.shadowRoot.getElementById('md3-menu__item') as HTMLButtonElement;
+
     this.tabIndex = -1;
     this.itemE.addEventListener('focus', () => this.setAttribute('focused', ''));
     this.itemE.addEventListener('blur', () => this.removeAttribute('focused'));

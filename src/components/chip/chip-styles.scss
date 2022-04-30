@@ -2,6 +2,7 @@
   position: relative;
   box-sizing: border-box;
   display: inline-flex;
+  --md-icon-size: 1rem;
 }
 .md3-chip {
   padding: 0 12px;
@@ -12,19 +13,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: rgb(var(--md-c-on-primary));
-  font-family: var(--md-t-font-family);
+  color: rgb(var(--md-sys-color-on-primary));
+  font-family: var(--md-sys-typescale-button-font);
+  font-weight: var(--md-sys-typescale-button-weight);
+  font-size: var(--md-sys-typescale-button-size);
+  letter-spacing: var(--md-sys-typescale-button-tracking);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  --md-icon-size: 1rem;
-  font-size: 0.875rem;
-  font-weight: calc(var(--md-t-font-base-weight) + 500);
-  line-height: 1.428571428571429;
-  letter-spacing: 0.1px;
   text-decoration: none;
-  color: rgb(var(--md-c-important-color, var(--md-c-on-surface)));
-  background-color: rgb(var(--md-c-surface));
-  border: 1px solid rgb(var(--md-c-outline));
+  color: rgb(var(--md-sys-color-important-color, var(--md-sys-color-on-surface)));
+  background-color: rgb(var(--md-sys-color-surface));
+  border: 1px solid rgb(var(--md-sys-color-outline));
   border-radius: 8px;
   outline: 0;
   -webkit-user-select: none;
@@ -65,8 +64,8 @@
   opacity: 0.12;
 }
 .md3-chip:disabled {
-  color: rgba(var(--md-c-on-surface), 0.38);
-  border: 1px solid rgba(var(--md-c-on-surface), 0.12);
+  color: rgba(var(--md-sys-color-on-surface), 0.38);
+  border: 1px solid rgba(var(--md-sys-color-on-surface), 0.12);
   cursor: default;
 }
 :host(:not([text]):not([elevated]):not([checked])) md-ripple,
@@ -81,17 +80,17 @@
 }
 :host([elevated]) .md3-chip {
   border: none;
-  box-shadow: var(--md-e-shadow-1);
+  box-shadow: var(--md-elevation-shadow-1);
 }
 :host([checked]) .md3-chip {
-  color: rgb(var(--md-c-on-secondary-container));
-  background-color: rgb(var(--md-c-secondary-container));
+  color: rgb(var(--md-sys-color-on-secondary-container));
+  background-color: rgb(var(--md-sys-color-secondary-container));
   border: none;
 }
 :host([elevated]) .md3-chip:disabled,
 :host([checked]) .md3-chip:disabled {
-  color: rgba(var(--md-c-on-surface), 0.38);
-  background-color: rgba(var(--md-c-on-surface), 0.12);
+  color: rgba(var(--md-sys-color-on-surface), 0.38);
+  background-color: rgba(var(--md-sys-color-on-surface), 0.12);
   cursor: default;
   box-shadow: none;
 }

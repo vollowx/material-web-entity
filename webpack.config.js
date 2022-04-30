@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     filename: 'mwe-bundle.min.js',
     path: path.resolve(__dirname, 'dist'),

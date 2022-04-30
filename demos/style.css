@@ -1,3 +1,5 @@
+@import url(./theme.css);
+
 [theme-toggler] {
   position: fixed;
   right: 16px;
@@ -7,11 +9,11 @@
 body {
   display: flex;
 }
-[rule="region"] > md-typo[bd-md] {
+[rule='region'] > md-typo[bd-md] {
   text-align: center;
 }
 [color-primary] {
-  color: rgb(var(--md-c-tertiary));
+  color: rgb(var(--md-sys-color-tertiary));
   font-weight: 500;
 }
 kbd {
@@ -20,8 +22,8 @@ kbd {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--md-e-surface-1);
-  box-shadow: var(--md-e-shadow-1);
+  background: var(--md-elevation-surface-1);
+  box-shadow: var(--md-elevation-shadow-1);
   vertical-align: middle;
   border-radius: 4px;
 }
@@ -53,7 +55,7 @@ aside ul li a {
   width: 100%;
   height: 100%;
   text-decoration: none;
-  color: rgb(var(--md-c-on-surface-variant));
+  color: rgb(var(--md-sys-color-on-surface-variant));
   border-radius: inherit;
   -webkit-tap-highlight-color: transparent;
   appearance: none;
@@ -105,7 +107,7 @@ code-example {
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  border: 1px solid rgba(var(--md-c-outline), 0.24);
+  border: 1px solid rgba(var(--md-sys-color-outline), 0.24);
   border-radius: 24px;
 }
 flex-spacer {
@@ -131,8 +133,8 @@ flex-spacer {
   align-items: center;
   width: 200px;
   height: 200px;
-  background: var(--md-e-surface-2);
-  box-shadow: var(--md-e-shadow-2);
+  background: var(--md-elevation-surface-2);
+  box-shadow: var(--md-elevation-shadow-2);
   cursor: pointer;
   border-radius: 4px;
   -webkit-tap-highlight-color: transparent;
@@ -142,9 +144,9 @@ flex-spacer {
 }
 fieldset {
   border-radius: 8px;
-  border: 1px solid rgba(var(--md-c-outline), 0.24);
+  border: 1px solid rgba(var(--md-sys-color-outline), 0.24);
 }
 legend {
   padding: 0 8px;
-  color: var(--md-e-on-surface-2);
+  color: var(--md-elevation-on-surface-2);
 }

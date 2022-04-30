@@ -3,20 +3,21 @@ import styles from './fab-styles.scss';
 /**
  * FAB (Floating action button) component.
  *
- * Request also defined Ripple component as 'md3-ripple' (./ripples.js)
+ * *For ripple effect, need Ripple with tag 'md-ripple'*
  */
 class FAB extends HTMLElement {
+  fabE: HTMLButtonElement;
+  labelE: HTMLElement;
+  slotE: HTMLSlotElement;
+
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
 
-  /**
-   * Render the contents
-   */
-  render() {
-    this.shadowRoot.innerHTML = /* html */ `
+  protected render(): void {
+    this.shadowRoot.innerHTML = `
     <style>${styles}</style>
     <button class="md3-fab" id="md3-fab" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
@@ -29,33 +30,24 @@ class FAB extends HTMLElement {
   get label() {
     return this.getAttribute('label');
   }
+  set label(value: string) {
+    this.setAttribute('label', value);
+  }
   get disabled() {
     return this.hasAttribute('disabled');
   }
-  get tabIndex() {
-    return this.fabE.tabIndex;
-  }
-  /**
-   * @param {String} value
-   */
-  set label(value) {
-    this.setAttribute('label', value);
-  }
-  /**
-   * @param {Boolean} value
-   */
-  set disabled(value) {
+  set disabled(value: boolean) {
     if (value) {
       this.setAttribute('disabled', '');
     } else {
       this.removeAttribute('disabled');
     }
   }
-  /**
-   * @param {Number} value
-   */
-  set tabIndex(value) {
-    this.buttonE.tabIndex = value;
+  get tabIndex() {
+    return this.fabE.tabIndex;
+  }
+  set tabIndex(value: number) {
+    this.fabE.tabIndex = value;
   }
 
   static get observedAttributes() {
@@ -64,11 +56,11 @@ class FAB extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.fabE = this.shadowRoot.getElementById('md3-fab');
+    this.fabE = this.shadowRoot.getElementById('md3-fab') as HTMLButtonElement;
     this.labelE = this.shadowRoot.getElementById('md3-fab__label');
     this.slotE = this.shadowRoot.querySelector('slot');
   }
-  attributeChangedCallback(attrName, oldVal, newVal) {
+  attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {
     if (attrName === 'label' && this.fabE) {
       if (newVal) {
         this.labelE.textContent = newVal;
@@ -78,8 +70,6 @@ class FAB extends HTMLElement {
       this.fabE.disabled = this.disabled;
     }
   }
-  adoptedCallback() {}
-  disconnectedCallback() {}
 }
 
 export default FAB;

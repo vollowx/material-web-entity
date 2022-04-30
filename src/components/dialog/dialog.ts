@@ -1,5 +1,4 @@
 import styles from './dialog-styles.scss';
-import { html, render } from 'lit';
 
 /**
  * Dialog component.
@@ -21,36 +20,21 @@ class Dialog extends HTMLElement {
   }
 
   render() {
-    render(
-      html`
-        <style>
-          ${styles}
-        </style>
-        <div class="md3-dialog__scrim" id="md3-dialog__scrim"></div>
-        <div class="md3-dialog__container">
-          <div role="alertdialog" class="md3-dialog" id="md3-dialog" tabindex="-1">
-            <div class="md3-dialog__hero-icon" id="md3-dialog__hero-icon">
-              <md-icon>${this.heroIcon ? this.heroIcon : ''}</md-icon>
-            </div>
-            <div class="md3-dialog__headline" id="md3-dialog__headline">
-              <md-typo hd-sm>${this.headline ? this.headline : ''}</md-typo>
-            </div>
-            <div class="md3-dialog__body" id="md3-dialog__body">
-              <slot name="body"></slot>
-            </div>
-            <footer class="md3-dialog__actions" id="md3-dialog__actions">
-              <span>
-                <slot name="secondaryAction"></slot>
-              </span>
-              <span>
-                <slot name="primaryAction"></slot>
-              </span>
-            </footer>
-          </div>
-        </div>
-      `,
-      this.shadowRoot
-    );
+    this.shadowRoot.innerHTML = `
+    <style>${styles}</style>
+    <div class="md3-dialog__scrim" id="md3-dialog__scrim"></div>
+    <div class="md3-dialog__container">
+      <div role="alertdialog" class="md3-dialog" id="md3-dialog" tabindex="-1">
+        <div class="md3-dialog__hero-icon" id="md3-dialog__hero-icon"><md-icon>${this.heroIcon ? this.heroIcon : ''}</md-icon></div>
+        <div class="md3-dialog__headline" id="md3-dialog__headline"><md-typo hd-sm>${this.headline ? this.headline : ''}</md-typo></div>
+        <div class="md3-dialog__body" id="md3-dialog__body"><slot name="body"></slot></div>
+        <footer class="md3-dialog__actions" id="md3-dialog__actions">
+          <span><slot name="secondaryAction"></slot></span>
+          <span><slot name="primaryAction"></slot></span>
+        </footer>
+      </div>
+    </div>
+    `;
   }
 
   get open() {

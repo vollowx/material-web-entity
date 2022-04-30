@@ -1,5 +1,4 @@
 import styles from './chip-styles.scss';
-import { html, render } from 'lit';
 
 /**
  * Chip component.
@@ -27,19 +26,14 @@ class Chip extends HTMLElement {
   }
 
   protected render(): void {
-    render(
-      html`
-        <style>
-          ${styles}
-        </style>
-        <button class="md3-chip" id="md3-chip" ${this.disabled ? 'disabled' : ''}>
-          <md-ripple></md-ripple>
-          <span class="md3-chip__label" id="md3-chip__label">${this.label ? this.label : ''}</span>
-          <slot></slot>
-        </button>
-      `,
-      this.shadowRoot
-    );
+    this.shadowRoot.innerHTML = `
+    <style>${styles}</style>
+    <button class="md3-chip" id="md3-chip" ${this.disabled ? 'disabled' : ''}>
+      <md-ripple></md-ripple>
+      <span class="md3-chip__label" id="md3-chip__label">${this.label ? this.label : ''}</span>
+      <slot></slot>
+    </button>
+    `;
   }
 
   focus() {

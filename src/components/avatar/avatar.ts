@@ -1,5 +1,4 @@
 import styles from './avatar-styles.scss';
-import { html, render } from 'lit';
 
 /**
  * Avatar component.
@@ -21,14 +20,10 @@ class Avatar extends HTMLElement {
   }
 
   protected render(): void {
-    render(
-      html`
-        <style>${styles}</style>
-        <slot>
-          <img src="${this.url}" class="md3-avatar" id="md3-avatar"></img>
-        </slot>`,
-      this.shadowRoot
-    );
+    this.shadowRoot.innerHTML = `
+    <style>${styles}</style>
+    <slot><img ${this.url ? 'src=' + this.url : ''} class="md3-avatar" id="md3-avatar" /></slot>
+    `;
   }
 
   get url() {

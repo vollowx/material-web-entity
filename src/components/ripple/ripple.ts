@@ -6,26 +6,23 @@ import styles from './ripple-styles.scss';
  * Button, Card and Menu are all request define this component as 'md3-ripple'
  */
 class Ripple extends HTMLElement {
+  parentE: HTMLElement;
+  containerE: HTMLElement;
+
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
 
-  /**
-   * Render the contents
-   */
   render() {
     this.shadowRoot.innerHTML = /* html */ `
     <style>${styles}</style>
-    <div class="md3-ripple__container" id="md3-ripple__container">
-      <!-- -->
-      <!-- -->
-    </div>
+    <div class="md3-ripple__container" id="md3-ripple__container"></div>
     `;
   }
 
-  addActiveLayer(_event) {
+  addActiveLayer(_event: { clientX: number; clientY: number }) {
     let ripple = document.createElement('span');
     ripple.classList.add('md3-ripple__itself');
 
@@ -55,7 +52,7 @@ class Ripple extends HTMLElement {
   /**
    * Remove the active layer
    */
-  removeActiveLayer(_ripple) {
+  removeActiveLayer(_ripple: HTMLElement) {
     if (_ripple) {
       _ripple.addEventListener('transitionend', () => {
         _ripple.style.opacity = '0';
@@ -76,7 +73,7 @@ class Ripple extends HTMLElement {
    */
   removeAllActiveLayers() {
     let _ripples = this.containerE.querySelectorAll('.md3-ripple__itself');
-    _ripples.forEach((_ripple) => this.removeActiveLayer(_ripple));
+    _ripples.forEach((_ripple: HTMLElement) => this.removeActiveLayer(_ripple));
   }
 
   get unbounded() {
@@ -111,12 +108,12 @@ class Ripple extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [];
+    return ['default'];
   }
   connectedCallback() {
     this.render();
 
-    this.parentE = this.parentNode.host || this.parentNode;
+    this.parentE = ((this.parentNode as ShadowRoot).host as HTMLElement) || (this.parentNode as HTMLElement);
     this.containerE = this.shadowRoot.getElementById('md3-ripple__container');
 
     this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));

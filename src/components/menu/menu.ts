@@ -6,17 +6,19 @@ import styles from './menu-styles.scss';
  * Description.
  */
 class Menu extends HTMLElement {
+  menuE: HTMLDivElement;
+  controllerE: HTMLElement;
+  layerE: HTMLElement;
+  controllerFriendsE: NodeListOf<Element>;
+
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
 
-  /**
-   * Render the contents
-   */
   render() {
-    this.shadowRoot.innerHTML = /* html */ `
+    this.shadowRoot.innerHTML = `
     <style>${styles}</style>
     <div class="md3-menu__layer" id="md3-menu__layer"></div>
     <div class="md3-menu" id="md3-menu">
@@ -28,49 +30,37 @@ class Menu extends HTMLElement {
   get open() {
     return this.getAttribute('open') != undefined;
   }
-  get dense() {
-    return this.getAttribute('dense') != undefined;
-  }
-  get fast() {
-    return this.getAttribute('fast') != undefined;
-  }
-  get sub() {
-    return this.getAttribute('sub') != undefined;
-  }
-  /**
-   * @param {Boolean} value
-   */
-  set open(value) {
+  set open(value: boolean) {
     if (value) {
       this.setAttribute('open', '');
     } else {
       this.removeAttribute('open');
     }
   }
-  /**
-   * @param {Boolean} value
-   */
-  set dense(value) {
+  get dense() {
+    return this.getAttribute('dense') != undefined;
+  }
+  set dense(value: boolean) {
     if (value) {
       this.setAttribute('dense', '');
     } else {
       this.removeAttribute('dense');
     }
   }
-  /**
-   * @param {Boolean} value
-   */
-  set fast(value) {
+  get fast() {
+    return this.getAttribute('fast') != undefined;
+  }
+  set fast(value: boolean) {
     if (value) {
       this.setAttribute('fast', '');
     } else {
       this.removeAttribute('fast');
     }
   }
-  /**
-   * @param {Boolean} value
-   */
-  set sub(value) {
+  get sub() {
+    return this.getAttribute('sub') != undefined;
+  }
+  set sub(value: boolean) {
     if (value) {
       this.setAttribute('sub', '');
     } else {
@@ -118,8 +108,8 @@ class Menu extends HTMLElement {
       this.menuE.style.left = rect.left + 'px';
     }
     this.open = true;
-    this.querySelector('md-menu-item').focus();
-    this.querySelector('md-menu-item').tabIndex = 0;
+    (this.querySelector('md-menu-item') as HTMLButtonElement).focus();
+    (this.querySelector('md-menu-item') as HTMLButtonElement).tabIndex = 0;
   }
   /**
    * Close the menu.
@@ -130,7 +120,9 @@ class Menu extends HTMLElement {
         detail: {},
       })
     );
-    this.querySelector('md-menu-item[focused]') ? (this.querySelector('md-menu-item[focused]').tabIndex = 0) : null;
+    this.querySelector('md-menu-item[focused]')
+      ? ((this.querySelector('md-menu-item[focused]') as HTMLButtonElement).tabIndex = 0)
+      : null;
     this.open = false;
     this.controllerE.focus();
   }
@@ -139,7 +131,7 @@ class Menu extends HTMLElement {
     this.render();
 
     this.layerE = this.shadowRoot.getElementById('md3-menu__layer');
-    this.menuE = this.shadowRoot.getElementById('md3-menu');
+    this.menuE = this.shadowRoot.getElementById('md3-menu') as HTMLDivElement;
     this.controllerE = document.getElementById(this.id);
     this.controllerE
       ? (this.controllerFriendsE = this.controllerE.parentNode.querySelectorAll(
@@ -151,8 +143,8 @@ class Menu extends HTMLElement {
       if (e.key == 'ArrowDown' || e.key == 'ArrowUp') {
         // Focus moving
         e.preventDefault();
-        let focusItem = this.querySelector('md-menu-item:focus');
-        let items = this.querySelectorAll('md-menu-item');
+        let focusItem = this.querySelector('md-menu-item:focus') as HTMLButtonElement;
+        let items = this.querySelectorAll('md-menu-item') as NodeListOf<HTMLButtonElement>;
         let index = [].indexOf.call(items, focusItem);
         e.key == 'ArrowDown' ? index++ : index--;
         if (index < 0) {
@@ -178,26 +170,26 @@ class Menu extends HTMLElement {
         let focusItem = this.querySelector('md-menu-item:focus');
         if (focusItem.hasAttribute('subber')) {
           e.preventDefault();
-          document.querySelector(`md-menu#${focusItem.id}`).openMenu();
+          (document.querySelector(`md-menu#${focusItem.id}`) as Menu).openMenu();
         }
       } else if (e.key == 'Tab') {
         // Blur as Menu closing
         this.closeMenu();
       }
     });
-    document.addEventListener('click', (e) => {
-      if (this.open && !this.contains(e.target) && e.target !== this.controllerE) {
+    document.addEventListener('click', (e: Event) => {
+      if (this.open && !this.contains(e.target as HTMLElement) && e.target !== this.controllerE) {
         this.closeMenu();
       }
     });
-    this.layerE.addEventListener('pointerdown', (e) => {
-      if (this.open && !this.contains(e.target) && e.target !== this.controllerE) {
+    this.layerE.addEventListener('pointerdown', (e: Event) => {
+      if (this.open && !this.contains(e.target as HTMLElement) && e.target !== this.controllerE) {
         this.closeMenu();
       }
     });
     this.addEventListener('click', (e) => {
       let path = e.composedPath();
-      if (path.indexOf(this) == 6 && e.target.getAttribute('subber') == undefined) {
+      if (path.indexOf(this) == 6 && (e.target as HTMLElement).getAttribute('subber') == undefined) {
         this.closeMenu();
       }
     });

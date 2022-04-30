@@ -3,7 +3,7 @@
   box-sizing: border-box;
   display: inline-flex;
   -webkit-tap-highlight-color: transparent;
-  --md-icon-size: 1rem;
+  --md-icon-size: 16px;
 }
 .md3-button {
   padding: 0 24px;
@@ -14,16 +14,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: rgb(var(--md-c-on-primary));
-  font-family: var(--md-t-font-family);
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-size: 0.875rem;
-  font-weight: calc(var(--md-t-font-base-weight) + 500);
-  line-height: 1.428571428571429;
-  letter-spacing: 0.1px;
+  color: rgb(var(--md-sys-color-on-primary));
+  font-family: var(--md-sys-typescale-button-font);
+  font-weight: var(--md-sys-typescale-button-weight);
+  font-size: var(--md-sys-typescale-button-size);
+  letter-spacing: var(--md-sys-typescale-button-tracking);
   text-decoration: none;
-  background-color: rgb(var(--md-c-primary));
+  background-color: rgb(var(--md-sys-color-primary));
   border: 0;
   border-radius: 20px;
   outline: 0;
@@ -54,7 +51,7 @@
 }
 @media screen and (min-width: 1240px) {
   .md3-button:hover {
-    box-shadow: var(--md-e-shadow-2);
+    box-shadow: var(--md-elevation-shadow-2);
   }
   .md3-button:hover::before {
     opacity: 0.08;
@@ -71,43 +68,43 @@
 }
 
 :host([tonal]) .md3-button {
-  color: rgb(var(--md-c-on-secondary-container));
-  background: rgb(var(--md-c-secondary-container));
+  color: rgb(var(--md-sys-color-on-secondary-container));
+  background: rgb(var(--md-sys-color-secondary-container));
 }
 
 :host([elevated]) .md3-button {
-  color: rgb(var(--md-c-primary));
-  background-color: rgb(var(--md-c-surface));
-  box-shadow: var(--md-e-shadow-1);
+  color: rgb(var(--md-sys-color-primary));
+  background-color: rgb(var(--md-sys-color-surface));
+  box-shadow: var(--md-elevation-shadow-1);
 }
 @media screen and (min-width: 1240px) {
   :host([elevated]) .md3-button:hover {
-    box-shadow: var(--md-e-shadow-2);
+    box-shadow: var(--md-elevation-shadow-2);
   }
 }
 :host([elevated].focus-visible) .md3-button {
-  box-shadow: var(--md-e-shadow-1);
+  box-shadow: var(--md-elevation-shadow-1);
 }
 :host([elevated]) .md3-button:active {
-  box-shadow: var(--md-e-shadow-1);
+  box-shadow: var(--md-elevation-shadow-1);
 }
 
 :host([outlined]) .md3-button {
   padding: 0 23px;
-  color: rgb(var(--md-c-important-color, var(--md-c-primary)));
-  background-color: rgb(var(--md-c-surface));
-  border: 1px solid rgb(var(--md-c-outline));
+  color: rgb(var(--md-sys-color-important-color, var(--md-sys-color-primary)));
+  background-color: rgb(var(--md-sys-color-surface));
+  border: 1px solid rgb(var(--md-sys-color-outline));
   box-shadow: none;
 }
 :host([outlined].focus-visible) .md3-button {
-  border-color: rgb(var(--md-c-primary));
+  border-color: rgb(var(--md-sys-color-primary));
 }
 :host([outlined]) .md3-button:active {
-  border-color: rgb(var(--md-c-outline));
+  border-color: rgb(var(--md-sys-color-outline));
 }
 :host([outlined]) .md3-button:disabled {
-  color: rgba(var(--md-c-on-surface), 0.38);
-  border: 1px solid rgba(var(--md-c-on-surface), 0.12);
+  color: rgba(var(--md-sys-color-on-surface), 0.38);
+  border: 1px solid rgba(var(--md-sys-color-on-surface), 0.12);
 }
 :host([outlined]) md-ripple,
 :host([outlined]) .md3-button::before {
@@ -119,19 +116,19 @@
 
 :host([text]) .md3-button {
   padding: 0 12px;
-  color: rgb(var(--md-c-important-color, var(--md-c-primary)));
+  color: rgb(var(--md-sys-color-important-color, var(--md-sys-color-primary)));
   background: transparent;
   box-shadow: none;
 }
 
 :host([text]) .md3-button:disabled {
-  color: rgba(var(--md-c-on-surface), 0.38);
+  color: rgba(var(--md-sys-color-on-surface), 0.38);
 }
 .md3-button:disabled,
 :host([tonal]) .md3-button:disabled,
 :host([elevated]) .md3-button:disabled {
-  color: rgba(var(--md-c-on-surface), 0.38);
-  background-color: rgba(var(--md-c-on-surface), 0.12);
+  color: rgba(var(--md-sys-color-on-surface), 0.38);
+  background-color: rgba(var(--md-sys-color-on-surface), 0.12);
   cursor: default;
   box-shadow: none;
 }
