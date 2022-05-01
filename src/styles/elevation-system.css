@@ -65,7 +65,7 @@
     --md-elevation-surface-4: var(--md-elevation-surface-4-dark);
     --md-elevation-surface-5: var(--md-elevation-surface-5-dark);
   }
-  .dark-theme {
+  .light-theme {
     --md-elevation-shadow-0: var(--md-elevation-shadow-0-light);
     --md-elevation-shadow-1: var(--md-elevation-shadow-1-light);
     --md-elevation-shadow-2: var(--md-elevation-shadow-2-light);

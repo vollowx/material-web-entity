@@ -103,9 +103,19 @@ class Menu extends HTMLElement {
       }
     }
     if (this.sub) {
-      this.menuE.style.left = rect.left + rect.width + 'px';
+      if (rect.left + rect.width + this.menuE.offsetWidth > window.innerWidth) {
+        this.menuE.style.left = rect.left - this.menuE.offsetWidth + 'px';
+        this.menuE.classList.add('md3-menu--right');
+      } else {
+        this.menuE.style.left = rect.left + rect.width + 'px';
+      }
     } else {
-      this.menuE.style.left = rect.left + 'px';
+      if (rect.left + rect.width + this.menuE.offsetWidth > window.innerWidth) {
+        this.menuE.style.left = rect.right - this.menuE.offsetWidth + 'px';
+        this.menuE.classList.add('md3-menu--right');
+      } else {
+        this.menuE.style.left = rect.left + 'px';
+      }
     }
     this.open = true;
     (this.querySelector('md-menu-item') as HTMLButtonElement).focus();

@@ -2,10 +2,12 @@
  * Toggle the theme
  */
 function toggleTheme() {
-  if (document.body.getAttribute('data-dark') == 'true') {
-    document.body.removeAttribute('data-dark');
+  if (document.body.classList.contains('light-theme')) {
+    document.body.classList.remove('light-theme');
+    document.body.classList.add('dark-theme');
   } else {
-    document.body.setAttribute('data-dark', 'true');
+    document.body.classList.remove('dark-theme');
+    document.body.classList.add('light-theme');
   }
 }
 /**
