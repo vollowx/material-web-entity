@@ -13,7 +13,7 @@ function toggleTheme() {
 /**
  * Toggle one's attribute
  */
-function toggleAttr(element, attribute) {
+function toggleAttr(element: HTMLElement, attribute: string) {
   if (element.getAttribute(attribute) != null) {
     element.removeAttribute(attribute);
   } else {
