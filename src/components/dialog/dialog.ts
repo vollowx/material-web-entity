@@ -25,8 +25,12 @@ class Dialog extends HTMLElement {
     <div class="md3-dialog__scrim" id="md3-dialog__scrim"></div>
     <div class="md3-dialog__container">
       <div role="alertdialog" class="md3-dialog" id="md3-dialog" tabindex="-1">
-        <div class="md3-dialog__hero-icon" id="md3-dialog__hero-icon"><md-icon>${this.heroIcon ? this.heroIcon : ''}</md-icon></div>
-        <div class="md3-dialog__headline" id="md3-dialog__headline"><md-typo hd-sm>${this.headline ? this.headline : ''}</md-typo></div>
+        <div class="md3-dialog__hero-icon" id="md3-dialog__hero-icon"><md-icon>${
+          this.heroIcon ? this.heroIcon : ''
+        }</md-icon></div>
+        <div class="md3-dialog__headline" id="md3-dialog__headline"><md-typo hd-sm>${
+          this.headline ? this.headline : ''
+        }</md-typo></div>
         <div class="md3-dialog__body" id="md3-dialog__body"><slot name="body"></slot></div>
         <footer class="md3-dialog__actions" id="md3-dialog__actions">
           <span><slot name="secondaryAction"></slot></span>
@@ -65,10 +69,9 @@ class Dialog extends HTMLElement {
    */
   openDialog() {
     this.open = true;
-    this.dialogE.focus();
-    this.dialogE.tabIndex = 0;
     this.primaryActionE.tabIndex = 0;
     this.secondaryActionE.tabIndex = 0;
+    (this.querySelector('[slot="primaryAction"]') as HTMLElement).focus();
   }
   /**
    * Close the dialog.
@@ -76,7 +79,6 @@ class Dialog extends HTMLElement {
   closeDialog() {
     this.open = false;
     this.controllerE.focus();
-    this.dialogE.tabIndex = -1;
     this.primaryActionE.tabIndex = -1;
     this.secondaryActionE.tabIndex = -1;
   }
@@ -107,12 +109,16 @@ class Dialog extends HTMLElement {
     this.addEventListener('keydown', (e) => {
       if (e.key == 'Escape') {
         this.closeDialog();
-      } else if (e.key == 'Tab' && this.dialogE.tabIndex == 0) {
-        e.preventDefault();
-        if (this.querySelector('[slot="secondaryAction"]:focus')) {
-          (this.querySelector('[slot="primaryAction"]') as HTMLButtonElement).focus();
-        } else {
-          (this.querySelector('[slot="secondaryAction"]') as HTMLButtonElement).focus();
+      } else if (e.key == 'Tab') {
+        let focusE = document.activeElement;
+        if (!focusE.nextElementSibling) {
+          e.preventDefault();
+          let firstE = this.firstElementChild as HTMLElement;
+          if (firstE.tabIndex == 0) {
+            firstE.focus();
+          } else {
+            (firstE.nextElementSibling as HTMLElement).focus();
+          }
         }
       }
     });
