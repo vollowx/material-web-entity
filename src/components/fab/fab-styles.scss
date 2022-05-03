@@ -55,7 +55,6 @@
   border: 0;
   border-radius: var(--md-fab-border-radius, 16px);
   outline: 0;
-  -webkit-user-select: none;
   user-select: none;
   cursor: pointer;
   vertical-align: middle;
@@ -99,6 +98,10 @@
 }
 .md3-fab:active {
   box-shadow: var(--md-fab-shadow-pressed);
+}
+.md3-fab:active::before {
+  opacity: 0;
+  transition: 0ms;
 }
 .md3-fab:disabled md3-ripple,
 .md3-fab:disabled::before {

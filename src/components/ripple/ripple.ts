@@ -8,6 +8,8 @@ import styles from './ripple-styles.scss';
 class Ripple extends HTMLElement {
   parentE: HTMLElement;
   containerE: HTMLElement;
+  radius: number;
+  centerRadius: number;
 
   constructor() {
     super();
@@ -29,21 +31,21 @@ class Ripple extends HTMLElement {
     let rect = this.parentE.getBoundingClientRect();
     let x = _event.clientX - rect.left,
       y = _event.clientY - rect.top;
-    let radius = Math.max(
+    this.radius = Math.max(
       Math.sqrt(x ** 2 + y ** 2),
       Math.sqrt((rect.width - x) ** 2 + y ** 2),
       Math.sqrt((rect.height - y) ** 2 + x ** 2),
       Math.sqrt((rect.width - x) ** 2 + (rect.height - y) ** 2)
     );
-    let centerRadius = Math.sqrt((rect.width / 2) ** 2 + (rect.height / 2) ** 2);
+    this.centerRadius = Math.sqrt((rect.width / 2) ** 2 + (rect.height / 2) ** 2);
 
     this.containerE.appendChild(ripple);
     setTimeout(() => {
       ripple.style.cssText = `
-      top: ${this.centered ? rect.height / 2 - centerRadius : y - radius}px;
-      left: ${this.centered ? rect.width / 2 - centerRadius : x - radius}px;
-      width: ${this.centered ? centerRadius * 2 : radius * 2}px;
-      height: ${this.centered ? centerRadius * 2 : radius * 2}px;
+      top: ${this.centered ? rect.height / 2 - this.centerRadius : y - this.radius}px;
+      left: ${this.centered ? rect.width / 2 - this.centerRadius : x - this.radius}px;
+      width: ${this.centered ? this.centerRadius * 2 : this.radius * 2}px;
+      height: ${this.centered ? this.centerRadius * 2 : this.radius * 2}px;
       transition-duration: 225ms;
       transform: scale3d(1, 1, 1);
       `;
@@ -54,18 +56,22 @@ class Ripple extends HTMLElement {
    */
   removeActiveLayer(_ripple: HTMLElement) {
     if (_ripple) {
-      _ripple.addEventListener('transitionend', () => {
+      if (
+        Math.floor(_ripple.getBoundingClientRect().width) >=
+        (this.centered ? Math.floor(this.centerRadius * 2) : Math.floor(this.radius * 2))
+      ) {
         _ripple.style.opacity = '0';
         setTimeout(() => {
           _ripple.remove();
         }, 225);
-      });
-      setTimeout(() => {
-        _ripple.style.opacity = '0';
-        setTimeout(() => {
-          _ripple.remove();
-        }, 225);
-      }, 225);
+      } else {
+        _ripple.addEventListener('transitionend', () => {
+          _ripple.style.opacity = '0';
+          setTimeout(() => {
+            _ripple.remove();
+          }, 225);
+        });
+      }
     }
   }
   /**

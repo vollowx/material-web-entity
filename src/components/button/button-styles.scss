@@ -65,6 +65,10 @@
 :host(.focus-visible) .md3-button::before {
   opacity: 0.12;
 }
+.md3-button:active::before {
+  opacity: 0;
+  transition: 0ms;
+}
 .md3-button:active {
   box-shadow: none;
 }

@@ -63,6 +63,10 @@
 :host(.focus-visible) .md3-chip::before {
   opacity: 0.12;
 }
+.md3-chip:active::before {
+  opacity: 0;
+  transition: 0ms;
+}
 .md3-chip:disabled {
   color: rgba(var(--md-sys-color-on-surface), 0.38);
   border: 1px solid rgba(var(--md-sys-color-on-surface), 0.12);

@@ -53,6 +53,10 @@
     opacity: 0.08;
   }
 }
+.md3-menu__item:active::before {
+  opacity: 0;
+  transition: 0ms;
+}
 
 [name='before'] {
   margin-left: 16px;
