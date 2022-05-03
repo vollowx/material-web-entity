@@ -56,20 +56,20 @@
 
 [name='before'] {
   margin-left: 16px;
-  display: var(--md-menu-item-before-display, inline);
+  display: var(--md-menu-item-before-display, inline-flex);
   justify-content: center;
   width: 24px;
   height: 24px;
 }
 [name='label'] {
-  display: inline;
+  display: inline-flex;
   white-space: nowrap;
   margin-left: 20px;
 }
 [name='after'] {
-  display: inline;
+  display: inline-flex;
   margin-right: 20px;
-  justify-content: center;
+  align-items: center;
 }
 .md3-menu__item__spacer {
   flex: 1;

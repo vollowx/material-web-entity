@@ -32,54 +32,15 @@ aside {
   width: 280px;
   height: 100vh;
   overflow-y: auto;
+  --md-button-width: 100%;
 }
-aside ul {
+aside nav {
   margin: 0;
   padding: 4px;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
-}
-aside ul li {
-  flex-shrink: 0;
-  position: relative;
-  width: 100%;
-  height: 56px;
-  border-radius: 28px;
-}
-aside ul li a {
-  display: flex;
-  align-items: center;
-  padding: 0 16px 0 24px;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: rgb(var(--md-sys-color-on-surface-variant));
-  border-radius: inherit;
-  -webkit-tap-highlight-color: transparent;
-  appearance: none;
-}
-a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: currentColor;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 240ms cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-@media screen and (min-width: 1240px) {
-  a:hover::before {
-    opacity: 0.08;
-  }
-}
-a:focus-visible:before {
-  opacity: 0.12;
 }
 @media screen and (max-width: 599px) {
   aside {
@@ -89,9 +50,11 @@ a:focus-visible:before {
 main {
   width: 100%;
   height: 100vh;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  transition: opacity 120ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .main-content {
   max-width: 800px;

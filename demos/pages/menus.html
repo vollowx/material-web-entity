@@ -1,0 +1,228 @@
+<md-typo rule="region" display-medium>Menus (菜单)</md-typo>
+<md-typo rule="region" body-large>
+  Support keyboard action: <kbd>Enter</kbd>, <kbd>ESC</kbd>, <kbd><md-icon>arrow_upward</md-icon></kbd> ,
+  <kbd><md-icon>arrow_downward</md-icon></kbd> , <kbd><md-icon>arrow_back</md-icon></kbd> ,
+  <kbd><md-icon>arrow_forward</md-icon></kbd>
+</md-typo>
+<md-typo rule="region" body-large>
+  支持键盘操作: <kbd>Enter</kbd>, <kbd>ESC</kbd>, <kbd><md-icon>arrow_upward</md-icon></kbd> ,
+  <kbd><md-icon>arrow_downward</md-icon></kbd> , <kbd><md-icon>arrow_back</md-icon></kbd> ,
+  <kbd><md-icon>arrow_forward</md-icon></kbd>
+</md-typo>
+<code-example rule="region">
+  <div>
+    <md-chip text id="demo-menu1">Long menu</md-chip>
+
+    <md-menu id="demo-menu1" no-icon>
+      <md-menu-item>
+        <span slot="label">Item 0</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 1</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 2</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 3</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 4</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 5</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 6</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 7</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 8</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 9</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 10</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 11</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 12</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 13</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 14</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 15</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 16</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 17</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 18</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 19</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 20</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 21</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 22</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 23</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 24</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 25</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 26</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 27</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 28</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 29</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 30</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 31</span>
+      </md-menu-item>
+    </md-menu>
+
+    <md-chip text id="demo-menu2">Sub menu</md-chip>
+
+    <md-menu id="demo-menu2" no-icon>
+      <md-menu-item>
+        <span slot="label">Cut</span>
+        <span slot="after">⌘C</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Copy</span>
+        <span slot="after">⌘X</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Paste</span>
+        <span slot="after">⌘V</span>
+      </md-menu-item>
+      <md-divider margin></md-divider>
+      <md-menu-item subber id="demo-menu2-sub1">
+        <span slot="label">Sub 1</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+      <md-menu-item subber id="demo-menu2-sub2">
+        <span slot="label">Sub 2</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+    </md-menu>
+
+    <md-menu sub id="demo-menu2-sub1" no-icon>
+      <md-menu-item>
+        <span slot="label">Item 0</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 1</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 2</span>
+      </md-menu-item>
+    </md-menu>
+
+    <md-menu sub id="demo-menu2-sub2">
+      <md-menu-item>
+        <md-icon slot="before">list</md-icon>
+        <span slot="label">Item 0</span>
+      </md-menu-item>
+      <md-menu-item>
+        <md-icon slot="before">list</md-icon>
+        <span slot="label">Item 1</span>
+      </md-menu-item>
+      <md-menu-item>
+        <md-icon slot="before">list</md-icon>
+        <span slot="label">Item 2</span>
+      </md-menu-item>
+      <md-menu-item>
+        <md-icon slot="before">list</md-icon>
+        <span slot="label">Item 3</span>
+      </md-menu-item>
+      <md-menu-item>
+        <md-icon slot="before">list</md-icon>
+        <span slot="label">Item 4</span>
+      </md-menu-item>
+      <md-menu-item>
+        <md-icon slot="before">list</md-icon>
+        <span slot="label">Item 5</span>
+      </md-menu-item>
+      <md-menu-item>
+        <md-icon slot="before">list</md-icon>
+        <span slot="label">Item 6</span>
+      </md-menu-item>
+      <md-menu-item>
+        <md-icon slot="before">list</md-icon>
+        <span slot="label">Item 7</span>
+      </md-menu-item>
+    </md-menu>
+
+    <md-chip text id="demo-menu3">Fast menu</md-chip>
+
+    <md-menu id="demo-menu3" fast no-icon>
+      <md-menu-item>
+        <span slot="label">Item 0</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 1</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 2</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 3</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 4</span>
+      </md-menu-item>
+    </md-menu>
+
+    <md-chip text id="demo-menu4">Dense menu</md-chip>
+
+    <md-menu id="demo-menu4" dense no-icon>
+      <md-menu-item>
+        <span slot="label">Item 0</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 1</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 2</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 3</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Item 4</span>
+      </md-menu-item>
+    </md-menu>
+  </div>
+</code-example>

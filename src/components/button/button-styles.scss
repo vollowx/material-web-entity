@@ -9,7 +9,8 @@
   padding: 0 24px;
   position: relative;
   box-sizing: border-box;
-  height: 40px;
+  width: var(--md-button-width, auto);
+  height: var(--md-button-height, 40px);
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -18,6 +19,7 @@
   font-family: var(--md-sys-typescale-button-font);
   font-weight: var(--md-sys-typescale-button-weight);
   font-size: var(--md-sys-typescale-button-size);
+  line-height: var(--md-sys-typescale-button-line-height);
   letter-spacing: var(--md-sys-typescale-button-tracking);
   text-decoration: none;
   background-color: rgb(var(--md-sys-color-primary));

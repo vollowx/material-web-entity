@@ -7,374 +7,66 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
+    <script type="module" src="../dist/mwe-bundle.min.js"></script>
     <link rel="stylesheet" href="../src/index.css" />
 
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <aside>
-      <ul>
-        <li><md-ripple></md-ripple><a href="#about">About MWE</a></li>
-        <li><md-ripple></md-ripple><a href="#avatars">Avatars</a></li>
-        <li><md-ripple></md-ripple><a href="#common-buttons">Common buttons</a></li>
-        <li><md-ripple></md-ripple><a href="#chips">Chips</a></li>
-        <li><md-ripple></md-ripple><a href="#dialogs">Dialogs</a></li>
-        <li><md-ripple></md-ripple><a href="#fabs">FABs</a></li>
-        <li><md-ripple></md-ripple><a href="#icons">Icons</a></li>
-        <li><md-ripple></md-ripple><a href="#menus">Menus</a></li>
-        <li><md-ripple></md-ripple><a href="#ripples">Ripples</a></li>
-        <li><md-ripple></md-ripple><a href="#typography">Typography</a></li>
-      </ul>
+      <nav>
+        <md-button text moving-page="about">About MWE 关于 MWE</md-button>
+        <md-button text moving-page="avatars">Avatars 头像</md-button>
+        <md-button text moving-page="buttons">Common buttons 按钮</md-button>
+        <md-button text moving-page="chips">Chips 纸片</md-button>
+        <md-button text moving-page="dialogs">Dialogs 对话框</md-button>
+        <md-button text moving-page="fabs">FABs 浮动操作按钮</md-button>
+        <md-button text moving-page="icons">Icons 图标</md-button>
+        <md-button text moving-page="menus">Menus 菜单</md-button>
+        <md-button text moving-page="ripples">Ripples 波纹</md-button>
+        <md-button text moving-page="typography">Typography 文字排版</md-button>
+      </nav>
     </aside>
     <main>
-      <md-fab theme-toggler tertiary>
-        <md-icon>brightness_6</md-icon>
-      </md-fab>
-      <div class="main-content">
-        <md-typo rule="region" display-medium id="about">About Material Web Entity</md-typo>
-        <md-typo rule="region" body-medium>
-          The goals of this project - <span color-primary>EASY</span> to use -
-          <span color-primary>HIGH</span> visibility - <span color-primary>HIGH</span> quality
-        </md-typo>
-
-        <md-typo rule="region" display-medium id="avatars">Avatars</md-typo>
-        <code-example rule="region">
-          <md-avatar m-4>A</md-avatar>
-          <md-avatar m-4 square>SQ</md-avatar>
-          <md-avatar m-4 full-img small url="./assets/dog.gif"></md-avatar>
-          <md-avatar m-4 large>L</md-avatar>
-        </code-example>
-
-        <md-typo rule="region" display-medium id="common-buttons">Common buttons</md-typo>
-        <code-example rule="region" id="cbtn-demo"></code-example>
-        <script id="cbtn-demo-ctrler">
-          const CBtnDemo = document.getElementById('cbtn-demo');
-          let cb1 = '',
-            cbE = '';
-          for (let i = 0; i < 5; i++) {
-            cb1 = ['', 'tonal', 'elevated', 'outlined', 'text'][i];
-            for (let j = 0; j < 4; j++) {
-              switch (j) {
-                case 0:
-                  cbE = `<md-button m-4 label="${
-                    cb1 !== '' ? cb1.replace(cb1[0], cb1[0].toUpperCase()) : 'Filled'
-                  }" ${cb1}></md-butitle>`;
-                  break;
-                case 1:
-                  cbE = `<md-button m-4 ${cb1}><md-icon before>code</md-icon>Icon left</md-button>`;
-                  break;
-                case 2:
-                  cbE = `<md-button m-4 ${cb1}>Icon right<md-icon after>code</md-icon></md-button>`;
-                  break;
-                case 3:
-                  cbE = `<md-button m-4 label="Disabled" ${cb1} disabled></md-button>`;
-                  break;
-              }
-              CBtnDemo.innerHTML += cbE;
-            }
-            CBtnDemo.innerHTML += `<flex-spacer></flex-spacer>`;
-          }
-          document.getElementById('cbtn-demo-ctrler').remove();
-        </script>
-
-        <md-typo rule="region" display-medium id="chips">Chips</md-typo>
-        <code-example rule="region" id="chip-demo"></code-example>
-        <script id="chip-demo-ctrler">
-          const ChipDemo = document.getElementById('chip-demo');
-          let ch1 = '',
-            chE = '';
-          for (let i = 0; i < 4; i++) {
-            ch1 = ['', 'elevated', 'checked', 'text'][i];
-            for (let j = 0; j < 5; j++) {
-              switch (j) {
-                case 0:
-                  chE = `<md-chip m-4 label="${
-                    ch1 !== '' ? ch1.replace(ch1[0], ch1[0].toUpperCase()) : 'Outlined'
-                  }" ${ch1}></md-chip>`;
-                  break;
-                case 1:
-                  chE = `<md-chip m-4 ${ch1}><md-icon before>code</md-icon>Icon left</md-chip>`;
-                  break;
-                case 2:
-                  chE = `<md-chip m-4 ${ch1}>Icon right<md-icon after>code</md-icon></md-chip>`;
-                  break;
-                case 3:
-                  chE = `<md-chip m-4 ${ch1}>Or img<md-icon after url="./assets/google-drive.svg"></md-icon></md-chip>`;
-                  break;
-                case 4:
-                  chE = `<md-chip m-4 label="Disabled" ${ch1} disabled></md-chip>`;
-                  break;
-              }
-              ChipDemo.innerHTML += chE;
-            }
-            ChipDemo.innerHTML += `<flex-spacer></flex-spacer>`;
-          }
-          document.getElementById('chip-demo-ctrler').remove();
-        </script>
-
-        <md-typo rule="region" display-medium id="dialogs">Dialogs</md-typo>
-        <code-example rule="region" id="dialog-demo">
-          <md-button text label="Delete" id="demo-dialog1"></md-button>
-          <md-dialog id="demo-dialog1">
-            <md-typo slot="body" body-medium>Delete this file?</md-typo>
-
-            <md-button text slot="secondaryAction" label="Cancel"></md-button>
-            <md-button text slot="primaryAction" label="Yes, I'm sure"></md-button>
-          </md-dialog>
-
-          <md-button text label="Open dialog with hero icon" id="demo-dialog2"></md-button>
-          <md-dialog id="demo-dialog2" hero-icon="refresh" headline="Reset settings?">
-            <md-typo slot="body" body-medium>
-              This will reset your app preferences back to their default settings.
-            </md-typo>
-
-            <md-button text slot="secondaryAction" label="Cancel"></md-button>
-            <md-button text slot="primaryAction" label="Yes, I'm sure"></md-button>
-          </md-dialog>
-        </code-example>
-
-        <md-typo rule="region" display-medium id="fabs">FABs (Floating action buttons)</md-typo>
-        <code-example rule="region" id="fab-demo">
-          <md-fab label="Extended" m-4></md-fab>
-          <md-fab m-4 extended>
-            <md-icon>code</md-icon>
-            Extended
-          </md-fab>
-          <md-fab m-4 extended>
-            Extended
-            <md-icon before>code</md-icon>
-          </md-fab>
-        </code-example>
-        <script id="fab-demo-ctrler">
-          const FABDemo = document.getElementById('fab-demo');
-          let fa1 = '';
-          let fa2 = '';
-          let symbol = '';
-          for (let i = 0; i < 4; i++) {
-            fa1 = ['', 'surface', 'secondary', 'tertiary'][i];
-            for (let j = 0; j < 5; j++) {
-              fa2 = ['', 'lower', 'lowest', 'small', 'large'][j];
-              symbol = ['arrow_upward', 'remove', 'arrow_downward', 'close', 'code'][j];
-              FABDemo.innerHTML += `<md-fab m-4 ${fa1} ${fa2}><md-icon>${symbol}</md-icon></md-fab>`;
-            }
-            FABDemo.innerHTML += '<flex-spacer></flex-spacer>';
-          }
-          document.getElementById('fab-demo-ctrler').remove();
-        </script>
-
-        <md-typo rule="region" display-medium id="icons">Icons</md-typo>
-        <code-example rule="region">
-          <md-icon m-4>menu</md-icon>
-          <md-icon m-4>settings</md-icon>
-          <md-icon m-4>done</md-icon>
-          <md-icon m-4>code</md-icon>
-          <md-icon m-4>tab</md-icon>
-          <flex-spacer></flex-spacer>
-          <md-icon m-4 url="./assets/google-drive.svg"></md-icon>
-        </code-example>
-
-        <md-typo rule="region" display-medium id="menus">Menus</md-typo>
-        <md-typo rule="region" body-large>
-          Also supported keyboard action: <kbd>Enter</kbd>, <kbd>ESC</kbd>,
-          <kbd><md-icon>arrow_upward</md-icon></kbd
-          >, <kbd><md-icon>arrow_downward</md-icon></kbd
-          >, <kbd><md-icon>arrow_back</md-icon></kbd
-          >, <kbd><md-icon>arrow_forward</md-icon></kbd>
-        </md-typo>
-        <code-example rule="region">
-          <div>
-            <md-chip text id="demo-menu1">long Menu</md-chip>
-            <md-menu id="demo-menu1"></md-menu>
-
-            <md-chip text id="demo-menu2">sub Menu (testing)</md-chip>
-            <md-menu id="demo-menu2" dense no-icon>
-              <md-menu-item>
-                <span slot="label">Cut</span>
-                <span slot="after">⌘C</span>
-              </md-menu-item>
-              <md-menu-item>
-                <span slot="label">Copy</span>
-                <span slot="after">⌘X</span>
-              </md-menu-item>
-              <md-menu-item>
-                <span slot="label">Paste</span>
-                <span slot="after">⌘V</span>
-              </md-menu-item>
-              <md-divider margin></md-divider>
-              <md-menu-item subber id="demo-menu2-sub1">
-                <span slot="label">Options</span>
-                <md-icon slot="after">arrow_right</md-icon>
-              </md-menu-item>
-              <md-menu-item subber id="demo-menu2-sub2">
-                <span slot="label">Sub 2</span>
-                <md-icon slot="after">arrow_right</md-icon>
-              </md-menu-item>
-            </md-menu>
-            <md-menu sub id="demo-menu2-sub1" dense>
-              <md-menu-item dense-toggler>
-                <md-icon slot="before">vertical_distribute</md-icon>
-                <span slot="label">Toggle dense</span>
-                <span slot="after">⌘D</span>
-              </md-menu-item>
-              <md-menu-item fast-toggler>
-                <md-icon slot="before">bolt</md-icon>
-                <span slot="label">Toggle fast</span>
-                <span slot="after">⌘F</span>
-              </md-menu-item>
-            </md-menu>
-            <md-menu sub id="demo-menu2-sub2" dense>
-              <md-menu-item>
-                <md-icon slot="before">list</md-icon>
-                <span slot="label">Item 1</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="before">list</md-icon>
-                <span slot="label">Item 2</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="before">list</md-icon>
-                <span slot="label">Item 3</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="before">list</md-icon>
-                <span slot="label">Item 4</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="before">list</md-icon>
-                <span slot="label">Item 5</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="before">list</md-icon>
-                <span slot="label">Item 6</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="before">list</md-icon>
-                <span slot="label">Item 7</span>
-              </md-menu-item>
-              <md-menu-item>
-                <md-icon slot="before">list</md-icon>
-                <span slot="label">Item 8</span>
-              </md-menu-item>
-            </md-menu>
-          </div>
-        </code-example>
-
-        <md-typo rule="region" display-medium id="ripples">Ripples</md-typo>
-        <code-example rule="region">
-          <div demo-ripple><md-ripple></md-ripple>Normal</div>
-          <fieldset>
-            <legend>Attr</legend>
-            <label for="c1">
-              <input type="checkbox" name="" id="c1" />
-              <span>Centered</span>
-            </label>
-            <br />
-            <label for="c2">
-              <input type="checkbox" name="" id="c2" />
-              <span>Unbounded</span>
-            </label>
-          </fieldset>
-        </code-example>
-
-        <md-typo rule="region" display-medium id="typography">Typography</md-typo>
-        <code-example rule="region">
-          <div>
-            <md-typo display-medium>Display large</md-typo>
-            <md-typo display-medium>Display medium</md-typo>
-            <md-typo display-small>Display small</md-typo>
-            <md-typo headline-large>Headline large</md-typo>
-            <md-typo headline-medium>Headline medium</md-typo>
-            <md-typo headline-small>Headline small</md-typo>
-            <md-typo title-large>Title large</md-typo>
-            <md-typo title-medium>Title medium</md-typo>
-            <md-typo title-small>Title small</md-typo>
-            <md-typo label-large>Label large</md-typo>
-            <md-typo label-medium>Label medium</md-typo>
-            <md-typo label-small>Label small</md-typo>
-            <md-typo body-large>
-              Body large. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-              suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-              fugiat deleniti? Eum quasi quidem quibusdam.
-            </md-typo>
-            <md-typo body-medium>
-              Body medium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-              suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-              fugiat deleniti? Eum quasi quidem quibusdam.
-            </md-typo>
-            <md-typo body-small>
-              Body small. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-              suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-              fugiat deleniti? Eum quasi quidem quibusdam.
-            </md-typo>
-          </div>
-        </code-example>
-      </div>
+      <div class="main-content"></div>
     </main>
+    <md-fab theme-toggler tertiary>
+      <md-icon>brightness_6</md-icon>
+    </md-fab>
 
-    <script type="module">
-      import '../dist/mwe-bundle.min.js';
-
+    <script>
       const toggleThemeBtn = document.querySelector('[theme-toggler]');
       toggleThemeBtn.addEventListener('click', () => {
         M.toggleTheme();
       });
 
-      const menu1 = document.querySelector('md-menu#demo-menu1');
-      let str = ``;
-      for (let i = 1; i <= 32; i++) {
-        str += `<md-menu-item><md-icon slot="before">code</md-icon><span slot="label">Item ${i}</span><span slot="after">⌘I</span></md-menu-item>`;
-      }
-      menu1.innerHTML = str;
+      const mainContainer = document.querySelector('main');
+      const mainContent = document.querySelector('.main-content');
+      const movingPages = document.querySelectorAll('[moving-page]');
+      var latestPage = movingPages[0];
 
-      const menu2 = document.querySelector('md-menu#demo-menu2');
-      const menu2Sub1 = document.querySelector('md-menu#demo-menu2-sub1');
-      const menu2Sub2 = document.querySelector('md-menu#demo-menu2-sub2');
-
-      function toggleMenusDense() {
-        if (menu2.dense) {
-          menu2.dense = false;
-          menu2Sub1.dense = false;
-          menu2Sub2.dense = false;
-        } else {
-          menu2.dense = true;
-          menu2Sub1.dense = true;
-          menu2Sub2.dense = true;
+      var XHR = new XMLHttpRequest();
+      XHR.onreadystatechange = () => {
+        if (XHR.readyState == 4 && XHR.status == 200) {
+          mainContent.innerHTML = XHR.responseText;
+          mainContainer.scroll(0, 0);
+          mainContainer.style.opacity = 1;
         }
-      }
-      function toggleMenusFast() {
-        if (menu2.fast) {
-          menu2.fast = false;
-          menu2Sub1.fast = false;
-          menu2Sub2.fast = false;
-        } else {
-          menu2.fast = true;
-          menu2Sub1.fast = true;
-          menu2Sub2.fast = true;
-        }
-      }
-
-      const toggleDenseBtn = document.querySelector('[dense-toggler]');
-      toggleDenseBtn.addEventListener('click', () => toggleMenusDense());
-      const toggleFastBtn = document.querySelector('[fast-toggler]');
-      toggleFastBtn.addEventListener('click', () => toggleMenusFast());
-
-      const demoRipple = document.querySelector('[demo-ripple] > md-ripple');
-      const centeredAttrCtrler = document.querySelector('[id="c1"]');
-      const unboundedAttrCtrler = document.querySelector('[id="c2"]');
-      centeredAttrCtrler.addEventListener('click', () => {
-        if (centeredAttrCtrler.checked) {
-          demoRipple.setAttribute('centered', '');
-        } else {
-          demoRipple.removeAttribute('centered');
-        }
+      };
+      var movePage = (_source, _this) => {
+        XHR.open('GET', './pages/' + _source + '.html', true);
+        XHR.send();
+        mainContainer.style.opacity = 0;
+        latestPage.removeAttribute('tonal');
+        latestPage.setAttribute('text', '');
+        _this.removeAttribute('text');
+        _this.setAttribute('tonal', '');
+        latestPage = _this;
+      };
+      movingPages.forEach((movingPage) => {
+        movingPage.addEventListener('click', () => movePage(movingPage.getAttribute('moving-page'), movingPage));
       });
-      unboundedAttrCtrler.addEventListener('click', () => {
-        if (unboundedAttrCtrler.checked) {
-          demoRipple.setAttribute('unbounded', '');
-        } else {
-          demoRipple.removeAttribute('unbounded');
-        }
-      });
+      movePage('about', movingPages[0]);
     </script>
   </body>
 </html>

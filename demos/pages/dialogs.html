@@ -1,0 +1,18 @@
+<md-typo rule="region" display-medium>Dialogs 对话框</md-typo>
+<code-example rule="region">
+  <md-button text label="Delete" id="demo-dialog1"></md-button>
+  <md-dialog id="demo-dialog1">
+    <md-typo slot="body" body-medium>Delete this file?</md-typo>
+
+    <md-button text slot="secondaryAction" label="Cancel"></md-button>
+    <md-button text slot="primaryAction" label="Yes, I'm sure"></md-button>
+  </md-dialog>
+
+  <md-button text label="Open dialog with hero icon" id="demo-dialog2"></md-button>
+  <md-dialog id="demo-dialog2" hero-icon="refresh" headline="Reset settings?">
+    <md-typo slot="body" body-medium> This will reset your app preferences back to their default settings. </md-typo>
+
+    <md-button text slot="secondaryAction" label="Cancel"></md-button>
+    <md-button text slot="primaryAction" label="Yes, I'm sure"></md-button>
+  </md-dialog>
+</code-example>
