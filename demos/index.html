@@ -54,6 +54,7 @@
         }
       };
       var movePage = (_source, _this) => {
+        if (_source == _this) return;
         XHR.open('GET', './pages/' + _source + '.html', true);
         XHR.send();
         mainContainer.style.opacity = 0;
