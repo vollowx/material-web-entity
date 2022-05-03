@@ -33,6 +33,7 @@ aside {
   height: 100vh;
   overflow-y: auto;
   --md-button-width: 100%;
+  --md-button-justify-content: flex-start;
 }
 aside nav {
   margin: 0;

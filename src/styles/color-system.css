@@ -1,7 +1,3 @@
-body {
-  color: rgb(var(--md-sys-color-on-background));
-  background-color: rgb(var(--md-sys-color-background));
-}
 :root {
   --md-sys-color-primary-light: 103, 80, 164;
   --md-sys-color-on-primary-light: 255, 255, 255;
