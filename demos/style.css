@@ -63,7 +63,12 @@ main {
   overflow: visible;
 }
 [rule='region'] {
-  margin: 24px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.main-content > * {
+  margin-left: 24px;
+  margin-right: 24px;
 }
 code-example {
   padding: 24px 48px;
