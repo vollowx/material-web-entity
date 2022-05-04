@@ -38,9 +38,15 @@ md-divider {
   width: 100%;
   height: 1px;
   background-color: rgba(var(--md-sys-color-on-surface), 0.08);
+  box-sizing: border-box;
 }
 md-divider[margin] {
   margin: 7.5px 0;
+}
+md-divider[inset] {
+  margin-left: 8px;
+  margin-right: 8px;
+  width: calc(100% - 16px);
 }
 md-divider[vertical] {
   width: 1px;
@@ -48,4 +54,11 @@ md-divider[vertical] {
 }
 md-divider[vertical][margin] {
   margin: 0 7.5px;
+}
+md-divider[vertical][inset] {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  height: calc(100% - 16px);
 }
