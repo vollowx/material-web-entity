@@ -10,7 +10,7 @@
 :host([no-icon]) {
   --md-menu-item-before-display: none;
 }
-:host([open]) .md3-menu {
+:host([open]) .md-menu {
   transform: scale(1, 1);
   opacity: 1;
   pointer-events: auto;

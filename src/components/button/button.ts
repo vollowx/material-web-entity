@@ -28,9 +28,9 @@ class Button extends HTMLElement {
   protected render(): void {
     this.shadowRoot.innerHTML = `
     <style>${styles}</style>
-    <button class="md3-button"id="md3-button"${this.disabled ? 'disabled' : ''}>
+    <button class="md-button"id="md-button"${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
-      <span class="md3-button__label" id="md3-button__label">${this.label ? this.label : ''}</span>
+      <span class="md-button__label" id="md-button__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>
     `;
@@ -69,8 +69,8 @@ class Button extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.buttonE = this.shadowRoot.getElementById('md3-button') as HTMLButtonElement;
-    this.labelE = this.shadowRoot.getElementById('md3-button__label');
+    this.buttonE = this.shadowRoot.getElementById('md-button') as HTMLButtonElement;
+    this.labelE = this.shadowRoot.getElementById('md-button__label');
     this.slotE = this.shadowRoot.querySelector('slot');
   }
   attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {

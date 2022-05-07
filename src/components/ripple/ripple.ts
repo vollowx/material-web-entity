@@ -3,7 +3,7 @@ import styles from './ripple-styles.scss';
 /**
  * Ripple component.
  *
- * Button, Card and Menu are all request define this component as 'md3-ripple'
+ * Button, Card and Menu are all request define this component as 'md-ripple'
  */
 class Ripple extends HTMLElement {
   parentE: HTMLElement;
@@ -20,13 +20,13 @@ class Ripple extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = /* html */ `
     <style>${styles}</style>
-    <div class="md3-ripple__container" id="md3-ripple__container"></div>
+    <div class="md-ripple__container" id="md-ripple__container"></div>
     `;
   }
 
   addActiveLayer(_event: { clientX: number; clientY: number }) {
     let ripple = document.createElement('span');
-    ripple.classList.add('md3-ripple__itself');
+    ripple.classList.add('md-ripple__element');
 
     let rect = this.parentE.getBoundingClientRect();
     let x = _event.clientX - rect.left,
@@ -78,7 +78,7 @@ class Ripple extends HTMLElement {
    * Remove all of the active layers
    */
   removeAllActiveLayers() {
-    let _ripples = this.containerE.querySelectorAll('.md3-ripple__itself');
+    let _ripples = this.containerE.querySelectorAll('.md-ripple__element');
     _ripples.forEach((_ripple: HTMLElement) => this.removeActiveLayer(_ripple));
   }
 
@@ -120,7 +120,7 @@ class Ripple extends HTMLElement {
     this.render();
 
     this.parentE = ((this.parentNode as ShadowRoot).host as HTMLElement) || (this.parentNode as HTMLElement);
-    this.containerE = this.shadowRoot.getElementById('md3-ripple__container');
+    this.containerE = this.shadowRoot.getElementById('md-ripple__container');
 
     this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));
     this.parentE.addEventListener('mouseleave', () => this.removeAllActiveLayers());

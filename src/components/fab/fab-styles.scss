@@ -32,7 +32,7 @@
   --md-icon-size: 36px;
   --md-fab-border-radius: 28px;
 }
-.md3-fab {
+.md-fab {
   padding: 0 calc((var(--md-fab-size) - var(--md-icon-size)) / 2);
   position: relative;
   box-sizing: border-box;
@@ -81,41 +81,41 @@
   }
 }
 @media screen and (min-width: 1240px) {
-  .md3-fab:hover {
+  .md-fab:hover {
     box-shadow: var(--md-fab-shadow-hovered);
   }
-  .md3-fab:hover::before {
+  .md-fab:hover::before {
     opacity: 0.08;
   }
 }
 :host(.focus-visible) {
-  .md3-fab {
+  .md-fab {
     box-shadow: var(--md-fab-shadow-focused);
   }
-  .md3-fab::before {
+  .md-fab::before {
     opacity: 0.12;
   }
 }
-.md3-fab:active {
+.md-fab:active {
   box-shadow: var(--md-fab-shadow-pressed);
 }
-.md3-fab:active::before {
+.md-fab:active::before {
   opacity: 0;
   transition: 0ms;
 }
-.md3-fab:disabled md3-ripple,
-.md3-fab:disabled::before {
+.md-fab:disabled md-ripple,
+.md-fab:disabled::before {
   display: none;
 }
-:host([surface]) .md3-fab {
+:host([surface]) .md-fab {
   color: rgb(var(--md-sys-color-primary));
   background-color: rgb(var(--md-sys-color-surface));
 }
-:host([secondary]) .md3-fab {
+:host([secondary]) .md-fab {
   color: rgb(var(--md-sys-color-on-secondary-container));
   background-color: rgb(var(--md-sys-color-secondary-container));
 }
-:host([tertiary]) .md3-fab {
+:host([tertiary]) .md-fab {
   color: rgb(var(--md-sys-color-on-tertiary-container));
   background-color: rgb(var(--md-sys-color-tertiary-container));
 }

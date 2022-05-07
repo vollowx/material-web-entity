@@ -18,11 +18,11 @@ class MenuItem extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
     <style>${styles}</style>
-    <button class="md3-menu__item" id="md3-menu__item">
+    <button class="md-menu__item" id="md-menu__item">
       <md-ripple></md-ripple>
       <slot name="before"></slot>
       <slot name="label"></slot>
-      <div class="md3-menu__item__spacer"></div>
+      <div class="md-menu__item__spacer"></div>
       <slot name="after"></slot>
     </button>
     `;
@@ -52,7 +52,7 @@ class MenuItem extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.itemE = this.shadowRoot.getElementById('md3-menu__item') as HTMLButtonElement;
+    this.itemE = this.shadowRoot.getElementById('md-menu__item') as HTMLButtonElement;
 
     this.tabIndex = -1;
     this.itemE.addEventListener('focus', () => this.setAttribute('focused', ''));

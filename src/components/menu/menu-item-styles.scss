@@ -4,7 +4,7 @@
   flex-shrink: 0;
   height: 48px;
 }
-.md3-menu__item {
+.md-menu__item {
   display: flex;
   align-items: center;
   position: relative;
@@ -49,11 +49,11 @@
   }
 }
 @media screen and (min-width: 1240px) {
-  .md3-menu__item:hover::before {
+  .md-menu__item:hover::before {
     opacity: 0.08;
   }
 }
-.md3-menu__item:active::before {
+.md-menu__item:active::before {
   opacity: 0;
   transition: 0ms;
 }
@@ -75,7 +75,7 @@
   margin-right: 20px;
   align-items: center;
 }
-.md3-menu__item__spacer {
+.md-menu__item__spacer {
   flex: 1;
   min-width: 80px;
 }

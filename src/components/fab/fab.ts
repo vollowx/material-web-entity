@@ -19,9 +19,9 @@ class FAB extends HTMLElement {
   protected render(): void {
     this.shadowRoot.innerHTML = `
     <style>${styles}</style>
-    <button class="md3-fab" id="md3-fab" ${this.disabled ? 'disabled' : ''}>
+    <button class="md-fab" id="md-fab" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
-      <span class="md3-fab__label" id="md3-fab__label">${this.label ? this.label : ''}</span>
+      <span class="md-fab__label" id="md-fab__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>
     `;
@@ -56,8 +56,8 @@ class FAB extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.fabE = this.shadowRoot.getElementById('md3-fab') as HTMLButtonElement;
-    this.labelE = this.shadowRoot.getElementById('md3-fab__label');
+    this.fabE = this.shadowRoot.getElementById('md-fab') as HTMLButtonElement;
+    this.labelE = this.shadowRoot.getElementById('md-fab__label');
     this.slotE = this.shadowRoot.querySelector('slot');
   }
   attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {

@@ -17,8 +17,8 @@ class Icon extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
     <style>${styles}</style>
-    <span class="md3-icon">
-      <slot><img ${this.url ? 'src=' + this.url : ''} class="md3-icon__img" id="md3-icon__img" /></slot>
+    <span class="md-icon">
+      <slot><img ${this.url ? 'src=' + this.url : ''} class="md-icon__img" id="md-icon__img" /></slot>
     </span>
     `;
   }
@@ -36,7 +36,7 @@ class Icon extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.imgE = this.shadowRoot.getElementById('md3-icon__img') as HTMLImageElement;
+    this.imgE = this.shadowRoot.getElementById('md-icon__img') as HTMLImageElement;
   }
   attributeChangedCallback(attrName: string, oldVal: string, newVal: any) {
     if (attrName === 'url' && this.imgE) {

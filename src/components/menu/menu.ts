@@ -20,8 +20,8 @@ class Menu extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
     <style>${styles}</style>
-    <div class="md3-menu__layer" id="md3-menu__layer"></div>
-    <div class="md3-menu" id="md3-menu">
+    <div class="md-menu__layer" id="md-menu__layer"></div>
+    <div class="md-menu" id="md-menu">
       <slot></slot>
     </div>
     `;
@@ -80,10 +80,10 @@ class Menu extends HTMLElement {
       })
     );
     this.menuE.removeAttribute('style');
-    this.menuE.classList.remove('md3-menu--bottom', 'md3-menu--right');
+    this.menuE.classList.remove('md-menu--bottom', 'md-menu--right');
     let rect = this.controllerE.getBoundingClientRect();
     if (rect.top + rect.height / 2 > window.innerHeight / 2) {
-      this.menuE.classList.add('md3-menu--bottom');
+      this.menuE.classList.add('md-menu--bottom');
       if (this.sub) {
         this.menuE.style.bottom = window.innerHeight - rect.top - rect.height - 8 + 'px';
       } else {
@@ -105,14 +105,14 @@ class Menu extends HTMLElement {
     if (this.sub) {
       if (rect.left + rect.width + this.menuE.offsetWidth > window.innerWidth) {
         this.menuE.style.left = rect.left - this.menuE.offsetWidth + 'px';
-        this.menuE.classList.add('md3-menu--right');
+        this.menuE.classList.add('md-menu--right');
       } else {
         this.menuE.style.left = rect.left + rect.width + 'px';
       }
     } else {
       if (rect.left + rect.width + this.menuE.offsetWidth > window.innerWidth) {
         this.menuE.style.left = rect.right - this.menuE.offsetWidth + 'px';
-        this.menuE.classList.add('md3-menu--right');
+        this.menuE.classList.add('md-menu--right');
       } else {
         this.menuE.style.left = rect.left + 'px';
       }
@@ -140,8 +140,8 @@ class Menu extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.layerE = this.shadowRoot.getElementById('md3-menu__layer');
-    this.menuE = this.shadowRoot.getElementById('md3-menu') as HTMLDivElement;
+    this.layerE = this.shadowRoot.getElementById('md-menu__layer');
+    this.menuE = this.shadowRoot.getElementById('md-menu') as HTMLDivElement;
     this.controllerE = document.getElementById(this.id);
     this.controllerE
       ? (this.controllerFriendsE = this.controllerE.parentNode.querySelectorAll(

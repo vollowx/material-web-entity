@@ -28,9 +28,9 @@ class Chip extends HTMLElement {
   protected render(): void {
     this.shadowRoot.innerHTML = `
     <style>${styles}</style>
-    <button class="md3-chip" id="md3-chip" ${this.disabled ? 'disabled' : ''}>
+    <button class="md-chip" id="md-chip" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
-      <span class="md3-chip__label" id="md3-chip__label">${this.label ? this.label : ''}</span>
+      <span class="md-chip__label" id="md-chip__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>
     `;
@@ -69,8 +69,8 @@ class Chip extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.chipE = this.shadowRoot.getElementById('md3-chip') as HTMLButtonElement;
-    this.labelE = this.shadowRoot.getElementById('md3-chip__label');
+    this.chipE = this.shadowRoot.getElementById('md-chip') as HTMLButtonElement;
+    this.labelE = this.shadowRoot.getElementById('md-chip__label');
     this.slotE = this.shadowRoot.querySelector('slot');
   }
   attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {

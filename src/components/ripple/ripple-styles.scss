@@ -9,7 +9,7 @@
   border-radius: inherit;
   pointer-events: none;
 }
-.md3-ripple__container {
+.md-ripple__container {
   position: absolute;
   top: 0;
   left: 0;
@@ -18,10 +18,10 @@
   border-radius: inherit;
   pointer-events: none;
 }
-:host(:not([unbounded])) .md3-ripple__container {
+:host(:not([unbounded])) .md-ripple__container {
   overflow: hidden;
 }
-.md3-ripple__itself {
+.md-ripple__element {
   position: absolute;
   background: currentColor;
   border-radius: 50%;

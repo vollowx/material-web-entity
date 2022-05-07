@@ -22,7 +22,7 @@ class Avatar extends HTMLElement {
   protected render(): void {
     this.shadowRoot.innerHTML = `
     <style>${styles}</style>
-    <slot><img ${this.url ? 'src=' + this.url : ''} class="md3-avatar" id="md3-avatar" /></slot>
+    <slot><img ${this.url ? 'src=' + this.url : ''} class="md-avatar" id="md-avatar" /></slot>
     `;
   }
 
@@ -39,7 +39,7 @@ class Avatar extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.imgE = this.shadowRoot.getElementById('md3-avatar') as HTMLImageElement;
+    this.imgE = this.shadowRoot.getElementById('md-avatar') as HTMLImageElement;
   }
   attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {
     if (attrName === 'url' && this.imgE) {

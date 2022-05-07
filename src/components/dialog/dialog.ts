@@ -22,17 +22,17 @@ class Dialog extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
     <style>${styles}</style>
-    <div class="md3-dialog__backdrop" id="md3-dialog__backdrop"></div>
-    <div class="md3-dialog__container">
-      <div role="alertdialog" class="md3-dialog" id="md3-dialog" tabindex="-1">
-        <div class="md3-dialog__hero-icon" id="md3-dialog__hero-icon"><md-icon>${
+    <div class="md-dialog__backdrop" id="md-dialog__backdrop"></div>
+    <div class="md-dialog__container">
+      <div role="alertdialog" class="md-dialog" id="md-dialog" tabindex="-1">
+        <div class="md-dialog__hero-icon" id="md-dialog__hero-icon"><md-icon>${
           this.heroIcon ? this.heroIcon : ''
         }</md-icon></div>
-        <div class="md3-dialog__headline" id="md3-dialog__headline"><md-typo hd-sm>${
+        <div class="md-dialog__headline" id="md-dialog__headline"><md-typo hd-sm>${
           this.headline ? this.headline : ''
         }</md-typo></div>
-        <div class="md3-dialog__body" id="md3-dialog__body"><slot name="body"></slot></div>
-        <footer class="md3-dialog__actions" id="md3-dialog__actions">
+        <div class="md-dialog__body" id="md-dialog__body"><slot name="body"></slot></div>
+        <footer class="md-dialog__actions" id="md-dialog__actions">
           <span><slot name="secondaryAction"></slot></span>
           <span><slot name="primaryAction"></slot></span>
         </footer>
@@ -89,12 +89,12 @@ class Dialog extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.backdropE = this.shadowRoot.getElementById('md3-dialog__backdrop');
-    this.dialogE = this.shadowRoot.getElementById('md3-dialog');
-    this.heroIconE = this.shadowRoot.getElementById('md3-dialog__hero-icon');
-    this.headlineE = this.shadowRoot.getElementById('md3-dialog__headline');
-    this.bodyE = this.shadowRoot.getElementById('md3-dialog__body');
-    this.actionsE = this.shadowRoot.getElementById('md3-dialog__actions');
+    this.backdropE = this.shadowRoot.getElementById('md-dialog__backdrop');
+    this.dialogE = this.shadowRoot.getElementById('md-dialog');
+    this.heroIconE = this.shadowRoot.getElementById('md-dialog__hero-icon');
+    this.headlineE = this.shadowRoot.getElementById('md-dialog__headline');
+    this.bodyE = this.shadowRoot.getElementById('md-dialog__body');
+    this.actionsE = this.shadowRoot.getElementById('md-dialog__actions');
     this.primaryActionE = this.shadowRoot.querySelector('[name="primaryAction"]');
     this.secondaryActionE = this.shadowRoot.querySelector('[name="secondaryAction"]');
     this.controllerE = document.getElementById(this.id);
