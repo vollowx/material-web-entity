@@ -6,6 +6,8 @@ import styles from './icon-styles.scss';
  * *Button, Chip, Dialog, FAB and Menu all need this as 'md-icon'*
  */
 class Icon extends HTMLElement {
+  static tagName: string = 'md-icon';
+  
   imgE: HTMLImageElement;
 
   constructor() {
@@ -49,4 +51,7 @@ class Icon extends HTMLElement {
   }
 }
 
+if (!customElements.get(Icon.tagName)) {
+  customElements.define(Icon.tagName, Icon);
+}
 export default Icon;

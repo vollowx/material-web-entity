@@ -6,6 +6,8 @@ import styles from './fab-styles.scss';
  * *For ripple effect, need Ripple with tag 'md-ripple'*
  */
 class FAB extends HTMLElement {
+  static tagName: string = 'md-fab';
+  
   fabE: HTMLButtonElement;
   labelE: HTMLElement;
   slotE: HTMLSlotElement;
@@ -72,4 +74,7 @@ class FAB extends HTMLElement {
   }
 }
 
+if (!customElements.get(FAB.tagName)) {
+  customElements.define(FAB.tagName, FAB);
+}
 export default FAB;

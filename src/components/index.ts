@@ -1,5 +1,6 @@
 import Avatar     from './avatar/avatar';
 import Button     from './button/button';
+import Card       from './card/card';
 import Chip       from './chip/chip';
 import Dialog     from './dialog/dialog';
 import FAB        from './fab/fab';
@@ -9,4 +10,4 @@ import MenuItem   from './menu/menu-item';
 import Ripple     from './ripple/ripple';
 import Typography from './typography/typography';
 
-export { Avatar, Button, Chip, Dialog, FAB, Icon, Menu, MenuItem, Ripple, Typography };
+export { Avatar, Button, Card, Chip, Dialog, FAB, Icon, Menu, MenuItem, Ripple, Typography };

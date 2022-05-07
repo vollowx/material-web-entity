@@ -15,6 +15,8 @@ import styles from './button-styles.scss';
  * *For ripple effect, need Ripple with tag 'md-ripple'*
  */
 class Button extends HTMLElement {
+  static tagName: string = 'md-button';
+  
   buttonE: HTMLButtonElement;
   labelE: HTMLElement;
   slotE: HTMLSlotElement;
@@ -85,4 +87,7 @@ class Button extends HTMLElement {
   }
 }
 
+if (!customElements.get(Button.tagName)) {
+  customElements.define(Button.tagName, Button);
+}
 export default Button;

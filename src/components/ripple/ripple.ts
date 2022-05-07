@@ -6,6 +6,8 @@ import styles from './ripple-styles.scss';
  * Button, Card and Menu are all request define this component as 'md-ripple'
  */
 class Ripple extends HTMLElement {
+  static tagName: string = 'md-ripple';
+  
   parentE: HTMLElement;
   containerE: HTMLElement;
   radius: number;
@@ -133,4 +135,7 @@ class Ripple extends HTMLElement {
   }
 }
 
+if (!customElements.get(Ripple.tagName)) {
+  customElements.define(Ripple.tagName, Ripple);
+}
 export default Ripple;

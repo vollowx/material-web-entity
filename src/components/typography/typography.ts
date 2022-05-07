@@ -4,6 +4,8 @@ import styles from './typography-styles.scss';
  * Typography component.
  */
 class Typography extends HTMLElement {
+  static tagName: string = 'md-typo';
+
   constructor() {
     super();
 
@@ -22,4 +24,7 @@ class Typography extends HTMLElement {
   }
 }
 
+if (!customElements.get(Typography.tagName)) {
+  customElements.define(Typography.tagName, Typography);
+}
 export default Typography;

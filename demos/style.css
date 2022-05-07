@@ -91,7 +91,7 @@ code-example {
   flex-wrap: wrap;
   align-items: center;
   border: 1px solid rgba(var(--md-sys-color-outline), 0.24);
-  border-radius: 24px;
+  border-radius: 16px;
 }
 flex-spacer {
   display: block;

@@ -4,7 +4,7 @@
   z-index: 1000;
 }
 
-:host([open]:not([sub])) .md3-menu__layer {
+:host([open]:not([sub])) .md-menu__layer {
   visibility: visible;
 }
 :host([no-icon]) {
@@ -19,12 +19,12 @@
 :host([dense]) ::slotted(md-menu-item) {
   height: 36px;
 }
-:host([fast]) .md3-menu {
+:host([fast]) .md-menu {
   transition-duration: 0ms;
   transition-delay: 0ms !important;
 }
 
-.md3-menu__layer {
+.md-menu__layer {
   position: fixed;
   top: 0;
   left: 0;
@@ -35,7 +35,7 @@
   -webkit-tap-highlight-color: transparent;
   visibility: hidden;
 }
-.md3-menu {
+.md-menu {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -46,7 +46,7 @@
   background-color: rgb(var(--md-sys-color-surface-variant));
   box-shadow: var(--md-elevation-shadow-2);
   border-radius: 4px;
-  transition: transform 240ms cubic-bezier(0, 0.2, 0, 1), opacity 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 240ms cubic-bezier(0, 0.4, 0.2, 1), opacity 120ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: scale(0.9, 0.9);
   transform-origin: top left;
   opacity: 0;
@@ -55,13 +55,13 @@
   box-sizing: border-box;
   z-index: 1000;
 
-  &.md3-menu--bottom {
+  &.md-menu--bottom {
     transform-origin: bottom left;
   }
-  &.md3-menu--right {
+  &.md-menu--right {
     transform-origin: top right;
   }
-  &.md3-menu--bottom.md3-menu--right {
+  &.md-menu--bottom.md-menu--right {
     transform-origin: bottom right;
   }
 }

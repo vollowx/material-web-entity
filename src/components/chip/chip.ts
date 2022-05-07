@@ -15,6 +15,8 @@ import styles from './chip-styles.scss';
  * *For ripple effect, need Ripple with tag 'md-ripple'*
  */
 class Chip extends HTMLElement {
+  static tagName: string = 'md-chip';
+  
   chipE: HTMLButtonElement;
   labelE: HTMLElement;
   slotE: HTMLSlotElement;
@@ -85,4 +87,7 @@ class Chip extends HTMLElement {
   }
 }
 
+if (!customElements.get(Chip.tagName)) {
+  customElements.define(Chip.tagName, Chip);
+}
 export default Chip;

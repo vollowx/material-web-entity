@@ -6,6 +6,8 @@ import styles from './menu-styles.scss';
  * Description.
  */
 class Menu extends HTMLElement {
+  static tagName: string = 'md-menu';
+  
   menuE: HTMLDivElement;
   controllerE: HTMLElement;
   layerE: HTMLElement;
@@ -222,4 +224,7 @@ class Menu extends HTMLElement {
   }
 }
 
+if (!customElements.get(Menu.tagName)) {
+  customElements.define(Menu.tagName, Menu);
+}
 export default Menu;

@@ -20,14 +20,15 @@
       </nav>
       <nav>
         <div class="little-title">Components</div>
-        <md-button moving-page="avatars" text>Avatars (头像)</md-button>
-        <md-button moving-page="buttons" text>Common buttons (按钮)</md-button>
-        <md-button moving-page="chips" text>Chips (纸片)</md-button>
-        <md-button moving-page="dialogs" text>Dialogs (对话框)</md-button>
-        <md-button moving-page="fabs" text>FABs (浮动操作按钮)</md-button>
-        <md-button moving-page="icons" text>Icons (图标)</md-button>
-        <md-button moving-page="menus" text>Menus (菜单)</md-button>
-        <md-button moving-page="ripples" text>Ripples (波纹)</md-button>
+        <md-button moving-page="avatar" text>Avatar (头像)</md-button>
+        <md-button moving-page="button" text>Common button (按钮)</md-button>
+        <md-button moving-page="card" text>Card (卡片)</md-button>
+        <md-button moving-page="chip" text>Chip (纸片)</md-button>
+        <md-button moving-page="dialog" text>Dialog (对话框)</md-button>
+        <md-button moving-page="fab" text>FAB (浮动操作按钮)</md-button>
+        <md-button moving-page="icon" text>Icon (图标)</md-button>
+        <md-button moving-page="menu" text>Menu (菜单)</md-button>
+        <md-button moving-page="ripple" text>Ripple (波纹)</md-button>
         <md-button moving-page="typography" text>Typography (文字排版)</md-button>
       </nav>
     </aside>
@@ -41,7 +42,7 @@
     <script>
       const toggleThemeBtn = document.querySelector('[theme-toggler]');
       toggleThemeBtn.addEventListener('click', () => {
-        M.toggleTheme();
+        mUtil.toggleTheme();
       });
 
       const mainContainer = document.querySelector('main');

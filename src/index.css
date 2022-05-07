@@ -11,7 +11,15 @@ body {
   margin: 0;
   min-height: 100vh;
   color: rgb(var(--md-sys-color-on-background));
-  background-color: rgb(var(--md-sys-color-surface));
+  background: var(--md-elevation-surface-1);
+}
+body.light-theme {
+  color: rgb(var(--md-sys-color-on-background-light));
+  background: var(--md-elevation-surface-1-light);
+}
+body.dark-theme {
+  color: rgb(var(--md-sys-color-on-background-dark));
+  background: var(--md-elevation-surface-1-dark);
 }
 
 ::-webkit-scrollbar {

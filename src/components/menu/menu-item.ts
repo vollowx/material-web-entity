@@ -7,6 +7,8 @@ import styles from './menu-item-styles.scss';
  * TODO: be 'list-item'
  */
 class MenuItem extends HTMLElement {
+  static tagName: string = 'md-menu-item';
+  
   itemE: HTMLButtonElement;
 
   constructor() {
@@ -60,4 +62,7 @@ class MenuItem extends HTMLElement {
   }
 }
 
+if (!customElements.get(MenuItem.tagName)) {
+  customElements.define(MenuItem.tagName, MenuItem);
+}
 export default MenuItem;

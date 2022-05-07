@@ -11,6 +11,8 @@ import styles from './avatar-styles.scss';
  * ```
  */
 class Avatar extends HTMLElement {
+  static tagName: string = 'md-avatar';
+  
   imgE: HTMLImageElement;
 
   constructor() {
@@ -50,4 +52,7 @@ class Avatar extends HTMLElement {
   }
 }
 
+if (!customElements.get(Avatar.tagName)) {
+  customElements.define(Avatar.tagName, Avatar);
+}
 export default Avatar;

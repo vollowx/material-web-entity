@@ -4,6 +4,8 @@ import styles from './dialog-styles.scss';
  * Dialog component.
  */
 class Dialog extends HTMLElement {
+  static tagName: string = 'md-dialog';
+  
   dialogE: HTMLElement;
   primaryActionE: HTMLSpanElement;
   secondaryActionE: HTMLSpanElement;
@@ -13,6 +15,7 @@ class Dialog extends HTMLElement {
   headlineE: HTMLElement;
   bodyE: HTMLElement;
   actionsE: HTMLElement;
+  
   constructor() {
     super();
 
@@ -151,4 +154,7 @@ class Dialog extends HTMLElement {
   }
 }
 
+if (!customElements.get(Dialog.tagName)) {
+  customElements.define(Dialog.tagName, Dialog);
+}
 export default Dialog;
