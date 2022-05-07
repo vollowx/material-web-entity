@@ -8,7 +8,7 @@ class Dialog extends HTMLElement {
   primaryActionE: HTMLSpanElement;
   secondaryActionE: HTMLSpanElement;
   controllerE: HTMLElement;
-  scrimE: HTMLElement;
+  backdropE: HTMLElement;
   heroIconE: HTMLElement;
   headlineE: HTMLElement;
   bodyE: HTMLElement;
@@ -22,7 +22,7 @@ class Dialog extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
     <style>${styles}</style>
-    <div class="md3-dialog__scrim" id="md3-dialog__scrim"></div>
+    <div class="md3-dialog__backdrop" id="md3-dialog__backdrop"></div>
     <div class="md3-dialog__container">
       <div role="alertdialog" class="md3-dialog" id="md3-dialog" tabindex="-1">
         <div class="md3-dialog__hero-icon" id="md3-dialog__hero-icon"><md-icon>${
@@ -89,7 +89,7 @@ class Dialog extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.scrimE = this.shadowRoot.getElementById('md3-dialog__scrim');
+    this.backdropE = this.shadowRoot.getElementById('md3-dialog__backdrop');
     this.dialogE = this.shadowRoot.getElementById('md3-dialog');
     this.heroIconE = this.shadowRoot.getElementById('md3-dialog__hero-icon');
     this.headlineE = this.shadowRoot.getElementById('md3-dialog__headline');
@@ -103,7 +103,7 @@ class Dialog extends HTMLElement {
     this.secondaryActionE.tabIndex = -1;
 
     this.controllerE.addEventListener('click', () => this.openDialog());
-    this.scrimE.addEventListener('click', () => this.closeDialog());
+    this.backdropE.addEventListener('click', () => this.closeDialog());
     this.primaryActionE.addEventListener('click', () => this.closeDialog());
     this.secondaryActionE.addEventListener('click', () => this.closeDialog());
     this.addEventListener('keydown', (e) => {
@@ -133,7 +133,7 @@ class Dialog extends HTMLElement {
   }
   disconnectedCallback() {
     this.controllerE.removeEventListener('click', () => this.openDialog());
-    this.scrimE.removeEventListener('click', () => this.closeDialog());
+    this.backdropE.removeEventListener('click', () => this.closeDialog());
     this.primaryActionE.removeEventListener('click', () => this.closeDialog());
     this.secondaryActionE.removeEventListener('click', () => this.closeDialog());
     this.removeEventListener('keydown', (e) => {

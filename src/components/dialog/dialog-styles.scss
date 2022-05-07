@@ -3,19 +3,19 @@
   justify-content: center;
   align-items: center;
 }
-.md3-dialog__scrim {
+.md3-dialog__backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(var(--md-sys-color-on-surface-variant), 0.32);
-  transition: opacity 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 120ms cubic-bezier(0, 0, 0, 1);
   pointer-events: none;
   z-index: 12;
   opacity: 0;
 }
-:host([open]) .md3-dialog__scrim {
+:host([open]) .md3-dialog__backdrop {
   pointer-events: auto;
   opacity: 1;
 }
@@ -58,9 +58,6 @@
     opacity: 0;
     transform: scaleY(0.4);
   }
-  40% {
-    opacity: 1;
-  }
   100% {
     transform: scaleY(1);
     pointer-events: all;
@@ -69,16 +66,14 @@
 @keyframes out {
   0% {
     opacity: 1;
-    transform: scaleY(1);
   }
   100% {
     opacity: 0;
-    transform: scaleY(1);
     pointer-events: none;
   }
 }
 :host([open]) .md3-dialog {
-  animation: in 240ms cubic-bezier(0, 0, 0.2, 1) forwards;
+  animation: in 360ms cubic-bezier(0, 0.2, 0, 1) forwards;
 }
 .md3-dialog > * {
   padding-top: 24px;
