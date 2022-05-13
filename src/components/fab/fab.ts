@@ -1,26 +1,15 @@
-import styles from './fab-styles.scss';
+import BaseButton from '../base/button';
+import M3FABStyles from './fab-styles.scss';
 
 /**
- * FAB (Floating action button) component.
- *
- * *For ripple effect, need Ripple with tag 'md-ripple'*
+ * Floating action button component.
  */
-class FAB extends HTMLElement {
+class M3FAB extends BaseButton {
   static tagName: string = 'md-fab';
-  
-  fabE: HTMLButtonElement;
-  labelE: HTMLElement;
-  slotE: HTMLSlotElement;
 
-  constructor() {
-    super();
-
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-  }
-
-  protected render(): void {
-    this.shadowRoot.innerHTML = `
-    <style>${styles}</style>
+  protected render(): string {
+    return `
+    <style>${M3FABStyles}</style>
     <button class="md-fab" id="md-fab" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
       <span class="md-fab__label" id="md-fab__label">${this.label ? this.label : ''}</span>
@@ -29,52 +18,18 @@ class FAB extends HTMLElement {
     `;
   }
 
-  get label() {
-    return this.getAttribute('label');
-  }
-  set label(value: string) {
-    this.setAttribute('label', value);
-  }
-  get disabled() {
-    return this.hasAttribute('disabled');
-  }
-  set disabled(value: boolean) {
-    if (value) {
-      this.setAttribute('disabled', '');
-    } else {
-      this.removeAttribute('disabled');
-    }
-  }
-  get tabIndex() {
-    return this.fabE.tabIndex;
-  }
-  set tabIndex(value: number) {
-    this.fabE.tabIndex = value;
-  }
-
   static get observedAttributes() {
     return ['label', 'disabled', 'loading'];
   }
   connectedCallback() {
-    this.render();
+    this.shadowRoot.innerHTML = this.render();
 
-    this.fabE = this.shadowRoot.getElementById('md-fab') as HTMLButtonElement;
-    this.labelE = this.shadowRoot.getElementById('md-fab__label');
-    this.slotE = this.shadowRoot.querySelector('slot');
-  }
-  attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {
-    if (attrName === 'label' && this.fabE) {
-      if (newVal) {
-        this.labelE.textContent = newVal;
-      }
-    }
-    if (attrName === 'disabled' && this.fabE) {
-      this.fabE.disabled = this.disabled;
-    }
+    this.buttonNode = this.shadowRoot.getElementById('md-fab') as HTMLButtonElement;
+    this.labelNode = this.shadowRoot.getElementById('md-fab__label') as HTMLElement;
   }
 }
 
-if (!customElements.get(FAB.tagName)) {
-  customElements.define(FAB.tagName, FAB);
+if (!customElements.get(M3FAB.tagName)) {
+  customElements.define(M3FAB.tagName, M3FAB);
 }
-export default FAB;
+export default M3FAB;

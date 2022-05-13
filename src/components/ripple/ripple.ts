@@ -7,7 +7,7 @@ import styles from './ripple-styles.scss';
  */
 class Ripple extends HTMLElement {
   static tagName: string = 'md-ripple';
-  
+
   parentE: HTMLElement;
   containerE: HTMLElement;
   radius: number;
@@ -53,9 +53,6 @@ class Ripple extends HTMLElement {
       `;
     }, 0);
   }
-  /**
-   * Remove the active layer
-   */
   removeActiveLayer(_ripple: HTMLElement) {
     if (_ripple) {
       if (
@@ -76,12 +73,21 @@ class Ripple extends HTMLElement {
       }
     }
   }
-  /**
-   * Remove all of the active layers
-   */
   removeAllActiveLayers() {
     let _ripples = this.containerE.querySelectorAll('.md-ripple__element');
     _ripples.forEach((_ripple: HTMLElement) => this.removeActiveLayer(_ripple));
+  }
+  addHoverLayer() {
+    this.containerE.classList.add('md-ripple--hover');
+  }
+  removeHoverLayer() {
+    this.containerE.classList.remove('md-ripple--hover');
+  }
+  addFocusLayer() {
+    this.containerE.classList.add('md-ripple--focus');
+  }
+  removeFocusLayer() {
+    this.containerE.classList.remove('md-ripple--focus');
   }
 
   get unbounded() {
@@ -129,6 +135,20 @@ class Ripple extends HTMLElement {
     this.parentE.addEventListener('mouseup', () => this.removeAllActiveLayers());
     this.parentE.addEventListener('touchmove', () => this.removeAllActiveLayers());
     this.parentE.addEventListener('touchend', () => this.removeAllActiveLayers());
+
+    this.parentE.addEventListener('mouseover', () => this.addHoverLayer());
+    this.parentE.addEventListener('mouseout', () => this.removeHoverLayer());
+    document.addEventListener('keypress', () => {
+      if (
+        document.activeElement.contains(this.parentE) ||
+        this.parentE.contains(document.activeElement) ||
+        this.parentE == document.activeElement ||
+        (this.parentE.parentNode as ShadowRoot).host == document.activeElement
+      ) {
+        this.addFocusLayer();
+      }
+    });
+    this.parentE.addEventListener('blur', () => this.removeFocusLayer());
   }
   disconnectedCallback() {
     this.parentE.removeEventListener('pointerdown', (event) => this.addActiveLayer(event));
