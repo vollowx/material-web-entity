@@ -1,4 +1,4 @@
-import BaseButton from '../base/button';
+import BaseButtonLabeled from '../base/button-labeled';
 import M3ButtonStyles from './button-styles.scss';
 
 /**
@@ -14,7 +14,7 @@ import M3ButtonStyles from './button-styles.scss';
  * </md-button>
  * ```
  */
-class M3Button extends BaseButton {
+class M3Button extends BaseButtonLabeled {
   static tagName: string = 'md-button';
 
   protected override render(): string {

@@ -1,4 +1,4 @@
-import BaseButton from '../base/button';
+import BaseButtonLabeled from '../base/button-labeled';
 import M3ChipStyles from './chip-styles.scss';
 
 /**
@@ -14,7 +14,7 @@ import M3ChipStyles from './chip-styles.scss';
  * </md-chip>
  * ```
  */
-class M3Chip extends BaseButton {
+class M3Chip extends BaseButtonLabeled {
   static tagName: string = 'md-chip';
 
   protected override render(): string {

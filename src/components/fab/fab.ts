@@ -1,10 +1,10 @@
-import BaseButton from '../base/button';
+import BaseButtonLabeled from '../base/button-labeled';
 import M3FABStyles from './fab-styles.scss';
 
 /**
  * Floating action button component.
  */
-class M3FAB extends BaseButton {
+class M3FAB extends BaseButtonLabeled {
   static tagName: string = 'md-fab';
 
   protected render(): string {
