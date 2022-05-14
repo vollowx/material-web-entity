@@ -19,11 +19,7 @@ class M3TextField extends BaseTextField {
     this.nativeNode = this.shadowRoot.getElementById('md-text-field__input') as HTMLInputElement;
     this.containerNode = this.shadowRoot.getElementById('md-text-field') as HTMLElement;
     this.helpTextNode = this.shadowRoot.getElementById('md-text-field__help-text') as HTMLElement;
-    this.nativeNode.addEventListener('focus', () => this.onFocus());
-    this.nativeNode.addEventListener('blur', () => this.onBlur());
-    this.nativeNode.addEventListener('change', () => this.onChange());
-    this.nativeNode.addEventListener('keydown', () => this.onTempChange());
-    this.nativeNode.addEventListener('keyup', () => this.onTempChange());
+    this.binds();
     this.onTempChange();
     this.onChange();
   }
@@ -35,9 +31,7 @@ class M3TextField extends BaseTextField {
       this.nativeNode = this.shadowRoot.getElementById('md-text-field__input') as HTMLInputElement;
       this.containerNode = this.shadowRoot.getElementById('md-text-field') as HTMLElement;
       this.helpTextNode = this.shadowRoot.getElementById('md-text-field__help-text') as HTMLElement;
-      this.nativeNode.addEventListener('focus', () => this.onFocus());
-      this.nativeNode.addEventListener('blur', () => this.onBlur());
-      this.nativeNode.addEventListener('change', () => this.onChange());
+      this.binds();
       this.onTempChange();
       this.onChange();
     }
@@ -67,6 +61,14 @@ class M3TextField extends BaseTextField {
       </fieldset>
     </label>
     <p class="md-text-field__help-text" id="md-text-field__help-text">${this.helpText}</p>`;
+  }
+
+  protected binds() {
+    this.nativeNode.addEventListener('focus', () => this.onFocus());
+    this.nativeNode.addEventListener('blur', () => this.onBlur());
+    this.nativeNode.addEventListener('change', () => this.onChange());
+    this.nativeNode.addEventListener('keydown', () => this.onTempChange());
+    this.nativeNode.addEventListener('keyup', () => this.onTempChange());
   }
 
   protected override exFocus() {

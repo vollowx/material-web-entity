@@ -17,6 +17,7 @@ class BaseTextField extends HTMLElement {
     'value',
     'autocomplete',
     'maxlength',
+    'autofocus',
   ];
   static get observedAttributes() {
     return [...this.observedAttributesDefault];
@@ -55,6 +56,8 @@ class BaseTextField extends HTMLElement {
         this.nativeNode.autocomplete = this.autocomplete;
       } else if (name === 'maxlength') {
         this.nativeNode.maxLength = this.maxlength;
+      } else if (name === 'autofocus') {
+        this.nativeNode.autofocus = this.autofocus;
       }
       this.attributeChangedCallbackExtend(name, oldValue, newValue);
     }
@@ -87,6 +90,7 @@ class BaseTextField extends HTMLElement {
       ${this.value ? 'value="' + this.value + '"' : ''}
       ${this.autocomplete ? 'autocomplete="' + this.autocomplete + '"' : ''}
       ${this.maxlength ? 'maxlength="' + this.maxlength + '"' : ''}
+      ${this.autofocus ? 'autofocus' : ''}
     />`;
   }
 
