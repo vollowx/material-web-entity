@@ -102,8 +102,15 @@ class M3TextField extends BaseTextField {
   set helpText(value: string) {
     this.setAttribute('help-text', value);
   }
-  focus() {
-    this.nativeNode.focus();
+  get error(): boolean {
+    return this.hasAttribute('error');
+  }
+  set error(value: boolean) {
+    if (value) {
+      this.setAttribute('error', '');
+    } else {
+      this.removeAttribute('error');
+    }
   }
 }
 

@@ -177,6 +177,9 @@ class BaseTextField extends HTMLElement {
   set maxlength(value: number) {
     this.setAttribute('maxlength', value.toString());
   }
+  focus(): void {
+    this.nativeNode.focus();
+  }
 }
 
 export default BaseTextField;
