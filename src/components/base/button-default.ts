@@ -5,7 +5,7 @@
  */
 class BaseButton extends HTMLElement {
   static tagName: string;
-  buttonNode: HTMLButtonElement;
+  nativeNode: HTMLButtonElement;
 
   static get observedAttributes() {
     return ['disabled'];
@@ -19,12 +19,12 @@ class BaseButton extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.buttonNode = this.shadowRoot.getElementById('bs-button') as HTMLButtonElement;
+    this.nativeNode = this.shadowRoot.getElementById('bs-button') as HTMLButtonElement;
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (this.buttonNode) {
+    if (this.nativeNode) {
       if (name === 'disabled') {
-        this.buttonNode.disabled = this.disabled;
+        this.nativeNode.disabled = this.disabled;
       }
       this.attributeChangedCallbackExtend(name, oldValue, newValue);
     }
@@ -57,13 +57,13 @@ class BaseButton extends HTMLElement {
     }
   }
   get tabIndex(): number {
-    return this.buttonNode.tabIndex;
+    return this.nativeNode.tabIndex;
   }
   set tabIndex(value: number) {
-    this.buttonNode.tabIndex = value;
+    this.nativeNode.tabIndex = value;
   }
   focus() {
-    this.buttonNode.focus();
+    this.nativeNode.focus();
   }
 }
 

@@ -18,11 +18,11 @@ class BaseButtonLabeled extends BaseButton {
     this.labelNode = this.shadowRoot.getElementById('bs-button__label') as HTMLElement;
   }
   protected override attributeChangedCallbackExtend = (_name: string, _oldValue: string, _newValue: string) => {
-    if (this.buttonNode && this.labelNode) {
+    if (this.nativeNode && this.labelNode) {
       if (_name === 'label') {
         this.labelNode.textContent = _newValue;
       } else if (_name === 'disabled') {
-        this.buttonNode.disabled = this.disabled;
+        this.nativeNode.disabled = this.disabled;
       }
     }
   };

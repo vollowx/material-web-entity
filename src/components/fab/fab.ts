@@ -24,7 +24,7 @@ class M3FAB extends BaseButtonLabeled {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.buttonNode = this.shadowRoot.getElementById('md-fab') as HTMLButtonElement;
+    this.nativeNode = this.shadowRoot.getElementById('md-fab') as HTMLButtonElement;
     this.labelNode = this.shadowRoot.getElementById('md-fab__label') as HTMLElement;
   }
 }

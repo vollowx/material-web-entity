@@ -20,7 +20,7 @@ class M3Button extends BaseButtonLabeled {
   protected override render(): string {
     return `
     <style>${M3ButtonStyles}</style>
-    <button class="md-button"id="md-button"${this.disabled ? 'disabled' : ''}>
+    <button class="md-button" id="md-button" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
       <span class="md-button__label" id="md-button__label">${this.label ? this.label : ''}</span>
       <slot></slot>
@@ -34,7 +34,7 @@ class M3Button extends BaseButtonLabeled {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.buttonNode = this.shadowRoot.getElementById('md-button') as HTMLButtonElement;
+    this.nativeNode = this.shadowRoot.getElementById('md-button') as HTMLButtonElement;
     this.labelNode = this.shadowRoot.getElementById('md-button__label') as HTMLElement;
   }
 }

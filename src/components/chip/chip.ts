@@ -34,7 +34,7 @@ class M3Chip extends BaseButtonLabeled {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.buttonNode = this.shadowRoot.getElementById('md-chip') as HTMLButtonElement;
+    this.nativeNode = this.shadowRoot.getElementById('md-chip') as HTMLButtonElement;
     this.labelNode = this.shadowRoot.getElementById('md-chip__label') as HTMLElement;
   }
 }
