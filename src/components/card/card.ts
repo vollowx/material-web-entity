@@ -1,41 +1,39 @@
-import styles from './card-styles.scss';
+import M3CardStyles from './card-styles.scss';
 
 /**
  * Card component
  */
-class Card extends HTMLElement {
+class M3Card extends HTMLElement {
   static tagName: string = 'md-card';
-  
-  cardE: HTMLDivElement;
-  
+  cardNode: HTMLDivElement;
+
+  static get observedAttributes() {
+    return [''];
+  }
+
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
+  connectedCallback() {
+    this.shadowRoot.innerHTML = this.render();
 
-  protected render(): void {
-    this.shadowRoot.innerHTML = `
-    <style>${styles}</style>
+    this.cardNode = this.shadowRoot.getElementById('md-card') as HTMLDivElement;
+  }
+
+  protected render(): string {
+    return `
+    <style>${M3CardStyles}</style>
     <div class="md-card" id="md-card">
       <md-ripple></md-ripple>
       <slot></slot>
     </div>
     `;
   }
-
-  static get observedAttributes() {
-    return [''];
-  }
-
-  connectedCallback() {
-    this.render();
-
-    this.cardE = this.shadowRoot.getElementById('md-card') as HTMLDivElement;
-  }
 }
 
-if (!customElements.get(Card.tagName)) {
-  customElements.define(Card.tagName, Card);
+if (!customElements.get(M3Card.tagName)) {
+  customElements.define(M3Card.tagName, M3Card);
 }
-export default Card;
+export default M3Card;

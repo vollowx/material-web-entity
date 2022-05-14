@@ -1,25 +1,27 @@
-import styles from './menu-item-styles.scss';
+import BaseButton from '../base/button-default';
+import M3MenuItemStyles from './menu-item-styles.scss';
 
 /**
  * MenuItem component.
  *
- * The item in the menu.
  * TODO: be 'list-item'
  */
-class MenuItem extends HTMLElement {
+class M3MenuItem extends BaseButton {
   static tagName: string = 'md-menu-item';
-  
-  itemE: HTMLButtonElement;
 
-  constructor() {
-    super();
+  connectedCallback() {
+    this.shadowRoot.innerHTML = this.render();
 
-    const shadowRoot = this.attachShadow({ mode: 'open' });
+    this.nativeNode = this.shadowRoot.getElementById('md-menu__item') as HTMLButtonElement;
+
+    this.tabIndex = -1;
+    this.nativeNode.addEventListener('focus', () => this.setAttribute('focused', ''));
+    this.nativeNode.addEventListener('blur', () => this.removeAttribute('focused'));
   }
 
-  render() {
-    this.shadowRoot.innerHTML = `
-    <style>${styles}</style>
+  protected override render(): string {
+    return `
+    <style>${M3MenuItemStyles}</style>
     <button class="md-menu__item" id="md-menu__item">
       <md-ripple></md-ripple>
       <slot name="before"></slot>
@@ -29,40 +31,9 @@ class MenuItem extends HTMLElement {
     </button>
     `;
   }
-
-  focus() {
-    this.itemE.focus();
-  }
-
-  get tabIndex() {
-    return this.itemE.tabIndex;
-  }
-  set tabIndex(value: number) {
-    this.itemE.tabIndex = value;
-  }
-  get disabled() {
-    return this.hasAttribute('disabled');
-  }
-  set disabled(value: boolean) {
-    if (value) {
-      this.setAttribute('disabled', '');
-    } else {
-      this.removeAttribute('disabled');
-    }
-  }
-
-  connectedCallback() {
-    this.render();
-
-    this.itemE = this.shadowRoot.getElementById('md-menu__item') as HTMLButtonElement;
-
-    this.tabIndex = -1;
-    this.itemE.addEventListener('focus', () => this.setAttribute('focused', ''));
-    this.itemE.addEventListener('blur', () => this.removeAttribute('focused'));
-  }
 }
 
-if (!customElements.get(MenuItem.tagName)) {
-  customElements.define(MenuItem.tagName, MenuItem);
+if (!customElements.get(M3MenuItem.tagName)) {
+  customElements.define(M3MenuItem.tagName, M3MenuItem);
 }
-export default MenuItem;
+export default M3MenuItem;

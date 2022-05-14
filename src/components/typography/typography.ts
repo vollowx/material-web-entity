@@ -1,9 +1,9 @@
-import styles from './typography-styles.scss';
+import M3TypoStyles from './typography-styles.scss';
 
 /**
  * Typography component.
  */
-class Typography extends HTMLElement {
+class M3Typography extends HTMLElement {
   static tagName: string = 'md-typo';
 
   constructor() {
@@ -14,7 +14,7 @@ class Typography extends HTMLElement {
 
   render() {
     this.shadowRoot.innerHTML += /* html */ `
-    <style>${styles}</style>
+    <style>${M3TypoStyles}</style>
     <slot></slot>
     `;
   }
@@ -24,7 +24,7 @@ class Typography extends HTMLElement {
   }
 }
 
-if (!customElements.get(Typography.tagName)) {
-  customElements.define(Typography.tagName, Typography);
+if (!customElements.get(M3Typography.tagName)) {
+  customElements.define(M3Typography.tagName, M3Typography);
 }
-export default Typography;
+export default M3Typography;

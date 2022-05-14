@@ -1,24 +1,39 @@
-import styles from './icon-styles.scss';
+import M3IconStyles from './icon-styles.scss';
 
 /**
  * Icon component.
- *
- * *Button, Chip, Dialog, FAB and Menu all need this as 'md-icon'*
  */
-class Icon extends HTMLElement {
+class M3Icon extends HTMLElement {
   static tagName: string = 'md-icon';
-  
-  imgE: HTMLImageElement;
+  iconNode: HTMLImageElement;
+
+  static get observedAttributes() {
+    return ['url'];
+  }
 
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
+  connectedCallback() {
+    this.shadowRoot.innerHTML = this.render();
 
-  render() {
-    this.shadowRoot.innerHTML = `
-    <style>${styles}</style>
+    this.iconNode = this.shadowRoot.getElementById('md-icon__img') as HTMLImageElement;
+  }
+  attributeChangedCallback(attrName: string, oldVal: string, newVal: any) {
+    if (attrName === 'url' && this.iconNode) {
+      if (newVal) {
+        this.iconNode.setAttribute('src', newVal);
+      } else {
+        this.iconNode.removeAttribute('src');
+      }
+    }
+  }
+
+  protected render(): string {
+    return `
+    <style>${M3IconStyles}</style>
     <span class="md-icon">
       <slot><img ${this.url ? 'src=' + this.url : ''} class="md-icon__img" id="md-icon__img" /></slot>
     </span>
@@ -31,27 +46,9 @@ class Icon extends HTMLElement {
   set url(value) {
     this.setAttribute('url', value);
   }
-
-  static get observedAttributes() {
-    return ['url'];
-  }
-  connectedCallback() {
-    this.render();
-
-    this.imgE = this.shadowRoot.getElementById('md-icon__img') as HTMLImageElement;
-  }
-  attributeChangedCallback(attrName: string, oldVal: string, newVal: any) {
-    if (attrName === 'url' && this.imgE) {
-      if (newVal) {
-        this.imgE.setAttribute('src', newVal);
-      } else {
-        this.imgE.removeAttribute('src');
-      }
-    }
-  }
 }
 
-if (!customElements.get(Icon.tagName)) {
-  customElements.define(Icon.tagName, Icon);
+if (!customElements.get(M3Icon.tagName)) {
+  customElements.define(M3Icon.tagName, M3Icon);
 }
-export default Icon;
+export default M3Icon;

@@ -1,27 +1,27 @@
-import Avatar from './avatar/avatar';
+import M3Avatar from './avatar/avatar';
 import M3Button from './button/button';
-import Card from './card/card';
+import M3Card from './card/card';
 import M3Chip from './chip/chip';
-import Dialog from './dialog/dialog';
+import M3Dialog from './dialog/dialog';
 import M3FAB from './fab/fab';
-import Icon from './icon/icon';
+import M3Icon from './icon/icon';
 import M3IconButton from './icon-button/icon-button';
-import Menu from './menu/menu';
-import MenuItem from './menu/menu-item';
-import Ripple from './ripple/ripple';
-import Typography from './typography/typography';
+import M3Menu from './menu/menu';
+import M3MenuItem from './menu/menu-item';
+import M3Ripple from './ripple/ripple';
+import M3Typography from './typography/typography';
 
 export {
-  Avatar,
+  M3Avatar,
   M3Button,
-  Card,
+  M3Card,
   M3Chip,
-  Dialog,
+  M3Dialog,
   M3FAB,
-  Icon,
+  M3Icon,
   M3IconButton,
-  Menu,
-  MenuItem,
-  Ripple,
-  Typography
+  M3Menu,
+  M3MenuItem,
+  M3Ripple,
+  M3Typography
 };

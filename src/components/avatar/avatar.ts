@@ -1,4 +1,4 @@
-import styles from './avatar-styles.scss';
+import M3AvatarStyles from './avatar-styles.scss';
 
 /**
  * Avatar component.
@@ -10,20 +10,35 @@ import styles from './avatar-styles.scss';
  * <md-avatar url="theImageUrl"></md-avatar>
  * ```
  */
-class Avatar extends HTMLElement {
+class M3Avatar extends HTMLElement {
   static tagName: string = 'md-avatar';
-  
-  imgE: HTMLImageElement;
+  imageNode: HTMLImageElement;
+
+  static get observedAttributes() {
+    return ['url'];
+  }
 
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
+  connectedCallback() {
+    this.shadowRoot.innerHTML = this.render();
 
-  protected render(): void {
-    this.shadowRoot.innerHTML = `
-    <style>${styles}</style>
+    this.imageNode = this.shadowRoot.getElementById('md-avatar') as HTMLImageElement;
+  }
+  attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {
+    if (this.imageNode) {
+      if (attrName === 'url' && newVal) {
+        this.imageNode.setAttribute('src', newVal);
+      }
+    }
+  }
+
+  protected render(): string {
+    return `
+    <style>${M3AvatarStyles}</style>
     <slot><img ${this.url ? 'src=' + this.url : ''} class="md-avatar" id="md-avatar" /></slot>
     `;
   }
@@ -34,25 +49,9 @@ class Avatar extends HTMLElement {
   set url(value) {
     this.setAttribute('url', value);
   }
-
-  static get observedAttributes() {
-    return ['url'];
-  }
-  connectedCallback() {
-    this.render();
-
-    this.imgE = this.shadowRoot.getElementById('md-avatar') as HTMLImageElement;
-  }
-  attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {
-    if (attrName === 'url' && this.imgE) {
-      if (newVal) {
-        this.imgE.setAttribute('src', newVal);
-      }
-    }
-  }
 }
 
-if (!customElements.get(Avatar.tagName)) {
-  customElements.define(Avatar.tagName, Avatar);
+if (!customElements.get(M3Avatar.tagName)) {
+  customElements.define(M3Avatar.tagName, M3Avatar);
 }
-export default Avatar;
+export default M3Avatar;

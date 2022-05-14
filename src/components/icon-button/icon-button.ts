@@ -1,13 +1,13 @@
 import BaseButton from '../base/button-default';
 import M3IconButtonStyles from './icon-button-styles.scss';
-import Icon from '../icon/icon';
+import M3Icon from '../icon/icon';
 
 /**
  * Icon button component.
  */
 class M3IconButton extends BaseButton {
   static tagName: string = 'md-icon-button';
-  iconNode: Icon;
+  iconNode: M3Icon;
 
   protected override render(): string {
     return `
@@ -27,7 +27,7 @@ class M3IconButton extends BaseButton {
     this.shadowRoot.innerHTML = this.render();
 
     this.nativeNode = this.shadowRoot.getElementById('md-icon-button') as HTMLButtonElement;
-    this.iconNode = this.shadowRoot.querySelector('md-icon') as Icon;
+    this.iconNode = this.shadowRoot.querySelector('md-icon') as M3Icon;
   }
   protected override attributeChangedCallbackExtend = (_name: string, _oldValue: string, _newValue: string) => {
     if (_name === 'icon') {

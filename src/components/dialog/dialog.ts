@@ -1,11 +1,10 @@
-import styles from './dialog-styles.scss';
+import M3DialogStyles from './dialog-styles.scss';
 
 /**
  * Dialog component.
  */
-class Dialog extends HTMLElement {
+class M3Dialog extends HTMLElement {
   static tagName: string = 'md-dialog';
-  
   dialogE: HTMLElement;
   primaryActionE: HTMLSpanElement;
   secondaryActionE: HTMLSpanElement;
@@ -15,82 +14,18 @@ class Dialog extends HTMLElement {
   headlineE: HTMLElement;
   bodyE: HTMLElement;
   actionsE: HTMLElement;
-  
+
+  static get observedAttributes() {
+    return ['open', 'headline', 'hero-icon'];
+  }
+
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
-
-  render() {
-    this.shadowRoot.innerHTML = `
-    <style>${styles}</style>
-    <div class="md-dialog__backdrop" id="md-dialog__backdrop"></div>
-    <div class="md-dialog__container">
-      <div role="alertdialog" class="md-dialog" id="md-dialog" tabindex="-1">
-        <div class="md-dialog__hero-icon" id="md-dialog__hero-icon"><md-icon>${
-          this.heroIcon ? this.heroIcon : ''
-        }</md-icon></div>
-        <div class="md-dialog__headline" id="md-dialog__headline"><md-typo hd-sm>${
-          this.headline ? this.headline : ''
-        }</md-typo></div>
-        <div class="md-dialog__body" id="md-dialog__body"><slot name="body"></slot></div>
-        <footer class="md-dialog__actions" id="md-dialog__actions">
-          <span><slot name="secondaryAction"></slot></span>
-          <span><slot name="primaryAction"></slot></span>
-        </footer>
-      </div>
-    </div>
-    `;
-  }
-
-  get open() {
-    return this.hasAttribute('open');
-  }
-  set open(value: boolean) {
-    if (value) {
-      this.setAttribute('open', '');
-    } else {
-      this.removeAttribute('open');
-    }
-  }
-  get heroIcon() {
-    return this.getAttribute('hero-icon');
-  }
-  set heroIcon(value: string) {
-    this.setAttribute('hero-icon', value);
-  }
-  get headline() {
-    return this.getAttribute('headline');
-  }
-  set headline(value: string) {
-    this.setAttribute('headline', value);
-  }
-
-  /**
-   * Open the dialog.
-   */
-  openDialog() {
-    this.open = true;
-    this.primaryActionE.tabIndex = 0;
-    this.secondaryActionE.tabIndex = 0;
-    (this.querySelector('[slot="primaryAction"]') as HTMLElement).focus();
-  }
-  /**
-   * Close the dialog.
-   */
-  closeDialog() {
-    this.open = false;
-    this.controllerE.focus();
-    this.primaryActionE.tabIndex = -1;
-    this.secondaryActionE.tabIndex = -1;
-  }
-
-  static get observedAttributes() {
-    return ['open', 'headline', 'hero-icon'];
-  }
   connectedCallback() {
-    this.render();
+    this.shadowRoot.innerHTML = this.render();
 
     this.backdropE = this.shadowRoot.getElementById('md-dialog__backdrop');
     this.dialogE = this.shadowRoot.getElementById('md-dialog');
@@ -152,9 +87,67 @@ class Dialog extends HTMLElement {
       }
     });
   }
+
+  protected render(): string {
+    return `
+    <style>${M3DialogStyles}</style>
+    <div class="md-dialog__backdrop" id="md-dialog__backdrop"></div>
+    <div class="md-dialog__container">
+      <div role="alertdialog" class="md-dialog" id="md-dialog" tabindex="-1">
+        <div class="md-dialog__hero-icon" id="md-dialog__hero-icon"><md-icon>${
+          this.heroIcon ? this.heroIcon : ''
+        }</md-icon></div>
+        <div class="md-dialog__headline" id="md-dialog__headline"><md-typo hd-sm>${
+          this.headline ? this.headline : ''
+        }</md-typo></div>
+        <div class="md-dialog__body" id="md-dialog__body"><slot name="body"></slot></div>
+        <footer class="md-dialog__actions" id="md-dialog__actions">
+          <span><slot name="secondaryAction"></slot></span>
+          <span><slot name="primaryAction"></slot></span>
+        </footer>
+      </div>
+    </div>
+    `;
+  }
+
+  openDialog() {
+    this.open = true;
+    this.primaryActionE.tabIndex = 0;
+    this.secondaryActionE.tabIndex = 0;
+    (this.querySelector('[slot="primaryAction"]') as HTMLElement).focus();
+  }
+  closeDialog() {
+    this.open = false;
+    this.controllerE.focus();
+    this.primaryActionE.tabIndex = -1;
+    this.secondaryActionE.tabIndex = -1;
+  }
+
+  get open() {
+    return this.hasAttribute('open');
+  }
+  set open(value: boolean) {
+    if (value) {
+      this.setAttribute('open', '');
+    } else {
+      this.removeAttribute('open');
+    }
+  }
+  get heroIcon() {
+    return this.getAttribute('hero-icon');
+  }
+  set heroIcon(value: string) {
+    this.setAttribute('hero-icon', value);
+  }
+  get headline() {
+    return this.getAttribute('headline');
+  }
+  set headline(value: string) {
+    this.setAttribute('headline', value);
+  }
 }
 
-if (!customElements.get(Dialog.tagName)) {
-  customElements.define(Dialog.tagName, Dialog);
+if (!customElements.get(M3Dialog.tagName)) {
+  customElements.define(M3Dialog.tagName, M3Dialog);
 }
-export default Dialog;
+export default M3Dialog;

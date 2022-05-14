@@ -1,11 +1,11 @@
-import styles from './ripple-styles.scss';
+import M3RippleStyles from './ripple-styles.scss';
 
 /**
  * Ripple component.
  *
  * Button, Card and Menu are all request define this component as 'md-ripple'
  */
-class Ripple extends HTMLElement {
+class M3Ripple extends HTMLElement {
   static tagName: string = 'md-ripple';
 
   parentE: HTMLElement;
@@ -21,7 +21,7 @@ class Ripple extends HTMLElement {
 
   render() {
     this.shadowRoot.innerHTML = /* html */ `
-    <style>${styles}</style>
+    <style>${M3RippleStyles}</style>
     <div class="md-ripple__container" id="md-ripple__container"></div>
     `;
   }
@@ -155,7 +155,7 @@ class Ripple extends HTMLElement {
   }
 }
 
-if (!customElements.get(Ripple.tagName)) {
-  customElements.define(Ripple.tagName, Ripple);
+if (!customElements.get(M3Ripple.tagName)) {
+  customElements.define(M3Ripple.tagName, M3Ripple);
 }
-export default Ripple;
+export default M3Ripple;
