@@ -8,7 +8,7 @@ class BaseTextField extends HTMLElement {
   nativeNode: HTMLInputElement;
 
   static get observedAttributes() {
-    return ['disabled', 'type', 'readonly', 'required', 'placeholder', 'value'];
+    return ['disabled', 'type', 'readonly', 'required', 'placeholder', 'value', 'autocomplete'];
   }
 
   constructor() {
@@ -35,6 +35,8 @@ class BaseTextField extends HTMLElement {
         this.nativeNode.placeholder = this.placeholder;
       } else if (name === 'value') {
         this.nativeNode.value = this.value;
+      } else if (name === 'autocomplete') {
+        this.nativeNode.autocomplete = this.autocomplete;
       }
       this.attributeChangedCallbackExtend(name, oldValue, newValue);
     }
@@ -51,16 +53,22 @@ class BaseTextField extends HTMLElement {
         -webkit-tap-highlight-color: transparent;
       }
     </style>
+    ${this.renderInput('bs-text-field')}
+    `;
+  }
+  protected renderInput(identifier: string): string {
+    return `
     <input
-      class="bs-text-field"
-      id="bs-text-field"
+      class="${identifier}"
+      id="${identifier}"
       ${this.disabled ? 'disabled' : ''}
       ${this.type ? 'type="' + this.type + '"' : ''}
       ${this.readonly ? 'readonly' : ''}
       ${this.required ? 'required' : ''}
       ${this.placeholder ? 'placeholder="' + this.placeholder + '"' : ''}
-      ${this.value ? 'value="' + this.value + '"' : ''}>
-    `;
+      ${this.value ? 'value="' + this.value + '"' : ''}
+      ${this.autocomplete ? 'autocomplete="' + this.autocomplete + '"' : ''}
+    />`;
   }
 
   get disabled(): boolean {
@@ -110,6 +118,12 @@ class BaseTextField extends HTMLElement {
   }
   set value(value: string) {
     this.setAttribute('value', value);
+  }
+  get autocomplete(): string {
+    return this.getAttribute('autocomplete');
+  }
+  set autocomplete(value: string) {
+    this.setAttribute('autocomplete', value);
   }
 }
 
