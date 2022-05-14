@@ -7,12 +7,18 @@ import M3TextFieldStyles from './text-field-styles.scss';
 class M3TextField extends BaseTextField {
   static tagName: string = 'md-text-field';
   containerNode: HTMLElement;
+  helpTextNode: HTMLElement;
+
+  static get observedAttributes() {
+    return ['help-text', 'disabled', 'type', 'readonly', 'required', 'placeholder', 'value', 'autocomplete'];
+  }
 
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
     this.nativeNode = this.shadowRoot.getElementById('md-text-field__input') as HTMLInputElement;
     this.containerNode = this.shadowRoot.getElementById('md-text-field') as HTMLElement;
+    this.helpTextNode = this.shadowRoot.getElementById('md-text-field__help-text') as HTMLElement;
     this.nativeNode.addEventListener('focus', () => {
       this.containerNode.classList.add('md-text-field--keep');
     });
@@ -22,6 +28,11 @@ class M3TextField extends BaseTextField {
       }
     });
   }
+  attributeChangedCallbackExtend = (_name: string, _oldValue: string, _newValue: string) => {
+    if (_name === 'help-text') {
+      this.helpTextNode.textContent = this.helpText;
+    }
+  };
 
   protected override render(): string {
     return this.hasAttribute('outlined') ? this.renderOutlined() : this.renderFilled();
@@ -33,7 +44,8 @@ class M3TextField extends BaseTextField {
       <span class="md-text-field__label">${this.label}</span>
       ${this.renderInput('md-text-field__input')}
       <span class="md-text-field__underline"></span>
-    </label>`;
+    </label>
+    <p class="md-text-field__help-text" id="md-text-field__help-text">${this.helpText}</p>`;
   }
   protected renderOutlined(): string {
     return `
@@ -41,7 +53,8 @@ class M3TextField extends BaseTextField {
     <label class="md-text-field" id="md-text-field">
       <span class="md-text-field__label">${this.label}</span>
       ${this.renderInput('md-text-field__input')}
-    </label>`;
+    </label>
+    <p class="md-text-field__help-text" id="md-text-field__help-text">${this.helpText}</p>`;
   }
 
   get label(): string {
@@ -49,6 +62,12 @@ class M3TextField extends BaseTextField {
   }
   set label(value: string) {
     this.setAttribute('label', value);
+  }
+  get helpText(): string {
+    return this.getAttribute('help-text') || '';
+  }
+  set helpText(value: string) {
+    this.setAttribute('help-text', value);
   }
   focus() {
     this.nativeNode.focus();
