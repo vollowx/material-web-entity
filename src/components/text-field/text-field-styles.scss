@@ -50,6 +50,7 @@
   pointer-events: none;
   user-select: none;
 }
+.md-text-field--focused .md-text-field__label,
 .md-text-field--keep .md-text-field__label {
   transform: translate(12px, 7px) scale(0.75);
 }
@@ -89,7 +90,7 @@
   transform: scaleX(0);
   transition: 180ms cubic-bezier(0.4, 0, 0.2, 1) transform;
 }
-.md-text-field--keep .md-text-field__underline::after {
+.md-text-field--focused .md-text-field__underline::after {
   transform: scaleX(1);
 }
 .md-text-field__help-text {
@@ -104,4 +105,69 @@
 }
 :host(:not([help-text])) .md-text-field__help-text {
   display: none;
+}
+:host([outlined]) .md-text-field {
+  background-color: transparent;
+  border-radius: 4px;
+
+  &::before {
+    display: none;
+  }
+}
+:host([outlined]) .md-text-field__input {
+  padding: 15.5px 15px;
+}
+.md-text-field__border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 2px);
+  height: 100%;
+  padding: 0 6px;
+  border-radius: inherit;
+  border: 1px solid rgb(var(--md-sys-color-on-surface-variant));
+  transition: 180ms cubic-bezier(0.4, 0, 0.2, 1) border-color;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+.md-text-field:hover .md-text-field__border {
+  border-color: rgb(var(--md-sys-color-on-surface));
+}
+.md-text-field--focused .md-text-field__border {
+  border-width: 2px;
+  border-color: rgb(var(--md-sys-color-primary)) !important;
+}
+.md-text-field__label-keeper {
+  display: none;
+  padding: 0 5px;
+  color: transparent;
+  font-family: var(--md-sys-typescale-overline-font);
+  font-weight: var(--md-sys-typescale-overline-weight);
+  font-size: var(--md-sys-typescale-overline-size);
+  line-height: var(--md-sys-typescale-overline-line-height);
+  letter-spacing: var(--md-sys-typescale-overline-tracking);
+  pointer-events: none;
+  user-select: none;
+}
+.md-text-field--keep,
+.md-text-field--focused {
+  & .md-text-field__border {
+    margin-top: -0.5em;
+    height: calc(100% + 0.5em);
+  }
+  & .md-text-field__label-keeper {
+    display: initial !important;
+  }
+}
+.md-text-field--focused {
+  & .md-text-field__label {
+    color: rgb(var(--md-sys-color-primary));
+  }
+}
+:host([outlined]) .md-text-field__label {
+  transform: translate(15px, 16px) scale(1);
+}
+:host([outlined]) .md-text-field--focused .md-text-field__label,
+:host([outlined]) .md-text-field--keep .md-text-field__label {
+  transform: translate(15px, calc(-0.5em - 1px)) scale(0.75);
 }

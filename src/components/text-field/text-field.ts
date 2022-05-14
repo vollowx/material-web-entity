@@ -10,7 +10,7 @@ class M3TextField extends BaseTextField {
   helpTextNode: HTMLElement;
 
   static get observedAttributes() {
-    return ['help-text', 'disabled', 'type', 'readonly', 'required', 'placeholder', 'value', 'autocomplete'];
+    return ['outlined', 'help-text', ...this.observedAttributesDefault];
   }
 
   connectedCallback() {
@@ -19,18 +19,24 @@ class M3TextField extends BaseTextField {
     this.nativeNode = this.shadowRoot.getElementById('md-text-field__input') as HTMLInputElement;
     this.containerNode = this.shadowRoot.getElementById('md-text-field') as HTMLElement;
     this.helpTextNode = this.shadowRoot.getElementById('md-text-field__help-text') as HTMLElement;
-    this.nativeNode.addEventListener('focus', () => {
-      this.containerNode.classList.add('md-text-field--keep');
-    });
-    this.nativeNode.addEventListener('blur', () => {
-      if (this.nativeNode.value === '') {
-        this.containerNode.classList.remove('md-text-field--keep');
-      }
-    });
+    this.nativeNode.addEventListener('focus', () => this.onFocus());
+    this.nativeNode.addEventListener('blur', () => this.onBlur());
+    this.nativeNode.addEventListener('change', () => this.onChange());
   }
   attributeChangedCallbackExtend = (_name: string, _oldValue: string, _newValue: string) => {
     if (_name === 'help-text') {
       this.helpTextNode.textContent = this.helpText;
+    } else if (_name === 'outlined') {
+      this.nativeNode.removeEventListener('focus', this.onFocus);
+      this.nativeNode.removeEventListener('blur', this.onBlur);
+      this.nativeNode.removeEventListener('change', this.onChange);
+      this.shadowRoot.innerHTML = this.render();
+      this.nativeNode = this.shadowRoot.getElementById('md-text-field__input') as HTMLInputElement;
+      this.containerNode = this.shadowRoot.getElementById('md-text-field') as HTMLElement;
+      this.helpTextNode = this.shadowRoot.getElementById('md-text-field__help-text') as HTMLElement;
+      this.nativeNode.addEventListener('focus', () => this.onFocus());
+      this.nativeNode.addEventListener('blur', () => this.onBlur());
+      this.nativeNode.addEventListener('change', () => this.onChange());
     }
   };
 
@@ -53,8 +59,25 @@ class M3TextField extends BaseTextField {
     <label class="md-text-field" id="md-text-field">
       <span class="md-text-field__label">${this.label}</span>
       ${this.renderInput('md-text-field__input')}
+      <fieldset class="md-text-field__border">
+        <legend class="md-text-field__label-keeper">${this.label}</legend>
+      </fieldset>
     </label>
     <p class="md-text-field__help-text" id="md-text-field__help-text">${this.helpText}</p>`;
+  }
+
+  protected onFocus() {
+    this.containerNode.classList.add('md-text-field--focused');
+  }
+  protected onBlur() {
+    this.containerNode.classList.remove('md-text-field--focused');
+  }
+  protected onChange() {
+    if (this.nativeNode.value === '') {
+      this.containerNode.classList.remove('md-text-field--keep');
+    } else {
+      this.containerNode.classList.add('md-text-field--keep');
+    }
   }
 
   get label(): string {

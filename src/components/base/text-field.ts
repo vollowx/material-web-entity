@@ -7,8 +7,9 @@ class BaseTextField extends HTMLElement {
   static tagName: string;
   nativeNode: HTMLInputElement;
 
+  static observedAttributesDefault = ['disabled', 'type', 'readonly', 'required', 'placeholder', 'value', 'autocomplete'];
   static get observedAttributes() {
-    return ['disabled', 'type', 'readonly', 'required', 'placeholder', 'value', 'autocomplete'];
+    return [...this.observedAttributesDefault];
   }
 
   constructor() {
