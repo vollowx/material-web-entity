@@ -33,9 +33,6 @@
     opacity: 0.08;
   }
 }
-:host(.focus-visible) .md-text-field::before {
-  opacity: 0.12;
-}
 .md-text-field__label {
   position: absolute;
   color: rgb(var(--md-sys-color-on-surface-variant));

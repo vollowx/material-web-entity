@@ -6,6 +6,7 @@
 class BaseTextField extends HTMLElement {
   static tagName: string;
   nativeNode: HTMLInputElement;
+  tempValue: string;
 
   static observedAttributesDefault = [
     'disabled',
@@ -15,6 +16,7 @@ class BaseTextField extends HTMLElement {
     'placeholder',
     'value',
     'autocomplete',
+    'maxlength',
   ];
   static get observedAttributes() {
     return [...this.observedAttributesDefault];
@@ -32,6 +34,8 @@ class BaseTextField extends HTMLElement {
     this.nativeNode.addEventListener('focus', () => this.onFocus());
     this.nativeNode.addEventListener('blur', () => this.onBlur());
     this.nativeNode.addEventListener('change', () => this.onChange());
+    this.nativeNode.addEventListener('keydown', () => this.onTempChange());
+    this.nativeNode.addEventListener('keyup', () => this.onTempChange());
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.nativeNode) {
@@ -49,6 +53,8 @@ class BaseTextField extends HTMLElement {
         this.nativeNode.value = this.value;
       } else if (name === 'autocomplete') {
         this.nativeNode.autocomplete = this.autocomplete;
+      } else if (name === 'maxlength') {
+        this.nativeNode.maxLength = this.maxlength;
       }
       this.attributeChangedCallbackExtend(name, oldValue, newValue);
     }
@@ -80,6 +86,7 @@ class BaseTextField extends HTMLElement {
       ${this.placeholder ? 'placeholder="' + this.placeholder + '"' : ''}
       ${this.value ? 'value="' + this.value + '"' : ''}
       ${this.autocomplete ? 'autocomplete="' + this.autocomplete + '"' : ''}
+      ${this.maxlength ? 'maxlength="' + this.maxlength + '"' : ''}
     />`;
   }
 
@@ -99,6 +106,12 @@ class BaseTextField extends HTMLElement {
     this.exChange();
   }
   protected exChange() {}
+  protected onTempChange() {
+    this.dispatchEvent(new CustomEvent('temp-change'));
+    this.tempValue = this.nativeNode.value;
+    this.exTempChange();
+  }
+  protected exTempChange() {}
 
   get disabled(): boolean {
     return this.hasAttribute('disabled');
@@ -153,6 +166,12 @@ class BaseTextField extends HTMLElement {
   }
   set autocomplete(value: string) {
     this.setAttribute('autocomplete', value);
+  }
+  get maxlength(): number {
+    return this.getAttribute('maxlength') ? parseInt(this.getAttribute('maxlength')) : 0;
+  }
+  set maxlength(value: number) {
+    this.setAttribute('maxlength', value.toString());
   }
 }
 

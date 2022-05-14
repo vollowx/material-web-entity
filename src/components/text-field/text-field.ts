@@ -22,6 +22,10 @@ class M3TextField extends BaseTextField {
     this.nativeNode.addEventListener('focus', () => this.onFocus());
     this.nativeNode.addEventListener('blur', () => this.onBlur());
     this.nativeNode.addEventListener('change', () => this.onChange());
+    this.nativeNode.addEventListener('keydown', () => this.onTempChange());
+    this.nativeNode.addEventListener('keyup', () => this.onTempChange());
+    this.onTempChange();
+    this.onChange();
   }
   attributeChangedCallbackExtend = (_name: string, _oldValue: string, _newValue: string) => {
     if (_name === 'help-text') {
@@ -34,6 +38,7 @@ class M3TextField extends BaseTextField {
       this.nativeNode.addEventListener('focus', () => this.onFocus());
       this.nativeNode.addEventListener('blur', () => this.onBlur());
       this.nativeNode.addEventListener('change', () => this.onChange());
+      this.onTempChange();
       this.onChange();
     }
   };
@@ -75,6 +80,11 @@ class M3TextField extends BaseTextField {
       this.containerNode.classList.remove('md-text-field--keep');
     } else {
       this.containerNode.classList.add('md-text-field--keep');
+    }
+  }
+  protected override exTempChange() {
+    if (this.maxlength) {
+      this.setAttribute('help-text', `${this.nativeNode.value.length}/${this.maxlength}`);
     }
   }
 
