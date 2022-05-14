@@ -1,17 +1,26 @@
 <md-typo rule="region" display-medium>Text field (文本框)</md-typo>
 
+<md-typo rule="region" headline-medium>Filled</md-typo>
+<md-typo body-medium>填充样式</md-typo>
 <code-example rule="region">
   <md-text-field m-8 label="Text field"></md-text-field>
   <md-text-field m-8 label="Password" type="password"></md-text-field>
   <md-text-field m-8 label="Max length" maxlength="20"></md-text-field>
   <md-text-field m-8 label="Help text" help-text="Help text"></md-text-field>
-  <md-text-field m-8 label="Error" error help-text="Something goes wrong..."></md-text-field>
 </code-example>
 
+<md-typo rule="region" headline-medium>Outlined</md-typo>
+<md-typo body-medium>边框样式</md-typo>
 <code-example rule="region">
   <md-text-field m-8 outlined label="Text field"></md-text-field>
   <md-text-field m-8 outlined label="Password" type="password"></md-text-field>
   <md-text-field m-8 outlined label="Max length" maxlength="20"></md-text-field>
   <md-text-field m-8 outlined label="Help text" help-text="Help text"></md-text-field>
-  <md-text-field m-8 outlined label="Error" error help-text="Something goes wrong..."></md-text-field>
+</code-example>
+
+<md-typo rule="region" headline-medium>Error</md-typo>
+<md-typo body-medium>错误状态</md-typo>
+<code-example rule="region">
+  <md-text-field m-8 label="Error" error value="Error text" help-text="Something goes wrong..."></md-text-field>
+  <md-text-field m-8 outlined label="Error" error value="Error text" help-text="Something goes wrong..."></md-text-field>
 </code-example>
