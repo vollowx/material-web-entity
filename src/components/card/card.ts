@@ -8,7 +8,7 @@ class M3Card extends HTMLElement {
   cardNode: HTMLDivElement;
 
   static get observedAttributes() {
-    return [''];
+    return ['reactable'];
   }
 
   constructor() {
@@ -21,15 +21,38 @@ class M3Card extends HTMLElement {
 
     this.cardNode = this.shadowRoot.getElementById('md-card') as HTMLDivElement;
   }
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (this.cardNode) {
+      if (name === 'reactable') {
+        this.cardNode.tabIndex = this.reactable ? 0 : -1;
+      }
+    }
+  }
 
   protected render(): string {
     return `
     <style>${M3CardStyles}</style>
-    <div class="md-card" id="md-card">
+    <div class="md-card" id="md-card" tabindex="${this.reactable ? 0 : -1}">
       <md-ripple></md-ripple>
       <slot></slot>
     </div>
     `;
+  }
+
+  get reactable(): boolean {
+    return this.hasAttribute('reactable');
+  }
+  set reactable(value: boolean) {
+    if (value) {
+      this.setAttribute('reactable', '');
+    } else {
+      this.removeAttribute('reactable');
+    }
+  }
+  focus(): void {
+    if (this.reactable) {
+      this.cardNode.focus();
+    }
   }
 }
 
