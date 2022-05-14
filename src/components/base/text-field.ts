@@ -7,7 +7,15 @@ class BaseTextField extends HTMLElement {
   static tagName: string;
   nativeNode: HTMLInputElement;
 
-  static observedAttributesDefault = ['disabled', 'type', 'readonly', 'required', 'placeholder', 'value', 'autocomplete'];
+  static observedAttributesDefault = [
+    'disabled',
+    'type',
+    'readonly',
+    'required',
+    'placeholder',
+    'value',
+    'autocomplete',
+  ];
   static get observedAttributes() {
     return [...this.observedAttributesDefault];
   }
@@ -21,6 +29,9 @@ class BaseTextField extends HTMLElement {
     this.shadowRoot.innerHTML = this.render();
 
     this.nativeNode = this.shadowRoot.getElementById('bs-text-field') as HTMLInputElement;
+    this.nativeNode.addEventListener('focus', () => this.onFocus());
+    this.nativeNode.addEventListener('blur', () => this.onBlur());
+    this.nativeNode.addEventListener('change', () => this.onChange());
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.nativeNode) {
@@ -71,6 +82,23 @@ class BaseTextField extends HTMLElement {
       ${this.autocomplete ? 'autocomplete="' + this.autocomplete + '"' : ''}
     />`;
   }
+
+  protected onFocus() {
+    this.dispatchEvent(new CustomEvent('focus'));
+    this.exFocus();
+  }
+  protected exFocus() {}
+  protected onBlur() {
+    this.dispatchEvent(new CustomEvent('blur'));
+    this.exBlur();
+  }
+  protected exBlur() {}
+  protected onChange() {
+    this.dispatchEvent(new Event('change'));
+    this.value = this.nativeNode.value;
+    this.exChange();
+  }
+  protected exChange() {}
 
   get disabled(): boolean {
     return this.hasAttribute('disabled');

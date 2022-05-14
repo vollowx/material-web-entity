@@ -17,7 +17,7 @@ class BaseButtonLabeled extends BaseButton {
 
     this.labelNode = this.shadowRoot.getElementById('bs-button__label') as HTMLElement;
   }
-  protected override attributeChangedCallbackExtend = (_name: string, _oldValue: string, _newValue: string) => {
+  protected override exAttributeChangedCallback = (_name: string, _oldValue: string, _newValue: string) => {
     if (this.nativeNode && this.labelNode) {
       if (_name === 'label') {
         this.labelNode.textContent = _newValue;

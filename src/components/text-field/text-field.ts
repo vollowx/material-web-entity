@@ -27,9 +27,6 @@ class M3TextField extends BaseTextField {
     if (_name === 'help-text') {
       this.helpTextNode.textContent = this.helpText;
     } else if (_name === 'outlined') {
-      this.nativeNode.removeEventListener('focus', this.onFocus);
-      this.nativeNode.removeEventListener('blur', this.onBlur);
-      this.nativeNode.removeEventListener('change', this.onChange);
       this.shadowRoot.innerHTML = this.render();
       this.nativeNode = this.shadowRoot.getElementById('md-text-field__input') as HTMLInputElement;
       this.containerNode = this.shadowRoot.getElementById('md-text-field') as HTMLElement;
@@ -37,6 +34,7 @@ class M3TextField extends BaseTextField {
       this.nativeNode.addEventListener('focus', () => this.onFocus());
       this.nativeNode.addEventListener('blur', () => this.onBlur());
       this.nativeNode.addEventListener('change', () => this.onChange());
+      this.onChange();
     }
   };
 
@@ -66,13 +64,13 @@ class M3TextField extends BaseTextField {
     <p class="md-text-field__help-text" id="md-text-field__help-text">${this.helpText}</p>`;
   }
 
-  protected onFocus() {
+  protected override exFocus() {
     this.containerNode.classList.add('md-text-field--focused');
   }
-  protected onBlur() {
+  protected override exBlur() {
     this.containerNode.classList.remove('md-text-field--focused');
   }
-  protected onChange() {
+  protected override exChange() {
     if (this.nativeNode.value === '') {
       this.containerNode.classList.remove('md-text-field--keep');
     } else {

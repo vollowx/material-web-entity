@@ -26,10 +26,10 @@ class BaseButton extends HTMLElement {
       if (name === 'disabled') {
         this.nativeNode.disabled = this.disabled;
       }
-      this.attributeChangedCallbackExtend(name, oldValue, newValue);
+      this.exAttributeChangedCallback(name, oldValue, newValue);
     }
   }
-  protected attributeChangedCallbackExtend = (_name: string, _oldValue: string, _newValue: string) => {};
+  protected exAttributeChangedCallback = (_name: string, _oldValue: string, _newValue: string) => {};
 
   protected render(): string {
     return `

@@ -29,7 +29,7 @@ class M3IconButton extends BaseButton {
     this.nativeNode = this.shadowRoot.getElementById('md-icon-button') as HTMLButtonElement;
     this.iconNode = this.shadowRoot.querySelector('md-icon') as M3Icon;
   }
-  protected override attributeChangedCallbackExtend = (_name: string, _oldValue: string, _newValue: string) => {
+  protected override exAttributeChangedCallback = (_name: string, _oldValue: string, _newValue: string) => {
     if (_name === 'icon') {
       this.iconNode.textContent = this.icon;
     }
