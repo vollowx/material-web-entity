@@ -78,13 +78,6 @@ class M3TextField extends BaseTextField {
     this.helpTextNode = this.shadowRoot.querySelector('.md-text-field__help-text') as HTMLElement;
     this.counterNode = this.shadowRoot.querySelector('.md-text-field__counter') as HTMLElement;
   }
-  protected binds() {
-    this.nativeNode.addEventListener('focus', () => this.onFocus());
-    this.nativeNode.addEventListener('blur', () => this.onBlur());
-    this.nativeNode.addEventListener('change', () => this.onChange());
-    this.nativeNode.addEventListener('keydown', () => this.onTempChange());
-    this.nativeNode.addEventListener('keyup', () => this.onTempChange());
-  }
 
   protected override exFocus() {
     this.containerNode.classList.add('md-text-field--focused');

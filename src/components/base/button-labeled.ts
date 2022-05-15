@@ -8,9 +8,7 @@ import BaseButton from './button-default';
 class BaseButtonLabeled extends BaseButton {
   labelNode: HTMLElement;
 
-  static get observedAttributes() {
-    return ['label', 'disabled'];
-  }
+  static observedAttributesDefault = ['label', 'disabled'];
 
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();

@@ -29,7 +29,7 @@ class M3Chip extends BaseButtonLabeled {
   }
 
   static get observedAttributes() {
-    return ['label', 'disabled', 'loading'];
+    return ['loading', ...this.observedAttributesDefault];
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();

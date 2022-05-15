@@ -217,6 +217,10 @@ class M3Menu extends HTMLElement {
     this.querySelector('md-menu-item[focused]')
       ? ((this.querySelector('md-menu-item[focused]') as HTMLButtonElement).tabIndex = 0)
       : null;
+    this.menuNode.style.visibility = 'visible';
+    setTimeout(() => {
+      this.menuNode.setAttribute('style', '');
+    }, 150);
     this.open = false;
     this.controllerNode.focus();
   }

@@ -7,8 +7,9 @@ class BaseButton extends HTMLElement {
   static tagName: string;
   nativeNode: HTMLButtonElement;
 
+  static observedAttributesDefault = ['disabled'];
   static get observedAttributes() {
-    return ['disabled'];
+    return [...this.observedAttributesDefault];
   }
 
   constructor() {

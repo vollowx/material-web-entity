@@ -32,11 +32,7 @@ class BaseTextField extends HTMLElement {
     this.shadowRoot.innerHTML = this.render();
 
     this.nativeNode = this.shadowRoot.querySelector('.bs-text-field') as HTMLInputElement;
-    this.nativeNode.addEventListener('focus', () => this.onFocus());
-    this.nativeNode.addEventListener('blur', () => this.onBlur());
-    this.nativeNode.addEventListener('change', () => this.onChange());
-    this.nativeNode.addEventListener('keydown', () => this.onTempChange());
-    this.nativeNode.addEventListener('keyup', () => this.onTempChange());
+    this.binds();
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.nativeNode) {
@@ -91,6 +87,13 @@ class BaseTextField extends HTMLElement {
       ${this.maxlength ? 'maxlength="' + this.maxlength + '"' : ''}
       ${this.autofocus ? 'autofocus' : ''}
     />`;
+  }
+
+  protected binds() {
+    this.nativeNode.addEventListener('focus', () => this.onFocus());
+    this.nativeNode.addEventListener('blur', () => this.onBlur());
+    this.nativeNode.addEventListener('change', () => this.onChange());
+    this.nativeNode.addEventListener('input', () => this.onTempChange());
   }
 
   protected onFocus() {

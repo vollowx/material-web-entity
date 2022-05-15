@@ -21,7 +21,7 @@ class M3IconButton extends BaseButton {
   }
 
   static get observedAttributes() {
-    return ['icon', 'disabled', 'loading'];
+    return ['icon', 'loading', ...this.observedAttributesDefault];
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
