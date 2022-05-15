@@ -26,7 +26,7 @@ class M3Avatar extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.imageNode = this.shadowRoot.getElementById('md-avatar') as HTMLImageElement;
+    this.imageNode = this.shadowRoot.querySelector('.md-avatar') as HTMLImageElement;
   }
   attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {
     if (this.imageNode) {
@@ -39,7 +39,7 @@ class M3Avatar extends HTMLElement {
   protected render(): string {
     return `
     <style>${M3AvatarStyles}</style>
-    <slot><img ${this.url ? 'src=' + this.url : ''} class="md-avatar" id="md-avatar" /></slot>
+    <slot><img ${this.url ? 'src=' + this.url : ''} class="md-avatar"/></slot>
     `;
   }
 

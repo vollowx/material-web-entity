@@ -20,9 +20,9 @@ class M3Menu extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.layerNode = this.shadowRoot.getElementById('md-menu__layer');
-    this.menuNode = this.shadowRoot.getElementById('md-menu') as HTMLDivElement;
-    this.controllerNode = document.getElementById(this.id);
+    this.layerNode = this.shadowRoot.querySelector('.md-menu__layer');
+    this.menuNode = this.shadowRoot.querySelector('.md-menu') as HTMLDivElement;
+    this.controllerNode = document.querySelector(`#${this.id}`);
     this.controllerNode
       ? (this.controllerFriendsNodes = this.controllerNode.parentNode.querySelectorAll(
           `md-menu-item[subber]:not(#${this.id})`
@@ -72,7 +72,7 @@ class M3Menu extends HTMLElement {
         this.closeMenu();
       }
     });
-    this.layerNode.addEventListener('pointerdown', (e: Event) => {
+    this.layerNode.addEventListener('mousedown', (e: Event) => {
       if (this.open && !this.contains(e.target as HTMLElement) && e.target !== this.controllerNode) {
         this.closeMenu();
       }
@@ -104,8 +104,8 @@ class M3Menu extends HTMLElement {
   protected render(): string {
     return `
     <style>${M3MenuStyles}</style>
-    <div class="md-menu__layer" id="md-menu__layer"></div>
-    <div class="md-menu" id="md-menu">
+    <div class="md-menu__layer"></div>
+    <div class="md-menu">
       <slot></slot>
     </div>
     `;

@@ -19,7 +19,7 @@ class BaseButton extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.getElementById('bs-button') as HTMLButtonElement;
+    this.nativeNode = this.shadowRoot.querySelector('.bs-button') as HTMLButtonElement;
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.nativeNode) {
@@ -41,7 +41,7 @@ class BaseButton extends HTMLElement {
         -webkit-tap-highlight-color: transparent;
       }
     </style>
-    <button class="bs-button" id="bs-button" ${this.disabled ? 'disabled' : ''}>
+    <button class="bs-button" ${this.disabled ? 'disabled' : ''}>
       <slot></slot>
     </button>`;
   }

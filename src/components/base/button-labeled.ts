@@ -15,7 +15,7 @@ class BaseButtonLabeled extends BaseButton {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.labelNode = this.shadowRoot.getElementById('bs-button__label') as HTMLElement;
+    this.labelNode = this.shadowRoot.querySelector('.bs-button__label') as HTMLElement;
   }
   protected override exAttributeChangedCallback = (_name: string, _oldValue: string, _newValue: string) => {
     if (this.nativeNode && this.labelNode) {
@@ -37,8 +37,8 @@ class BaseButtonLabeled extends BaseButton {
         -webkit-tap-highlight-color: transparent;
       }
     </style>
-    <button class="bs-button" id="bs-button" ${this.disabled ? 'disabled' : ''}>
-      <span class="bs-button__label" id="bs-button__label">${this.label ? this.label : ''}</span>
+    <button class="bs-button" ${this.disabled ? 'disabled' : ''}>
+      <span class="bs-button__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>`;
   }

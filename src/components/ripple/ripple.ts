@@ -22,7 +22,7 @@ class M3Ripple extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = /* html */ `
     <style>${M3RippleStyles}</style>
-    <div class="md-ripple__container" id="md-ripple__container"></div>
+    <div class="md-ripple__container"></div>
     `;
   }
 
@@ -128,7 +128,7 @@ class M3Ripple extends HTMLElement {
     this.render();
 
     this.parentE = ((this.parentNode as ShadowRoot).host as HTMLElement) || (this.parentNode as HTMLElement);
-    this.containerE = this.shadowRoot.getElementById('md-ripple__container');
+    this.containerE = this.shadowRoot.querySelector('.md-ripple__container');
 
     this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));
     this.parentE.addEventListener('mouseleave', () => this.removeAllActiveLayers());

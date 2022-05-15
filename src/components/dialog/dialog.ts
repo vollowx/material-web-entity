@@ -27,15 +27,15 @@ class M3Dialog extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.backdropE = this.shadowRoot.getElementById('md-dialog__backdrop');
-    this.dialogE = this.shadowRoot.getElementById('md-dialog');
-    this.heroIconE = this.shadowRoot.getElementById('md-dialog__hero-icon');
-    this.headlineE = this.shadowRoot.getElementById('md-dialog__headline');
-    this.bodyE = this.shadowRoot.getElementById('md-dialog__body');
-    this.actionsE = this.shadowRoot.getElementById('md-dialog__actions');
+    this.backdropE = this.shadowRoot.querySelector('.md-dialog__backdrop');
+    this.dialogE = this.shadowRoot.querySelector('.md-dialog');
+    this.heroIconE = this.shadowRoot.querySelector('.md-dialog__hero-icon');
+    this.headlineE = this.shadowRoot.querySelector('.md-dialog__headline');
+    this.bodyE = this.shadowRoot.querySelector('.md-dialog__body');
+    this.actionsE = this.shadowRoot.querySelector('.md-dialog__actions');
     this.primaryActionE = this.shadowRoot.querySelector('[name="primaryAction"]');
     this.secondaryActionE = this.shadowRoot.querySelector('[name="secondaryAction"]');
-    this.controllerE = document.getElementById(this.id);
+    this.controllerE = document.querySelector(`#${this.id}`);
 
     this.primaryActionE.tabIndex = -1;
     this.secondaryActionE.tabIndex = -1;
@@ -91,17 +91,17 @@ class M3Dialog extends HTMLElement {
   protected render(): string {
     return `
     <style>${M3DialogStyles}</style>
-    <div class="md-dialog__backdrop" id="md-dialog__backdrop"></div>
+    <div class="md-dialog__backdrop"></div>
     <div class="md-dialog__container">
-      <div role="alertdialog" class="md-dialog" id="md-dialog" tabindex="-1">
-        <div class="md-dialog__hero-icon" id="md-dialog__hero-icon"><md-icon>${
+      <div role="alertdialog" class="md-dialog" tabindex="-1">
+        <div class="md-dialog__hero-icon"><md-icon>${
           this.heroIcon ? this.heroIcon : ''
         }</md-icon></div>
-        <div class="md-dialog__headline" id="md-dialog__headline"><md-typo hd-sm>${
+        <div class="md-dialog__headline"><md-typo hd-sm>${
           this.headline ? this.headline : ''
         }</md-typo></div>
-        <div class="md-dialog__body" id="md-dialog__body"><slot name="body"></slot></div>
-        <footer class="md-dialog__actions" id="md-dialog__actions">
+        <div class="md-dialog__body"><slot name="body"></slot></div>
+        <footer class="md-dialog__actions">
           <span><slot name="secondaryAction"></slot></span>
           <span><slot name="primaryAction"></slot></span>
         </footer>

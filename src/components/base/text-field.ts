@@ -31,7 +31,7 @@ class BaseTextField extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.getElementById('bs-text-field') as HTMLInputElement;
+    this.nativeNode = this.shadowRoot.querySelector('.bs-text-field') as HTMLInputElement;
     this.nativeNode.addEventListener('focus', () => this.onFocus());
     this.nativeNode.addEventListener('blur', () => this.onBlur());
     this.nativeNode.addEventListener('change', () => this.onChange());
@@ -81,7 +81,6 @@ class BaseTextField extends HTMLElement {
     return `
     <input
       class="${identifier}"
-      id="${identifier}"
       ${this.disabled ? 'disabled' : ''}
       ${this.type ? 'type="' + this.type + '"' : ''}
       ${this.readonly ? 'readonly' : ''}

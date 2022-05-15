@@ -12,7 +12,7 @@ class M3MenuItem extends BaseButton {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.getElementById('md-menu__item') as HTMLButtonElement;
+    this.nativeNode = this.shadowRoot.querySelector('.md-menu__item') as HTMLButtonElement;
 
     this.tabIndex = -1;
     this.nativeNode.addEventListener('focus', () => this.setAttribute('focused', ''));
@@ -22,7 +22,7 @@ class M3MenuItem extends BaseButton {
   protected override render(): string {
     return `
     <style>${M3MenuItemStyles}</style>
-    <button class="md-menu__item" id="md-menu__item">
+    <button class="md-menu__item">
       <md-ripple></md-ripple>
       <slot name="before"></slot>
       <slot name="label"></slot>

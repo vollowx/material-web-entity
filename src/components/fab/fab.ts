@@ -10,9 +10,9 @@ class M3FAB extends BaseButtonLabeled {
   protected render(): string {
     return `
     <style>${M3FABStyles}</style>
-    <button class="md-fab" id="md-fab" ${this.disabled ? 'disabled' : ''}>
+    <button class="md-fab" ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
-      <span class="md-fab__label" id="md-fab__label">${this.label ? this.label : ''}</span>
+      <span class="md-fab__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>
     `;
@@ -24,8 +24,8 @@ class M3FAB extends BaseButtonLabeled {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.getElementById('md-fab') as HTMLButtonElement;
-    this.labelNode = this.shadowRoot.getElementById('md-fab__label') as HTMLElement;
+    this.nativeNode = this.shadowRoot.querySelector('.md-fab') as HTMLButtonElement;
+    this.labelNode = this.shadowRoot.querySelector('.md-fab__label') as HTMLElement;
   }
 }
 

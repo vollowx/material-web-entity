@@ -12,7 +12,7 @@ class M3IconButton extends BaseButton {
   protected override render(): string {
     return `
     <style>${M3IconButtonStyles}</style>
-    <button class="md-icon-button" id="md-icon-button" ${this.disabled ? 'disabled' : ''}>
+    <button class="md-icon-button" ${this.disabled ? 'disabled' : ''}>
       <md-ripple centered></md-ripple>
       <md-icon>${this.icon ? this.icon : ''}</md-icon>
       <slot></slot>
@@ -26,7 +26,7 @@ class M3IconButton extends BaseButton {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.getElementById('md-icon-button') as HTMLButtonElement;
+    this.nativeNode = this.shadowRoot.querySelector('.md-icon-button') as HTMLButtonElement;
     this.iconNode = this.shadowRoot.querySelector('md-icon') as M3Icon;
   }
   protected override exAttributeChangedCallback = (_name: string, _oldValue: string, _newValue: string) => {

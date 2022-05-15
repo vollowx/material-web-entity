@@ -19,7 +19,7 @@ class M3Card extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.cardNode = this.shadowRoot.getElementById('md-card') as HTMLDivElement;
+    this.cardNode = this.shadowRoot.querySelector('.md-card') as HTMLDivElement;
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.cardNode) {
@@ -32,7 +32,7 @@ class M3Card extends HTMLElement {
   protected render(): string {
     return `
     <style>${M3CardStyles}</style>
-    <div class="md-card" id="md-card" tabindex="${this.reactable ? 0 : -1}">
+    <div class="md-card" tabindex="${this.reactable ? 0 : -1}">
       <md-ripple></md-ripple>
       <slot></slot>
     </div>
