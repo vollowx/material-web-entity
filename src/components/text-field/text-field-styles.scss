@@ -90,8 +90,9 @@
 .md-text-field--focused .md-text-field__underline::after {
   transform: scaleX(1);
 }
-.md-text-field__help-text {
+.md-text-field__helper {
   flex-shrink: 0;
+  display: flex;
   margin: 3px 14px 0px;
   color: rgb(var(--md-sys-color-on-surface-variant));
   font-family: var(--md-sys-typescale-caption-font);
@@ -100,8 +101,11 @@
   line-height: var(--md-sys-typescale-caption-line-height);
   letter-spacing: var(--md-sys-typescale-caption-tracking);
 }
-:host(:not([help-text])) .md-text-field__help-text {
+:host(:not([help-text]):not([maxlength])) .md-text-field__helper {
   display: none;
+}
+.md-text-field__counter {
+  margin-left: auto;
 }
 :host([outlined]) .md-text-field {
   background-color: transparent;

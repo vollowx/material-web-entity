@@ -10,6 +10,7 @@ class M3TextField extends BaseTextField {
   labelKeeperNode: HTMLElement;
   containerNode: HTMLElement;
   helpTextNode: HTMLElement;
+  counterNode: HTMLElement;
 
   static get observedAttributes() {
     return ['label', 'outlined', 'help-text', ...this.observedAttributesDefault];
@@ -17,12 +18,7 @@ class M3TextField extends BaseTextField {
 
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
-
-    this.nativeNode = this.shadowRoot.querySelector('.md-text-field__input') as HTMLInputElement;
-    this.labelNode = this.shadowRoot.querySelector('.md-text-field__label') as HTMLLabelElement;
-    this.labelKeeperNode = this.shadowRoot.querySelector('.md-text-field__label-keeper') as HTMLElement;
-    this.containerNode = this.shadowRoot.querySelector('.md-text-field') as HTMLElement;
-    this.helpTextNode = this.shadowRoot.querySelector('.md-text-field__help-text') as HTMLElement;
+    this.defines();
     this.binds();
     this.onTempChange();
     this.onChange();
@@ -35,11 +31,7 @@ class M3TextField extends BaseTextField {
       this.helpTextNode.textContent = this.helpText;
     } else if (_name === 'outlined') {
       this.shadowRoot.innerHTML = this.render();
-      this.nativeNode = this.shadowRoot.querySelector('.md-text-field__input') as HTMLInputElement;
-      this.labelNode = this.shadowRoot.querySelector('.md-text-field__label') as HTMLLabelElement;
-      this.labelKeeperNode = this.shadowRoot.querySelector('.md-text-field__label-keeper') as HTMLElement;
-      this.containerNode = this.shadowRoot.querySelector('.md-text-field') as HTMLElement;
-      this.helpTextNode = this.shadowRoot.querySelector('.md-text-field__help-text') as HTMLElement;
+      this.defines();
       this.binds();
       this.onTempChange();
       this.onChange();
@@ -57,7 +49,10 @@ class M3TextField extends BaseTextField {
       ${this.renderInput('md-text-field__input')}
       <span class="md-text-field__underline"></span>
     </label>
-    <p class="md-text-field__help-text">${this.helpText}</p>`;
+    <p class="md-text-field__helper">
+      <span class="md-text-field__help-text">${this.helpText}</span>
+      <span class="md-text-field__counter"></span>
+    </p>`;
   }
   protected renderOutlined(): string {
     return `
@@ -69,9 +64,20 @@ class M3TextField extends BaseTextField {
         <legend class="md-text-field__label-keeper">${this.label}</legend>
       </fieldset>
     </label>
-    <p class="md-text-field__help-text">${this.helpText}</p>`;
+    <p class="md-text-field__helper">
+      <span class="md-text-field__help-text">${this.helpText}</span>
+      <span class="md-text-field__counter"></span>
+    </p>`;
   }
 
+  protected defines() {
+    this.nativeNode = this.shadowRoot.querySelector('.md-text-field__input') as HTMLInputElement;
+    this.labelNode = this.shadowRoot.querySelector('.md-text-field__label') as HTMLLabelElement;
+    this.labelKeeperNode = this.shadowRoot.querySelector('.md-text-field__label-keeper') as HTMLElement;
+    this.containerNode = this.shadowRoot.querySelector('.md-text-field') as HTMLElement;
+    this.helpTextNode = this.shadowRoot.querySelector('.md-text-field__help-text') as HTMLElement;
+    this.counterNode = this.shadowRoot.querySelector('.md-text-field__counter') as HTMLElement;
+  }
   protected binds() {
     this.nativeNode.addEventListener('focus', () => this.onFocus());
     this.nativeNode.addEventListener('blur', () => this.onBlur());
@@ -95,7 +101,7 @@ class M3TextField extends BaseTextField {
   }
   protected override exTempChange() {
     if (this.maxlength) {
-      this.setAttribute('help-text', `${this.nativeNode.value.length}/${this.maxlength}`);
+      this.counterNode.textContent = `${this.nativeNode.value.length}/${this.maxlength}`;
     }
   }
 
