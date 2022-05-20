@@ -70,3 +70,14 @@ md-divider[vertical][inset] {
   margin-bottom: 8px;
   height: calc(100% - 16px);
 }
+md-fabs {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 12;
+}

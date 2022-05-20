@@ -38,12 +38,14 @@
     <main>
       <div class="main-content"></div>
     </main>
-    <md-fab lang-toggler secondary small id="lang-toggler">
-      <md-icon>translate</md-icon>
-    </md-fab>
-    <md-fab theme-toggler tertiary>
-      <md-icon>brightness_6</md-icon>
-    </md-fab>
+    <md-fabs>
+      <md-fab lang-toggler secondary small id="lang-toggler">
+        <md-icon>translate</md-icon>
+      </md-fab>
+      <md-fab theme-toggler tertiary>
+        <md-icon>brightness_6</md-icon>
+      </md-fab>
+    </md-fabs>
     <md-menu id="lang-toggler" no-icon dense>
       <md-menu-item onclick="document.documentElement.setAttribute('lang', 'en')">
         <span slot="label">English</span>

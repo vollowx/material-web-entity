@@ -6,18 +6,6 @@
 [lang="zh-CN"] [l]:not([l="zh-CN"]) {
   display: none;
 }
-[lang-toggler] {
-  position: fixed;
-  right: 24px;
-  bottom: 80px;
-  z-index: 12;
-}
-[theme-toggler] {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  z-index: 12;
-}
 body {
   display: flex;
 }
