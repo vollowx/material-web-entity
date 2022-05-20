@@ -40,14 +40,16 @@
   & * {
     pointer-events: none;
   }
+
+  &:disabled {
+    color: rgba(var(--md-sys-color-on-surface), 0.38);
+    border: 1px solid rgba(var(--md-sys-color-on-surface), 0.12);
+    cursor: default;
+  }
 }
 @import '../../scss-mixins/status-layer.scss';
 @include status-layer('.md-chip', '240ms');
-.md-chip:disabled {
-  color: rgba(var(--md-sys-color-on-surface), 0.38);
-  border: 1px solid rgba(var(--md-sys-color-on-surface), 0.12);
-  cursor: default;
-}
+
 :host(:not([elevated]):not([checked])) md-ripple,
 :host(:not([elevated]):not([checked])) .md-chip::before {
   top: -1px;

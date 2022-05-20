@@ -36,18 +36,18 @@
   & * {
     pointer-events: none;
   }
+
+  &:hover {
+    box-shadow: var(--md-elevation-shadow-2);
+  }
+
+  &:focus-visible,
+  &:active {
+    box-shadow: none;
+  }
 }
 @import '../../scss-mixins/status-layer.scss';
 @include status-layer('.md-button', '240ms');
-@media screen and (min-width: 1240px) {
-  .md-button:hover {
-    box-shadow: var(--md-elevation-shadow-2);
-  }
-}
-.md-button:focus-visible,
-.md-button:active {
-  box-shadow: none;
-}
 
 :host([tonal]) .md-button {
   color: rgb(var(--md-sys-color-on-secondary-container));

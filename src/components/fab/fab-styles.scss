@@ -65,20 +65,22 @@
   & * {
     pointer-events: none;
   }
+
+  &:hover {
+    box-shadow: var(--md-fab-shadow-hovered);
+  }
+
+  &:focus-visible {
+    box-shadow: var(--md-fab-shadow-focused);
+  }
+
+  &:active {
+    box-shadow: var(--md-fab-shadow-pressed);
+  }
 }
 @import '../../scss-mixins/status-layer.scss';
 @include status-layer('.md-fab', 240ms);
-@media screen and (min-width: 1240px) {
-  .md-fab:hover {
-    box-shadow: var(--md-fab-shadow-hovered);
-  }
-}
-.md-fab:focus-visible {
-  box-shadow: var(--md-fab-shadow-focused);
-}
-.md-fab:active {
-  box-shadow: var(--md-fab-shadow-pressed);
-}
+
 .md-fab:disabled md-ripple,
 .md-fab:disabled::before {
   display: none;
