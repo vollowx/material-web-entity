@@ -1,0 +1,19 @@
+:host {
+  position: relative;
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+}
+.md-bottom-app-bar {
+  padding: 12px 16px 12px 12px;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(var(--md-sys-color-surface-variant));
+  box-sizing: border-box;
+
+  .md-bottom-app-bar__spacer {
+    flex: 1;
+  }
+}

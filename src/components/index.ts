@@ -1,4 +1,5 @@
 import M3Avatar from './avatar/avatar';
+import M3BottomAppBar from './bottom-app-bar/bottom-app-bar';
 import M3Button from './button/button';
 import M3Card from './card/card';
 import M3Chip from './chip/chip';
@@ -15,6 +16,7 @@ import M3Typography from './typography/typography';
 
 export {
   M3Avatar,
+  M3BottomAppBar,
   M3Button,
   M3Card,
   M3Chip,
