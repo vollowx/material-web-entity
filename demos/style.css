@@ -1,5 +1,17 @@
 @import url(./theme.css);
 
+[lang="en"] [l]:not([l="en"]) {
+  display: none;
+}
+[lang="zh-CN"] [l]:not([l="zh-CN"]) {
+  display: none;
+}
+[lang-toggler] {
+  position: fixed;
+  right: 24px;
+  bottom: 80px;
+  z-index: 12;
+}
 [theme-toggler] {
   position: fixed;
   right: 16px;
