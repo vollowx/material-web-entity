@@ -26,7 +26,7 @@
     pointer-events: none;
   }
 }
-:host([reactable]) .md-card {
+:host([reactive]) .md-card {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
@@ -42,8 +42,8 @@
   opacity: 0;
   transition: 0ms;
 }
-:host(:not([reactable])) md-ripple,
-:host(:not([reactable])) .md-card::before {
+:host(:not([reactive])) md-ripple,
+:host(:not([reactive])) .md-card::before {
   display: none;
 }
 :host([elevated]) .md-card {

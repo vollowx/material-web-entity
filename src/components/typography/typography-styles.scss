@@ -2,11 +2,10 @@
   position: relative;
   box-sizing: border-box;
   display: block;
-  font-family: var(--md-t-font-family);
+  font-family: var(--md-sys-typescale-font);
 }
 
 :host([display1]) {
-  font-family: var(--md-sys-typescale-display1-font);
   font-weight: var(--md-sys-typescale-display1-weight);
   font-size: var(--md-sys-typescale-display1-size);
   line-height: var(--md-sys-typescale-display1-line-height);
@@ -15,7 +14,6 @@
 
 :host([display2]),
 :host([display-large]) {
-  font-family: var(--md-sys-typescale-display2-font);
   font-weight: var(--md-sys-typescale-display2-weight);
   font-size: var(--md-sys-typescale-display2-size);
   line-height: var(--md-sys-typescale-display2-line-height);
@@ -24,7 +22,6 @@
 
 :host([display3]),
 :host([display-medium]) {
-  font-family: var(--md-sys-typescale-display3-font);
   font-weight: var(--md-sys-typescale-display3-weight);
   font-size: var(--md-sys-typescale-display3-size);
   line-height: var(--md-sys-typescale-display3-line-height);
@@ -33,7 +30,6 @@
 
 :host([headline1]),
 :host([display-small]) {
-  font-family: var(--md-sys-typescale-headline1-font);
   font-weight: var(--md-sys-typescale-headline1-weight);
   font-size: var(--md-sys-typescale-headline1-size);
   line-height: var(--md-sys-typescale-headline1-line-height);
@@ -42,7 +38,6 @@
 
 :host([headline2]),
 :host([headline-large]) {
-  font-family: var(--md-sys-typescale-headline2-font);
   font-weight: var(--md-sys-typescale-headline2-weight);
   font-size: var(--md-sys-typescale-headline2-size);
   line-height: var(--md-sys-typescale-headline2-line-height);
@@ -51,7 +46,6 @@
 
 :host([headline3]),
 :host([headline-medium]) {
-  font-family: var(--md-sys-typescale-headline3-font);
   font-weight: var(--md-sys-typescale-headline3-weight);
   font-size: var(--md-sys-typescale-headline3-size);
   line-height: var(--md-sys-typescale-headline3-line-height);
@@ -60,7 +54,6 @@
 
 :host([headline4]),
 :host([headline-small]) {
-  font-family: var(--md-sys-typescale-headline4-font);
   font-weight: var(--md-sys-typescale-headline4-weight);
   font-size: var(--md-sys-typescale-headline4-size);
   line-height: var(--md-sys-typescale-headline4-line-height);
@@ -69,7 +62,6 @@
 
 :host([headline5]),
 :host([title-large]) {
-  font-family: var(--md-sys-typescale-headline5-font);
   font-weight: var(--md-sys-typescale-headline5-weight);
   font-size: var(--md-sys-typescale-headline5-size);
   line-height: var(--md-sys-typescale-headline5-line-height);
@@ -77,7 +69,6 @@
 }
 
 :host([headline6]) {
-  font-family: var(--md-sys-typescale-headline6-font);
   font-weight: var(--md-sys-typescale-headline6-weight);
   font-size: var(--md-sys-typescale-headline6-size);
   line-height: var(--md-sys-typescale-headline6-line-height);
@@ -86,7 +77,6 @@
 
 :host([subhead]),
 :host([title-medium]) {
-  font-family: var(--md-sys-typescale-subhead1-font);
   font-weight: var(--md-sys-typescale-subhead1-weight);
   font-size: var(--md-sys-typescale-subhead1-size);
   line-height: var(--md-sys-typescale-subhead1-line-height);
@@ -95,7 +85,6 @@
 
 :host([subhead2]),
 :host([title-small]) {
-  font-family: var(--md-sys-typescale-subhead2-font);
   font-weight: var(--md-sys-typescale-subhead2-weight);
   font-size: var(--md-sys-typescale-subhead2-size);
   line-height: var(--md-sys-typescale-subhead2-line-height);
@@ -104,7 +93,6 @@
 
 :host([body1]),
 :host([body-large]) {
-  font-family: var(--md-sys-typescale-body1-font);
   font-weight: var(--md-sys-typescale-body1-weight);
   font-size: var(--md-sys-typescale-body1-size);
   line-height: var(--md-sys-typescale-body1-line-height);
@@ -113,7 +101,6 @@
 
 :host([body2]),
 :host([body-medium]) {
-  font-family: var(--md-sys-typescale-body2-font);
   font-weight: var(--md-sys-typescale-body2-weight);
   font-size: var(--md-sys-typescale-body2-size);
   line-height: var(--md-sys-typescale-body2-line-height);
@@ -122,7 +109,6 @@
 
 :host([caption]),
 :host([body-small]) {
-  font-family: var(--md-sys-typescale-caption-font);
   font-weight: var(--md-sys-typescale-caption-weight);
   font-size: var(--md-sys-typescale-caption-size);
   line-height: var(--md-sys-typescale-caption-line-height);
@@ -131,7 +117,6 @@
 
 :host([button]),
 :host([label-large]) {
-  font-family: var(--md-sys-typescale-button-font);
   font-weight: var(--md-sys-typescale-button-weight);
   font-size: var(--md-sys-typescale-button-size);
   line-height: var(--md-sys-typescale-button-line-height);
@@ -140,7 +125,6 @@
 
 :host([overline]),
 :host([label-medium]) {
-  font-family: var(--md-sys-typescale-overline-font);
   font-weight: var(--md-sys-typescale-overline-weight);
   font-size: var(--md-sys-typescale-overline-size);
   line-height: var(--md-sys-typescale-overline-line-height);

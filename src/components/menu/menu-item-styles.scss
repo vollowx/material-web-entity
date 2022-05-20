@@ -12,11 +12,11 @@
   width: 100%;
   height: 100%;
   color: rgb(var(--md-sys-color-on-surface-variant));
-  font-family: var(--md-t-font-family);
-  font-size: 0.875rem;
-  font-weight: calc(var(--md-t-font-base-weight) + 500);
-  line-height: 1.428571428571429;
-  letter-spacing: 0.1px;
+  font-family: var(--md-sys-typescale-font);
+  font-weight: var(--md-sys-typescale-button-weight);
+  font-size: var(--md-sys-typescale-button-size);
+  line-height: var(--md-sys-typescale-button-line-height);
+  letter-spacing: var(--md-sys-typescale-button-tracking);
   background-color: transparent;
   border: none;
   outline: 0;

@@ -1,4 +1,6 @@
-<md-typo rule="region" display-medium>Dialog 对话框</md-typo>
+<md-typo rule="region" display-medium l="en">Dialog</md-typo>
+<md-typo rule="region" display-medium l="zh-CN">Dialog ~ 对话框</md-typo>
+
 <code-example rule="region">
   <md-button text label="Delete" id="demo-dialog1"></md-button>
   <md-dialog id="demo-dialog1">
@@ -10,9 +12,20 @@
 
   <md-button text label="Open dialog with hero icon" id="demo-dialog2"></md-button>
   <md-dialog id="demo-dialog2" hero-icon="refresh" headline="Reset settings?">
-    <md-typo slot="body" body-medium> This will reset your app preferences back to their default settings. </md-typo>
+    <md-typo slot="body" body-medium>This will reset your app preferences back to their default settings.</md-typo>
 
     <md-button text slot="secondaryAction" label="Cancel"></md-button>
     <md-button text slot="primaryAction" label="Yes, I'm sure"></md-button>
+  </md-dialog>
+
+  <md-button text label="Open dialog with a text field" id="demo-dialog3"></md-button>
+  <md-dialog id="demo-dialog3" headline="Register">
+    <span slot="body">
+      <md-text-field style="width: 100%" label="Username"></md-text-field>
+      <md-text-field style="width: 100%; margin-top: 16px" label="Password" type="password"></md-text-field>
+    </span>
+
+    <md-button text slot="secondaryAction" label="Cancel"></md-button>
+    <md-button text slot="primaryAction" label="OK"></md-button>
   </md-dialog>
 </code-example>
