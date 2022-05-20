@@ -14,9 +14,14 @@
 }
 @import '../../scss-mixins/status-layer.scss';
 @include status-layer('.md-card', '240ms');
+
 :host([reactive]) .md-card {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+
+  & * {
+    pointer-events: none;
+  }
 }
 :host(:not([reactive])) md-ripple,
 :host(:not([reactive])) .md-card::before {
