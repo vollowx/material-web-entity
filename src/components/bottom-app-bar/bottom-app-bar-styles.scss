@@ -12,6 +12,7 @@
   align-items: center;
   background-color: rgb(var(--md-sys-color-surface-variant));
   box-sizing: border-box;
+  z-index: 2;
 
   .md-bottom-app-bar__spacer {
     flex: 1;
