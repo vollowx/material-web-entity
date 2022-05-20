@@ -33,33 +33,9 @@
   & * {
     pointer-events: none;
   }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: currentColor;
-    border-radius: inherit;
-    opacity: 0;
-    transition: opacity 240ms cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-  }
 }
-@media screen and (min-width: 1240px) {
-  .md-icon-button:hover::before {
-    opacity: 0.08;
-  }
-}
-:host(.focus-visible) .md-icon-button::before {
-  opacity: 0.12;
-}
-.md-icon-button:active::before {
-  opacity: 0;
-  transition: 0ms;
-}
+@import '../../scss-mixins/status-layer.scss';
+@include status-layer('.md-icon-button', '240ms');
 
 :host([filled]) .md-icon-button {
   color: rgb(var(--md-sys-color-on-primary));

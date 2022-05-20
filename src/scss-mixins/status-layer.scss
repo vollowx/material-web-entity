@@ -1,0 +1,29 @@
+@mixin status-layer($who, $time, $focus-default: false) {
+  #{$who} {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: currentColor;
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity #{$time} cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    &:hover::before {
+      opacity: 0.08;
+    }
+    @if $focus-default {
+      &:focus::before {
+        opacity: 0.12;
+      }
+    }
+    &:focus-visible::before {
+      opacity: 0.12;
+    }
+  }
+}

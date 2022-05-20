@@ -65,43 +65,19 @@
   & * {
     pointer-events: none;
   }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: currentColor;
-    border-radius: inherit;
-    opacity: 0;
-    transition: opacity 240ms cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-  }
 }
+@import '../../scss-mixins/status-layer.scss';
+@include status-layer('.md-fab', 240ms);
 @media screen and (min-width: 1240px) {
   .md-fab:hover {
     box-shadow: var(--md-fab-shadow-hovered);
   }
-  .md-fab:hover::before {
-    opacity: 0.08;
-  }
 }
-:host(.focus-visible) {
-  .md-fab {
-    box-shadow: var(--md-fab-shadow-focused);
-  }
-  .md-fab::before {
-    opacity: 0.12;
-  }
+.md-fab:focus-visible {
+  box-shadow: var(--md-fab-shadow-focused);
 }
 .md-fab:active {
   box-shadow: var(--md-fab-shadow-pressed);
-}
-.md-fab:active::before {
-  opacity: 0;
-  transition: 0ms;
 }
 .md-fab:disabled md-ripple,
 .md-fab:disabled::before {
