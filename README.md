@@ -32,7 +32,7 @@ Anywhere in `<head>` tag
 ```html
 <link rel="stylesheet" href="https://huge-pancake.github.io/material-web-entity/src/index.css" />
 <script type="module" src="https://huge-pancake.github.io/material-web-entity/dist/mwe-bundle.min.js"></script>
-<!-- use this url(from github page) or local css file(download this repositories) -->
+<!-- use this url(from github page) or local files (download this repositories) -->
 ```
 
 ## Credits

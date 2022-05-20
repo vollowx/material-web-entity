@@ -8,10 +8,10 @@ This components folder has component files and an `index.ts` file, import it to 
 | Banner             | will           | ×         |
 | Common button      | √              | √         |
 | FAB                | √              | √         |
-| Icon button        | will           | ×         |
+| Icon button        | will           | √         |
 | Bottom app bar     | will           | ×         |
 | Bottom sheet       | will           | ×         |
-| Card               | √              | ×         |
+| Card               | √              | √         |
 | Checkbox           | will           | ×         |
 | Chip               | √              | √         |
 | Data table         | will           | ×         |
@@ -29,9 +29,9 @@ This components folder has component files and an `index.ts` file, import it to 
 | Side sheet         | will           | ×         |
 | Slider             | will           | ×         |
 | Snackbar           | will           | ×         |
-| Switch             | will           | ×         |
+| Switch             | will           | √         |
 | Tab                | will           | ×         |
-| Text field         | will           | ×         |
+| Text field         | will           | √         |
 | Time picker        | will           | ×         |
 | Tooltip            | will           | ×         |
 | Top app bar        | will           | ×         |
