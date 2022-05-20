@@ -35,9 +35,8 @@
     border-radius: inherit;
     transition: 120ms cubic-bezier(0.4, 0, 0.2, 1);
 
-    &::before {
+    .md-switch__thumb {
       position: absolute;
-      content: '';
       width: 16px;
       height: 16px;
       background-color: rgb(var(--md-sys-color-outline));
@@ -63,7 +62,7 @@
 .md-switch:not(:disabled):hover,
 :host(.focus-visible:not([disabled])) {
   .md-switch__track {
-    &::before {
+    .md-switch__thumb {
       background-color: rgb(var(--md-sys-color-on-surface-variant));
     }
     &::after {
@@ -76,50 +75,47 @@
   .md-switch__track {
     border-color: rgb(var(--md-sys-color-primary));
     background-color: rgb(var(--md-sys-color-primary));
-    &::before {
+    .md-switch__thumb {
       width: 24px;
       height: 24px;
       background-color: rgb(var(--md-sys-color-on-primary));
       transform: translate(22px, 0);
     }
     &::after {
-      background-color: rgb(var(--md-sys-color-on-primary));
       transform: scale(0) translate(14px, 0);
     }
   }
 }
 .md-switch:not(:disabled):hover {
   &.md-switch--checked .md-switch__track {
-    &::before {
+    .md-switch__thumb {
       background-color: rgb(var(--md-sys-color-primary-container));
     }
     &::after {
-      background-color: rgb(var(--md-sys-color-primary-container));
       transform: scale(1) translate(14px, 0);
     }
   }
 }
 :host(.focus-visible:not([disabled])) {
   .md-switch.md-switch--checked .md-switch__track {
-    &::before {
+    .md-switch__thumb {
       background-color: rgb(var(--md-sys-color-primary-container));
     }
     &::after {
-      background-color: rgb(var(--md-sys-color-primary-container));
       transform: scale(1) translate(14px, 0);
     }
   }
 }
 .md-switch:not(:disabled):active {
   .md-switch__track {
-    &::before {
+    .md-switch__thumb {
       width: 28px;
       height: 28px;
       transform: translate(0, 0);
     }
   }
   &.md-switch--checked .md-switch__track {
-    &::before {
+    .md-switch__thumb {
       width: 28px;
       height: 28px;
       transform: translate(20px, 0);

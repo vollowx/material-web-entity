@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <title>Demo of MWE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body lang="en" dir="ltr">
+  <body>
     <aside>
       <nav>
         <div class="little-title">This project</div>
@@ -45,10 +45,10 @@
       <md-icon>brightness_6</md-icon>
     </md-fab>
     <md-menu id="lang-toggler" no-icon dense>
-      <md-menu-item onclick="document.body.setAttribute('lang', 'en')">
+      <md-menu-item onclick="document.documentElement.setAttribute('lang', 'en')">
         <span slot="label">English</span>
       </md-menu-item>
-      <md-menu-item onclick="document.body.setAttribute('lang', 'zh-CN')">
+      <md-menu-item onclick="document.documentElement.setAttribute('lang', 'zh-CN')">
         <span slot="label">简体中文 (Simplified Chinese)</span>
       </md-menu-item>
     </md-menu>

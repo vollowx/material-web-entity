@@ -36,7 +36,9 @@ class M3Switch extends BaseCheck {
       aria-checked="${this.hasAttribute('checked') ? 'true' : 'false'}"
       aria-label="${this.ariaLabel ? this.ariaLabel : ''}"
       ${this.disabled ? 'disabled' : ''}>
-      <div class="md-switch__track"></div>
+      <div class="md-switch__track">
+        <div class="md-switch__thumb"></div>
+      </div>
     </button>
     <input
       type="checkbox"
