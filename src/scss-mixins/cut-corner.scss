@@ -1,5 +1,5 @@
-@mixin cut-corner($left-top, $right-top: 0px, $right-bottom: 0px, $left-bottom: 0px) {
-  -webkit-clip-path: polygon(
+@function cut-corner-data($left-top: 0px, $right-top: 0px, $right-bottom: 0px, $left-bottom: 0px) {
+  @return polygon(
     $left-top 0%,
     calc(100% - #{$right-top}) 0%,
     100% $right-top,
@@ -9,14 +9,9 @@
     0% calc(100% - #{$left-bottom}),
     0% $left-top
   );
-  clip-path: polygon(
-    $left-top 0%,
-    calc(100% - #{$right-top}) 0%,
-    100% $right-top,
-    100% calc(100% - #{$right-bottom}),
-    calc(100% - #{$right-bottom}) 100%,
-    $left-bottom 100%,
-    0% calc(100% - #{$left-bottom}),
-    0% $left-top
-  );
+}
+
+@mixin cut-corner($left-top: 0px, $right-top: 0px, $right-bottom: 0px, $left-bottom: 0px) {
+  -webkit-clip-path: cut-corner-data($left-top, $right-top, $right-bottom, $left-bottom);
+  clip-path: cut-corner-data($left-top, $right-top, $right-bottom, $left-bottom);
 }
