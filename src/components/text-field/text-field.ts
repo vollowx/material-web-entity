@@ -23,13 +23,13 @@ class M3TextField extends BaseTextField {
     this.onTempChange();
     this.onChange();
   }
-  attributeChangedCallbackExtend = (_name: string, _oldValue: string, _newValue: string) => {
-    if (_name === 'label') {
+  attributeChangedCallbackExtend = (name: string, oldValue: string, newValue: string) => {
+    if (name === 'label') {
       this.labelNode.textContent = this.label;
       this.labelKeeperNode ? (this.labelKeeperNode.textContent = this.label) : null;
-    } else if (_name === 'help-text') {
+    } else if (name === 'help-text') {
       this.helpTextNode.textContent = this.helpText;
-    } else if (_name === 'outlined') {
+    } else if (name === 'outlined') {
       this.shadowRoot.innerHTML = this.render();
       this.defines();
       this.binds();

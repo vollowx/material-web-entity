@@ -22,7 +22,9 @@ class M3MenuItem extends BaseButton {
   protected override render(): string {
     return `
     <style>${M3MenuItemStyles}</style>
-    <button class="md-menu__item">
+    <button class="md-menu__item"
+      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
+      ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
       <slot name="before"></slot>
       <slot name="label"></slot>

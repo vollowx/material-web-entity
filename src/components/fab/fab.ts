@@ -10,7 +10,9 @@ class M3FAB extends BaseButtonLabeled {
   protected render(): string {
     return `
     <style>${M3FABStyles}</style>
-    <button class="md-fab" ${this.disabled ? 'disabled' : ''}>
+    <button class="md-fab"
+      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
+      ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
       <span class="md-fab__label">${this.label ? this.label : ''}</span>
       <slot></slot>
@@ -18,9 +20,6 @@ class M3FAB extends BaseButtonLabeled {
     `;
   }
 
-  static get observedAttributes() {
-    return ['loading', ...this.observedAttributesDefault];
-  }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 

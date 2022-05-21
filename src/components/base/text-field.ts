@@ -58,7 +58,7 @@ class BaseTextField extends HTMLElement {
       this.attributeChangedCallbackExtend(name, oldValue, newValue);
     }
   }
-  protected attributeChangedCallbackExtend = (_name: string, _oldValue: string, _newValue: string) => {};
+  protected attributeChangedCallbackExtend = (name: string, oldValue: string, newValue: string) => {};
 
   protected render(): string {
     return `

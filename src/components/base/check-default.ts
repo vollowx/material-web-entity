@@ -34,7 +34,7 @@ class BaseCheck extends HTMLElement {
       this.exAttributeChangedCallback(name, oldValue, newValue);
     }
   }
-  protected exAttributeChangedCallback = (_name: string, _oldValue: string, _newValue: string) => {};
+  protected exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {};
 
   protected render(): string {
     return `

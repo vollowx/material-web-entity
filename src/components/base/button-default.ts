@@ -7,7 +7,7 @@ class BaseButton extends HTMLElement {
   static tagName: string;
   nativeNode: HTMLButtonElement;
 
-  static observedAttributesDefault = ['disabled'];
+  static observedAttributesDefault = ['data-aria-label', 'disabled'];
   static get observedAttributes() {
     return [...this.observedAttributesDefault];
   }
@@ -24,13 +24,19 @@ class BaseButton extends HTMLElement {
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.nativeNode) {
-      if (name === 'disabled') {
+      if (name === 'data-aria-label') {
+        if (newValue) {
+          this.nativeNode.ariaLabel = this.ariaLabel;
+        } else {
+          this.nativeNode.removeAttribute('aria-label');
+        }
+      } else if (name === 'disabled') {
         this.nativeNode.disabled = this.disabled;
       }
       this.exAttributeChangedCallback(name, oldValue, newValue);
     }
   }
-  protected exAttributeChangedCallback = (_name: string, _oldValue: string, _newValue: string) => {};
+  protected exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {};
 
   protected render(): string {
     return `
@@ -42,11 +48,19 @@ class BaseButton extends HTMLElement {
         -webkit-tap-highlight-color: transparent;
       }
     </style>
-    <button class="bs-button" ${this.disabled ? 'disabled' : ''}>
+    <button class="bs-button"
+      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
+      ${this.disabled ? 'disabled' : ''}>
       <slot></slot>
     </button>`;
   }
 
+  get ariaLabel(): string {
+    return this.getAttribute('data-aria-label');
+  }
+  set ariaLabel(value: string) {
+    this.setAttribute('data-aria-label', value);
+  }
   get disabled(): boolean {
     return this.hasAttribute('disabled');
   }

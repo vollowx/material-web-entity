@@ -20,7 +20,9 @@ class M3Chip extends BaseButtonLabeled {
   protected override render(): string {
     return `
     <style>${M3ChipStyles}</style>
-    <button class="md-chip" ${this.disabled ? 'disabled' : ''}>
+    <button class="md-chip"
+      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
+      ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
       <span class="md-chip__label">${this.label ? this.label : ''}</span>
       <slot></slot>
@@ -28,9 +30,6 @@ class M3Chip extends BaseButtonLabeled {
     `;
   }
 
-  static get observedAttributes() {
-    return ['loading', ...this.observedAttributesDefault];
-  }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 

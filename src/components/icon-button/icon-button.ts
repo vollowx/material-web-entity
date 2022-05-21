@@ -12,7 +12,9 @@ class M3IconButton extends BaseButton {
   protected override render(): string {
     return `
     <style>${M3IconButtonStyles}</style>
-    <button class="md-icon-button" ${this.disabled ? 'disabled' : ''}>
+    <button class="md-icon-button"
+      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
+      ${this.disabled ? 'disabled' : ''}>
       <md-ripple centered></md-ripple>
       <md-icon>${this.icon ? this.icon : ''}</md-icon>
       <slot></slot>
@@ -21,7 +23,7 @@ class M3IconButton extends BaseButton {
   }
 
   static get observedAttributes() {
-    return ['icon', 'loading', ...this.observedAttributesDefault];
+    return ['icon', ...this.observedAttributesDefault];
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
@@ -29,8 +31,8 @@ class M3IconButton extends BaseButton {
     this.nativeNode = this.shadowRoot.querySelector('.md-icon-button') as HTMLButtonElement;
     this.iconNode = this.shadowRoot.querySelector('md-icon') as M3Icon;
   }
-  protected override exAttributeChangedCallback = (_name: string, _oldValue: string, _newValue: string) => {
-    if (_name === 'icon') {
+  protected override exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
+    if (name === 'icon') {
       this.iconNode.textContent = this.icon;
     }
   };

@@ -20,17 +20,16 @@ class M3Button extends BaseButtonLabeled {
   protected override render(): string {
     return `
     <style>${M3ButtonStyles}</style>
-    <button class="md-button" ${this.disabled ? 'disabled' : ''}>
+    <button class="md-button"
+      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
+      ${this.disabled ? 'disabled' : ''}>
       <md-ripple></md-ripple>
       <span class="md-button__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>
     `;
   }
-
-  static get observedAttributes() {
-    return ['loading', ...this.observedAttributesDefault];
-  }
+  
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 

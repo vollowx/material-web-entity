@@ -19,14 +19,14 @@ class M3Switch extends BaseCheck {
     this.switchNode.addEventListener('click', () => this.onChange());
   }
 
-  protected exAttributeChangedCallback = (_name: string, _oldValue: string, _newValue: string) => {
-    if (_name === 'data-aria-label') {
-      if (_newValue) {
-        this.switchNode.setAttribute('aria-label', this.ariaLabel);
+  protected exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
+    if (name === 'data-aria-label') {
+      if (newValue) {
+        this.switchNode.ariaLabel = newValue;
       } else {
         this.switchNode.removeAttribute('aria-label');
       }
-    } else if (_name === 'checked') {
+    } else if (name === 'checked') {
       this.switchNode.setAttribute('aria-checked', this.checked.toString());
     }
   };

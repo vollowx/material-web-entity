@@ -8,19 +8,17 @@ import BaseButton from './button-default';
 class BaseButtonLabeled extends BaseButton {
   labelNode: HTMLElement;
 
-  static observedAttributesDefault = ['label', 'disabled'];
+  static observedAttributesDefault = ['label', 'data-aria-label', 'disabled'];
 
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
     this.labelNode = this.shadowRoot.querySelector('.bs-button__label') as HTMLElement;
   }
-  protected override exAttributeChangedCallback = (_name: string, _oldValue: string, _newValue: string) => {
+  protected override exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
     if (this.nativeNode && this.labelNode) {
-      if (_name === 'label') {
-        this.labelNode.textContent = _newValue;
-      } else if (_name === 'disabled') {
-        this.nativeNode.disabled = this.disabled;
+      if (name === 'label') {
+        this.labelNode.textContent = newValue;
       }
     }
   };
