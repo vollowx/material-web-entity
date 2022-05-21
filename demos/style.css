@@ -99,14 +99,14 @@ flex-spacer {
   width: 100%;
   height: 0;
 }
-[m-2] {
-  margin: 2px;
-}
 [m-4] {
   margin: 4px;
 }
 [m-8] {
   margin: 8px;
+}
+[m-16] {
+  margin: 16px;
 }
 [demo-elev] {
   margin: 8px;
@@ -156,12 +156,4 @@ flex-spacer {
   z-index: 1;
   user-select: none;
   cursor: pointer;
-}
-fieldset {
-  border-radius: 8px;
-  border: 1px solid rgba(var(--md-sys-color-outline), 0.24);
-}
-legend {
-  padding: 0 8px;
-  color: var(--md-sys-elev-on-surface-2);
 }
