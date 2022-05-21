@@ -1,0 +1,22 @@
+@mixin cut-corners($left-top, $right-top: 0px, $right-bottom: 0px, $left-bottom: 0px) {
+  -webkit-clip-path: polygon(
+    $left-top 0%,
+    calc(100% - #{$right-top}) 0%,
+    100% $right-top,
+    100% calc(100% - #{$right-bottom}),
+    calc(100% - #{$right-bottom}) 100%,
+    $left-bottom 100%,
+    0% calc(100% - #{$left-bottom}),
+    0% $left-top
+  );
+  clip-path: polygon(
+    $left-top 0%,
+    calc(100% - #{$right-top}) 0%,
+    100% $right-top,
+    100% calc(100% - #{$right-bottom}),
+    calc(100% - #{$right-bottom}) 100%,
+    $left-bottom 100%,
+    0% calc(100% - #{$left-bottom}),
+    0% $left-top
+  );
+}

@@ -5,7 +5,9 @@
   "main": "./src/index.js",
   "scripts": {
     "dev": "webpack --watch --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "style-dev": "sass --watch src/index.scss:dist/mwe-bundle.min.css",
+    "style-build": "sass --style compressed src/index.scss:dist/mwe-bundle.min.css"
   },
   "repository": {
     "type": "git",
@@ -25,8 +27,8 @@
   "homepage": "https://github.com/huge-pancake/material-web-entity#readme",
   "devDependencies": {
     "raw-loader": "^4.0.2",
-    "sass": "^1.50.1",
-    "sass-loader": "^12.6.0",
+    "sass": "^1.52.1",
+    "sass-loader": "^13.0.0",
     "ts-loader": "^9.2.9",
     "typescript": "^4.6.4",
     "webpack": "^5.72.0",

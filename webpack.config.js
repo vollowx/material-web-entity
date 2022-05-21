@@ -1,5 +1,6 @@
 const path = require('path');
-module.exports = {
+
+const componentsAndUtilsConfig = {
   entry: './src/index.ts',
   output: {
     filename: 'mwe-bundle.min.js',
@@ -32,3 +33,5 @@ module.exports = {
     extensions: ['.ts', '.js'],
   },
 };
+
+module.exports = [componentsAndUtilsConfig];
