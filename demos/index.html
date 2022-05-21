@@ -48,8 +48,8 @@
       <md-fab lang-toggler secondary small id="lang-toggler">
         <md-icon>translate</md-icon>
       </md-fab>
-      <md-fab theme-toggler tertiary>
-        <md-icon>brightness_6</md-icon>
+      <md-fab theme-toggler tertiary id="theme-toggler">
+        <md-icon>settings_brightness</md-icon>
       </md-fab>
     </md-fabs>
     <md-menu id="lang-toggler" no-icon dense>
@@ -60,13 +60,22 @@
         <span slot="label">简体中文 (Simplified Chinese)</span>
       </md-menu-item>
     </md-menu>
+    <md-menu id="theme-toggler" dense>
+      <md-menu-item onclick="mUtil.turnThemeLight()">
+        <md-icon slot="before">light_mode</md-icon>
+        <span slot="label">Light</span>
+      </md-menu-item>
+      <md-menu-item onclick="mUtil.turnThemeDark()">
+        <md-icon slot="before">brightness_2</md-icon>
+        <span slot="label">Dark</span>
+      </md-menu-item>
+      <md-menu-item onclick="mUtil.turnThemeAuto()">
+        <md-icon slot="before">brightness_medium</md-icon>
+        <span slot="label">Auto</span>
+      </md-menu-item>
+    </md-menu>
 
     <script>
-      const toggleThemeBtn = document.querySelector('[theme-toggler]');
-      toggleThemeBtn.addEventListener('click', () => {
-        mUtil.toggleTheme();
-      });
-
       const mainContainer = document.querySelector('main');
       const mainContent = document.querySelector('.main-content');
       const movingPages = document.querySelectorAll('[moving-page]');

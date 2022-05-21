@@ -1,2 +1,2 @@
-export { getUrlHref, getUrlHost, getUrlHash, getUrlSearch, getUrlValue } from './url';
-export { toggleTheme, toggleAttr } from './toggles';
+export * from './url';
+export * from './toggles';
