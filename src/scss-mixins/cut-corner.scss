@@ -1,4 +1,4 @@
-@mixin cut-corners($left-top, $right-top: 0px, $right-bottom: 0px, $left-bottom: 0px) {
+@mixin cut-corner($left-top, $right-top: 0px, $right-bottom: 0px, $left-bottom: 0px) {
   -webkit-clip-path: polygon(
     $left-top 0%,
     calc(100% - #{$right-top}) 0%,

@@ -1,0 +1,32 @@
+@import '../scss-mixins/cut-corner.scss';
+
+$corner-size: (
+  'no': (0px, 0px, 0px, 0px),
+  'xsm': (4px, 4px, 4px, 4px),
+  'xsm-top': (4px, 0px, 0px, 0px),
+  'sm': (8px, 8px, 8px, 8px),
+  'md': (12px, 12px, 12px, 12px),
+  'lg': (16px, 16px, 16px, 16px),
+  'lg-end': (0px, 16px, 16px, 0px),
+  'lg-top': (16px, 16px, 0px, 0px),
+  'xlg': (28px, 28px, 28px, 28px),
+  'xlg-top': (28px, 28px, 0px, 0px),
+  'full': (50%, 50%, 50%, 50%),
+);
+
+@each $name, $value in $corner-size {
+  [cut-corner='#{$name}'] {
+    $topLeft: nth($value, 1);
+    $topRight: nth($value, 2);
+    $bottomRight: nth($value, 3);
+    $bottomLeft: nth($value, 4);
+    @include cut-corner($topLeft, $topRight, $bottomRight, $bottomLeft);
+  }
+  [round-corner='#{$name}'] {
+    $topLeft: nth($value, 1);
+    $topRight: nth($value, 2);
+    $bottomRight: nth($value, 3);
+    $bottomLeft: nth($value, 4);
+    border-radius: $topLeft $topRight $bottomRight $bottomLeft;
+  }
+}
