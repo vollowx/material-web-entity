@@ -29,7 +29,7 @@
 }
 :host([elevated]) .md-card {
   background-color: rgb(var(--md-sys-color-surface));
-  box-shadow: var(--md-elevation-shadow-2);
+  box-shadow: var(--md-sys-elev-shadow-2);
 }
 :host([outlined]) .md-card {
   background-color: rgb(var(--md-sys-color-surface));

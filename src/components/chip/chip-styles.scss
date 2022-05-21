@@ -14,10 +14,10 @@
   align-items: center;
   justify-content: center;
   color: rgb(var(--md-sys-color-on-primary));
-  font-family: var(--md-sys-typescale-font);
-  font-weight: var(--md-sys-typescale-button-weight);
-  font-size: var(--md-sys-typescale-button-size);
-  letter-spacing: var(--md-sys-typescale-button-tracking);
+  font-family: var(--md-sys-typo-font);
+  font-weight: var(--md-sys-typo-button-weight);
+  font-size: var(--md-sys-typo-button-size);
+  letter-spacing: var(--md-sys-typo-button-tracking);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
@@ -59,7 +59,7 @@
 }
 :host([elevated]) .md-chip {
   border: none;
-  box-shadow: var(--md-elevation-shadow-1);
+  box-shadow: var(--md-sys-elev-shadow-1);
 }
 :host([checked]) .md-chip {
   color: rgb(var(--md-sys-color-on-secondary-container));

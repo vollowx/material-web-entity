@@ -6,22 +6,22 @@
   --md-fab-size: 56px;
   --md-icon-size: 24px;
   --md-fab-border-radius: 16px;
-  --md-fab-shadow-enabled: var(--md-elevation-shadow-3);
-  --md-fab-shadow-hovered: var(--md-elevation-shadow-4);
-  --md-fab-shadow-focused: var(--md-elevation-shadow-3);
-  --md-fab-shadow-pressed: var(--md-elevation-shadow-3);
+  --md-fab-shadow-enabled: var(--md-sys-elev-shadow-3);
+  --md-fab-shadow-hovered: var(--md-sys-elev-shadow-4);
+  --md-fab-shadow-focused: var(--md-sys-elev-shadow-3);
+  --md-fab-shadow-pressed: var(--md-sys-elev-shadow-3);
 }
 :host([lower]) {
-  --md-fab-shadow-enabled: var(--md-elevation-shadow-1);
-  --md-fab-shadow-hovered: var(--md-elevation-shadow-2);
-  --md-fab-shadow-focused: var(--md-elevation-shadow-1);
-  --md-fab-shadow-pressed: var(--md-elevation-shadow-1);
+  --md-fab-shadow-enabled: var(--md-sys-elev-shadow-1);
+  --md-fab-shadow-hovered: var(--md-sys-elev-shadow-2);
+  --md-fab-shadow-focused: var(--md-sys-elev-shadow-1);
+  --md-fab-shadow-pressed: var(--md-sys-elev-shadow-1);
 }
 :host([lowest]) {
-  --md-fab-shadow-enabled: var(--md-elevation-shadow-0);
-  --md-fab-shadow-hovered: var(--md-elevation-shadow-1);
-  --md-fab-shadow-focused: var(--md-elevation-shadow-0);
-  --md-fab-shadow-pressed: var(--md-elevation-shadow-0);
+  --md-fab-shadow-enabled: var(--md-sys-elev-shadow-0);
+  --md-fab-shadow-hovered: var(--md-sys-elev-shadow-1);
+  --md-fab-shadow-focused: var(--md-sys-elev-shadow-0);
+  --md-fab-shadow-pressed: var(--md-sys-elev-shadow-0);
 }
 :host([small]) {
   --md-fab-size: 40px;
@@ -41,14 +41,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--md-sys-typescale-font);
+  font-family: var(--md-sys-typo-font);
   color: rgb(var(--md-sys-color-on-primary-container));
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-weight: var(--md-sys-typescale-button-weight);
-  font-size: var(--md-sys-typescale-button-size);
-  line-height: var(--md-sys-typescale-button-line-height);
-  letter-spacing: var(--md-sys-typescale-button-tracking);
+  font-weight: var(--md-sys-typo-button-weight);
+  font-size: var(--md-sys-typo-button-size);
+  line-height: var(--md-sys-typo-button-line-height);
+  letter-spacing: var(--md-sys-typo-button-tracking);
   text-decoration: none;
   background-color: rgb(var(--md-sys-color-primary-container));
   box-shadow: var(--md-fab-shadow-enabled);

@@ -1,76 +1,75 @@
-/* Light theme */
 :root {
-  --md-elevation-shadow-0: none !important;
-  --md-elevation-shadow-1-light: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-  --md-elevation-shadow-2-light: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-  --md-elevation-shadow-3-light: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
-  --md-elevation-shadow-4-light: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
-  --md-elevation-shadow-5-light: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);
-  --md-elevation-surface-1-light: linear-gradient(0deg, rgba(var(--md-sys-color-primary-light), 0.05), rgba(var(--md-sys-color-primary-light), 0.05)), rgb(var(--md-sys-color-surface-light));
-  --md-elevation-surface-2-light: linear-gradient(0deg, rgba(var(--md-sys-color-primary-light), 0.08), rgba(var(--md-sys-color-primary-light), 0.08)), rgb(var(--md-sys-color-surface-light));
-  --md-elevation-surface-3-light: linear-gradient(0deg, rgba(var(--md-sys-color-primary-light), 0.11), rgba(var(--md-sys-color-primary-light), 0.11)), rgb(var(--md-sys-color-surface-light));
-  --md-elevation-surface-4-light: linear-gradient(0deg, rgba(var(--md-sys-color-primary-light), 0.12), rgba(var(--md-sys-color-primary-light), 0.12)), rgb(var(--md-sys-color-surface-light));
-  --md-elevation-surface-5-light: linear-gradient(0deg, rgba(var(--md-sys-color-primary-light), 0.14), rgba(var(--md-sys-color-primary-light), 0.14)), rgb(var(--md-sys-color-surface-light));
-  --md-elevation-shadow-1-dark: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3);
-  --md-elevation-shadow-2-dark: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3);
-  --md-elevation-shadow-3-dark: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
-  --md-elevation-shadow-4-dark: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
-  --md-elevation-shadow-5-dark: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);
-  --md-elevation-surface-1-dark: linear-gradient(0deg, rgba(var(--md-sys-color-primary-dark), 0.05), rgba(var(--md-sys-color-primary-dark), 0.05)), rgb(var(--md-sys-color-surface-dark));
-  --md-elevation-surface-2-dark: linear-gradient(0deg, rgba(var(--md-sys-color-primary-dark), 0.08), rgba(var(--md-sys-color-primary-dark), 0.08)), rgb(var(--md-sys-color-surface-dark));
-  --md-elevation-surface-3-dark: linear-gradient(0deg, rgba(var(--md-sys-color-primary-dark), 0.11), rgba(var(--md-sys-color-primary-dark), 0.11)), rgb(var(--md-sys-color-surface-dark));
-  --md-elevation-surface-4-dark: linear-gradient(0deg, rgba(var(--md-sys-color-primary-dark), 0.12), rgba(var(--md-sys-color-primary-dark), 0.12)), rgb(var(--md-sys-color-surface-dark));
-  --md-elevation-surface-5-dark: linear-gradient(0deg, rgba(var(--md-sys-color-primary-dark), 0.14), rgba(var(--md-sys-color-primary-dark), 0.14)), rgb(var(--md-sys-color-surface-dark));
+  --md-sys-elev-shadow-0: none !important;
+  --md-sys-elev-shadow-1-light: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-sys-elev-shadow-2-light: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-sys-elev-shadow-3-light: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+  --md-sys-elev-shadow-4-light: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+  --md-sys-elev-shadow-5-light: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);
+  --md-sys-elev-surface-1-light: linear-gradient(0deg, rgba(var(--md-sys-color-primary-light), 0.05), rgba(var(--md-sys-color-primary-light), 0.05)), rgb(var(--md-sys-color-surface-light));
+  --md-sys-elev-surface-2-light: linear-gradient(0deg, rgba(var(--md-sys-color-primary-light), 0.08), rgba(var(--md-sys-color-primary-light), 0.08)), rgb(var(--md-sys-color-surface-light));
+  --md-sys-elev-surface-3-light: linear-gradient(0deg, rgba(var(--md-sys-color-primary-light), 0.11), rgba(var(--md-sys-color-primary-light), 0.11)), rgb(var(--md-sys-color-surface-light));
+  --md-sys-elev-surface-4-light: linear-gradient(0deg, rgba(var(--md-sys-color-primary-light), 0.12), rgba(var(--md-sys-color-primary-light), 0.12)), rgb(var(--md-sys-color-surface-light));
+  --md-sys-elev-surface-5-light: linear-gradient(0deg, rgba(var(--md-sys-color-primary-light), 0.14), rgba(var(--md-sys-color-primary-light), 0.14)), rgb(var(--md-sys-color-surface-light));
+  --md-sys-elev-shadow-1-dark: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3);
+  --md-sys-elev-shadow-2-dark: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3);
+  --md-sys-elev-shadow-3-dark: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+  --md-sys-elev-shadow-4-dark: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+  --md-sys-elev-shadow-5-dark: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);
+  --md-sys-elev-surface-1-dark: linear-gradient(0deg, rgba(var(--md-sys-color-primary-dark), 0.05), rgba(var(--md-sys-color-primary-dark), 0.05)), rgb(var(--md-sys-color-surface-dark));
+  --md-sys-elev-surface-2-dark: linear-gradient(0deg, rgba(var(--md-sys-color-primary-dark), 0.08), rgba(var(--md-sys-color-primary-dark), 0.08)), rgb(var(--md-sys-color-surface-dark));
+  --md-sys-elev-surface-3-dark: linear-gradient(0deg, rgba(var(--md-sys-color-primary-dark), 0.11), rgba(var(--md-sys-color-primary-dark), 0.11)), rgb(var(--md-sys-color-surface-dark));
+  --md-sys-elev-surface-4-dark: linear-gradient(0deg, rgba(var(--md-sys-color-primary-dark), 0.12), rgba(var(--md-sys-color-primary-dark), 0.12)), rgb(var(--md-sys-color-surface-dark));
+  --md-sys-elev-surface-5-dark: linear-gradient(0deg, rgba(var(--md-sys-color-primary-dark), 0.14), rgba(var(--md-sys-color-primary-dark), 0.14)), rgb(var(--md-sys-color-surface-dark));
 }
 @media (prefers-color-scheme: light) {
   :root {
-    --md-elevation-shadow-1: var(--md-elevation-shadow-1-light);
-    --md-elevation-shadow-2: var(--md-elevation-shadow-2-light);
-    --md-elevation-shadow-3: var(--md-elevation-shadow-3-light);
-    --md-elevation-shadow-4: var(--md-elevation-shadow-4-light);
-    --md-elevation-shadow-5: var(--md-elevation-shadow-5-light);
-    --md-elevation-surface-1: var(--md-elevation-surface-1-light);
-    --md-elevation-surface-2: var(--md-elevation-surface-2-light);
-    --md-elevation-surface-3: var(--md-elevation-surface-3-light);
-    --md-elevation-surface-4: var(--md-elevation-surface-4-light);
-    --md-elevation-surface-5: var(--md-elevation-surface-5-light);
+    --md-sys-elev-shadow-1: var(--md-sys-elev-shadow-1-light);
+    --md-sys-elev-shadow-2: var(--md-sys-elev-shadow-2-light);
+    --md-sys-elev-shadow-3: var(--md-sys-elev-shadow-3-light);
+    --md-sys-elev-shadow-4: var(--md-sys-elev-shadow-4-light);
+    --md-sys-elev-shadow-5: var(--md-sys-elev-shadow-5-light);
+    --md-sys-elev-surface-1: var(--md-sys-elev-surface-1-light);
+    --md-sys-elev-surface-2: var(--md-sys-elev-surface-2-light);
+    --md-sys-elev-surface-3: var(--md-sys-elev-surface-3-light);
+    --md-sys-elev-surface-4: var(--md-sys-elev-surface-4-light);
+    --md-sys-elev-surface-5: var(--md-sys-elev-surface-5-light);
   }
   .dark-theme {
-    --md-elevation-shadow-1: var(--md-elevation-shadow-1-dark);
-    --md-elevation-shadow-2: var(--md-elevation-shadow-2-dark);
-    --md-elevation-shadow-3: var(--md-elevation-shadow-3-dark);
-    --md-elevation-shadow-4: var(--md-elevation-shadow-4-dark);
-    --md-elevation-shadow-5: var(--md-elevation-shadow-5-dark);
-    --md-elevation-surface-1: var(--md-elevation-surface-1-dark);
-    --md-elevation-surface-2: var(--md-elevation-surface-2-dark);
-    --md-elevation-surface-3: var(--md-elevation-surface-3-dark);
-    --md-elevation-surface-4: var(--md-elevation-surface-4-dark);
-    --md-elevation-surface-5: var(--md-elevation-surface-5-dark);
+    --md-sys-elev-shadow-1: var(--md-sys-elev-shadow-1-dark);
+    --md-sys-elev-shadow-2: var(--md-sys-elev-shadow-2-dark);
+    --md-sys-elev-shadow-3: var(--md-sys-elev-shadow-3-dark);
+    --md-sys-elev-shadow-4: var(--md-sys-elev-shadow-4-dark);
+    --md-sys-elev-shadow-5: var(--md-sys-elev-shadow-5-dark);
+    --md-sys-elev-surface-1: var(--md-sys-elev-surface-1-dark);
+    --md-sys-elev-surface-2: var(--md-sys-elev-surface-2-dark);
+    --md-sys-elev-surface-3: var(--md-sys-elev-surface-3-dark);
+    --md-sys-elev-surface-4: var(--md-sys-elev-surface-4-dark);
+    --md-sys-elev-surface-5: var(--md-sys-elev-surface-5-dark);
   }
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --md-elevation-shadow-1: var(--md-elevation-shadow-1-dark);
-    --md-elevation-shadow-2: var(--md-elevation-shadow-2-dark);
-    --md-elevation-shadow-3: var(--md-elevation-shadow-3-dark);
-    --md-elevation-shadow-4: var(--md-elevation-shadow-4-dark);
-    --md-elevation-shadow-5: var(--md-elevation-shadow-5-dark);
-    --md-elevation-surface-1: var(--md-elevation-surface-1-dark);
-    --md-elevation-surface-2: var(--md-elevation-surface-2-dark);
-    --md-elevation-surface-3: var(--md-elevation-surface-3-dark);
-    --md-elevation-surface-4: var(--md-elevation-surface-4-dark);
-    --md-elevation-surface-5: var(--md-elevation-surface-5-dark);
+    --md-sys-elev-shadow-1: var(--md-sys-elev-shadow-1-dark);
+    --md-sys-elev-shadow-2: var(--md-sys-elev-shadow-2-dark);
+    --md-sys-elev-shadow-3: var(--md-sys-elev-shadow-3-dark);
+    --md-sys-elev-shadow-4: var(--md-sys-elev-shadow-4-dark);
+    --md-sys-elev-shadow-5: var(--md-sys-elev-shadow-5-dark);
+    --md-sys-elev-surface-1: var(--md-sys-elev-surface-1-dark);
+    --md-sys-elev-surface-2: var(--md-sys-elev-surface-2-dark);
+    --md-sys-elev-surface-3: var(--md-sys-elev-surface-3-dark);
+    --md-sys-elev-surface-4: var(--md-sys-elev-surface-4-dark);
+    --md-sys-elev-surface-5: var(--md-sys-elev-surface-5-dark);
   }
   .light-theme {
-    --md-elevation-shadow-1: var(--md-elevation-shadow-1-light);
-    --md-elevation-shadow-2: var(--md-elevation-shadow-2-light);
-    --md-elevation-shadow-3: var(--md-elevation-shadow-3-light);
-    --md-elevation-shadow-4: var(--md-elevation-shadow-4-light);
-    --md-elevation-shadow-5: var(--md-elevation-shadow-5-light);
-    --md-elevation-surface-1: var(--md-elevation-surface-1-light);
-    --md-elevation-surface-2: var(--md-elevation-surface-2-light);
-    --md-elevation-surface-3: var(--md-elevation-surface-3-light);
-    --md-elevation-surface-4: var(--md-elevation-surface-4-light);
-    --md-elevation-surface-5: var(--md-elevation-surface-5-light);
+    --md-sys-elev-shadow-1: var(--md-sys-elev-shadow-1-light);
+    --md-sys-elev-shadow-2: var(--md-sys-elev-shadow-2-light);
+    --md-sys-elev-shadow-3: var(--md-sys-elev-shadow-3-light);
+    --md-sys-elev-shadow-4: var(--md-sys-elev-shadow-4-light);
+    --md-sys-elev-shadow-5: var(--md-sys-elev-shadow-5-light);
+    --md-sys-elev-surface-1: var(--md-sys-elev-surface-1-light);
+    --md-sys-elev-surface-2: var(--md-sys-elev-surface-2-light);
+    --md-sys-elev-surface-3: var(--md-sys-elev-surface-3-light);
+    --md-sys-elev-surface-4: var(--md-sys-elev-surface-4-light);
+    --md-sys-elev-surface-5: var(--md-sys-elev-surface-5-light);
   }
 }

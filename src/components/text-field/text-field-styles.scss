@@ -36,11 +36,11 @@
 .md-text-field__label {
   position: absolute;
   color: rgb(var(--md-sys-color-on-surface-variant));
-  font-family: var(--md-sys-typescale-font);
-  font-weight: var(--md-sys-typescale-body1-weight);
-  font-size: var(--md-sys-typescale-body1-size);
-  line-height: var(--md-sys-typescale-body1-line-height);
-  letter-spacing: var(--md-sys-typescale-body1-tracking);
+  font-family: var(--md-sys-typo-font);
+  font-weight: var(--md-sys-typo-body1-weight);
+  font-size: var(--md-sys-typo-body1-size);
+  line-height: var(--md-sys-typo-body1-line-height);
+  letter-spacing: var(--md-sys-typo-body1-tracking);
   transform-origin: top left;
   transform: translate(12px, 16px) scale(1);
   transition: 180ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -55,11 +55,11 @@
   padding: 25px 12px 8px;
   width: 100%;
   color: rgb(var(--md-sys-color-on-surface));
-  font-family: var(--md-sys-typescale-body1-font);
-  font-weight: var(--md-sys-typescale-body1-weight);
-  font-size: var(--md-sys-typescale-body1-size);
-  line-height: var(--md-sys-typescale-body1-line-height);
-  letter-spacing: var(--md-sys-typescale-body1-tracking);
+  font-family: var(--md-sys-typo-body1-font);
+  font-weight: var(--md-sys-typo-body1-weight);
+  font-size: var(--md-sys-typo-body1-size);
+  line-height: var(--md-sys-typo-body1-line-height);
+  letter-spacing: var(--md-sys-typo-body1-tracking);
   background-color: transparent;
   border: 0;
   outline: 0;
@@ -95,11 +95,11 @@
   display: flex;
   margin: 3px 14px 0px;
   color: rgb(var(--md-sys-color-on-surface-variant));
-  font-family: var(--md-sys-typescale-caption-font);
-  font-weight: var(--md-sys-typescale-caption-weight);
-  font-size: var(--md-sys-typescale-caption-size);
-  line-height: var(--md-sys-typescale-caption-line-height);
-  letter-spacing: var(--md-sys-typescale-caption-tracking);
+  font-family: var(--md-sys-typo-caption-font);
+  font-weight: var(--md-sys-typo-caption-weight);
+  font-size: var(--md-sys-typo-caption-size);
+  line-height: var(--md-sys-typo-caption-line-height);
+  letter-spacing: var(--md-sys-typo-caption-tracking);
 }
 :host(:not([help-text]):not([maxlength])) .md-text-field__helper {
   display: none;
@@ -141,11 +141,11 @@
   display: none;
   padding: 0 5px;
   color: transparent;
-  font-family: var(--md-sys-typescale-overline-font);
-  font-weight: var(--md-sys-typescale-overline-weight);
-  font-size: var(--md-sys-typescale-overline-size);
-  line-height: var(--md-sys-typescale-overline-line-height);
-  letter-spacing: var(--md-sys-typescale-overline-tracking);
+  font-family: var(--md-sys-typo-overline-font);
+  font-weight: var(--md-sys-typo-overline-weight);
+  font-size: var(--md-sys-typo-overline-size);
+  line-height: var(--md-sys-typo-overline-line-height);
+  letter-spacing: var(--md-sys-typo-overline-tracking);
   pointer-events: none;
   user-select: none;
 }

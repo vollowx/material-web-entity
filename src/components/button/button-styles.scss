@@ -16,11 +16,11 @@
   align-items: center;
   justify-content: var(--md-button-justify-content, center);
   color: rgb(var(--md-sys-color-on-primary));
-  font-family: var(--md-sys-typescale-font);
-  font-weight: var(--md-sys-typescale-button-weight);
-  font-size: var(--md-sys-typescale-button-size);
-  line-height: var(--md-sys-typescale-button-line-height);
-  letter-spacing: var(--md-sys-typescale-button-tracking);
+  font-family: var(--md-sys-typo-font);
+  font-weight: var(--md-sys-typo-button-weight);
+  font-size: var(--md-sys-typo-button-size);
+  line-height: var(--md-sys-typo-button-line-height);
+  letter-spacing: var(--md-sys-typo-button-tracking);
   text-decoration: none;
   background-color: rgb(var(--md-sys-color-primary));
   border: 0;
@@ -38,7 +38,7 @@
   }
 
   &:hover {
-    box-shadow: var(--md-elevation-shadow-2);
+    box-shadow: var(--md-sys-elev-shadow-2);
   }
 
   &:focus-visible,
@@ -57,18 +57,18 @@
 :host([elevated]) .md-button {
   color: rgb(var(--md-sys-color-primary));
   background-color: rgb(var(--md-sys-color-surface));
-  box-shadow: var(--md-elevation-shadow-1);
+  box-shadow: var(--md-sys-elev-shadow-1);
 }
 @media screen and (min-width: 1240px) {
   :host([elevated]) .md-button:hover {
-    box-shadow: var(--md-elevation-shadow-2);
+    box-shadow: var(--md-sys-elev-shadow-2);
   }
 }
 :host([elevated].focus-visible) .md-button {
-  box-shadow: var(--md-elevation-shadow-1);
+  box-shadow: var(--md-sys-elev-shadow-1);
 }
 :host([elevated]) .md-button:active {
-  box-shadow: var(--md-elevation-shadow-1);
+  box-shadow: var(--md-sys-elev-shadow-1);
 }
 
 :host([outlined]) .md-button {
