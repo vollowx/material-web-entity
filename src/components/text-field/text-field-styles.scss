@@ -13,26 +13,9 @@
   border-radius: 4px 4px 0 0;
   box-sizing: border-box;
   cursor: text;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: currentColor;
-    border-radius: inherit;
-    opacity: 0;
-    transition: opacity 180ms cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-  }
 }
-@media screen and (min-width: 1240px) {
-  .md-text-field:hover::before {
-    opacity: 0.08;
-  }
-}
+@import '../../scss-mixins/status-layer.scss';
+@include status-layer('.md-text-field', 180ms);
 .md-text-field__label {
   position: absolute;
   color: rgb(var(--md-sys-color-on-surface-variant));
@@ -42,17 +25,17 @@
   line-height: var(--md-sys-typo-body1-line-height);
   letter-spacing: var(--md-sys-typo-body1-tracking);
   transform-origin: top left;
-  transform: translate(12px, 16px) scale(1);
+  transform: translate(16px, 16px) scale(1);
   transition: 180ms cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
   user-select: none;
 }
 .md-text-field--focused .md-text-field__label,
 .md-text-field--keep .md-text-field__label {
-  transform: translate(12px, 7px) scale(0.75);
+  transform: translate(16px, 8px) scale(0.75);
 }
 .md-text-field__input {
-  padding: 25px 12px 8px;
+  padding: 24px 16px 8px;
   width: 100%;
   color: rgb(var(--md-sys-color-on-surface));
   font-family: var(--md-sys-typo-body1-font);
@@ -139,7 +122,7 @@
 }
 .md-text-field__label-keeper {
   display: none;
-  padding: 0 5px;
+  padding: 0 4px;
   color: transparent;
   font-family: var(--md-sys-typo-overline-font);
   font-weight: var(--md-sys-typo-overline-weight);
