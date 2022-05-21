@@ -108,22 +108,54 @@ flex-spacer {
 [m-8] {
   margin: 8px;
 }
-[demo-ripple] {
+[demo-elev] {
   margin: 8px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;
+  width: 216px;
+  height: 216px;
+  border-radius: 16px;
+  z-index: 1;
+  user-select: none;
+}
+[demo-elev][e1] {
+  background: var(--md-sys-elev-surface-1);
+  box-shadow: var(--md-sys-elev-shadow-1);
+}
+[demo-elev][e2] {
   background: var(--md-sys-elev-surface-2);
   box-shadow: var(--md-sys-elev-shadow-2);
-  cursor: pointer;
-  border-radius: 4px;
+}
+[demo-elev][e3] {
+  background: var(--md-sys-elev-surface-3);
+  box-shadow: var(--md-sys-elev-shadow-3);
+}
+[demo-elev][e4] {
+  background: var(--md-sys-elev-surface-4);
+  box-shadow: var(--md-sys-elev-shadow-4);
+}
+[demo-elev][e5] {
+  background: var(--md-sys-elev-surface-5);
+  box-shadow: var(--md-sys-elev-shadow-5);
+}
+[demo-rpl] {
+  margin: 8px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 216px;
+  height: 216px;
+  background: var(--md-sys-elev-surface-2);
+  box-shadow: var(--md-sys-elev-shadow-2);
+  border-radius: 16px;
   -webkit-tap-highlight-color: transparent;
   appearance: none;
   z-index: 1;
   user-select: none;
+  cursor: pointer;
 }
 fieldset {
   border-radius: 8px;
