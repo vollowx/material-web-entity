@@ -5,6 +5,36 @@ import M3TextFieldStyles from './text-field-styles.scss';
  * Text field component.
  */
 class M3TextField extends BaseTextField {
+  /**
+   * EXTEND ATTRIBUTES
+   */
+  /** */
+  static get observedAttributes() {
+    return ['label', 'outlined', 'help-text', ...this.observedAttributesDefault];
+  }
+  get label(): string {
+    return this.getAttribute('label') || '';
+  }
+  set label(value: string) {
+    this.setAttribute('label', value);
+  }
+  get helpText(): string {
+    return this.getAttribute('help-text') || '';
+  }
+  set helpText(value: string) {
+    this.setAttribute('help-text', value);
+  }
+  get error(): boolean {
+    return this.hasAttribute('error');
+  }
+  set error(value: boolean) {
+    if (value) {
+      this.setAttribute('error', '');
+    } else {
+      this.removeAttribute('error');
+    }
+  }
+
   static tagName: string = 'md-text-field';
   labelNode: HTMLElement;
   labelKeeperNode: HTMLElement;
@@ -12,18 +42,18 @@ class M3TextField extends BaseTextField {
   helpTextNode: HTMLElement;
   counterNode: HTMLElement;
 
-  static get observedAttributes() {
-    return ['label', 'outlined', 'help-text', ...this.observedAttributesDefault];
-  }
-
+  /**
+   * LIFE CYCLE
+   */
+  /** */
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
     this.defines();
     this.binds();
-    this.onTempChange();
-    this.onChange();
+    this._onInput();
+    this._onChange();
   }
-  attributeChangedCallbackExtend = (name: string, oldValue: string, newValue: string) => {
+  exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
     if (name === 'label') {
       this.labelNode.textContent = this.label;
       this.labelKeeperNode ? (this.labelKeeperNode.textContent = this.label) : null;
@@ -33,11 +63,15 @@ class M3TextField extends BaseTextField {
       this.shadowRoot.innerHTML = this.render();
       this.defines();
       this.binds();
-      this.onTempChange();
-      this.onChange();
+      this._onInput();
+      this._onChange();
     }
   };
 
+  /**
+   * RENDERING
+   */
+  /** */
   protected override render(): string {
     return this.hasAttribute('outlined') ? this.renderOutlined() : this.renderFilled();
   }
@@ -79,46 +113,33 @@ class M3TextField extends BaseTextField {
     this.counterNode = this.shadowRoot.querySelector('.md-text-field__counter') as HTMLElement;
   }
 
-  protected override exFocus() {
+  /**
+   * EVENTS
+   */
+  /** */
+  protected override _onFocus() {
     this.containerNode.classList.add('md-text-field--focused');
+    this.onFocus();
   }
-  protected override exBlur() {
+  protected override _onBlur() {
     this.containerNode.classList.remove('md-text-field--focused');
+    this.onBlur();
   }
-  protected override exChange() {
+  protected override _onChange() {
+    this.value = this.nativeNode.value;
     if (this.nativeNode.value === '') {
       this.containerNode.classList.remove('md-text-field--keep');
     } else {
       this.containerNode.classList.add('md-text-field--keep');
     }
+    this.onChange();
   }
-  protected override exTempChange() {
+  protected override _onInput() {
+    this.value = this.nativeNode.value;
     if (this.maxlength) {
       this.counterNode.textContent = `${this.nativeNode.value.length}/${this.maxlength}`;
     }
-  }
-
-  get label(): string {
-    return this.getAttribute('label') || '';
-  }
-  set label(value: string) {
-    this.setAttribute('label', value);
-  }
-  get helpText(): string {
-    return this.getAttribute('help-text') || '';
-  }
-  set helpText(value: string) {
-    this.setAttribute('help-text', value);
-  }
-  get error(): boolean {
-    return this.hasAttribute('error');
-  }
-  set error(value: boolean) {
-    if (value) {
-      this.setAttribute('error', '');
-    } else {
-      this.removeAttribute('error');
-    }
+    this.onInput();
   }
 }
 

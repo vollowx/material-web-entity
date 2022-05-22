@@ -4,10 +4,19 @@
  * All the custom with actions like a text field should extend this class.
  */
 class BaseTextField extends HTMLElement {
-  static tagName: string;
-  nativeNode: HTMLInputElement;
-  tempValue: string;
-
+  /**
+   * ATTRIBUTES
+   * 
+   * `observedAttributesDefault` is a list of attributes that are observed by default.  
+   * When extending this class, use
+   * ```js
+   * static get observedAttributes() {
+   *   return [...this.observedAttributesDefault];
+   * }
+   * ```
+   * setter, getter for setting, getting the attributes easier and more intuitive.
+   */
+  /** */
   static observedAttributesDefault = [
     'disabled',
     'type',
@@ -17,108 +26,10 @@ class BaseTextField extends HTMLElement {
     'value',
     'autocomplete',
     'maxlength',
-    'autofocus',
   ];
   static get observedAttributes() {
     return [...this.observedAttributesDefault];
   }
-
-  constructor() {
-    super();
-
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-  }
-  connectedCallback() {
-    this.shadowRoot.innerHTML = this.render();
-
-    this.nativeNode = this.shadowRoot.querySelector('.bs-text-field') as HTMLInputElement;
-    this.binds();
-  }
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (this.nativeNode) {
-      if (name === 'disabled') {
-        this.nativeNode.disabled = this.disabled;
-      } else if (name === 'type') {
-        this.nativeNode.type = this.type;
-      } else if (name === 'readonly') {
-        this.nativeNode.readOnly = this.readonly;
-      } else if (name === 'required') {
-        this.nativeNode.required = this.required;
-      } else if (name === 'placeholder') {
-        this.nativeNode.placeholder = this.placeholder;
-      } else if (name === 'value') {
-        this.nativeNode.value = this.value;
-      } else if (name === 'autocomplete') {
-        this.nativeNode.autocomplete = this.autocomplete;
-      } else if (name === 'maxlength') {
-        this.nativeNode.maxLength = this.maxlength;
-      } else if (name === 'autofocus') {
-        this.nativeNode.autofocus = this.autofocus;
-      }
-      this.attributeChangedCallbackExtend(name, oldValue, newValue);
-    }
-  }
-  protected attributeChangedCallbackExtend = (name: string, oldValue: string, newValue: string) => {};
-
-  protected render(): string {
-    return `
-    <style>
-      :host {
-        position: relative;
-        box-sizing: border-box;
-        display: inline-flex;
-        -webkit-tap-highlight-color: transparent;
-      }
-    </style>
-    ${this.renderInput('bs-text-field')}
-    `;
-  }
-  protected renderInput(identifier: string): string {
-    return `
-    <input
-      class="${identifier}"
-      ${this.disabled ? 'disabled' : ''}
-      ${this.type ? 'type="' + this.type + '"' : ''}
-      ${this.readonly ? 'readonly' : ''}
-      ${this.required ? 'required' : ''}
-      ${this.placeholder ? 'placeholder="' + this.placeholder + '"' : ''}
-      ${this.value ? 'value="' + this.value + '"' : ''}
-      ${this.autocomplete ? 'autocomplete="' + this.autocomplete + '"' : ''}
-      ${this.maxlength ? 'maxlength="' + this.maxlength + '"' : ''}
-      ${this.autofocus ? 'autofocus' : ''}
-    />`;
-  }
-
-  protected binds() {
-    this.nativeNode.addEventListener('focus', () => this.onFocus());
-    this.nativeNode.addEventListener('blur', () => this.onBlur());
-    this.nativeNode.addEventListener('change', () => this.onChange());
-    this.nativeNode.addEventListener('input', () => this.onTempChange());
-  }
-
-  protected onFocus() {
-    this.dispatchEvent(new CustomEvent('focus'));
-    this.exFocus();
-  }
-  protected exFocus() {}
-  protected onBlur() {
-    this.dispatchEvent(new CustomEvent('blur'));
-    this.exBlur();
-  }
-  protected exBlur() {}
-  protected onChange() {
-    this.dispatchEvent(new Event('change'));
-    this.value = this.nativeNode.value;
-    this.exChange();
-  }
-  protected exChange() {}
-  protected onTempChange() {
-    this.dispatchEvent(new CustomEvent('temp-change'));
-    this.tempValue = this.nativeNode.value;
-    this.exTempChange();
-  }
-  protected exTempChange() {}
-
   get disabled(): boolean {
     return this.hasAttribute('disabled');
   }
@@ -181,6 +92,104 @@ class BaseTextField extends HTMLElement {
   }
   focus(): void {
     this.nativeNode.focus();
+  }
+
+  static tagName: string;
+  nativeNode: HTMLInputElement;
+  tempValue: string;
+
+  /**
+   * LIFE CYCLE
+   */
+  /** */
+  constructor() {
+    super();
+
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+  }
+  connectedCallback() {
+    this.shadowRoot.innerHTML = this.render();
+
+    this.nativeNode = this.shadowRoot.querySelector('.bs-text-field') as HTMLInputElement;
+    this.binds();
+  }
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (this.nativeNode) {
+      if (name === 'disabled') {
+        this.nativeNode.disabled = this.disabled;
+      } else if (name === 'type') {
+        this.nativeNode.type = this.type;
+      } else if (name === 'readonly') {
+        this.nativeNode.readOnly = this.readonly;
+      } else if (name === 'required') {
+        this.nativeNode.required = this.required;
+      } else if (name === 'placeholder') {
+        this.nativeNode.placeholder = this.placeholder;
+      } else if (name === 'value') {
+        this.nativeNode.value = this.value;
+      } else if (name === 'autocomplete') {
+        this.nativeNode.autocomplete = this.autocomplete;
+      } else if (name === 'maxlength') {
+        this.nativeNode.maxLength = this.maxlength;
+      }
+      this.exAttributeChangedCallback(name, oldValue, newValue);
+    }
+  }
+  protected exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {};
+
+  /**
+   * RENDERING
+   */
+  protected render(): string {
+    return `${this.renderInput('bs-text-field')}`;
+  }
+  protected renderInput(_className: string): string {
+    return `
+    <input
+      class="${_className}"
+      ${this.disabled ? 'disabled' : ''}
+      ${this.type ? 'type="' + this.type + '"' : ''}
+      ${this.readonly ? 'readonly' : ''}
+      ${this.required ? 'required' : ''}
+      ${this.placeholder ? 'placeholder="' + this.placeholder + '"' : ''}
+      ${this.value ? 'value="' + this.value + '"' : ''}
+      ${this.autocomplete ? 'autocomplete="' + this.autocomplete + '"' : ''}
+      ${this.maxlength ? 'maxlength="' + this.maxlength + '"' : ''}
+    />`;
+  }
+
+  protected binds() {
+    this.nativeNode.addEventListener('focus', () => this._onFocus());
+    this.nativeNode.addEventListener('blur', () => this._onBlur());
+    this.nativeNode.addEventListener('change', () => this._onChange());
+    this.nativeNode.addEventListener('input', () => this._onInput());
+  }
+
+  /**
+   * EVENTS
+   *
+   * ALl the functions with '_' prefix are for internal use only.
+   * To extend this class, override the functions with '_' prefix,
+   * the functions without '_' prefix are for external use.
+   */
+  /** */
+  protected onFocus() {}
+  protected _onFocus(): void {
+    this.onFocus();
+  }
+  protected onBlur() {}
+  protected _onBlur(): void {
+    this.onBlur();
+  }
+  protected onChange() {}
+  protected _onChange(): void {
+    this.value = this.nativeNode.value;
+    this.onChange();
+  }
+  protected onInput() {}
+  protected _onInput(): void {
+    this.value = this.nativeNode.value;
+    this.onInput();
   }
 }
 
