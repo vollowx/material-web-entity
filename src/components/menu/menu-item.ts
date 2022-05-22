@@ -9,6 +9,10 @@ import M3MenuItemStyles from './menu-item-styles.scss';
 class M3MenuItem extends BaseButton {
   static tagName: string = 'md-menu-item';
 
+  /**
+   * LIFE CYCLE
+   */
+  /** */
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
@@ -19,6 +23,10 @@ class M3MenuItem extends BaseButton {
     this.nativeNode.addEventListener('blur', () => this.removeAttribute('focused'));
   }
 
+  /**
+   * RENDERING
+   */
+  /** */
   protected override render(): string {
     return `
     <style>${M3MenuItemStyles}</style>

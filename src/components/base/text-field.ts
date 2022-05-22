@@ -140,6 +140,7 @@ class BaseTextField extends HTMLElement {
   /**
    * RENDERING
    */
+  /** */
   protected render(): string {
     return `${this.renderInput('bs-text-field')}`;
   }

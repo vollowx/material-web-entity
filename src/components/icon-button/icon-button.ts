@@ -6,25 +6,26 @@ import M3Icon from '../icon/icon';
  * Icon button component.
  */
 class M3IconButton extends BaseButton {
-  static tagName: string = 'md-icon-button';
-  iconNode: M3Icon;
-
-  protected override render(): string {
-    return `
-    <style>${M3IconButtonStyles}</style>
-    <button class="md-icon-button"
-      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
-      ${this.disabled ? 'disabled' : ''}>
-      <md-ripple centered></md-ripple>
-      <md-icon>${this.icon ? this.icon : ''}</md-icon>
-      <slot></slot>
-    </button>
-    `;
-  }
-
+  /**
+   * EXTEND ATTRIBUTES
+   */
   static get observedAttributes() {
     return ['icon', ...this.observedAttributesDefault];
   }
+  get icon(): string {
+    return this.getAttribute('icon');
+  }
+  set icon(value: string) {
+    this.setAttribute('icon', value);
+  }
+
+  static tagName: string = 'md-icon-button';
+  iconNode: M3Icon;
+
+  /**
+   * LIFE CYCLE
+   */
+  /** */
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
@@ -37,11 +38,21 @@ class M3IconButton extends BaseButton {
     }
   };
 
-  get icon(): string {
-    return this.getAttribute('icon');
-  }
-  set icon(value: string) {
-    this.setAttribute('icon', value);
+  /**
+   * RENDERING
+   */
+  /** */
+  protected override render(): string {
+    return `
+    <style>${M3IconButtonStyles}</style>
+    <button class="md-icon-button"
+      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
+      ${this.disabled ? 'disabled' : ''}>
+      <md-ripple centered></md-ripple>
+      <md-icon>${this.icon ? this.icon : ''}</md-icon>
+      <slot></slot>
+    </button>
+    `;
   }
 }
 

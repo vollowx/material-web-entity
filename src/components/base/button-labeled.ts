@@ -6,10 +6,33 @@ import BaseButton from './button-default';
  * All the custom with actions like a button with label should extend this class.
  */
 class BaseButtonLabeled extends BaseButton {
+  /**
+   * ATTRIBUTES
+   *
+   * `observedAttributesDefault` is a list of attributes that are observed by default.
+   * When extending this class, use
+   * ```js
+   * static get observedAttributes() {
+   *   return [...this.observedAttributesDefault];
+   * }
+   * ```
+   * setter, getter for setting, getting the attributes easier and more intuitive.
+   */
+  /** */
+  static observedAttributesDefault = ['label', 'data-aria-label', 'disabled'];
+  get label(): string {
+    return this.getAttribute('label');
+  }
+  set label(value: string) {
+    this.setAttribute('label', value);
+  }
+
   labelNode: HTMLElement;
 
-  static observedAttributesDefault = ['label', 'data-aria-label', 'disabled'];
-
+  /**
+   * LIFE CYCLE
+   */
+  /** */
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
@@ -19,31 +42,28 @@ class BaseButtonLabeled extends BaseButton {
     if (this.nativeNode && this.labelNode) {
       if (name === 'label') {
         this.labelNode.textContent = newValue;
+        if (!this.ariaLabel) {
+          this.nativeNode.ariaLabel = newValue;
+          if (newValue === '') {
+            this.nativeNode.removeAttribute('aria-label');
+          }
+        }
       }
     }
   };
 
-  protected render(): string {
+  /**
+   * RENDERING
+   */
+  /** */
+  protected renderButton(_className: string): string {
     return `
-    <style>
-      :host {
-        position: relative;
-        box-sizing: border-box;
-        display: inline-flex;
-        -webkit-tap-highlight-color: transparent;
-      }
-    </style>
-    <button class="bs-button" ${this.disabled ? 'disabled' : ''}>
-      <span class="bs-button__label">${this.label ? this.label : ''}</span>
+    <button class="${_className}"
+      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : this.label ? 'aria-label="' + this.label + '"' : ''}
+      ${this.disabled ? 'disabled' : ''}>
+      <span class="${_className}__label">${this.label ? this.label : ''}</span>
       <slot></slot>
     </button>`;
-  }
-
-  get label(): string {
-    return this.getAttribute('label');
-  }
-  set label(value: string) {
-    this.setAttribute('label', value);
   }
 }
 
