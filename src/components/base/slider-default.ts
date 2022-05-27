@@ -17,7 +17,7 @@ class BaseSlider extends HTMLElement {
    * setter, getter for setting, getting the attributes easier and more intuitive.
    */
   /** */
-  static observedAttributesDefault = ['min', 'max', 'step', 'value', 'data-aria-labelby'];
+  static observedAttributesDefault = ['min', 'max', 'step', 'value', 'disabled', 'data-aria-labelby'];
   static get observedAttributes() {
     return [...this.observedAttributesDefault];
   }
@@ -45,6 +45,16 @@ class BaseSlider extends HTMLElement {
   set value(value: number) {
     this.nativeNode.value = value.toString();
   }
+  get disabled(): boolean {
+    return this.hasAttribute('disabled');
+  }
+  set disabled(value: boolean) {
+    if (value) {
+      this.setAttribute('disabled', '');
+    } else {
+      this.removeAttribute('disabled');
+    }
+  }
   get ariaLabelBy(): string {
     return this.nativeNode.getAttribute('data-aria-labelby');
   }
@@ -67,6 +77,9 @@ class BaseSlider extends HTMLElement {
     this.shadowRoot.innerHTML = this.render();
 
     this.nativeNode = this.shadowRoot.querySelector('input') as HTMLInputElement;
+
+    this.nativeNode.addEventListener('change', () => this._onChange());
+    this.nativeNode.addEventListener('input', () => this._onInput());
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.nativeNode) {
@@ -78,6 +91,8 @@ class BaseSlider extends HTMLElement {
         this.nativeNode.step = newValue;
       } else if (name === 'value') {
         this.nativeNode.value = newValue;
+      } else if (name === 'disabled') {
+        this.nativeNode.disabled = this.disabled;
       } else if (name === 'data-aria-labelby') {
         this.nativeNode.setAttribute('aria-labelby', newValue);
       }
@@ -87,18 +102,46 @@ class BaseSlider extends HTMLElement {
   /**
    * RENDERING
    */
-  render(): string {
+  protected render(): string {
     return `${this.renderInput()}`;
   }
-  renderInput(): string {
+  protected renderInput(): string {
     return `
       <input
-        class="${this.tagName.toLowerCase()}"
+        class="${this.tagName.toLowerCase()}__input"
         type="range"
         min="${this.min}"
         max="${this.max}"
-        value="${this.value ? this.value : 0}" step="${this.step}" />
+        value="${this.value ? this.value : 0}" step="${this.step}"
+        ${this.disabled ? 'disabled' : ''} />
     `;
+  }
+
+  /**
+   * EVENT
+   */
+  /** */
+  protected onChange() {}
+  protected _onChange(): void {
+    this.dispatchEvent(
+      new CustomEvent('change', {
+        detail: {
+          value: this.value,
+        },
+      })
+    );
+    this.onChange();
+  }
+  protected onInput() {}
+  protected _onInput(): void {
+    this.dispatchEvent(
+      new CustomEvent('input', {
+        detail: {
+          value: this.value,
+        },
+      })
+    );
+    this.onInput();
   }
 }
 

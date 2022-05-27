@@ -1,0 +1,112 @@
+:host {
+  position: relative;
+  margin: 0 24px;
+  display: inline-block;
+  min-width: 112px;
+  width: auto;
+  height: 48px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  outline: none;
+  touch-action: pan-y;
+  cursor: pointer;
+}
+
+.md-slider__track {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 4px;
+  display: flex;
+  align-items: center;
+  transform: translateY(-50%);
+  user-select: none;
+
+  .md-slider__track-inactive {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgb(var(--md-sys-color-primary-container));
+  }
+  .md-slider__track-active {
+    display: flex;
+    position: absolute;
+    top: -1px;
+    height: 6px;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+
+    .md-slider__track-active-fill {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(var(--md-sys-color-primary));
+      box-sizing: border-box;
+      transform-origin: left;
+    }
+  }
+
+  .md-slider__thumb {
+    display: flex;
+    position: absolute;
+    left: -24px;
+    width: 48px;
+    height: 48px;
+    outline: none;
+
+    .md-slider__thumb-knob {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      background-color: rgb(var(--md-sys-color-primary));
+      box-shadow: var(--md-sys-elev-shadow-1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-sizing: border-box;
+    }
+  }
+}
+
+.md-slider__input {
+  position: absolute;
+  top: 0;
+  left: -8px;
+  margin: 0;
+  width: calc(100% + 16px);
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+}
+
+:host([transitionable]) {
+  .md-slider__track-active-fill,
+  .md-slider__thumb {
+    transition: transform 80ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+:host([disabled]) {
+  .md-slider__track {
+    opacity: 0.38;
+    cursor: auto;
+  }
+  .md-slider__input {
+    cursor: auto;
+  }
+  .md-slider__track-inactive {
+    background-color: rgba(var(--md-sys-color-on-surface), 0.38);
+  }
+  .md-slider__track-active-fill {
+    background-color: rgb(var(--md-sys-color-on-surface));
+  }
+  .md-slider__thumb-knob {
+    background-color: rgb(var(--md-sys-color-on-surface));
+  }
+}
