@@ -4,14 +4,56 @@
  * All the custom with actions like a checkbox should extend this class.
  */
 class BaseCheck extends HTMLElement {
-  static tagName: string;
-  nativeNode: HTMLInputElement;
-
+  /**
+   * ATTRIBUTES
+   *
+   * `observedAttributesDefault` is a list of attributes that are observed by default.
+   * When extending this class, use
+   * ```js
+   * static get observedAttributes() {
+   *   return [...this.observedAttributesDefault];
+   * }
+   * ```
+   * setter, getter for setting, getting the attributes easier and more intuitive.
+   */
+  /** */
   static observedAttributesDefault = ['checked', 'disabled'];
   static get observedAttributes() {
     return [...this.observedAttributesDefault];
   }
+  get checked(): boolean {
+    return this.nativeNode ? this.nativeNode.checked : this.hasAttribute('checked');
+  }
+  set checked(value: boolean) {
+    this.nativeNode.checked = value;
+  }
+  get disabled(): boolean {
+    return this.hasAttribute('disabled');
+  }
+  set disabled(value: boolean) {
+    if (value) {
+      this.setAttribute('disabled', '');
+    } else {
+      this.removeAttribute('disabled');
+    }
+  }
+  get tabIndex(): number {
+    return this.nativeNode.tabIndex;
+  }
+  set tabIndex(value: number) {
+    this.nativeNode.tabIndex = value;
+  }
+  focus() {
+    this.nativeNode.focus();
+  }
 
+  static tagName: string;
+  nativeNode: HTMLInputElement;
+
+  /**
+   * LIFE CYCLE
+   */
+  /** */
   constructor() {
     super();
 
@@ -36,6 +78,10 @@ class BaseCheck extends HTMLElement {
   }
   protected exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {};
 
+  /**
+   * RENDERING
+   */
+  /** */
   protected render(): string {
     return `
     <style>
@@ -63,32 +109,6 @@ class BaseCheck extends HTMLElement {
     this.exChange();
   }
   protected exChange() {}
-
-  get checked(): boolean {
-    return this.nativeNode ? this.nativeNode.checked : this.hasAttribute('checked');
-  }
-  set checked(value: boolean) {
-    this.nativeNode.checked = value;
-  }
-  get disabled(): boolean {
-    return this.hasAttribute('disabled');
-  }
-  set disabled(value: boolean) {
-    if (value) {
-      this.setAttribute('disabled', '');
-    } else {
-      this.removeAttribute('disabled');
-    }
-  }
-  get tabIndex(): number {
-    return this.nativeNode.tabIndex;
-  }
-  set tabIndex(value: number) {
-    this.nativeNode.tabIndex = value;
-  }
-  focus() {
-    this.nativeNode.focus();
-  }
 }
 
 export default BaseCheck;
