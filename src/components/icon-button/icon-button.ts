@@ -29,7 +29,7 @@ class M3IconButton extends BaseButton {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.querySelector('.md-icon-button') as HTMLButtonElement;
+    this.nativeNode = this.shadowRoot.querySelector('.md-icon-button') as HTMLLinkElement;
     this.iconNode = this.shadowRoot.querySelector('md-icon') as M3Icon;
   }
   protected override exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
@@ -46,7 +46,6 @@ class M3IconButton extends BaseButton {
     return `
     <style>${M3IconButtonStyles}</style>
     ${this.renderButton(
-      'md-icon-button',
       `<md-ripple centered></md-ripple>
       <md-icon>${this.icon}</md-icon>`
     )}`;

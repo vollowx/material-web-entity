@@ -122,12 +122,12 @@ class M3Ripple extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['default'];
+    return ['classical'];
   }
   connectedCallback() {
     this.render();
 
-    this.parentE = ((this.parentNode as ShadowRoot).host as HTMLElement) || (this.parentNode as HTMLElement);
+    this.parentE = this.parentNode as HTMLElement;
     this.containerE = this.shadowRoot.querySelector('.md-ripple__container');
 
     this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));

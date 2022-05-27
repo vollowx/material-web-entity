@@ -19,7 +19,7 @@ class BaseButtonLabeled extends BaseButton {
    * setter, getter for setting, getting the attributes easier and more intuitive.
    */
   /** */
-  static observedAttributesDefault = ['label', 'data-aria-label', 'disabled'];
+  static observedAttributesDefault = ['label', 'href', 'target', 'disabled', 'data-aria-label'];
   get label(): string {
     return this.getAttribute('label');
   }
@@ -36,7 +36,8 @@ class BaseButtonLabeled extends BaseButton {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.labelNode = this.shadowRoot.querySelector('.bs-button__label') as HTMLElement;
+    this.nativeNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
+    this.labelNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}__label`) as HTMLElement;
   }
   protected override exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
     if (this.nativeNode && this.labelNode) {
@@ -57,17 +58,18 @@ class BaseButtonLabeled extends BaseButton {
    */
   /** */
   protected override renderButton(
-    _className: string = 'button',
     _content: string = `
-    <span class="${_className}__label">${this.label ? this.label : ''}</span>
+    <span class="${this.tagName.toLowerCase()}__label">${this.label ? this.label : ''}</span>
     <slot></slot>`
   ): string {
     return `
-    <button class="${_className}"
+    <${
+      this.href ? 'a' + ' href="' + this.href + '"' + (this.target ? ' target="' + this.target + '"' : '') : 'button'
+    } class="${this.tagName.toLowerCase()}"
       ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : this.label ? 'aria-label="' + this.label + '"' : ''}
       ${this.disabled ? 'disabled' : ''}>
       ${_content}
-    </button>`;
+    </${this.href ? 'a' : 'button'}>`;
   }
 }
 

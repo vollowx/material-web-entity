@@ -6,8 +6,8 @@
 class BaseTextField extends HTMLElement {
   /**
    * ATTRIBUTES
-   * 
-   * `observedAttributesDefault` is a list of attributes that are observed by default.  
+   *
+   * `observedAttributesDefault` is a list of attributes that are observed by default.
    * When extending this class, use
    * ```js
    * static get observedAttributes() {
@@ -96,7 +96,6 @@ class BaseTextField extends HTMLElement {
 
   static tagName: string;
   nativeNode: HTMLInputElement;
-  tempValue: string;
 
   /**
    * LIFE CYCLE
@@ -110,7 +109,7 @@ class BaseTextField extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.querySelector('.bs-text-field') as HTMLInputElement;
+    this.nativeNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLInputElement;
     this.binds();
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {

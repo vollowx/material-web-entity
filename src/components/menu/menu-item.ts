@@ -16,7 +16,7 @@ class M3MenuItem extends BaseButton {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.querySelector('.md-menu__item') as HTMLButtonElement;
+    this.nativeNode = this.shadowRoot.querySelector('.md-menu__item') as HTMLLinkElement;
 
     this.tabIndex = -1;
     this.nativeNode.addEventListener('focus', () => this.setAttribute('focused', ''));

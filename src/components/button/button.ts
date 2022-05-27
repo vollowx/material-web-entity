@@ -18,17 +18,6 @@ class M3Button extends BaseButtonLabeled {
   static tagName: string = 'md-button';
 
   /**
-   * LIFE CYCLE
-   */
-  /** */
-  connectedCallback() {
-    this.shadowRoot.innerHTML = this.render();
-
-    this.nativeNode = this.shadowRoot.querySelector('.md-button') as HTMLButtonElement;
-    this.labelNode = this.shadowRoot.querySelector('.md-button__label') as HTMLElement;
-  }
-
-  /**
    * RENDERING
    */
   /** */
@@ -36,7 +25,6 @@ class M3Button extends BaseButtonLabeled {
     return `
     <style>${M3ButtonStyles}</style>
     ${this.renderButton(
-      'md-button',
       `<md-ripple></md-ripple>
       <span class="md-button__label">${this.label ? this.label : ''}</span>
       <slot></slot>`

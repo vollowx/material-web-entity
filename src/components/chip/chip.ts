@@ -18,17 +18,6 @@ class M3Chip extends BaseButtonLabeled {
   static tagName: string = 'md-chip';
 
   /**
-   * LIFE CYCLE
-   */
-  /** */
-  connectedCallback() {
-    this.shadowRoot.innerHTML = this.render();
-
-    this.nativeNode = this.shadowRoot.querySelector('.md-chip') as HTMLButtonElement;
-    this.labelNode = this.shadowRoot.querySelector('.md-chip__label') as HTMLElement;
-  }
-
-  /**
    * RENDERING
    */
   /** */
@@ -36,7 +25,6 @@ class M3Chip extends BaseButtonLabeled {
     return `
     <style>${M3ChipStyles}</style>
     ${this.renderButton(
-      'md-chip',
       `<md-ripple></md-ripple>
       <span class="md-chip__label">${this.label ? this.label : ''}</span>
       <slot></slot>`
