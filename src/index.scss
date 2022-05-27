@@ -1,4 +1,4 @@
-@import './scss-mixins/thin-scrollbar.scss';
+@import './scss-mixins/custom-scrollbar.scss';
 
 @import './styles/color-system.scss';
 @import './styles/elevation-system.scss';
@@ -25,7 +25,7 @@ body.dark-theme {
   background: rgb(var(--md-sys-color-background-dark));
 }
 
-@include thin-scrollbar();
+@include custom-scrollbar();
 
 /* CSS Components */
 md-divider {

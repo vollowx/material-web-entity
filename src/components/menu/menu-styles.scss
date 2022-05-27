@@ -1,5 +1,5 @@
-@import '../../scss-mixins/thin-scrollbar.scss';
-@include thin-scrollbar;
+@import '../../scss-mixins/custom-scrollbar.scss';
+@include custom-scrollbar;
 
 :host {
   --md-icon-size: 24px;

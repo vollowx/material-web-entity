@@ -35,14 +35,12 @@ class M3Button extends BaseButtonLabeled {
   protected override render(): string {
     return `
     <style>${M3ButtonStyles}</style>
-    <button class="md-button"
-      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : this.label ? 'aria-label="' + this.label + '"' : ''}
-      ${this.disabled ? 'disabled' : ''}>
-      <md-ripple></md-ripple>
+    ${this.renderButton(
+      'md-button',
+      `<md-ripple></md-ripple>
       <span class="md-button__label">${this.label ? this.label : ''}</span>
-      <slot></slot>
-    </button>
-    `;
+      <slot></slot>`
+    )}`;
   }
 }
 

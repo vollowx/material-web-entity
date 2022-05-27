@@ -45,14 +45,11 @@ class M3IconButton extends BaseButton {
   protected override render(): string {
     return `
     <style>${M3IconButtonStyles}</style>
-    <button class="md-icon-button"
-      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
-      ${this.disabled ? 'disabled' : ''}>
-      <md-ripple centered></md-ripple>
-      <md-icon>${this.icon ? this.icon : ''}</md-icon>
-      <slot></slot>
-    </button>
-    `;
+    ${this.renderButton(
+      'md-icon-button',
+      `<md-ripple centered></md-ripple>
+      <md-icon>${this.icon}</md-icon>`
+    )}`;
   }
 }
 

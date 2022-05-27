@@ -56,13 +56,17 @@ class BaseButtonLabeled extends BaseButton {
    * RENDERING
    */
   /** */
-  protected renderButton(_className: string): string {
+  protected override renderButton(
+    _className: string = 'button',
+    _content: string = `
+    <span class="${_className}__label">${this.label ? this.label : ''}</span>
+    <slot></slot>`
+  ): string {
     return `
     <button class="${_className}"
       ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : this.label ? 'aria-label="' + this.label + '"' : ''}
       ${this.disabled ? 'disabled' : ''}>
-      <span class="${_className}__label">${this.label ? this.label : ''}</span>
-      <slot></slot>
+      ${_content}
     </button>`;
   }
 }

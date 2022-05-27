@@ -5,12 +5,13 @@ const componentsAndUtilsConfig = {
   output: {
     filename: 'mwe-bundle.min.js',
     path: path.resolve(__dirname, 'dist'),
+    pathinfo: false,
   },
   module: {
     rules: [
       {
         test: /\.ts?$/,
-        use: 'ts-loader',
+        use: [{ loader: 'ts-loader', options: { transpileOnly: true } }],
         exclude: /node_modules/,
       },
       {

@@ -24,14 +24,12 @@ class M3FAB extends BaseButtonLabeled {
   protected render(): string {
     return `
     <style>${M3FABStyles}</style>
-    <button class="md-fab"
-      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : this.label ? 'aria-label="' + this.label + '"' : ''}
-      ${this.disabled ? 'disabled' : ''}>
-      <md-ripple></md-ripple>
+    ${this.renderButton(
+      'md-fab',
+      `<md-ripple></md-ripple>
       <span class="md-fab__label">${this.label ? this.label : ''}</span>
-      <slot></slot>
-    </button>
-    `;
+      <slot></slot>`
+    )}`;
   }
 }
 

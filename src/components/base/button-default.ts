@@ -87,12 +87,12 @@ class BaseButton extends HTMLElement {
   protected render(): string {
     return `${this.renderButton('bs-button')}`;
   }
-  protected renderButton(_className: string): string {
+  protected renderButton(_className: string, _content: string = '<slot></slot>'): string {
     return `
     <button class="${_className}"
       ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
       ${this.disabled ? 'disabled' : ''}>
-      <slot></slot>
+      ${_content}
     </button>`;
   }
 }

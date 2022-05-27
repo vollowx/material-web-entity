@@ -35,14 +35,12 @@ class M3Chip extends BaseButtonLabeled {
   protected override render(): string {
     return `
     <style>${M3ChipStyles}</style>
-    <button class="md-chip"
-      ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : this.label ? 'aria-label="' + this.label + '"' : ''}
-      ${this.disabled ? 'disabled' : ''}>
-      <md-ripple></md-ripple>
+    ${this.renderButton(
+      'md-chip',
+      `<md-ripple></md-ripple>
       <span class="md-chip__label">${this.label ? this.label : ''}</span>
-      <slot></slot>
-    </button>
-    `;
+      <slot></slot>`
+    )}`;
   }
 }
 
