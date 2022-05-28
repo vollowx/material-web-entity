@@ -1,6 +1,6 @@
 {
   "name": "material-web-entity",
-  "version": "0.0.1",
+  "version": "0.0.20220528",
   "description": "A component library based on Material Design 3 & Web Components",
   "main": "./src/index.js",
   "scripts": {
