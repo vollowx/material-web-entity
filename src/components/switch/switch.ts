@@ -8,34 +8,37 @@ class M3Switch extends BaseCheck {
   static tagName = 'md-switch';
   switchNode: HTMLButtonElement;
 
-  static get observedAttributes() {
-    return ['data-aria-label', ...super.observedAttributes];
-  }
-
-  connectedCallback() {
+  override connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
     this.nativeNode = this.shadowRoot.querySelector('.md-switch__input') as HTMLInputElement;
     this.switchNode = this.shadowRoot.querySelector('.md-switch') as HTMLButtonElement;
-    this.switchNode.addEventListener('click', () => this.onChange());
+    this.switchNode.addEventListener('click', (e) => this._onChange(e));
   }
 
-  protected exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
-    if (name === 'data-aria-label') {
-      if (newValue) {
-        this.switchNode.ariaLabel = newValue;
-      } else {
-        this.switchNode.removeAttribute('aria-label');
+  override attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (this.nativeNode) {
+      if (name === 'checked') {
+        if (this.checked !== this.hasAttribute('checked')) {
+          this.checked = this.hasAttribute('checked');
+        }
+        this.switchNode.setAttribute('aria-checked', this.checked.toString());
+      } else if (name === 'disabled') {
+        this.nativeNode.disabled = this.disabled;
+      } else if (name === 'data-aria-label') {
+        if (newValue) {
+          this.switchNode.ariaLabel = newValue;
+        } else {
+          this.switchNode.removeAttribute('aria-label');
+        }
       }
-    } else if (name === 'checked') {
-      this.switchNode.setAttribute('aria-checked', this.checked.toString());
     }
-  };
+  }
 
   protected override render(): string {
     return `
     <style>${M3SwitchStyles}</style>
     <button
-      class="md-switch ${this.hasAttribute('checked') ? 'md-switch--checked' : ''}"
+      class="md-switch"
       role="switch"
       aria-checked="${this.hasAttribute('checked') ? 'true' : 'false'}"
       aria-label="${this.ariaLabel ? this.ariaLabel : ''}"
@@ -57,17 +60,14 @@ class M3Switch extends BaseCheck {
       ${this.hasAttribute('checked') ? 'checked' : ''} />`;
   }
 
-  protected override onChange() {
+  protected override _onChange(event: Event) {
     this.nativeNode.checked = !this.nativeNode.checked;
     if (this.nativeNode.checked) {
       this.setAttribute('checked', '');
-      this.switchNode.classList.add('md-switch--checked');
     } else {
       this.removeAttribute('checked');
-      this.switchNode.classList.remove('md-switch--checked');
     }
     this.dispatchEvent(new Event('change'));
-    this.exChange();
   }
 
   get checked(): boolean {
@@ -77,17 +77,9 @@ class M3Switch extends BaseCheck {
     this.nativeNode.checked = value;
     if (value) {
       this.setAttribute('checked', '');
-      this.switchNode.classList.add('md-switch--checked');
     } else {
       this.removeAttribute('checked');
-      this.switchNode.classList.remove('md-switch--checked');
     }
-  }
-  get ariaLabel(): string {
-    return this.getAttribute('data-aria-label');
-  }
-  set ariaLabel(value: string) {
-    this.setAttribute('data-aria-label', value);
   }
   override focus() {
     this.switchNode.focus();

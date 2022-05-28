@@ -17,7 +17,7 @@ class BaseCheck extends HTMLElement {
    * setter, getter for setting, getting the attributes easier and more intuitive.
    */
   /** */
-  static observedAttributesDefault = ['checked', 'disabled'];
+  static observedAttributesDefault = ['checked', 'disabled', 'data-aria-label'];
   static get observedAttributes() {
     return [...this.observedAttributesDefault];
   }
@@ -43,6 +43,12 @@ class BaseCheck extends HTMLElement {
   set tabIndex(value: number) {
     this.nativeNode.tabIndex = value;
   }
+  get ariaLabel(): string {
+    return this.getAttribute('data-aria-label');
+  }
+  set ariaLabel(value: string) {
+    this.setAttribute('data-aria-label', value);
+  }
   focus() {
     this.nativeNode.focus();
   }
@@ -61,8 +67,9 @@ class BaseCheck extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
-    this.nativeNode = this.shadowRoot.querySelector('.bs-check') as HTMLInputElement;
-    this.nativeNode.addEventListener('change', (e) => this.onChange(e));
+    this.nativeNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}__input`) as HTMLInputElement;
+
+    this.nativeNode.addEventListener('change', (e) => this._onChange(e));
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.nativeNode) {
@@ -70,13 +77,18 @@ class BaseCheck extends HTMLElement {
         if (this.checked !== this.hasAttribute('checked')) {
           this.checked = this.hasAttribute('checked');
         }
+        this.nativeNode.setAttribute('aria-checked', this.checked.toString());
       } else if (name === 'disabled') {
         this.nativeNode.disabled = this.disabled;
+      } else if (name === 'data-aria-label') {
+        if (newValue) {
+          this.nativeNode.ariaLabel = newValue;
+        } else {
+          this.nativeNode.removeAttribute('aria-label');
+        }
       }
-      this.exAttributeChangedCallback(name, oldValue, newValue);
     }
   }
-  protected exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {};
 
   /**
    * RENDERING
@@ -99,16 +111,16 @@ class BaseCheck extends HTMLElement {
       ${this.hasAttribute('checked') ? 'checked' : ''} />`;
   }
 
-  protected onChange(event: Event) {
+  protected onChange() {}
+  protected _onChange(event: Event) {
     if (this.nativeNode.checked) {
       this.setAttribute('checked', '');
     } else {
       this.removeAttribute('checked');
     }
     this.dispatchEvent(new Event('change'));
-    this.exChange();
+    this.onChange();
   }
-  protected exChange() {}
 }
 
 export default BaseCheck;

@@ -11,6 +11,8 @@
   vertical-align: middle;
   outline: none;
   touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
   cursor: pointer;
 }
 
@@ -19,6 +21,7 @@
   width: 100%;
   height: 100%;
   user-select: none;
+  pointer-events: none;
 
   .md-slider__track {
     position: absolute;
@@ -159,13 +162,13 @@
 
 :host([disabled]) {
   opacity: 0.38;
-  cursor: auto;
+  cursor: default;
 
   .md-slider__thumb::before {
     display: none;
   }
   .md-slider__input {
-    cursor: auto;
+    cursor: default;
   }
   .md-slider__track-inactive {
     background-color: rgba(var(--md-sys-color-on-surface), 0.38) !important;
