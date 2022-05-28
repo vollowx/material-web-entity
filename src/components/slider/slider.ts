@@ -55,8 +55,8 @@ class M3Slider extends BaseSlider {
         },
       })
     );
-    this.thumbNode.style.transform = `translateX(${(this.value / (this.max - this.min)) * this.getBoundingClientRect().width}px)`;
-    this.activeFillNode.style.transform = `scaleX(${this.value / (this.max - this.min)})`;
+    this.thumbNode.style.transform = `translateX(${((this.value - this.min) / (this.max - this.min)) * this.getBoundingClientRect().width}px)`;
+    this.activeFillNode.style.transform = `scaleX(${(this.value - this.min) / (this.max - this.min)})`;
     this.onInput();
   }
 }
