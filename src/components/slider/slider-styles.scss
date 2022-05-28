@@ -168,12 +168,12 @@
     cursor: auto;
   }
   .md-slider__track-inactive {
-    background-color: rgba(var(--md-sys-color-on-surface), 0.38);
+    background-color: rgba(var(--md-sys-color-on-surface), 0.38) !important;
   }
   .md-slider__track-active-fill {
-    background-color: rgb(var(--md-sys-color-on-surface));
+    background-color: rgb(var(--md-sys-color-on-surface)) !important;
   }
   .md-slider__thumb-knob {
-    background-color: rgb(var(--md-sys-color-on-surface));
+    background-color: rgb(var(--md-sys-color-on-surface)) !important;
   }
 }
