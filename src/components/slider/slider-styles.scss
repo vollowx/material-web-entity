@@ -150,7 +150,7 @@
   opacity: 0;
 }
 
-:host([transitionable]) {
+:host([transitional]) {
   .md-slider__track-active-fill,
   .md-slider__thumb {
     transition: transform 80ms cubic-bezier(0.4, 0, 0.2, 1);
