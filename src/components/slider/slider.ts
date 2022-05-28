@@ -5,8 +5,27 @@ import M3SliderStyles from './slider-styles.scss';
  * Slider component.
  */
 class M3Slider extends BaseSlider {
+  /**
+   * ATTRIBUTES
+   */
+  /** */
+  static get observedAttributes() {
+    return ['marks', ...this.observedAttributesDefault];
+  }
+  get marks(): boolean {
+    return this.hasAttribute('marks');
+  }
+  set marks(value: boolean) {
+    if (value) {
+      this.setAttribute('marks', '');
+    } else {
+      this.removeAttribute('marks');
+    }
+  }
+
   static tagName: string = 'md-slider';
   trackNode: HTMLElement;
+  marksNode: HTMLElement;
   thumbNode: HTMLElement;
   activeFillNode: HTMLElement;
 
@@ -17,6 +36,7 @@ class M3Slider extends BaseSlider {
     super.connectedCallback();
 
     this.trackNode = this.shadowRoot.querySelector('.md-slider__track');
+    this.marksNode = this.shadowRoot.querySelector('.md-slider__marks');
     this.thumbNode = this.shadowRoot.querySelector('.md-slider__thumb');
     this.activeFillNode = this.shadowRoot.querySelector('.md-slider__track-active-fill');
 
@@ -29,18 +49,39 @@ class M3Slider extends BaseSlider {
   protected override render(): string {
     return `
       <style>${M3SliderStyles}</style>
-      <div class="md-slider__track">
-        <div class="md-slider__track-inactive"></div>
-        <div class="md-slider__track-active">
-          <div class="md-slider__track-active-fill"></div>
+      <div class="md-slider">
+        <div class="md-slider__track">
+          <div class="md-slider__track-inactive"></div>
+          <div class="md-slider__track-active">
+            <div class="md-slider__track-active-fill"></div>
+          </div>
         </div>
-        <div class="md-slider__marks"></div>
+        <div class="md-slider__marks">${this.renderMarks()}</div>
         <div class="md-slider__thumb">
           <div class="md-slider__thumb-knob"></div>
         </div>
       </div>
       ${this.renderInput()}
     `;
+  }
+  protected renderMarks(): string {
+    let marks = [];
+    for (let i = this.min; i <= this.value; i += this.step) {
+      marks.push(`<span class="md-slider__mark--active"></span>`);
+    }
+    for (let i = this.value + this.step; i <= this.max; i += this.step) {
+      marks.push(`<span class="md-slider__mark--inactive"></span>`);
+    }
+    return this.marks ? marks.join('') : '';
+  }
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    super.attributeChangedCallback(name, oldValue, newValue);
+    if (this.nativeNode) {
+      if (name === 'marks') {
+        this.marks = this.marks;
+        this.marksNode.innerHTML = this.renderMarks();
+      }
+    }
   }
 
   /**
@@ -55,8 +96,9 @@ class M3Slider extends BaseSlider {
         },
       })
     );
-    this.thumbNode.style.transform = `translateX(${((this.value - this.min) / (this.max - this.min)) * this.getBoundingClientRect().width}px)`;
+    this.thumbNode.style.transform = `translateX(${ ((this.value - this.min) / (this.max - this.min)) * this.getBoundingClientRect().width }px)`;
     this.activeFillNode.style.transform = `scaleX(${(this.value - this.min) / (this.max - this.min)})`;
+    this.marksNode.innerHTML = this.renderMarks();
     this.onInput();
   }
 }

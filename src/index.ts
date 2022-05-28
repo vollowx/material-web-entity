@@ -7,6 +7,7 @@ declare global {
 
 import * as mComp from './components/index';
 import * as mUtil from './utils/index';
+import './lib/focus-visible';
 
 export { mComp, mUtil };
 onload = () => {
