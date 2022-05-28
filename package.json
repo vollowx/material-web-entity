@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "webpack --watch --mode development",
     "build": "webpack --mode production",
-    "style-dev": "sass --watch src/index.scss:dist/mwe-bundle.min.css",
-    "style-build": "sass --style compressed src/index.scss:dist/mwe-bundle.min.css"
+    "style": "node .\\style-compiler.js"
   },
   "repository": {
     "type": "git",
