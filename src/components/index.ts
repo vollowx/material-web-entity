@@ -33,3 +33,7 @@ export {
   M3TextField,
   M3Typography,
 };
+
+import NotchedOutlined from './shared/notched-outline';
+
+export { NotchedOutlined };

@@ -4,6 +4,8 @@
   flex-direction: column;
   box-sizing: border-box;
   appearance: none;
+  cursor: text;
+  --md-notched-outline-border-color: rgb(var(--md-sys-color-outline));
 }
 
 .md-text-field {
@@ -12,7 +14,6 @@
   background-color: rgb(var(--md-sys-color-surface-variant));
   border-radius: 4px 4px 0 0;
   box-sizing: border-box;
-  cursor: text;
 }
 @import '../../scss-mixins/status-layer.scss';
 @include status-layer('.md-text-field', 180ms);
@@ -101,29 +102,19 @@
 :host([outlined]) .md-text-field__input {
   padding: 15.5px 15px;
 }
-.md-text-field__border {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: calc(100% - 2px);
-  height: 100%;
-  padding: 0 6px;
-  border-radius: inherit;
-  border: 1px solid rgb(var(--md-sys-color-outline));
-  pointer-events: none;
-  box-sizing: border-box;
+.md-text-field:hover {
+  --md-notched-outline-border-color: rgb(var(--md-sys-color-on-surface));
 }
-.md-text-field:hover .md-text-field__border {
-  border-color: rgb(var(--md-sys-color-on-surface));
+.md-text-field--focused {
+  --md-notched-outline-stroke-width: 2px;
+  --md-notched-outline-border-color: rgb(var(--md-sys-color-primary)) !important;
+  --md-notched-outline-border-display: none;
 }
-.md-text-field--focused .md-text-field__border {
-  border-width: 2px;
-  border-color: rgb(var(--md-sys-color-primary)) !important;
+.md-text-field--keep {
+  --md-notched-outline-border-display: none;
 }
 .md-text-field__label-keeper {
-  display: none;
   padding: 0 4px;
-  color: transparent;
   font-family: var(--md-sys-typo-overline-font);
   font-weight: var(--md-sys-typo-overline-weight);
   font-size: var(--md-sys-typo-overline-size);
@@ -131,16 +122,7 @@
   letter-spacing: var(--md-sys-typo-overline-tracking);
   pointer-events: none;
   user-select: none;
-}
-.md-text-field--keep,
-.md-text-field--focused {
-  .md-text-field__border {
-    margin-top: -0.5em;
-    height: calc(100% + 0.5em);
-  }
-  .md-text-field__label-keeper {
-    display: initial !important;
-  }
+  opacity: 0;
 }
 .md-text-field--focused .md-text-field__label {
   color: rgb(var(--md-sys-color-primary));
@@ -150,7 +132,7 @@
 }
 :host([outlined]) .md-text-field--focused .md-text-field__label,
 :host([outlined]) .md-text-field--keep .md-text-field__label {
-  transform: translate(15px, calc(-0.5em - 1px)) scale(0.75);
+  transform: translate(16px, calc(-0.5em - 1px)) scale(0.75);
 }
 :host([error]) {
   .md-text-field__label,
@@ -163,7 +145,7 @@
       border-color: rgb(var(--md-sys-color-error)) !important;
     }
   }
-  .md-text-field__border {
-    border-color: rgb(var(--md-sys-color-error)) !important;
+  .md-text-field {
+    --md-notched-outline-border-color: rgb(var(--md-sys-color-error)) !important;
   }
 }

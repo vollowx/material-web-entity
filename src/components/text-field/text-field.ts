@@ -94,9 +94,9 @@ class M3TextField extends BaseTextField {
     <label class="md-text-field">
       <span class="md-text-field__label">${this.label}</span>
       ${this.renderInput('md-text-field__input')}
-      <fieldset class="md-text-field__border" aria-hidden="true">
-        <legend class="md-text-field__label-keeper">${this.label}</legend>
-      </fieldset>
+      <md-notched-outline>
+        <span class="md-text-field__label-keeper">${this.label}</legend>
+      </md-notched-outline>
     </label>
     <p class="md-text-field__helper">
       <span class="md-text-field__help-text">${this.helpText}</span>
