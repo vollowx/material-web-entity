@@ -67,7 +67,7 @@ class BaseCheck extends HTMLElement {
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.nativeNode) {
       if (name === 'checked') {
-        if (!(this.checked == this.hasAttribute('checked'))) {
+        if (this.checked !== this.hasAttribute('checked')) {
           this.checked = this.hasAttribute('checked');
         }
       } else if (name === 'disabled') {

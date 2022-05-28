@@ -77,9 +77,14 @@ class M3Slider extends BaseSlider {
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     super.attributeChangedCallback(name, oldValue, newValue);
     if (this.nativeNode) {
-      if (name === 'marks') {
-        this.marks = this.marks;
+      if (name === 'marks' || name === 'step' || name === 'min' || name === 'max') {
         this.marksNode.innerHTML = this.renderMarks();
+      } else if (name === 'value') {
+        this.marksNode.innerHTML = this.renderMarks();
+        if (this.value !== Number(this.getAttribute('value'))) {
+          this.value = Number(this.getAttribute('value'));
+          this._onInput();
+        }
       }
     }
   }
@@ -89,14 +94,10 @@ class M3Slider extends BaseSlider {
    */
   /** */
   protected override _onInput(): void {
-    this.dispatchEvent(
-      new CustomEvent('input', {
-        detail: {
-          value: this.value,
-        },
-      })
-    );
-    this.thumbNode.style.transform = `translateX(${ ((this.value - this.min) / (this.max - this.min)) * this.getBoundingClientRect().width }px)`;
+    super._onInput();
+    this.thumbNode.style.transform = `translateX(${
+      ((this.value - this.min) / (this.max - this.min)) * this.getBoundingClientRect().width
+    }px)`;
     this.activeFillNode.style.transform = `scaleX(${(this.value - this.min) / (this.max - this.min)})`;
     this.marksNode.innerHTML = this.renderMarks();
     this.onInput();

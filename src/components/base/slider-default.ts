@@ -26,12 +26,14 @@ class BaseSlider extends HTMLElement {
   }
   set min(value: number) {
     this.nativeNode.min = value.toString();
+    this.nativeNode.ariaValueMin = value.toString();
   }
   get max(): number {
     return Number(this.nativeNode ? this.nativeNode.max : this.getAttribute('max'));
   }
   set max(value: number) {
     this.nativeNode.max = value.toString();
+    this.nativeNode.ariaValueMax = value.toString();
   }
   get step(): number {
     return Number(this.nativeNode ? this.nativeNode.step : this.getAttribute('step'));
@@ -44,6 +46,7 @@ class BaseSlider extends HTMLElement {
   }
   set value(value: number) {
     this.nativeNode.value = value.toString();
+    this.nativeNode.ariaValueNow = value.toString();
   }
   get disabled(): boolean {
     return this.hasAttribute('disabled');
@@ -90,7 +93,10 @@ class BaseSlider extends HTMLElement {
       } else if (name === 'step') {
         this.nativeNode.step = newValue;
       } else if (name === 'value') {
-        this.nativeNode.value = newValue;
+        if (this.value.toString() !== this.getAttribute('value')) {
+          this.value = Number(this.getAttribute('value'));
+          this._onInput();
+        }
       } else if (name === 'disabled') {
         this.nativeNode.disabled = this.disabled;
       } else if (name === 'data-aria-labelby') {
@@ -113,6 +119,9 @@ class BaseSlider extends HTMLElement {
         min="${this.min}"
         max="${this.max}"
         value="${this.value ? this.value : 0}" step="${this.step}"
+        aria-valuemin="${this.min}"
+        aria-valuemax="${this.max}"
+        aria-valuenow="${this.value}"
         ${this.disabled ? 'disabled' : ''} />
     `;
   }
@@ -141,6 +150,9 @@ class BaseSlider extends HTMLElement {
         },
       })
     );
+    this.setAttribute('value', this.value.toString());
+    this.nativeNode.setAttribute('value', this.value.toString());
+    this.nativeNode.setAttribute('aria-valuenow', this.value.toString());
     this.onInput();
   }
 }
