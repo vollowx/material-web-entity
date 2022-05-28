@@ -34,12 +34,12 @@ class BaseButtonLabeled extends BaseButton {
    */
   /** */
   connectedCallback() {
-    this.shadowRoot.innerHTML = this.render();
+    super.connectedCallback();
 
-    this.nativeNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
     this.labelNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}__label`) as HTMLElement;
   }
-  protected override exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
+  override attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    super.attributeChangedCallback(name, oldValue, newValue);
     if (this.nativeNode && this.labelNode) {
       if (name === 'label') {
         this.labelNode.textContent = newValue;
@@ -51,7 +51,7 @@ class BaseButtonLabeled extends BaseButton {
         }
       }
     }
-  };
+  }
 
   /**
    * RENDERING

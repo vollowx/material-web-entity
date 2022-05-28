@@ -105,10 +105,8 @@ class BaseButton extends HTMLElement {
           this.nativeNode.removeAttribute('aria-label');
         }
       }
-      this.exAttributeChangedCallback(name, oldValue, newValue);
     }
   }
-  protected exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {};
 
   /**
    * RENDERING
