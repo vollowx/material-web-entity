@@ -38,7 +38,7 @@ class M3Switch extends BaseCheck {
     return `
     <style>${M3SwitchStyles}</style>
     <button
-      class="md-switch"
+      class="md-switch ${this.hasAttribute('checked') ? 'md-switch--checked' : ''}"
       role="switch"
       aria-checked="${this.hasAttribute('checked') ? 'true' : 'false'}"
       aria-label="${this.ariaLabel ? this.ariaLabel : ''}"
@@ -64,8 +64,10 @@ class M3Switch extends BaseCheck {
     this.nativeNode.checked = !this.nativeNode.checked;
     if (this.nativeNode.checked) {
       this.setAttribute('checked', '');
+      this.switchNode.classList.add('md-switch--checked');
     } else {
       this.removeAttribute('checked');
+      this.switchNode.classList.remove('md-switch--checked');
     }
     this.dispatchEvent(new Event('change'));
   }
@@ -77,8 +79,10 @@ class M3Switch extends BaseCheck {
     this.nativeNode.checked = value;
     if (value) {
       this.setAttribute('checked', '');
+      this.switchNode.classList.add('md-switch--checked');
     } else {
       this.removeAttribute('checked');
+      this.switchNode.classList.remove('md-switch--checked');
     }
   }
   override focus() {
