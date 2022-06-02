@@ -5,14 +5,6 @@
   font-family: var(--md-sys-typo-font);
 }
 
-:host([display1]) {
-  font-weight: var(--md-sys-typo-display1-weight);
-  font-size: var(--md-sys-typo-display1-size);
-  line-height: var(--md-sys-typo-display1-line-height);
-  letter-spacing: var(--md-sys-typo-display1-tracking);
-}
-
-:host([display2]),
 :host([display-large]) {
   font-weight: var(--md-sys-typo-display2-weight);
   font-size: var(--md-sys-typo-display2-size);
@@ -20,7 +12,6 @@
   letter-spacing: var(--md-sys-typo-display2-tracking);
 }
 
-:host([display3]),
 :host([display-medium]) {
   font-weight: var(--md-sys-typo-display3-weight);
   font-size: var(--md-sys-typo-display3-size);
@@ -28,7 +19,6 @@
   letter-spacing: var(--md-sys-typo-display3-tracking);
 }
 
-:host([headline1]),
 :host([display-small]) {
   font-weight: var(--md-sys-typo-headline1-weight);
   font-size: var(--md-sys-typo-headline1-size);
@@ -36,7 +26,6 @@
   letter-spacing: var(--md-sys-typo-headline1-tracking);
 }
 
-:host([headline2]),
 :host([headline-large]) {
   font-weight: var(--md-sys-typo-headline2-weight);
   font-size: var(--md-sys-typo-headline2-size);
@@ -44,7 +33,6 @@
   letter-spacing: var(--md-sys-typo-headline2-tracking);
 }
 
-:host([headline3]),
 :host([headline-medium]) {
   font-weight: var(--md-sys-typo-headline3-weight);
   font-size: var(--md-sys-typo-headline3-size);
@@ -52,7 +40,6 @@
   letter-spacing: var(--md-sys-typo-headline3-tracking);
 }
 
-:host([headline4]),
 :host([headline-small]) {
   font-weight: var(--md-sys-typo-headline4-weight);
   font-size: var(--md-sys-typo-headline4-size);
@@ -60,7 +47,6 @@
   letter-spacing: var(--md-sys-typo-headline4-tracking);
 }
 
-:host([headline5]),
 :host([title-large]) {
   font-weight: var(--md-sys-typo-headline5-weight);
   font-size: var(--md-sys-typo-headline5-size);
@@ -75,7 +61,6 @@
   letter-spacing: var(--md-sys-typo-headline6-tracking);
 }
 
-:host([subhead]),
 :host([title-medium]) {
   font-weight: var(--md-sys-typo-subhead1-weight);
   font-size: var(--md-sys-typo-subhead1-size);
@@ -83,7 +68,6 @@
   letter-spacing: var(--md-sys-typo-subhead1-tracking);
 }
 
-:host([subhead2]),
 :host([title-small]) {
   font-weight: var(--md-sys-typo-subhead2-weight);
   font-size: var(--md-sys-typo-subhead2-size);
@@ -91,7 +75,6 @@
   letter-spacing: var(--md-sys-typo-subhead2-tracking);
 }
 
-:host([body1]),
 :host([body-large]) {
   font-weight: var(--md-sys-typo-body1-weight);
   font-size: var(--md-sys-typo-body1-size);
@@ -99,7 +82,6 @@
   letter-spacing: var(--md-sys-typo-body1-tracking);
 }
 
-:host([body2]),
 :host([body-medium]) {
   font-weight: var(--md-sys-typo-body2-weight);
   font-size: var(--md-sys-typo-body2-size);
@@ -107,7 +89,6 @@
   letter-spacing: var(--md-sys-typo-body2-tracking);
 }
 
-:host([caption]),
 :host([body-small]) {
   font-weight: var(--md-sys-typo-caption-weight);
   font-size: var(--md-sys-typo-caption-size);
@@ -115,7 +96,6 @@
   letter-spacing: var(--md-sys-typo-caption-tracking);
 }
 
-:host([button]),
 :host([label-large]) {
   font-weight: var(--md-sys-typo-button-weight);
   font-size: var(--md-sys-typo-button-size);
@@ -123,7 +103,6 @@
   letter-spacing: var(--md-sys-typo-button-tracking);
 }
 
-:host([overline]),
 :host([label-medium]) {
   font-weight: var(--md-sys-typo-overline-weight);
   font-size: var(--md-sys-typo-overline-size);
