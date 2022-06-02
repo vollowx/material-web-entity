@@ -17,30 +17,30 @@
     <aside>
       <nav>
         <div class="little-title">THIS PROJECT</div>
-        <md-button moving-page="about" text>About MWE (关于 MWE)</md-button>
+        <md-button mov="about" text>About MWE (关于 MWE)</md-button>
       </nav>
       <nav>
         <div class="little-title">STYLES</div>
-        <md-button moving-page="elevation" text>Elevation (高度)</md-button>
-        <md-button moving-page="shape" text>Shape (形状)</md-button>
+        <md-button mov="elevation" text>Elevation (高度)</md-button>
+        <md-button mov="shape" text>Shape (形状)</md-button>
       </nav>
       <nav>
         <div class="little-title">COMPONENTS</div>
-        <md-button moving-page="avatar" text>Avatar (头像)</md-button>
-        <md-button moving-page="bottom-app-bar" text>Bottom app bar (底部应用栏)</md-button>
-        <md-button moving-page="button" text>Common button (按钮)</md-button>
-        <md-button moving-page="card" text>Card (卡片)</md-button>
-        <md-button moving-page="chip" text>Chip (纸片)</md-button>
-        <md-button moving-page="dialog" text>Dialog (对话框)</md-button>
-        <md-button moving-page="fab" text>FAB (浮动操作按钮)</md-button>
-        <md-button moving-page="icon" text>Icon (图标)</md-button>
-        <md-button moving-page="icon-button" text>Icon button (图标按钮)</md-button>
-        <md-button moving-page="menu" text>Menu (菜单)</md-button>
-        <md-button moving-page="ripple" text>Ripple (波纹)</md-button>
-        <md-button moving-page="slider" text>Slider (滑动条)</md-button>
-        <md-button moving-page="switch" text>Switch (开关)</md-button>
-        <md-button moving-page="text-field" text>Text field (文本框)</md-button>
-        <md-button moving-page="typography" text>Typography (文字排版)</md-button>
+        <md-button mov="avatar" text>Avatar (头像)</md-button>
+        <md-button mov="bottom-app-bar" text>Bottom app bar (底部应用栏)</md-button>
+        <md-button mov="button" text>Common button (按钮)</md-button>
+        <md-button mov="card" text>Card (卡片)</md-button>
+        <md-button mov="chip" text>Chip (纸片)</md-button>
+        <md-button mov="dialog" text>Dialog (对话框)</md-button>
+        <md-button mov="fab" text>FAB (浮动操作按钮)</md-button>
+        <md-button mov="icon" text>Icon (图标)</md-button>
+        <md-button mov="icon-button" text>Icon button (图标按钮)</md-button>
+        <md-button mov="menu" text>Menu (菜单)</md-button>
+        <md-button mov="ripple" text>Ripple (波纹)</md-button>
+        <md-button mov="slider" text>Slider (滑动条)</md-button>
+        <md-button mov="switch" text>Switch (开关)</md-button>
+        <md-button mov="text-field" text>Text field (文本框)</md-button>
+        <md-button mov="typography" text>Typography (文字排版)</md-button>
       </nav>
     </aside>
     <main>
@@ -78,34 +78,63 @@
     </md-menu>
 
     <script>
-      const mainContainer = document.querySelector('main');
-      const mainContent = document.querySelector('.main-content');
-      const movingPages = document.querySelectorAll('[moving-page]');
-      var latestPage = movingPages[0];
+      window.addEventListener('DOMContentLoaded', () => {
+        const main = document.querySelector('main');
+        const aside = document.querySelector('aside');
+        const mainContent = document.querySelector('.main-content');
+        const movCtrl = aside.querySelectorAll('[mov]');
 
-      var XHR = new XMLHttpRequest();
-      XHR.onreadystatechange = () => {
-        if (XHR.readyState == 4 && XHR.status == 200) {
-          mainContent.innerHTML = XHR.responseText;
-          mainContainer.scroll(0, 0);
-          mainContainer.style.opacity = 1;
-        }
-      };
-      var movePage = (_source, _this) => {
-        if (_source == _this) return;
-        XHR.open('GET', './pages/' + _source + '.html', true);
-        XHR.send();
-        mainContainer.style.opacity = 0;
-        latestPage.removeAttribute('tonal');
-        latestPage.setAttribute('text', '');
-        _this.removeAttribute('text');
-        _this.setAttribute('tonal', '');
-        latestPage = _this;
-      };
-      movingPages.forEach((movingPage) => {
-        movingPage.addEventListener('click', () => movePage(movingPage.getAttribute('moving-page'), movingPage));
+        movCtrl.forEach((item) => {
+          item.tabIndex = -1;
+        });
+
+        aside.addEventListener('keydown', (e) => {
+          if (e.key == 'ArrowDown' || e.key == 'ArrowUp') {
+            e.preventDefault();
+            let focusItem =
+              aside.querySelector(':focus') || aside.querySelector('[mov="' + latestMovCtrl.getAttribute('mov') + '"]');
+            let items = aside.querySelectorAll('md-button');
+            let index = [].indexOf.call(items, focusItem);
+            e.key == 'ArrowDown' ? index++ : index--;
+            if (index < 0) {
+              index = items.length - 1;
+            } else if (index >= items.length) {
+              index = 0;
+            }
+            items[index].tabIndex = 0;
+            items[index].focus();
+            focusItem.tabIndex = -1;
+          }
+        });
+
+        var latestMovCtrl;
+
+        var XHR = new XMLHttpRequest();
+        XHR.onreadystatechange = () => {
+          if (XHR.readyState == 4 && XHR.status == 200) {
+            mainContent.innerHTML = XHR.responseText;
+            main.scroll(0, 0);
+            main.style.opacity = 1;
+          }
+        };
+        var mov = (_src, _ctrl) => {
+          if (latestMovCtrl === _ctrl) return;
+          XHR.open('GET', './pages/' + _src + '.html', true);
+          XHR.send();
+          main.style.opacity = 0;
+          latestMovCtrl.removeAttribute('elevated');
+          latestMovCtrl.setAttribute('text', '');
+          _ctrl.removeAttribute('text');
+          _ctrl.setAttribute('elevated', '');
+          latestMovCtrl = _ctrl;
+        };
+        movCtrl.forEach((item) => {
+          item.addEventListener('click', () => mov(item.getAttribute('mov'), item));
+        });
+
+        latestMovCtrl = movCtrl[1];
+        mov('about', movCtrl[0]);
       });
-      movePage('about', movingPages[0]);
     </script>
   </body>
 </html>

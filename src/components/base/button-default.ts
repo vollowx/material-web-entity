@@ -119,7 +119,8 @@ class BaseButton extends HTMLElement {
     return `
     <${
       this.href ? 'a' + ' href="' + this.href + '"' + (this.target ? ' target="' + this.target + '"' : '') : 'button'
-    } class="${this.tagName.toLowerCase()}"
+    } rule="button"
+      class="${this.tagName.toLowerCase()}"
       ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
       ${this.disabled ? 'disabled' : ''}>
       ${_content}

@@ -44,12 +44,12 @@ class M3Switch extends BaseCheck {
       aria-label="${this.ariaLabel ? this.ariaLabel : ''}"
       ${this.disabled ? 'disabled' : ''}>
       <div class="md-switch__track">
-        <div class="md-switch__thumb"></div>
-        <div class="md-switch__icons">
-          <md-icon>close</md-icon>
-          <md-icon>check</md-icon>
+        <div class="md-switch__thumb">
+          <div class="md-switch__icons">
+            <md-icon>close</md-icon>
+            <md-icon>check</md-icon>
+          </div>
         </div>
-        <div class="md-switch__ripple"></div>
       </div>
     </button>
     <input

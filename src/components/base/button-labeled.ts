@@ -65,7 +65,8 @@ class BaseButtonLabeled extends BaseButton {
     return `
     <${
       this.href ? 'a' + ' href="' + this.href + '"' + (this.target ? ' target="' + this.target + '"' : '') : 'button'
-    } class="${this.tagName.toLowerCase()}"
+    } rule="button"
+      class="${this.tagName.toLowerCase()}"
       ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : this.label ? 'aria-label="' + this.label + '"' : ''}
       ${this.disabled ? 'disabled' : ''}>
       ${_content}
