@@ -91,11 +91,11 @@ class BaseTextField extends HTMLElement {
     this.setAttribute('maxlength', value.toString());
   }
   focus(): void {
-    this.nativeNode.focus();
+    this.inputElement.focus();
   }
 
   static tagName: string;
-  nativeNode: HTMLInputElement;
+  inputElement: HTMLInputElement;
 
   /**
    * LIFE CYCLE
@@ -109,27 +109,27 @@ class BaseTextField extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLInputElement;
+    this.inputElement = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLInputElement;
     this.binds();
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (this.nativeNode) {
+    if (this.inputElement) {
       if (name === 'disabled') {
-        this.nativeNode.disabled = this.disabled;
+        this.inputElement.disabled = this.disabled;
       } else if (name === 'type') {
-        this.nativeNode.type = this.type;
+        this.inputElement.type = this.type;
       } else if (name === 'readonly') {
-        this.nativeNode.readOnly = this.readonly;
+        this.inputElement.readOnly = this.readonly;
       } else if (name === 'required') {
-        this.nativeNode.required = this.required;
+        this.inputElement.required = this.required;
       } else if (name === 'placeholder') {
-        this.nativeNode.placeholder = this.placeholder;
+        this.inputElement.placeholder = this.placeholder;
       } else if (name === 'value') {
-        this.nativeNode.value = this.value;
+        this.inputElement.value = this.value;
       } else if (name === 'autocomplete') {
-        this.nativeNode.autocomplete = this.autocomplete;
+        this.inputElement.autocomplete = this.autocomplete;
       } else if (name === 'maxlength') {
-        this.nativeNode.maxLength = this.maxlength;
+        this.inputElement.maxLength = this.maxlength;
       }
       this.exAttributeChangedCallback(name, oldValue, newValue);
     }
@@ -159,10 +159,10 @@ class BaseTextField extends HTMLElement {
   }
 
   protected binds() {
-    this.nativeNode.addEventListener('focus', () => this._onFocus());
-    this.nativeNode.addEventListener('blur', () => this._onBlur());
-    this.nativeNode.addEventListener('change', () => this._onChange());
-    this.nativeNode.addEventListener('input', () => this._onInput());
+    this.inputElement.addEventListener('focus', () => this._onFocus());
+    this.inputElement.addEventListener('blur', () => this._onBlur());
+    this.inputElement.addEventListener('change', () => this._onChange());
+    this.inputElement.addEventListener('input', () => this._onInput());
   }
 
   /**
@@ -183,12 +183,12 @@ class BaseTextField extends HTMLElement {
   }
   protected onChange() {}
   protected _onChange(): void {
-    this.value = this.nativeNode.value;
+    this.value = this.inputElement.value;
     this.onChange();
   }
   protected onInput() {}
   protected _onInput(): void {
-    this.value = this.nativeNode.value;
+    this.value = this.inputElement.value;
     this.onInput();
   }
 }

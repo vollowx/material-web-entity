@@ -24,10 +24,10 @@ class M3Slider extends BaseSlider {
   }
 
   static tagName: string = 'md-slider';
-  trackNode: HTMLElement;
-  marksNode: HTMLElement;
-  thumbNode: HTMLElement;
-  activeFillNode: HTMLElement;
+  trackElement: HTMLElement;
+  marksElement: HTMLElement;
+  thumbElement: HTMLElement;
+  activeFillElement: HTMLElement;
 
   /**
    * LIFE CYCLE
@@ -35,10 +35,10 @@ class M3Slider extends BaseSlider {
   connectedCallback() {
     super.connectedCallback();
 
-    this.trackNode = this.shadowRoot.querySelector('.md-slider__track');
-    this.marksNode = this.shadowRoot.querySelector('.md-slider__marks');
-    this.thumbNode = this.shadowRoot.querySelector('.md-slider__thumb');
-    this.activeFillNode = this.shadowRoot.querySelector('.md-slider__track-active-fill');
+    this.trackElement = this.shadowRoot.querySelector('.md-slider__track');
+    this.marksElement = this.shadowRoot.querySelector('.md-slider__marks');
+    this.thumbElement = this.shadowRoot.querySelector('.md-slider__thumb');
+    this.activeFillElement = this.shadowRoot.querySelector('.md-slider__track-active-fill');
 
     this._onInput();
   }
@@ -76,11 +76,11 @@ class M3Slider extends BaseSlider {
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     super.attributeChangedCallback(name, oldValue, newValue);
-    if (this.nativeNode) {
+    if (this.sliderElement) {
       if (name === 'marks' || name === 'step' || name === 'min' || name === 'max') {
-        this.marksNode.innerHTML = this.renderMarks();
+        this.marksElement.innerHTML = this.renderMarks();
       } else if (name === 'value') {
-        this.marksNode.innerHTML = this.renderMarks();
+        this.marksElement.innerHTML = this.renderMarks();
         if (this.value !== Number(this.getAttribute('value'))) {
           this.value = Number(this.getAttribute('value'));
           this._onInput();
@@ -95,11 +95,11 @@ class M3Slider extends BaseSlider {
   /** */
   protected override _onInput(): void {
     super._onInput();
-    this.thumbNode.style.transform = `translateX(${
+    this.thumbElement.style.transform = `translateX(${
       ((this.value - this.min) / (this.max - this.min)) * this.getBoundingClientRect().width
     }px)`;
-    this.activeFillNode.style.transform = `scaleX(${(this.value - this.min) / (this.max - this.min)})`;
-    this.marksNode.innerHTML = this.renderMarks();
+    this.activeFillElement.style.transform = `scaleX(${(this.value - this.min) / (this.max - this.min)})`;
+    this.marksElement.innerHTML = this.renderMarks();
     this.onInput();
   }
 }

@@ -22,31 +22,31 @@ class BaseSlider extends HTMLElement {
     return [...this.observedAttributesDefault];
   }
   get min(): number {
-    return Number(this.nativeNode ? this.nativeNode.min : this.getAttribute('min'));
+    return Number(this.sliderElement ? this.sliderElement.min : this.getAttribute('min'));
   }
   set min(value: number) {
-    this.nativeNode.min = value.toString();
-    this.nativeNode.ariaValueMin = value.toString();
+    this.sliderElement.min = value.toString();
+    this.sliderElement.ariaValueMin = value.toString();
   }
   get max(): number {
-    return Number(this.nativeNode ? this.nativeNode.max : this.getAttribute('max'));
+    return Number(this.sliderElement ? this.sliderElement.max : this.getAttribute('max'));
   }
   set max(value: number) {
-    this.nativeNode.max = value.toString();
-    this.nativeNode.ariaValueMax = value.toString();
+    this.sliderElement.max = value.toString();
+    this.sliderElement.ariaValueMax = value.toString();
   }
   get step(): number {
-    return Number(this.nativeNode ? this.nativeNode.step : this.getAttribute('step'));
+    return Number(this.sliderElement ? this.sliderElement.step : this.getAttribute('step'));
   }
   set step(value: number) {
-    this.nativeNode.step = value.toString();
+    this.sliderElement.step = value.toString();
   }
   get value(): number {
-    return Number(this.nativeNode ? this.nativeNode.value : this.getAttribute('value'));
+    return Number(this.sliderElement ? this.sliderElement.value : this.getAttribute('value'));
   }
   set value(value: number) {
-    this.nativeNode.value = value.toString();
-    this.nativeNode.ariaValueNow = value.toString();
+    this.sliderElement.value = value.toString();
+    this.sliderElement.ariaValueNow = value.toString();
   }
   get disabled(): boolean {
     return this.hasAttribute('disabled');
@@ -59,14 +59,14 @@ class BaseSlider extends HTMLElement {
     }
   }
   get ariaLabelBy(): string {
-    return this.nativeNode.getAttribute('data-aria-labelby');
+    return this.sliderElement.getAttribute('data-aria-labelby');
   }
   set ariaLabelBy(value: string) {
-    this.nativeNode.setAttribute('data-aria-labelby', value);
+    this.sliderElement.setAttribute('data-aria-labelby', value);
   }
 
   static tagName: string;
-  nativeNode: HTMLInputElement;
+  sliderElement: HTMLInputElement;
 
   /**
    * LIFE CYCLE
@@ -79,28 +79,28 @@ class BaseSlider extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.querySelector('input') as HTMLInputElement;
+    this.sliderElement = this.shadowRoot.querySelector('input') as HTMLInputElement;
 
-    this.nativeNode.addEventListener('change', () => this._onChange());
-    this.nativeNode.addEventListener('input', () => this._onInput());
+    this.sliderElement.addEventListener('change', () => this._onChange());
+    this.sliderElement.addEventListener('input', () => this._onInput());
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (this.nativeNode) {
+    if (this.sliderElement) {
       if (name === 'min') {
-        this.nativeNode.min = newValue;
+        this.sliderElement.min = newValue;
       } else if (name === 'max') {
-        this.nativeNode.max = newValue;
+        this.sliderElement.max = newValue;
       } else if (name === 'step') {
-        this.nativeNode.step = newValue;
+        this.sliderElement.step = newValue;
       } else if (name === 'value') {
         if (this.value.toString() !== this.getAttribute('value')) {
           this.value = Number(this.getAttribute('value'));
           this._onInput();
         }
       } else if (name === 'disabled') {
-        this.nativeNode.disabled = this.disabled;
+        this.sliderElement.disabled = this.disabled;
       } else if (name === 'data-aria-labelby') {
-        this.nativeNode.setAttribute('aria-labelby', newValue);
+        this.sliderElement.setAttribute('aria-labelby', newValue);
       }
     }
   }
@@ -151,8 +151,8 @@ class BaseSlider extends HTMLElement {
       })
     );
     this.setAttribute('value', this.value.toString());
-    this.nativeNode.setAttribute('value', this.value.toString());
-    this.nativeNode.setAttribute('aria-valuenow', this.value.toString());
+    this.sliderElement.setAttribute('value', this.value.toString());
+    this.sliderElement.setAttribute('aria-valuenow', this.value.toString());
     this.onInput();
   }
 }

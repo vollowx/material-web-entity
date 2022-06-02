@@ -117,6 +117,10 @@
             main.style.opacity = 1;
           }
         };
+        /**
+         * @param {string} _src
+         * @param {HTMLElement} _ctrl
+         */
         var mov = (_src, _ctrl) => {
           if (latestMovCtrl === _ctrl) return;
           XHR.open('GET', './pages/' + _src + '.html', true);
@@ -126,6 +130,8 @@
           latestMovCtrl.setAttribute('text', '');
           _ctrl.removeAttribute('text');
           _ctrl.setAttribute('elevated', '');
+          _ctrl.tabIndex = 0;
+          latestMovCtrl.tabIndex = -1;
           latestMovCtrl = _ctrl;
         };
         movCtrl.forEach((item) => {

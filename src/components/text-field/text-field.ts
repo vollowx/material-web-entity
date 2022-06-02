@@ -36,11 +36,11 @@ class M3TextField extends BaseTextField {
   }
 
   static tagName: string = 'md-text-field';
-  labelNode: HTMLElement;
-  labelKeeperNode: HTMLElement;
-  containerNode: HTMLElement;
-  helpTextNode: HTMLElement;
-  counterNode: HTMLElement;
+  labelElement: HTMLElement;
+  labelKeeperElement: HTMLElement;
+  containerElement: HTMLElement;
+  helpTextElement: HTMLElement;
+  counterElement: HTMLElement;
 
   /**
    * LIFE CYCLE
@@ -55,10 +55,10 @@ class M3TextField extends BaseTextField {
   }
   exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
     if (name === 'label') {
-      this.labelNode.textContent = this.label;
-      this.labelKeeperNode ? (this.labelKeeperNode.textContent = this.label) : null;
+      this.labelElement.textContent = this.label;
+      this.labelKeeperElement ? (this.labelKeeperElement.textContent = this.label) : null;
     } else if (name === 'help-text') {
-      this.helpTextNode.textContent = this.helpText;
+      this.helpTextElement.textContent = this.helpText;
     } else if (name === 'outlined') {
       this.shadowRoot.innerHTML = this.render();
       this.defines();
@@ -105,12 +105,12 @@ class M3TextField extends BaseTextField {
   }
 
   protected defines() {
-    this.nativeNode = this.shadowRoot.querySelector('.md-text-field__input') as HTMLInputElement;
-    this.labelNode = this.shadowRoot.querySelector('.md-text-field__label') as HTMLLabelElement;
-    this.labelKeeperNode = this.shadowRoot.querySelector('.md-text-field__label-keeper') as HTMLElement;
-    this.containerNode = this.shadowRoot.querySelector('.md-text-field') as HTMLElement;
-    this.helpTextNode = this.shadowRoot.querySelector('.md-text-field__help-text') as HTMLElement;
-    this.counterNode = this.shadowRoot.querySelector('.md-text-field__counter') as HTMLElement;
+    this.inputElement = this.shadowRoot.querySelector('.md-text-field__input') as HTMLInputElement;
+    this.labelElement = this.shadowRoot.querySelector('.md-text-field__label') as HTMLLabelElement;
+    this.labelKeeperElement = this.shadowRoot.querySelector('.md-text-field__label-keeper') as HTMLElement;
+    this.containerElement = this.shadowRoot.querySelector('.md-text-field') as HTMLElement;
+    this.helpTextElement = this.shadowRoot.querySelector('.md-text-field__help-text') as HTMLElement;
+    this.counterElement = this.shadowRoot.querySelector('.md-text-field__counter') as HTMLElement;
   }
 
   /**
@@ -118,26 +118,26 @@ class M3TextField extends BaseTextField {
    */
   /** */
   protected override _onFocus() {
-    this.containerNode.classList.add('md-text-field--focused');
+    this.containerElement.classList.add('md-text-field--focused');
     this.onFocus();
   }
   protected override _onBlur() {
-    this.containerNode.classList.remove('md-text-field--focused');
+    this.containerElement.classList.remove('md-text-field--focused');
     this.onBlur();
   }
   protected override _onChange() {
-    this.value = this.nativeNode.value;
-    if (this.nativeNode.value === '') {
-      this.containerNode.classList.remove('md-text-field--keep');
+    this.value = this.inputElement.value;
+    if (this.inputElement.value === '') {
+      this.containerElement.classList.remove('md-text-field--keep');
     } else {
-      this.containerNode.classList.add('md-text-field--keep');
+      this.containerElement.classList.add('md-text-field--keep');
     }
     this.onChange();
   }
   protected override _onInput() {
-    this.value = this.nativeNode.value;
+    this.value = this.inputElement.value;
     if (this.maxlength) {
-      this.counterNode.textContent = `${this.nativeNode.value.length}/${this.maxlength}`;
+      this.counterElement.textContent = `${this.inputElement.value.length}/${this.maxlength}`;
     }
     this.onInput();
   }

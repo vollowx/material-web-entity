@@ -7,10 +7,10 @@ import M3MenuStyles from './menu-styles.scss';
  */
 class M3Menu extends HTMLElement {
   static tagName: string = 'md-menu';
-  menuNode: HTMLDivElement;
-  controllerNode: HTMLElement;
-  layerNode: HTMLElement;
-  controllerFriendsNodes: NodeListOf<Element>;
+  menuElement: HTMLDivElement;
+  controllerElement: HTMLElement;
+  layerElement: HTMLElement;
+  controllerFriendsElements: ElementListOf<Element>;
 
   constructor() {
     super();
@@ -20,11 +20,11 @@ class M3Menu extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.layerNode = this.shadowRoot.querySelector('.md-menu__layer');
-    this.menuNode = this.shadowRoot.querySelector('.md-menu') as HTMLDivElement;
-    this.controllerNode = document.querySelector(`#${this.id}`);
-    this.controllerNode
-      ? (this.controllerFriendsNodes = this.controllerNode.parentNode.querySelectorAll(
+    this.layerElement = this.shadowRoot.querySelector('.md-menu__layer');
+    this.menuElement = this.shadowRoot.querySelector('.md-menu') as HTMLDivElement;
+    this.controllerElement = document.querySelector(`#${this.id}`);
+    this.controllerElement
+      ? (this.controllerFriendsElements = this.controllerElement.parentElement.querySelectorAll(
           `md-menu-item[subber]:not(#${this.id})`
         ))
       : null;
@@ -34,7 +34,7 @@ class M3Menu extends HTMLElement {
         // Focus moving
         e.preventDefault();
         let focusItem = this.querySelector('md-menu-item:focus') as HTMLButtonElement;
-        let items = this.querySelectorAll('md-menu-item') as NodeListOf<HTMLButtonElement>;
+        let items = this.querySelectorAll('md-menu-item') as ElementListOf<HTMLButtonElement>;
         let index = [].indexOf.call(items, focusItem);
         e.key == 'ArrowDown' ? index++ : index--;
         if (index < 0) {
@@ -68,12 +68,12 @@ class M3Menu extends HTMLElement {
       }
     });
     document.addEventListener('click', (e: Event) => {
-      if (this.open && !this.contains(e.target as HTMLElement) && e.target !== this.controllerNode) {
+      if (this.open && !this.contains(e.target as HTMLElement) && e.target !== this.controllerElement) {
         this.closeMenu();
       }
     });
-    this.layerNode.addEventListener('mousedown', (e: Event) => {
-      if (this.open && !this.contains(e.target as HTMLElement) && e.target !== this.controllerNode) {
+    this.layerElement.addEventListener('mousedown', (e: Event) => {
+      if (this.open && !this.contains(e.target as HTMLElement) && e.target !== this.controllerElement) {
         this.closeMenu();
       }
     });
@@ -83,17 +83,17 @@ class M3Menu extends HTMLElement {
         this.closeMenu();
       }
     });
-    if (this.controllerNode) {
+    if (this.controllerElement) {
       if (this.sub) {
-        if (this.controllerFriendsNodes) {
-          this.controllerFriendsNodes.forEach((item) => {
+        if (this.controllerFriendsElements) {
+          this.controllerFriendsElements.forEach((item) => {
             item.addEventListener('mouseenter', () => (this.open = false));
           });
         }
-        this.controllerNode.addEventListener('mouseenter', () => this.openMenu());
+        this.controllerElement.addEventListener('mouseenter', () => this.openMenu());
         this.addEventListener('mouseenter', () => (this.open = true));
       } else {
-        this.controllerNode.addEventListener('click', (e) => {
+        this.controllerElement.addEventListener('click', (e) => {
           e.preventDefault();
           this.openMenu();
         });
@@ -163,42 +163,42 @@ class M3Menu extends HTMLElement {
         detail: {},
       })
     );
-    this.menuNode.removeAttribute('style');
-    this.menuNode.classList.remove('md-menu--bottom', 'md-menu--right');
-    let rect = this.controllerNode.getBoundingClientRect();
+    this.menuElement.removeAttribute('style');
+    this.menuElement.classList.remove('md-menu--bottom', 'md-menu--right');
+    let rect = this.controllerElement.getBoundingClientRect();
     if (rect.top + rect.height / 2 > window.innerHeight / 2) {
-      this.menuNode.classList.add('md-menu--bottom');
+      this.menuElement.classList.add('md-menu--bottom');
       if (this.sub) {
-        this.menuNode.style.bottom = window.innerHeight - rect.top - rect.height - 8 + 'px';
+        this.menuElement.style.bottom = window.innerHeight - rect.top - rect.height - 8 + 'px';
       } else {
-        this.menuNode.style.bottom = window.innerHeight - rect.top + 'px';
+        this.menuElement.style.bottom = window.innerHeight - rect.top + 'px';
       }
-      if (this.menuNode.offsetTop < rect.height) {
-        this.menuNode.style.top = rect.height + 'px';
+      if (this.menuElement.offsetTop < rect.height) {
+        this.menuElement.style.top = rect.height + 'px';
       }
     } else {
       if (this.sub) {
-        this.menuNode.style.top = rect.top - 8 + 'px';
+        this.menuElement.style.top = rect.top - 8 + 'px';
       } else {
-        this.menuNode.style.top = rect.top + rect.height + 'px';
+        this.menuElement.style.top = rect.top + rect.height + 'px';
       }
-      if (window.innerHeight - this.menuNode.offsetTop - this.menuNode.offsetHeight < rect.height) {
-        this.menuNode.style.bottom = rect.height + 'px';
+      if (window.innerHeight - this.menuElement.offsetTop - this.menuElement.offsetHeight < rect.height) {
+        this.menuElement.style.bottom = rect.height + 'px';
       }
     }
     if (this.sub) {
-      if (rect.left + rect.width + this.menuNode.offsetWidth > window.innerWidth) {
-        this.menuNode.style.left = rect.left - this.menuNode.offsetWidth + 'px';
-        this.menuNode.classList.add('md-menu--right');
+      if (rect.left + rect.width + this.menuElement.offsetWidth > window.innerWidth) {
+        this.menuElement.style.left = rect.left - this.menuElement.offsetWidth + 'px';
+        this.menuElement.classList.add('md-menu--right');
       } else {
-        this.menuNode.style.left = rect.left + rect.width + 'px';
+        this.menuElement.style.left = rect.left + rect.width + 'px';
       }
     } else {
-      if (rect.left + rect.width + this.menuNode.offsetWidth > window.innerWidth) {
-        this.menuNode.style.left = rect.right - this.menuNode.offsetWidth + 'px';
-        this.menuNode.classList.add('md-menu--right');
+      if (rect.left + rect.width + this.menuElement.offsetWidth > window.innerWidth) {
+        this.menuElement.style.left = rect.right - this.menuElement.offsetWidth + 'px';
+        this.menuElement.classList.add('md-menu--right');
       } else {
-        this.menuNode.style.left = rect.left + 'px';
+        this.menuElement.style.left = rect.left + 'px';
       }
     }
     this.open = true;
@@ -217,12 +217,12 @@ class M3Menu extends HTMLElement {
     this.querySelector('md-menu-item[focused]')
       ? ((this.querySelector('md-menu-item[focused]') as HTMLButtonElement).tabIndex = 0)
       : null;
-    this.menuNode.style.visibility = 'visible';
+    this.menuElement.style.visibility = 'visible';
     setTimeout(() => {
-      this.menuNode.setAttribute('style', '');
+      this.menuElement.setAttribute('style', '');
     }, 150);
     this.open = false;
-    this.controllerNode.focus();
+    this.controllerElement.focus();
   }
 }
 

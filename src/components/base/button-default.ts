@@ -49,18 +49,19 @@ class BaseButton extends HTMLElement {
       this.removeAttribute('disabled');
     }
   }
-  get tabIndex(): number {
-    return this.nativeNode.tabIndex;
+  focus(): void {
+    if (this.buttonElement) {
+      this.buttonElement.focus();
+    }
   }
-  set tabIndex(value: number) {
-    this.nativeNode.tabIndex = value;
-  }
-  focus() {
-    this.nativeNode.focus();
+  blur(): void {
+    if (this.buttonElement) {
+      this.buttonElement.blur();
+    }
   }
 
   static tagName: string;
-  nativeNode: HTMLLinkElement;
+  buttonElement: HTMLLinkElement;
 
   /**
    * LIFE CYCLE
@@ -74,35 +75,35 @@ class BaseButton extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.nativeNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
+    this.buttonElement = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (this.nativeNode) {
+    if (this.buttonElement) {
       if (name === 'href') {
-        if (this.nativeNode.tagName === 'A') {
+        if (this.buttonElement.tagName === 'A') {
           if (newValue) {
-            this.nativeNode.href = newValue;
+            this.buttonElement.href = newValue;
           } else {
             this.shadowRoot.innerHTML = this.render();
-            this.nativeNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
+            this.buttonElement = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
           }
         } else {
           this.shadowRoot.innerHTML = this.render();
-          this.nativeNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
+          this.buttonElement = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
         }
       } else if (name === 'target') {
         if (newValue) {
-          this.nativeNode.target = newValue;
+          this.buttonElement.target = newValue;
         } else {
-          this.nativeNode.removeAttribute('target');
+          this.buttonElement.removeAttribute('target');
         }
       } else if (name === 'disabled') {
-        this.nativeNode.disabled = this.disabled;
+        this.buttonElement.disabled = this.disabled;
       } else if (name === 'data-aria-label') {
         if (newValue) {
-          this.nativeNode.ariaLabel = this.ariaLabel;
+          this.buttonElement.ariaLabel = this.ariaLabel;
         } else {
-          this.nativeNode.removeAttribute('aria-label');
+          this.buttonElement.removeAttribute('aria-label');
         }
       }
     }

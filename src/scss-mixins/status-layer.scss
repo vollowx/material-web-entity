@@ -1,4 +1,4 @@
-@mixin status-layer($who, $time, $focus-default: false) {
+@mixin state-layer($who, $time, $focus-default: false) {
   #{$who} {
     &::before {
       content: '';

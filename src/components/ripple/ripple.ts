@@ -77,18 +77,6 @@ class M3Ripple extends HTMLElement {
     let _ripples = this.containerE.querySelectorAll('.md-ripple__element');
     _ripples.forEach((_ripple: HTMLElement) => this.removeActiveLayer(_ripple));
   }
-  addHoverLayer() {
-    this.containerE.classList.add('md-ripple--hover');
-  }
-  removeHoverLayer() {
-    this.containerE.classList.remove('md-ripple--hover');
-  }
-  addFocusLayer() {
-    this.containerE.classList.add('md-ripple--focus');
-  }
-  removeFocusLayer() {
-    this.containerE.classList.remove('md-ripple--focus');
-  }
 
   get unbounded() {
     return this.hasAttribute('unbounded');
@@ -127,7 +115,7 @@ class M3Ripple extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    this.parentE = this.parentNode as HTMLElement;
+    this.parentE = this.parentElement as HTMLElement;
     this.containerE = this.shadowRoot.querySelector('.md-ripple__container');
 
     this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));
@@ -135,23 +123,13 @@ class M3Ripple extends HTMLElement {
     this.parentE.addEventListener('mouseup', () => this.removeAllActiveLayers());
     this.parentE.addEventListener('touchmove', () => this.removeAllActiveLayers());
     this.parentE.addEventListener('touchend', () => this.removeAllActiveLayers());
-
-    this.parentE.addEventListener('mouseover', () => this.addHoverLayer());
-    this.parentE.addEventListener('mouseout', () => this.removeHoverLayer());
-    document.addEventListener('keypress', () => {
-      if (
-        document.activeElement.contains(this.parentE) ||
-        this.parentE.contains(document.activeElement) ||
-        this.parentE == document.activeElement ||
-        (this.parentE.parentNode as ShadowRoot).host == document.activeElement
-      ) {
-        this.addFocusLayer();
-      }
-    });
-    this.parentE.addEventListener('blur', () => this.removeFocusLayer());
   }
   disconnectedCallback() {
     this.parentE.removeEventListener('pointerdown', (event) => this.addActiveLayer(event));
+    this.parentE.removeEventListener('mouseleave', () => this.removeAllActiveLayers());
+    this.parentE.removeEventListener('mouseup', () => this.removeAllActiveLayers());
+    this.parentE.removeEventListener('touchmove', () => this.removeAllActiveLayers());
+    this.parentE.removeEventListener('touchend', () => this.removeAllActiveLayers());
   }
 }
 

@@ -12,8 +12,8 @@
   border-radius: 12px;
   outline: 0;
 }
-@import '../../scss-mixins/status-layer.scss';
-@include status-layer('.md-card', '240ms');
+@import '../../scss-mixins/state-layer.scss';
+@include state-layer('.md-card', '240ms');
 
 :host([reactive]) .md-card {
   cursor: pointer;

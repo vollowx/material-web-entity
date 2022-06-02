@@ -36,7 +36,7 @@ shortcut = {
         var element;
         if (e.target) element = e.target;
         else if (e.srcElement) element = e.srcElement;
-        if (element.nodeType == 3) element = element.parentNode;
+        if (element.ElementType == 3) element = element.parentElement;
 
         if (element.tagName == 'INPUT' || element.tagName == 'TEXTAREA') return;
       }

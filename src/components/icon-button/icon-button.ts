@@ -9,6 +9,7 @@ class M3IconButton extends BaseButton {
   /**
    * EXTEND ATTRIBUTES
    */
+  /** */
   static get observedAttributes() {
     return ['icon', ...this.observedAttributesDefault];
   }
@@ -20,22 +21,20 @@ class M3IconButton extends BaseButton {
   }
 
   static tagName: string = 'md-icon-button';
-  iconNode: M3Icon;
+  iconElement: M3Icon;
 
   /**
    * LIFE CYCLE
    */
   /** */
   connectedCallback() {
-    this.shadowRoot.innerHTML = this.render();
-
-    this.nativeNode = this.shadowRoot.querySelector('.md-icon-button') as HTMLLinkElement;
-    this.iconNode = this.shadowRoot.querySelector('md-icon') as M3Icon;
+    super.connectedCallback();
+    this.iconElement = this.shadowRoot.querySelector('md-icon') as M3Icon;
   }
   override attributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
     super.attributeChangedCallback(name, oldValue, newValue);
     if (name === 'icon') {
-      this.iconNode.textContent = this.icon;
+      this.iconElement.textContent = this.icon;
     }
   };
 

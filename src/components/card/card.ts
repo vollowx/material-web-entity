@@ -5,7 +5,7 @@ import M3CardStyles from './card-styles.scss';
  */
 class M3Card extends HTMLElement {
   static tagName: string = 'md-card';
-  cardNode: HTMLDivElement;
+  cardElement: HTMLDivElement;
 
   static get observedAttributes() {
     return ['reactive'];
@@ -19,12 +19,12 @@ class M3Card extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.cardNode = this.shadowRoot.querySelector('.md-card') as HTMLDivElement;
+    this.cardElement = this.shadowRoot.querySelector('.md-card') as HTMLDivElement;
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (this.cardNode) {
+    if (this.cardElement) {
       if (name === 'reactive') {
-        this.cardNode.tabIndex = this.reactive ? 0 : -1;
+        this.cardElement.tabIndex = this.reactive ? 0 : -1;
       }
     }
   }
@@ -51,7 +51,7 @@ class M3Card extends HTMLElement {
   }
   focus(): void {
     if (this.reactive) {
-      this.cardNode.focus();
+      this.cardElement.focus();
     }
   }
 }

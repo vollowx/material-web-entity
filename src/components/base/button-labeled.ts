@@ -27,7 +27,7 @@ class BaseButtonLabeled extends BaseButton {
     this.setAttribute('label', value);
   }
 
-  labelNode: HTMLElement;
+  labelElement: HTMLElement;
 
   /**
    * LIFE CYCLE
@@ -36,17 +36,17 @@ class BaseButtonLabeled extends BaseButton {
   connectedCallback() {
     super.connectedCallback();
 
-    this.labelNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}__label`) as HTMLElement;
+    this.labelElement = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}__label`) as HTMLElement;
   }
   override attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     super.attributeChangedCallback(name, oldValue, newValue);
-    if (this.nativeNode && this.labelNode) {
+    if (this.buttonElement && this.labelElement) {
       if (name === 'label') {
-        this.labelNode.textContent = newValue;
+        this.labelElement.textContent = newValue;
         if (!this.ariaLabel) {
-          this.nativeNode.ariaLabel = newValue;
+          this.buttonElement.ariaLabel = newValue;
           if (newValue === '') {
-            this.nativeNode.removeAttribute('aria-label');
+            this.buttonElement.removeAttribute('aria-label');
           }
         }
       }

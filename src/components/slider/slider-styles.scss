@@ -1,4 +1,4 @@
-@import '../../scss-mixins/status-layer.scss';
+@import '../../scss-mixins/state-layer.scss';
 
 :host {
   position: relative;
@@ -7,13 +7,13 @@
   min-width: 112px;
   width: auto;
   height: 48px;
-  box-sizing: border-box;
   vertical-align: middle;
   outline: none;
   touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
   appearance: none;
   cursor: pointer;
+  outline: 0;
 }
 
 .md-slider {

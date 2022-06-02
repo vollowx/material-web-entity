@@ -1,8 +1,8 @@
 :host {
   position: relative;
-  box-sizing: border-box;
   display: inline-flex;
   -webkit-tap-highlight-color: transparent;
+  outline: 0;
   --md-fab-size: 56px;
   --md-icon-size: 24px;
   --md-fab-border-radius: 16px;
@@ -32,6 +32,11 @@
   --md-icon-size: 36px;
   --md-fab-border-radius: 28px;
 }
+
+:host([disabled]) {
+  pointer-events: none;
+}
+
 .md-fab {
   padding: 0 calc((var(--md-fab-size) - var(--md-icon-size)) / 2);
   position: relative;
@@ -78,8 +83,8 @@
     box-shadow: var(--md-fab-shadow-pressed);
   }
 }
-@import '../../scss-mixins/status-layer.scss';
-@include status-layer('.md-fab', 240ms);
+@import '../../scss-mixins/state-layer.scss';
+@include state-layer('.md-fab', 240ms);
 
 .md-fab:disabled md-ripple,
 .md-fab:disabled::before {

@@ -15,8 +15,8 @@
   border-radius: 4px 4px 0 0;
   box-sizing: border-box;
 }
-@import '../../scss-mixins/status-layer.scss';
-@include status-layer('.md-text-field', 180ms);
+@import '../../scss-mixins/state-layer.scss';
+@include state-layer('.md-text-field', 180ms);
 .md-text-field__label {
   position: absolute;
   color: rgb(var(--md-sys-color-on-surface-variant));

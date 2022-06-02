@@ -1,9 +1,15 @@
 :host {
   position: relative;
-  box-sizing: border-box;
+  display: flex;
   flex-shrink: 0;
+  outline: 0;
   height: 48px;
 }
+
+:host([disabled]) {
+  pointer-events: none;
+}
+
 .md-menu__item {
   display: flex;
   align-items: center;
@@ -55,5 +61,5 @@
     min-width: 80px;
   }
 }
-@import '../../scss-mixins/status-layer.scss';
-@include status-layer('.md-menu__item', '0ms', true);
+@import '../../scss-mixins/state-layer.scss';
+@include state-layer('.md-menu__item', '0ms', true);

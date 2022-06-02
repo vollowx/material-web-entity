@@ -22,10 +22,10 @@ class BaseCheck extends HTMLElement {
     return [...this.observedAttributesDefault];
   }
   get checked(): boolean {
-    return this.nativeNode ? this.nativeNode.checked : this.hasAttribute('checked');
+    return this.checkElement ? this.checkElement.checked : this.hasAttribute('checked');
   }
   set checked(value: boolean) {
-    this.nativeNode.checked = value;
+    this.checkElement.checked = value;
   }
   get disabled(): boolean {
     return this.hasAttribute('disabled');
@@ -38,10 +38,10 @@ class BaseCheck extends HTMLElement {
     }
   }
   get tabIndex(): number {
-    return this.nativeNode.tabIndex;
+    return this.checkElement.tabIndex;
   }
   set tabIndex(value: number) {
-    this.nativeNode.tabIndex = value;
+    this.checkElement.tabIndex = value;
   }
   get ariaLabel(): string {
     return this.getAttribute('data-aria-label');
@@ -50,11 +50,11 @@ class BaseCheck extends HTMLElement {
     this.setAttribute('data-aria-label', value);
   }
   focus() {
-    this.nativeNode.focus();
+    this.checkElement.focus();
   }
 
   static tagName: string;
-  nativeNode: HTMLInputElement;
+  checkElement: HTMLInputElement;
 
   /**
    * LIFE CYCLE
@@ -67,24 +67,24 @@ class BaseCheck extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
-    this.nativeNode = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}__input`) as HTMLInputElement;
+    this.checkElement = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}__input`) as HTMLInputElement;
 
-    this.nativeNode.addEventListener('change', (e) => this._onChange(e));
+    this.checkElement.addEventListener('change', (e) => this._onChange(e));
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (this.nativeNode) {
+    if (this.checkElement) {
       if (name === 'checked') {
         if (this.checked !== this.hasAttribute('checked')) {
           this.checked = this.hasAttribute('checked');
         }
-        this.nativeNode.setAttribute('aria-checked', this.checked.toString());
+        this.checkElement.setAttribute('aria-checked', this.checked.toString());
       } else if (name === 'disabled') {
-        this.nativeNode.disabled = this.disabled;
+        this.checkElement.disabled = this.disabled;
       } else if (name === 'data-aria-label') {
         if (newValue) {
-          this.nativeNode.ariaLabel = newValue;
+          this.checkElement.ariaLabel = newValue;
         } else {
-          this.nativeNode.removeAttribute('aria-label');
+          this.checkElement.removeAttribute('aria-label');
         }
       }
     }
@@ -113,7 +113,7 @@ class BaseCheck extends HTMLElement {
 
   protected onChange() {}
   protected _onChange(event: Event) {
-    if (this.nativeNode.checked) {
+    if (this.checkElement.checked) {
       this.setAttribute('checked', '');
     } else {
       this.removeAttribute('checked');

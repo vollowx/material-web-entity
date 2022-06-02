@@ -5,7 +5,7 @@ import M3IconStyles from './icon-styles.scss';
  */
 class M3Icon extends HTMLElement {
   static tagName: string = 'md-icon';
-  imageNode: HTMLImageElement;
+  imageElement: HTMLImageElement;
 
   static get observedAttributes() {
     return ['url'];
@@ -19,14 +19,14 @@ class M3Icon extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.imageNode = this.shadowRoot.querySelector('.md-icon__img') as HTMLImageElement;
+    this.imageElement = this.shadowRoot.querySelector('.md-icon__img') as HTMLImageElement;
   }
   attributeChangedCallback(attrName: string, oldVal: string, newVal: any) {
-    if (attrName === 'url' && this.imageNode) {
+    if (attrName === 'url' && this.imageElement) {
       if (newVal) {
-        this.imageNode.setAttribute('src', newVal);
+        this.imageElement.setAttribute('src', newVal);
       } else {
-        this.imageNode.removeAttribute('src');
+        this.imageElement.removeAttribute('src');
       }
     }
   }

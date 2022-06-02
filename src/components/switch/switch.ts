@@ -6,29 +6,29 @@ import M3SwitchStyles from './switch-styles.scss';
  */
 class M3Switch extends BaseCheck {
   static tagName = 'md-switch';
-  switchNode: HTMLButtonElement;
+  switchElement: HTMLButtonElement;
 
   override connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
-    this.nativeNode = this.shadowRoot.querySelector('.md-switch__input') as HTMLInputElement;
-    this.switchNode = this.shadowRoot.querySelector('.md-switch') as HTMLButtonElement;
-    this.switchNode.addEventListener('click', (e) => this._onChange(e));
+    this.checkElement = this.shadowRoot.querySelector('.md-switch__input') as HTMLInputElement;
+    this.switchElement = this.shadowRoot.querySelector('.md-switch') as HTMLButtonElement;
+    this.switchElement.addEventListener('click', (e) => this._onChange(e));
   }
 
   override attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (this.nativeNode) {
+    if (this.checkElement) {
       if (name === 'checked') {
         if (this.checked !== this.hasAttribute('checked')) {
           this.checked = this.hasAttribute('checked');
         }
-        this.switchNode.setAttribute('aria-checked', this.checked.toString());
+        this.switchElement.setAttribute('aria-checked', this.checked.toString());
       } else if (name === 'disabled') {
-        this.nativeNode.disabled = this.disabled;
+        this.checkElement.disabled = this.disabled;
       } else if (name === 'data-aria-label') {
         if (newValue) {
-          this.switchNode.ariaLabel = newValue;
+          this.switchElement.ariaLabel = newValue;
         } else {
-          this.switchNode.removeAttribute('aria-label');
+          this.switchElement.removeAttribute('aria-label');
         }
       }
     }
@@ -61,32 +61,32 @@ class M3Switch extends BaseCheck {
   }
 
   protected override _onChange(event: Event) {
-    this.nativeNode.checked = !this.nativeNode.checked;
-    if (this.nativeNode.checked) {
+    this.checkElement.checked = !this.checkElement.checked;
+    if (this.checkElement.checked) {
       this.setAttribute('checked', '');
-      this.switchNode.classList.add('md-switch--checked');
+      this.switchElement.classList.add('md-switch--checked');
     } else {
       this.removeAttribute('checked');
-      this.switchNode.classList.remove('md-switch--checked');
+      this.switchElement.classList.remove('md-switch--checked');
     }
     this.dispatchEvent(new Event('change'));
   }
 
   get checked(): boolean {
-    return this.nativeNode ? this.nativeNode.checked : this.hasAttribute('checked');
+    return this.checkElement ? this.checkElement.checked : this.hasAttribute('checked');
   }
   set checked(value: boolean) {
-    this.nativeNode.checked = value;
+    this.checkElement.checked = value;
     if (value) {
       this.setAttribute('checked', '');
-      this.switchNode.classList.add('md-switch--checked');
+      this.switchElement.classList.add('md-switch--checked');
     } else {
       this.removeAttribute('checked');
-      this.switchNode.classList.remove('md-switch--checked');
+      this.switchElement.classList.remove('md-switch--checked');
     }
   }
   override focus() {
-    this.switchNode.focus();
+    this.switchElement.focus();
   }
 }
 

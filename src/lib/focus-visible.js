@@ -35,8 +35,8 @@ function applyFocusVisiblePolyfill(scope) {
     if (
       el &&
       el !== document &&
-      el.nodeName !== 'HTML' &&
-      el.nodeName !== 'BODY' &&
+      el.ElementName !== 'HTML' &&
+      el.ElementName !== 'BODY' &&
       'classList' in el &&
       'contains' in el.classList
     ) {
@@ -226,7 +226,7 @@ function applyFocusVisiblePolyfill(scope) {
   function onInitialPointerMove(e) {
     // Work around a Safari quirk that fires a mousemove on <html> whenever the
     // window blurs, even if you're tabbing out of the page. ¯\_(ツ)_/¯
-    if (e.target.nodeName && e.target.nodeName.toLowerCase() === 'html') {
+    if (e.target.ElementName && e.target.ElementName.toLowerCase() === 'html') {
       return;
     }
 
@@ -252,17 +252,17 @@ function applyFocusVisiblePolyfill(scope) {
   scope.addEventListener('focus', onFocus, true);
   scope.addEventListener('blur', onBlur, true);
 
-  // We detect that a node is a ShadowRoot by ensuring that it is a
+  // We detect that a Element is a ShadowRoot by ensuring that it is a
   // DocumentFragment and also has a host property. This check covers native
   // implementation and polyfill implementation transparently. If we only cared
   // about the native implementation, we could just check if the scope was
   // an instance of a ShadowRoot.
-  if (scope.nodeType === Node.DOCUMENT_FRAGMENT_NODE && scope.host) {
+  if (scope.ElementType === Element.DOCUMENT_FRAGMENT_Element && scope.host) {
     // Since a ShadowRoot is a special kind of DocumentFragment, it does not
     // have a root element to add a class to. So, we add this attribute to the
     // host element instead:
     scope.host.setAttribute('data-focus-visible', '');
-  } else if (scope.nodeType === Node.DOCUMENT_NODE) {
+  } else if (scope.ElementType === Element.DOCUMENT_Element) {
     document.documentElement.classList.add('js-focus-visible');
     document.documentElement.setAttribute('data-focus-visible', '');
   }

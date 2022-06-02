@@ -1,10 +1,15 @@
 :host {
   position: relative;
-  box-sizing: border-box;
   display: inline-flex;
   -webkit-tap-highlight-color: transparent;
+  outline: 0;
   --md-icon-size: 16px;
 }
+
+:host([disabled]) {
+  pointer-events: none;
+}
+
 .md-button {
   padding: 0 24px;
   position: relative;
@@ -46,8 +51,8 @@
     box-shadow: none;
   }
 }
-@import '../../scss-mixins/status-layer.scss';
-@include status-layer('.md-button', '240ms');
+@import '../../scss-mixins/state-layer.scss';
+@include state-layer('.md-button', '240ms');
 
 :host([tonal]) .md-button {
   color: rgb(var(--md-sys-color-on-secondary-container));
@@ -59,10 +64,8 @@
   background-color: rgb(var(--md-sys-color-surface));
   box-shadow: var(--md-sys-elev-shadow-1);
 }
-@media screen and (min-width: 1240px) {
-  :host([elevated]) .md-button:hover {
-    box-shadow: var(--md-sys-elev-shadow-2);
-  }
+:host([elevated]) .md-button:hover {
+  box-shadow: var(--md-sys-elev-shadow-2);
 }
 :host([elevated].focus-visible) .md-button {
   box-shadow: var(--md-sys-elev-shadow-1);

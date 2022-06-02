@@ -6,8 +6,14 @@
   width: 48px;
   height: 48px;
   -webkit-tap-highlight-color: transparent;
+  outline: 0;
   --md-icon-size: 24px;
 }
+
+:host([disabled]) {
+  pointer-events: none;
+}
+
 .md-icon-button {
   padding: 8px;
   position: relative;
@@ -34,8 +40,11 @@
     pointer-events: none;
   }
 }
-@import '../../scss-mixins/status-layer.scss';
-@include status-layer('.md-icon-button', '240ms');
+.md-icon-button:disabled {
+  color: rgba(var(--md-sys-color-on-surface), 0.38);
+}
+@import '../../scss-mixins/state-layer.scss';
+@include state-layer('.md-icon-button', '240ms');
 
 :host([filled]) .md-icon-button {
   color: rgb(var(--md-sys-color-on-primary));
@@ -44,6 +53,13 @@
 :host([tonal]) .md-icon-button {
   color: rgb(var(--md-sys-color-on-secondary));
   background: rgb(var(--md-sys-color-secondary));
+}
+:host([filled]) .md-icon-button:disabled,
+:host([tonal]) .md-icon-button:disabled {
+  color: rgba(var(--md-sys-color-on-surface), 0.38);
+  background-color: rgba(var(--md-sys-color-on-surface), 0.12);
+  cursor: default;
+  box-shadow: none;
 }
 
 :host([outlined]) .md-icon-button {

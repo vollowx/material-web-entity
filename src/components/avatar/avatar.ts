@@ -12,7 +12,7 @@ import M3AvatarStyles from './avatar-styles.scss';
  */
 class M3Avatar extends HTMLElement {
   static tagName: string = 'md-avatar';
-  imageNode: HTMLImageElement;
+  imageElement: HTMLImageElement;
 
   static get observedAttributes() {
     return ['url'];
@@ -26,12 +26,12 @@ class M3Avatar extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
 
-    this.imageNode = this.shadowRoot.querySelector('.md-avatar') as HTMLImageElement;
+    this.imageElement = this.shadowRoot.querySelector('.md-avatar') as HTMLImageElement;
   }
   attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {
-    if (this.imageNode) {
+    if (this.imageElement) {
       if (attrName === 'url' && newVal) {
-        this.imageNode.setAttribute('src', newVal);
+        this.imageElement.setAttribute('src', newVal);
       }
     }
   }

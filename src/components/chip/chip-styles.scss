@@ -1,9 +1,14 @@
 :host {
   position: relative;
-  box-sizing: border-box;
   display: inline-flex;
+  outline: 0;
   --md-icon-size: 1rem;
 }
+
+:host([disabled]) {
+  pointer-events: none;
+}
+
 .md-chip {
   padding: 0 12px;
   position: relative;
@@ -47,8 +52,8 @@
     cursor: default;
   }
 }
-@import '../../scss-mixins/status-layer.scss';
-@include status-layer('.md-chip', '240ms');
+@import '../../scss-mixins/state-layer.scss';
+@include state-layer('.md-chip', '240ms');
 
 :host(:not([elevated]):not([checked])) md-ripple,
 :host(:not([elevated]):not([checked])) .md-chip::before {
