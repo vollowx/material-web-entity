@@ -38,12 +38,17 @@ class M3Slider extends BaseSlider {
   connectedCallback() {
     super.connectedCallback();
 
+    window.addEventListener('resize', () => this._onInput());
+
     this.trackElement = this.shadowRoot.querySelector('.md-slider__track');
     this.marksElement = this.shadowRoot.querySelector('.md-slider__marks');
     this.thumbElement = this.shadowRoot.querySelector('.md-slider__thumb');
     this.activeFillElement = this.shadowRoot.querySelector('.md-slider__track-active-fill');
 
     this._onInput();
+  }
+  disconnectedCallback() {
+    window.removeEventListener('resize', () => this._onInput());
   }
 
   /**

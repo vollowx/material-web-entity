@@ -74,10 +74,10 @@ $corner-size: (
   $topRight: nth($value, 2);
   $bottomRight: nth($value, 3);
   $bottomLeft: nth($value, 4);
-  [shape-cut='#{$name}'] {
-    -webkit-clip-path: var(--md-sys-shape-cut-#{$name});
-    clip-path: var(--md-sys-shape-cut-#{$name});
-  }
+  // [shape-cut='#{$name}'] {
+  //   -webkit-clip-path: var(--md-sys-shape-cut-#{$name});
+  //   clip-path: var(--md-sys-shape-cut-#{$name});
+  // }
   [shape-rounded='#{$name}'] {
     border-radius: var(--md-sys-shape-rounded-#{$name});
   }
@@ -89,8 +89,8 @@ $corner-size: (
     $topRight: nth($value, 2);
     $bottomRight: nth($value, 3);
     $bottomLeft: nth($value, 4);
-    $cut-corner: cut-corner-data($topLeft, $topRight, $bottomRight, $bottomLeft);
-    --md-sys-shape-cut-#{$name}: #{$cut-corner};
+    // $cut-corner: cut-corner-data($topLeft, $topRight, $bottomRight, $bottomLeft);
+    // --md-sys-shape-cut-#{$name}: #{$cut-corner};
     --md-sys-shape-rounded-#{$name}: #{$topLeft} #{$topRight} #{$bottomRight} #{$bottomLeft};
   }
 }

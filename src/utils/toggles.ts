@@ -35,13 +35,3 @@ export function turnThemeDark(): void {
 export function turnThemeAuto(): void {
   document.body.classList.remove('light-theme', 'dark-theme');
 }
-/**
- * Toggle one's attribute
- */
-export function toggleAttr(element: HTMLElement, attribute: string): void {
-  if (element.getAttribute(attribute) != null) {
-    element.removeAttribute(attribute);
-  } else {
-    element.setAttribute(attribute, '');
-  }
-}
