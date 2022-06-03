@@ -131,7 +131,7 @@
     opacity: 0.08;
   }
 }
-:host([focus-visible]) {
+:host(.focus-visible) {
   .md-slider__thumb::before {
     opacity: 0.12;
   }
