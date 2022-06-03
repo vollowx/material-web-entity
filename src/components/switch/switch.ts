@@ -1,6 +1,9 @@
 import BaseCheck from '../base/check-default';
 import M3SwitchStyles from './switch-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3SwitchStyles);
+
 /**
  * Switch component.
  */
@@ -10,6 +13,8 @@ class M3Switch extends BaseCheck {
 
   override connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = [sheet];
+
     this.checkElement = this.shadowRoot.querySelector('.md-switch__input') as HTMLInputElement;
     this.switchElement = this.shadowRoot.querySelector('.md-switch') as HTMLButtonElement;
     this.switchElement.addEventListener('click', (e) => this._onChange(e));
@@ -36,7 +41,6 @@ class M3Switch extends BaseCheck {
 
   protected override render(): string {
     return `
-    <style>${M3SwitchStyles}</style>
     <button
       class="md-switch ${this.hasAttribute('checked') ? 'md-switch--checked' : ''}"
       role="switch"

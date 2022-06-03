@@ -1,5 +1,8 @@
 import M3BottomAppBarStyles from './bottom-app-bar-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3BottomAppBarStyles);
+
 class M3BottomAppBar extends HTMLElement {
   static tagName: string = 'md-bottom-app-bar';
 
@@ -10,11 +13,11 @@ class M3BottomAppBar extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = [sheet];
   }
 
   protected render(): string {
     return `
-    <style>${M3BottomAppBarStyles}</style>
     <div class="md-bottom-app-bar">
       <slot></slot>
       <div class="md-bottom-app-bar__spacer"></div>

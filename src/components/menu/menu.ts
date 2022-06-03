@@ -1,5 +1,8 @@
 import M3MenuStyles from './menu-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3MenuStyles);
+
 /**
  * Menu component.
  *
@@ -19,6 +22,7 @@ class M3Menu extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = [sheet];
 
     this.layerElement = this.shadowRoot.querySelector('.md-menu__layer');
     this.menuElement = this.shadowRoot.querySelector('.md-menu') as HTMLDivElement;
@@ -105,7 +109,6 @@ class M3Menu extends HTMLElement {
 
   protected render(): string {
     return `
-    <style>${M3MenuStyles}</style>
     <div class="md-menu__layer"></div>
     <div class="md-menu">
       <slot></slot>

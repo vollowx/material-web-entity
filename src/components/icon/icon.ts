@@ -1,5 +1,8 @@
 import M3IconStyles from './icon-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3IconStyles);
+
 /**
  * Icon component.
  */
@@ -18,6 +21,7 @@ class M3Icon extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = [sheet];
 
     this.imageElement = this.shadowRoot.querySelector('.md-icon__img') as HTMLImageElement;
   }
@@ -33,7 +37,6 @@ class M3Icon extends HTMLElement {
 
   protected render(): string {
     return `
-    <style>${M3IconStyles}</style>
     <span class="md-icon">
       <slot><img ${this.url ? 'src=' + this.url : ''} class="md-icon__img" /></slot>
     </span>

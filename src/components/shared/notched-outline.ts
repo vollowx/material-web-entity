@@ -1,5 +1,8 @@
 import NotchedOutlinedStyles from './notched-outline-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(NotchedOutlinedStyles);
+
 /**
  * Notch shared component.
  *
@@ -18,6 +21,7 @@ class NotchedOutlined extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = [sheet];
   }
 
   /**
@@ -25,7 +29,6 @@ class NotchedOutlined extends HTMLElement {
    */
   protected render(): string {
     return `
-      <style>${NotchedOutlinedStyles}</style>
       <span class="md-notched-outline">
         <span class="md-notched-outline__leading"></span>
         <span class="md-notched-outline__notch">

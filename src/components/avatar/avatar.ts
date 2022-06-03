@@ -1,5 +1,8 @@
 import M3AvatarStyles from './avatar-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3AvatarStyles);
+
 /**
  * Avatar component.
  *
@@ -25,6 +28,7 @@ class M3Avatar extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = [sheet];
 
     this.imageElement = this.shadowRoot.querySelector('.md-avatar') as HTMLImageElement;
   }
@@ -37,10 +41,7 @@ class M3Avatar extends HTMLElement {
   }
 
   protected render(): string {
-    return `
-    <style>${M3AvatarStyles}</style>
-    <slot><img ${this.url ? 'src=' + this.url : ''} class="md-avatar"/></slot>
-    `;
+    return `<slot><img ${this.url ? 'src=' + this.url : ''} class="md-avatar"/></slot>`;
   }
 
   get url() {

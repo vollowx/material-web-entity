@@ -5,6 +5,14 @@
  */
 class BaseSlider extends HTMLElement {
   /**
+   * STYLE SHEET
+   */
+  /** */
+  get styleSheet() {
+    return [new CSSStyleSheet()];
+  }
+
+  /**
    * ATTRIBUTES
    *
    * `observedAttributesDefault` is a list of attributes that are observed by default.
@@ -78,6 +86,7 @@ class BaseSlider extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = this.styleSheet;
 
     this.sliderElement = this.shadowRoot.querySelector('input') as HTMLInputElement;
 

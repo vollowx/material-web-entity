@@ -1,6 +1,9 @@
 import BaseButtonLabeled from '../base/button-labeled';
 import M3ChipStyles from './chip-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3ChipStyles);
+
 /**
  * M3Chip component.
  *
@@ -15,6 +18,14 @@ import M3ChipStyles from './chip-styles.scss';
  * ```
  */
 class M3Chip extends BaseButtonLabeled {
+  /**
+   * STYLE SHEET
+   */
+  /** */
+  override get styleSheet() {
+    return [sheet];
+  }
+
   static tagName: string = 'md-chip';
 
   /**
@@ -23,7 +34,6 @@ class M3Chip extends BaseButtonLabeled {
   /** */
   protected override render(): string {
     return `
-    <style>${M3ChipStyles}</style>
     ${this.renderButton(
       `<md-ripple></md-ripple>
       <span class="md-chip__label">${this.label ? this.label : ''}</span>

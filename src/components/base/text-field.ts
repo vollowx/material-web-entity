@@ -5,6 +5,14 @@
  */
 class BaseTextField extends HTMLElement {
   /**
+   * STYLE SHEET
+   */
+  /** */
+  get styleSheet() {
+    return [new CSSStyleSheet()];
+  }
+
+  /**
    * ATTRIBUTES
    *
    * `observedAttributesDefault` is a list of attributes that are observed by default.
@@ -108,6 +116,7 @@ class BaseTextField extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = this.styleSheet;
 
     this.inputElement = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLInputElement;
     this.binds();
@@ -125,8 +134,10 @@ class BaseTextField extends HTMLElement {
       } else if (name === 'placeholder') {
         this.inputElement.placeholder = this.placeholder;
       } else if (name === 'value') {
-        this.inputElement.value = this.value;
-        this._onChange();
+        if (this.inputElement.value !== this.value) {
+          this.inputElement.value = this.value;
+          this._onChange();
+        }
       } else if (name === 'autocomplete') {
         this.inputElement.autocomplete = this.autocomplete;
       } else if (name === 'maxlength') {
@@ -134,13 +145,13 @@ class BaseTextField extends HTMLElement {
       }
     }
   }
-  
+
   /**
    * RENDERING
    */
   /** */
   protected render(): string {
-    return `${this.renderInput('bs-text-field')}`;
+    return `${this.renderInput(this.tagName.toLowerCase())}`;
   }
   protected renderInput(_className: string): string {
     return `
@@ -182,7 +193,9 @@ class BaseTextField extends HTMLElement {
   }
   protected onChange() {}
   protected _onChange(): void {
-    this.value = this.inputElement.value;
+    if (this.value !== this.inputElement.value) {
+      this.value = this.inputElement.value;
+    }
     this.onChange();
   }
   protected onInput() {}

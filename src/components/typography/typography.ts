@@ -1,5 +1,8 @@
 import M3TypoStyles from './typography-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3TypoStyles);
+
 /**
  * Typography component.
  */
@@ -12,15 +15,13 @@ class M3Typography extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
 
-  render() {
-    this.shadowRoot.innerHTML += /* html */ `
-    <style>${M3TypoStyles}</style>
-    <slot></slot>
-    `;
+  protected render() {
+    return `<slot></slot>`;
   }
 
   connectedCallback() {
-    this.render();
+    this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = [sheet];
   }
 }
 

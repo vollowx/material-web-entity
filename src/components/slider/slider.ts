@@ -1,14 +1,17 @@
 import BaseSlider from '../base/slider-default';
 import M3SliderStyles from './slider-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3SliderStyles);
+
 /**
  * Slider component.
  */
 class M3Slider extends BaseSlider {
-  /**
-   * ATTRIBUTES
-   */
-  /** */
+  override get styleSheet() {
+    return [sheet];
+  }
+
   static get observedAttributes() {
     return ['marks', ...this.observedAttributesDefault];
   }
@@ -48,7 +51,6 @@ class M3Slider extends BaseSlider {
    */
   protected override render(): string {
     return `
-      <style>${M3SliderStyles}</style>
       <div class="md-slider">
         <div class="md-slider__track">
           <div class="md-slider__track-inactive"></div>

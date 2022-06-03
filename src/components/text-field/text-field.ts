@@ -1,14 +1,17 @@
 import BaseTextField from '../base/text-field';
 import M3TextFieldStyles from './text-field-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3TextFieldStyles);
+
 /**
  * Text field component.
  */
 class M3TextField extends BaseTextField {
-  /**
-   * EXTEND ATTRIBUTES
-   */
-  /** */
+  override get styleSheet() {
+    return [sheet];
+  }
+
   static get observedAttributes() {
     return ['label', 'outlined', 'help-text', ...this.observedAttributesDefault];
   }
@@ -48,6 +51,7 @@ class M3TextField extends BaseTextField {
   /** */
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = this.styleSheet;
     this.defines();
     this.binds();
     this._onInput();
@@ -78,7 +82,6 @@ class M3TextField extends BaseTextField {
   }
   protected renderFilled(): string {
     return `
-    <style>${M3TextFieldStyles}</style>
     <label class="md-text-field">
       <span class="md-text-field__label">${this.label}</span>
       ${this.renderInput('md-text-field__input')}
@@ -91,7 +94,6 @@ class M3TextField extends BaseTextField {
   }
   protected renderOutlined(): string {
     return `
-    <style>${M3TextFieldStyles}</style>
     <label class="md-text-field">
       <span class="md-text-field__label">${this.label}</span>
       ${this.renderInput('md-text-field__input')}

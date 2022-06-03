@@ -1,33 +1,32 @@
 import BaseButton from '../base/button-default';
 import M3MenuItemStyles from './menu-item-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3MenuItemStyles);
+
 /**
  * MenuItem component.
  *
  * TODO: be 'list-item'
  */
 class M3MenuItem extends BaseButton {
+  override get styleSheet() {
+    return [sheet];
+  }
+
   static tagName: string = 'md-menu-item';
 
-  /**
-   * LIFE CYCLE
-   */
-  /** */
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = this.styleSheet;
 
     this.buttonElement = this.shadowRoot.querySelector('.md-menu__item') as HTMLLinkElement;
 
     this.tabIndex = -1;
   }
 
-  /**
-   * RENDERING
-   */
-  /** */
   protected override render(): string {
     return `
-    <style>${M3MenuItemStyles}</style>
     <button class="md-menu__item"
       ${this.ariaLabel ? 'aria-label="' + this.ariaLabel + '"' : ''}
       ${this.disabled ? 'disabled' : ''}>

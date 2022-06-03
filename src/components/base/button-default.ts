@@ -5,6 +5,14 @@
  */
 class BaseButton extends HTMLElement {
   /**
+   * STYLE SHEET
+   */
+  /** */
+  get styleSheet() {
+    return [new CSSStyleSheet()];
+  }
+
+  /**
    * ATTRIBUTES
    *
    * `observedAttributesDefault` is a list of attributes that are observed by default.
@@ -74,6 +82,7 @@ class BaseButton extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = this.styleSheet;
 
     this.buttonElement = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
   }

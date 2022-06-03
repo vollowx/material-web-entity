@@ -2,14 +2,17 @@ import BaseButton from '../base/button-default';
 import M3IconButtonStyles from './icon-button-styles.scss';
 import M3Icon from '../icon/icon';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3IconButtonStyles);
+
 /**
  * Icon button component.
  */
 class M3IconButton extends BaseButton {
-  /**
-   * EXTEND ATTRIBUTES
-   */
-  /** */
+  override get styleSheet() {
+    return [sheet];
+  }
+
   static get observedAttributes() {
     return ['icon', ...this.observedAttributesDefault];
   }
@@ -23,10 +26,6 @@ class M3IconButton extends BaseButton {
   static tagName: string = 'md-icon-button';
   iconElement: M3Icon;
 
-  /**
-   * LIFE CYCLE
-   */
-  /** */
   connectedCallback() {
     super.connectedCallback();
     this.iconElement = this.shadowRoot.querySelector('md-icon') as M3Icon;
@@ -38,13 +37,8 @@ class M3IconButton extends BaseButton {
     }
   };
 
-  /**
-   * RENDERING
-   */
-  /** */
   protected override render(): string {
     return `
-    <style>${M3IconButtonStyles}</style>
     ${this.renderButton(
       `<md-ripple centered></md-ripple>
       <md-icon>${this.icon}</md-icon>`

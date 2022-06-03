@@ -1,5 +1,8 @@
 import M3DialogStyles from './dialog-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3DialogStyles);
+
 /**
  * Dialog component.
  */
@@ -26,6 +29,7 @@ class M3Dialog extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = [sheet];
 
     this.backdropE = this.shadowRoot.querySelector('.md-dialog__backdrop');
     this.dialogE = this.shadowRoot.querySelector('.md-dialog');
@@ -90,7 +94,6 @@ class M3Dialog extends HTMLElement {
 
   protected render(): string {
     return `
-    <style>${M3DialogStyles}</style>
     <div class="md-dialog__backdrop"></div>
     <div class="md-dialog__container">
       <div role="alertdialog" class="md-dialog" tabindex="-1">

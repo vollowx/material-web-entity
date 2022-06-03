@@ -1,5 +1,8 @@
 import M3CardStyles from './card-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3CardStyles);
+
 /**
  * Card component
  */
@@ -18,6 +21,7 @@ class M3Card extends HTMLElement {
   }
   connectedCallback() {
     this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = [sheet];
 
     this.cardElement = this.shadowRoot.querySelector('.md-card') as HTMLDivElement;
   }
@@ -31,7 +35,6 @@ class M3Card extends HTMLElement {
 
   protected render(): string {
     return `
-    <style>${M3CardStyles}</style>
     <div class="md-card" tabindex="${this.reactive ? 0 : -1}">
       <md-ripple></md-ripple>
       <slot></slot>

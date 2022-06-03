@@ -1,6 +1,9 @@
 import BaseButtonLabeled from '../base/button-labeled';
 import M3ButtonStyles from './button-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3ButtonStyles);
+
 /**
  * Button component.
  *
@@ -17,18 +20,20 @@ import M3ButtonStyles from './button-styles.scss';
 class M3Button extends BaseButtonLabeled {
   static tagName: string = 'md-button';
 
+  override get styleSheet() {
+    return [sheet];
+  }
+
   /**
    * RENDERING
    */
   /** */
   protected override render(): string {
-    return `
-    <style>${M3ButtonStyles}</style>
-    ${this.renderButton(
+    return this.renderButton(
       `<md-ripple></md-ripple>
       <span class="md-button__label">${this.label ? this.label : ''}</span>
       <slot></slot>`
-    )}`;
+    );
   }
 }
 

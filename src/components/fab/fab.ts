@@ -1,10 +1,21 @@
 import BaseButtonLabeled from '../base/button-labeled';
 import M3FABStyles from './fab-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3FABStyles);
+
 /**
  * Floating action button component.
  */
 class M3FAB extends BaseButtonLabeled {
+  /**
+   * STYLE SHEET
+   */
+  /** */
+  override get styleSheet() {
+    return [sheet];
+  }
+
   static tagName: string = 'md-fab';
 
   /**
@@ -13,7 +24,6 @@ class M3FAB extends BaseButtonLabeled {
   /** */
   protected render(): string {
     return `
-    <style>${M3FABStyles}</style>
     ${this.renderButton(
       `<md-ripple></md-ripple>
       <span class="md-fab__label">${this.label ? this.label : ''}</span>

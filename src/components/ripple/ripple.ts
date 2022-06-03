@@ -1,5 +1,8 @@
 import M3RippleStyles from './ripple-styles.scss';
 
+const sheet = new CSSStyleSheet();
+sheet.replaceSync(M3RippleStyles);
+
 /**
  * Ripple component.
  *
@@ -19,11 +22,8 @@ class M3Ripple extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: 'open' });
   }
 
-  render() {
-    this.shadowRoot.innerHTML = /* html */ `
-    <style>${M3RippleStyles}</style>
-    <div class="md-ripple__container"></div>
-    `;
+  render(): string {
+    return `<div class="md-ripple__container"></div>`;
   }
 
   addActiveLayer(_event: { clientX: number; clientY: number }) {
@@ -113,7 +113,8 @@ class M3Ripple extends HTMLElement {
     return ['classical'];
   }
   connectedCallback() {
-    this.render();
+    this.shadowRoot.innerHTML = this.render();
+    this.shadowRoot.adoptedStyleSheets = [sheet];
 
     this.parentE = this.parentElement as HTMLElement;
     this.containerE = this.shadowRoot.querySelector('.md-ripple__container');
