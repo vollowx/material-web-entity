@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <title>Demo of MWE</title>
+    <title>Demo of MWE - VSCode Menu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -76,7 +76,7 @@
       <md-menu-item>
         <span slot="label">Open Workspace from File</span>
       </md-menu-item>
-      <md-menu-item>
+      <md-menu-item subber id="recent-menu">
         <span slot="label">Open Recent</span>
         <md-icon slot="after">arrow_right</md-icon>
       </md-menu-item>
@@ -130,6 +130,31 @@
       </md-menu-item>
     </md-menu>
 
+    <md-menu id="recent-menu" dense no-icon sub>
+      <md-menu-item>
+        <span slot="label">Reopen Closed Editor</span>
+        <span slot="after">Ctrl+Shift+T</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">E:\code\w\project\material-web-entity\</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">E:\code\c\test\</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">E:\code\w\test\</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">E:\code\w\project\material-web-native\</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">More</span>
+        <span slot="after">Ctrl+R</span>
+      </md-menu-item>
+    </md-menu>
+
     <md-menu id="preferences-menu" dense no-icon sub>
       <md-menu-item>
         <span slot="label">Settings</span>
@@ -141,7 +166,7 @@
       <md-divider></md-divider>
       <md-menu-item>
         <span slot="label">Color Theme</span>
-        <span  slot="after">Ctrl+K Ctrl+T</span>
+        <span slot="after">Ctrl+K Ctrl+T</span>
       </md-menu-item>
       <md-menu-item>
         <span slot="label">Icon Theme</span>
