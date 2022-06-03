@@ -38,7 +38,7 @@ class M3Slider extends BaseSlider {
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener('resize', () => this._onInput());
+    window.addEventListener('resize', () => this._onResize());
 
     this.trackElement = this.shadowRoot.querySelector('.md-slider__track');
     this.marksElement = this.shadowRoot.querySelector('.md-slider__marks');
@@ -48,7 +48,7 @@ class M3Slider extends BaseSlider {
     this._onInput();
   }
   disconnectedCallback() {
-    window.removeEventListener('resize', () => this._onInput());
+    window.removeEventListener('resize', () => this._onResize());
   }
 
   /**
@@ -108,6 +108,11 @@ class M3Slider extends BaseSlider {
     this.activeFillElement.style.transform = `scaleX(${(this.value - this.min) / (this.max - this.min)})`;
     this.marksElement.innerHTML = this.renderMarks();
     this.onInput();
+  }
+  protected _onResize(): void {
+    this.thumbElement.style.transform = `translateX(${
+      ((this.value - this.min) / (this.max - this.min)) * this.getBoundingClientRect().width
+    }px)`;
   }
 }
 
