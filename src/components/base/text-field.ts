@@ -126,16 +126,15 @@ class BaseTextField extends HTMLElement {
         this.inputElement.placeholder = this.placeholder;
       } else if (name === 'value') {
         this.inputElement.value = this.value;
+        this._onChange();
       } else if (name === 'autocomplete') {
         this.inputElement.autocomplete = this.autocomplete;
       } else if (name === 'maxlength') {
         this.inputElement.maxLength = this.maxlength;
       }
-      this.exAttributeChangedCallback(name, oldValue, newValue);
     }
   }
-  protected exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {};
-
+  
   /**
    * RENDERING
    */

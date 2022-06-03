@@ -53,7 +53,8 @@ class M3TextField extends BaseTextField {
     this._onInput();
     this._onChange();
   }
-  exAttributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
+  attributeChangedCallback = (name: string, oldValue: string, newValue: string) => {
+    super.attributeChangedCallback(name, oldValue, newValue);
     if (name === 'label') {
       this.labelElement.textContent = this.label;
       this.labelKeeperElement ? (this.labelKeeperElement.textContent = this.label) : null;
