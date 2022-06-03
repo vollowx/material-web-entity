@@ -22,6 +22,7 @@ slot {
   -webkit-font-feature-settings: 'liga';
   font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+  font-variation-settings: var(--md-icon-variation-settings);
 }
 .md-icon,
 .md-icon__img {

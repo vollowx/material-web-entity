@@ -49,6 +49,8 @@
   --md-sys-color-on-surface-variant-dark: 191, 201, 193;
   --md-sys-color-inverse-surface-dark: 225, 227, 223;
   --md-sys-color-inverse-on-surface-dark: 25, 28, 26;
+
+  --md-icon-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;
 }
 
 [lang='en'] [l]:not([l='en']) {
