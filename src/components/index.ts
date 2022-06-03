@@ -11,6 +11,7 @@ import M3Menu from './menu/menu';
 import M3MenuItem from './menu/menu-item';
 import M3Ripple from './ripple/ripple';
 import M3Slider from './slider/slider';
+import M3SliderRange from './slider/slider-range';
 import M3Switch from './switch/switch';
 import M3TextField from './text-field/text-field';
 import M3Typography from './typography/typography';
@@ -29,6 +30,7 @@ export {
   M3MenuItem,
   M3Ripple,
   M3Slider,
+  M3SliderRange,
   M3Switch,
   M3TextField,
   M3Typography,

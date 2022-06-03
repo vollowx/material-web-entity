@@ -25,7 +25,7 @@ class BaseSlider extends HTMLElement {
    * setter, getter for setting, getting the attributes easier and more intuitive.
    */
   /** */
-  static observedAttributesDefault = ['min', 'max', 'step', 'value', 'disabled', 'data-aria-labelby'];
+  static observedAttributesDefault = ['min', 'max', 'step', 'value', 'disabled'];
   static get observedAttributes() {
     return [...this.observedAttributesDefault];
   }
@@ -55,6 +55,7 @@ class BaseSlider extends HTMLElement {
   set value(value: number) {
     this.sliderElement.value = value.toString();
     this.sliderElement.ariaValueNow = value.toString();
+    this._onInput();
   }
   get disabled(): boolean {
     return this.hasAttribute('disabled');
@@ -65,12 +66,6 @@ class BaseSlider extends HTMLElement {
     } else {
       this.removeAttribute('disabled');
     }
-  }
-  get ariaLabelBy(): string {
-    return this.sliderElement.getAttribute('data-aria-labelby');
-  }
-  set ariaLabelBy(value: string) {
-    this.sliderElement.setAttribute('data-aria-labelby', value);
   }
 
   static tagName: string;
@@ -97,21 +92,25 @@ class BaseSlider extends HTMLElement {
     if (this.sliderElement) {
       if (name === 'min') {
         this.sliderElement.min = newValue;
+        this.sliderElement.ariaValueMin = newValue;
       } else if (name === 'max') {
         this.sliderElement.max = newValue;
+        this.sliderElement.ariaValueMax = newValue;
       } else if (name === 'step') {
         this.sliderElement.step = newValue;
       } else if (name === 'value') {
         if (this.value.toString() !== this.getAttribute('value')) {
           this.value = Number(this.getAttribute('value'));
-          this._onInput();
         }
+        this._onInput();
       } else if (name === 'disabled') {
         this.sliderElement.disabled = this.disabled;
-      } else if (name === 'data-aria-labelby') {
-        this.sliderElement.setAttribute('aria-labelby', newValue);
       }
     }
+  }
+  disconnectedCallback() {
+    this.sliderElement.removeEventListener('change', () => this._onChange());
+    this.sliderElement.removeEventListener('input', () => this._onInput());
   }
 
   /**
@@ -148,6 +147,7 @@ class BaseSlider extends HTMLElement {
         },
       })
     );
+    this.sliderElement.setAttribute('aria-valuenow', this.value.toString());
     this.onChange();
   }
   protected onInput() {}
@@ -159,8 +159,6 @@ class BaseSlider extends HTMLElement {
         },
       })
     );
-    this.setAttribute('value', this.value.toString());
-    this.sliderElement.setAttribute('value', this.value.toString());
     this.sliderElement.setAttribute('aria-valuenow', this.value.toString());
     this.onInput();
   }
