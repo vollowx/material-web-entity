@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Demo of MWE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script type="module" src="../dist/mwe-bundle.min.js"></script>
+    <link rel="stylesheet" href="../dist/mwe-bundle.min.css" />
+  </head>
+  <body>
+    <md-icon-button icon="menu" id="root-menu" data-aria-label="Click to open menu"></md-icon-button>
+
+    <md-menu id="root-menu" dense no-icon>
+      <md-menu-item subber id="file-menu">
+        <span slot="label">File</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+      <md-menu-item subber id="edit-menu">
+        <span slot="label">Edit</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+      <md-menu-item subber>
+        <span slot="label">Selection</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+      <md-menu-item subber>
+        <span slot="label">View</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+      <md-menu-item subber>
+        <span slot="label">Go</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+      <md-menu-item subber>
+        <span slot="label">Run</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+      <md-menu-item subber>
+        <span slot="label">Terminal</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+      <md-menu-item subber>
+        <span slot="label">Help</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+    </md-menu>
+
+    <md-menu id="file-menu" dense no-icon sub>
+      <md-menu-item>
+        <span slot="label">New Text File</span>
+        <span slot="after">Ctrl+N</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">New File</span>
+        <span slot="after">Ctrl+Alt+Windows+N</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">New Window</span>
+        <span slot="after">Ctrl+Shift+N</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Open File</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Open Folder</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Open Workspace from File</span>
+      </md-menu-item>
+    </md-menu>
+
+    <md-menu id="edit-menu" dense no-icon sub>
+      <md-menu-item>
+        <span slot="label">Undo</span>
+        <span slot="after">Ctrl+Z</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Redo</span>
+        <span slot="after">Ctrl+Y</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Cut</span>
+        <span slot="after">Ctrl+X</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Copy</span>
+        <span slot="after">Ctrl+C</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Paste</span>
+        <span slot="after">Ctrl+V</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Find</span>
+        <span slot="after">Ctrl+F</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Replace</span>
+      </md-menu-item>
+    </md-menu>
+  </body>
+</html>
