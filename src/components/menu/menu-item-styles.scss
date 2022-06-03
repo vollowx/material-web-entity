@@ -8,6 +8,10 @@
 
 :host([disabled]) {
   pointer-events: none;
+
+  .md-menu__item {
+    color: rgb(var(--md-sys-color-on-surface), 0.38);
+  }
 }
 
 .md-menu__item {

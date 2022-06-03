@@ -10,7 +10,7 @@ class M3Menu extends HTMLElement {
   menuElement: HTMLDivElement;
   controllerElement: HTMLElement;
   layerElement: HTMLElement;
-  controllerFriendsElements: ElementListOf<Element>;
+  controllerFriendsElements: NodeListOf<Element>;
 
   constructor() {
     super();
@@ -25,7 +25,7 @@ class M3Menu extends HTMLElement {
     this.controllerElement = document.querySelector(`#${this.id}`);
     this.controllerElement
       ? (this.controllerFriendsElements = this.controllerElement.parentElement.querySelectorAll(
-          `md-menu-item[subber]:not(#${this.id})`
+          `md-menu-item:not(#${this.id})`
         ))
       : null;
 
@@ -34,7 +34,7 @@ class M3Menu extends HTMLElement {
         // Focus moving
         e.preventDefault();
         let focusItem = this.querySelector('md-menu-item:focus') as HTMLButtonElement;
-        let items = this.querySelectorAll('md-menu-item') as ElementListOf<HTMLButtonElement>;
+        let items = this.querySelectorAll('md-menu-item') as NodeListOf<HTMLButtonElement>;
         let index = [].indexOf.call(items, focusItem);
         e.key == 'ArrowDown' ? index++ : index--;
         if (index < 0) {
@@ -85,14 +85,16 @@ class M3Menu extends HTMLElement {
     });
     if (this.controllerElement) {
       if (this.sub) {
+        // Submenu
         if (this.controllerFriendsElements) {
-          this.controllerFriendsElements.forEach((item) => {
+          this.controllerFriendsElements.forEach((item: HTMLButtonElement) => {
             item.addEventListener('mouseenter', () => (this.open = false));
           });
         }
         this.controllerElement.addEventListener('mouseenter', () => this.openMenu());
         this.addEventListener('mouseenter', () => (this.open = true));
       } else {
+        // Normal menu
         this.controllerElement.addEventListener('click', (e) => {
           e.preventDefault();
           this.openMenu();
@@ -158,6 +160,7 @@ class M3Menu extends HTMLElement {
    * TODO: Need more position.
    */
   openMenu() {
+    document.documentElement.style.overflow = 'hidden';
     this.dispatchEvent(
       new CustomEvent('open', {
         detail: {},
@@ -202,20 +205,17 @@ class M3Menu extends HTMLElement {
       }
     }
     this.open = true;
-    (this.querySelector('md-menu-item') as HTMLButtonElement).focus();
     (this.querySelector('md-menu-item') as HTMLButtonElement).tabIndex = 0;
+    (this.querySelector('md-menu-item') as HTMLButtonElement).focus();
   }
   /**
    * Close the menu.
    */
   closeMenu() {
-    this.dispatchEvent(
-      new CustomEvent('close', {
-        detail: {},
-      })
-    );
-    this.querySelector('md-menu-item[focused]')
-      ? ((this.querySelector('md-menu-item[focused]') as HTMLButtonElement).tabIndex = 0)
+    document.documentElement.style.overflow = '';
+    this.dispatchEvent(new CustomEvent('close', {}));
+    this.querySelector('md-menu-item:focus')
+      ? ((this.querySelector('md-menu-item:focus') as HTMLButtonElement).tabIndex = 0)
       : null;
     this.menuElement.style.visibility = 'visible';
     setTimeout(() => {

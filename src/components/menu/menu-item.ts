@@ -19,8 +19,6 @@ class M3MenuItem extends BaseButton {
     this.buttonElement = this.shadowRoot.querySelector('.md-menu__item') as HTMLLinkElement;
 
     this.tabIndex = -1;
-    this.buttonElement.addEventListener('focus', () => this.setAttribute('focused', ''));
-    this.buttonElement.addEventListener('blur', () => this.removeAttribute('focused'));
   }
 
   /**

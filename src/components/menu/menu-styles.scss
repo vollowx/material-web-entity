@@ -4,6 +4,8 @@
 :host {
   --md-icon-size: 24px;
   --md-menu-padding: 16px;
+  --md-divider-margin: 7.5px 0 !important;
+  --md-divider-color: rgb(var(--md-sys-color-surface-variant)) !important;
   z-index: 1000;
 }
 
@@ -46,7 +48,7 @@
   width: max-content;
   max-height: 100vh;
   overflow-y: auto;
-  background-color: rgb(var(--md-sys-color-surface-variant));
+  background: var(--md-sys-elev-surface-2);
   box-shadow: var(--md-sys-elev-shadow-2);
   border-radius: 4px;
   transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);

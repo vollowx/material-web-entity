@@ -11,7 +11,12 @@
     <link rel="stylesheet" href="../dist/mwe-bundle.min.css" />
   </head>
   <body>
-    <md-icon-button icon="menu" id="root-menu" data-aria-label="Click to open menu"></md-icon-button>
+    <md-icon-button
+      style="margin: 16px 0 0 16px"
+      icon="menu"
+      id="root-menu"
+      data-aria-label="Click to open menu"
+    ></md-icon-button>
 
     <md-menu id="root-menu" dense no-icon>
       <md-menu-item subber id="file-menu">
@@ -22,27 +27,27 @@
         <span slot="label">Edit</span>
         <md-icon slot="after">arrow_right</md-icon>
       </md-menu-item>
-      <md-menu-item subber>
+      <md-menu-item disabled>
         <span slot="label">Selection</span>
         <md-icon slot="after">arrow_right</md-icon>
       </md-menu-item>
-      <md-menu-item subber>
+      <md-menu-item disabled>
         <span slot="label">View</span>
         <md-icon slot="after">arrow_right</md-icon>
       </md-menu-item>
-      <md-menu-item subber>
+      <md-menu-item disabled>
         <span slot="label">Go</span>
         <md-icon slot="after">arrow_right</md-icon>
       </md-menu-item>
-      <md-menu-item subber>
+      <md-menu-item disabled>
         <span slot="label">Run</span>
         <md-icon slot="after">arrow_right</md-icon>
       </md-menu-item>
-      <md-menu-item subber>
+      <md-menu-item disabled>
         <span slot="label">Terminal</span>
         <md-icon slot="after">arrow_right</md-icon>
       </md-menu-item>
-      <md-menu-item subber>
+      <md-menu-item disabled>
         <span slot="label">Help</span>
         <md-icon slot="after">arrow_right</md-icon>
       </md-menu-item>
@@ -70,6 +75,83 @@
       </md-menu-item>
       <md-menu-item>
         <span slot="label">Open Workspace from File</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Open Recent</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Add Folder to Workspace</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Save Workspace As...</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Duplicate Workspace</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Save</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Save As</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Save All</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Auto Save</span>
+      </md-menu-item>
+      <md-menu-item id="preferences-menu" subber>
+        <span slot="label">Preferences</span>
+        <md-icon slot="after">arrow_right</md-icon>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Revert File</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Close Editor</span>
+        <span slot="after">Ctrl+W</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Close Folder</span>
+        <span slot="after">Ctrl+K F</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Close Window</span>
+        <span slot="after">Alt+F4</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Exit</span>
+      </md-menu-item>
+    </md-menu>
+
+    <md-menu id="preferences-menu" dense no-icon sub>
+      <md-menu-item>
+        <span slot="label">Settings</span>
+        <span slot="after">Ctrl+`</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Online Services Settings</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Color Theme</span>
+        <span  slot="after">Ctrl+K Ctrl+T</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Icon Theme</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Product Icon Theme</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Settings Sync is On</span>
       </md-menu-item>
     </md-menu>
 
@@ -102,6 +184,28 @@
       </md-menu-item>
       <md-menu-item>
         <span slot="label">Replace</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Find in Files</span>
+        <span slot="after">Ctrl+Shift+F</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Replace in Files</span>
+        <span slot="after">Ctrl+Shift+H</span>
+      </md-menu-item>
+      <md-divider></md-divider>
+      <md-menu-item>
+        <span slot="label">Toggle line Comment</span>
+        <span slot="after">Ctrl+/</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Toggle block Comment</span>
+        <span slot="after">Ctrl+Alt+A</span>
+      </md-menu-item>
+      <md-menu-item>
+        <span slot="label">Emmet: Expand Abbreviation</span>
+        <span slot="after">Tab/</span>
       </md-menu-item>
     </md-menu>
   </body>
