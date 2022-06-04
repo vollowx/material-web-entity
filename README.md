@@ -30,7 +30,6 @@ The first version will be released after most components are complete.
 Anywhere in `<head>` tag
 
 ```html
-<link rel="stylesheet" href="https://huge-pancake.github.io/material-web-entity/src/mwe-bundle.min.css" />
 <script type="module" src="https://huge-pancake.github.io/material-web-entity/dist/mwe-bundle.min.js"></script>
 <!-- use this url(from github page) or local files (download this repositories) -->
 ```
