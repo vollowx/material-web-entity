@@ -1,6 +1,9 @@
 import BaseSlider from '../base/slider-default';
+import M3SliderSharedStyles from './slider-styles-shared.scss';
 import M3SliderStyles from './slider-styles.scss';
 
+const sharedSheet = new CSSStyleSheet();
+sharedSheet.replaceSync(M3SliderSharedStyles);
 const sheet = new CSSStyleSheet();
 sheet.replaceSync(M3SliderStyles);
 
@@ -9,7 +12,7 @@ sheet.replaceSync(M3SliderStyles);
  */
 class M3Slider extends BaseSlider {
   override get styleSheet() {
-    return [sheet];
+    return [sharedSheet, sheet];
   }
 
   static get observedAttributes() {

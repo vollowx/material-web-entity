@@ -1,0 +1,199 @@
+@mixin _root() {
+  position: relative;
+  margin: 0 24px;
+  display: inline-block;
+  min-width: 112px;
+  width: auto;
+  height: 48px;
+  vertical-align: middle;
+  outline: none;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+  cursor: pointer;
+  outline: 0;
+}
+
+@mixin _slider() {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+
+@mixin _track() {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 4px;
+  display: flex;
+  align-items: center;
+  transform: translateY(-50%);
+}
+
+@mixin _trackInactive() {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: rgb(var(--md-sys-color-primary-container));
+}
+
+@mixin _trackActive() {
+  display: flex;
+  position: absolute;
+  top: -1px;
+  height: 6px;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+@mixin _trackActiveFill() {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(var(--md-sys-color-primary));
+  box-sizing: border-box;
+  transform-origin: left;
+}
+
+@mixin _marks() {
+  position: absolute;
+  padding: 0px 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+@mixin _marksInner() {
+  height: 2px;
+  width: 2px;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+@mixin _thumb() {
+  display: flex;
+  position: absolute;
+  left: -24px;
+  width: 48px;
+  height: 48px;
+  outline: none;
+  color: rgb(var(--md-sys-color-primary));
+}
+
+@mixin _thumbBefore() {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.875);
+  transition: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+@mixin _thumbKnob() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(var(--md-sys-color-primary));
+  box-shadow: var(--md-sys-elev-shadow-1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+}
+
+// Main
+
+:host {
+  @include _root();
+}
+
+.md-slider {
+  @include _slider();
+
+  .md-slider__track {
+    @include _track();
+
+    .md-slider__track-inactive {
+      @include _trackInactive();
+    }
+    .md-slider__track-active {
+      @include _trackActive();
+
+      .md-slider__track-active-fill {
+        @include _trackActiveFill();
+      }
+    }
+  }
+
+  .md-slider__marks {
+    @include _marks();
+
+    .md-slider__mark--active,
+    .md-slider__mark--inactive {
+      @include _marksInner();
+    }
+    .md-slider__mark--active {
+      background-color: rgb(var(--md-sys-color-on-primary));
+    }
+    .md-slider__mark--inactive {
+      background-color: rgb(var(--md-sys-color-primary));
+    }
+  }
+
+  .md-slider__thumb {
+    @include _thumb();
+
+    &::before {
+      @include _thumbBefore();
+    }
+
+    .md-slider__thumb-knob {
+      @include _thumbKnob();
+    }
+  }
+}
+
+:host([transitional]) {
+  .md-slider__track-active-fill,
+  .md-slider__thumb {
+    transition: transform 80ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+:host([disabled]) {
+  opacity: 0.38;
+  cursor: default;
+
+  .md-slider__thumb::before {
+    display: none;
+  }
+  .md-slider__input {
+    cursor: default;
+  }
+  .md-slider__track-inactive {
+    background-color: rgba(var(--md-sys-color-on-surface), 0.38) !important;
+  }
+  .md-slider__track-active-fill {
+    background-color: rgb(var(--md-sys-color-on-surface)) !important;
+  }
+  .md-slider__thumb-knob {
+    background-color: rgb(var(--md-sys-color-on-surface)) !important;
+  }
+}

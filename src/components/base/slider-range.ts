@@ -86,6 +86,8 @@ class BaseSliderRange extends HTMLElement {
     this.sliderElements[1].addEventListener('change', () => this._onChangeEnd());
     this.sliderElements[0].addEventListener('input', () => this._onInputStart());
     this.sliderElements[1].addEventListener('input', () => this._onInputEnd());
+    this.addEventListener('mousemove', (e) => this._onMouseMove(e));
+    this.updateSize();
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.sliderElements) {
@@ -115,6 +117,7 @@ class BaseSliderRange extends HTMLElement {
     this.sliderElements[1].removeEventListener('change', () => this._onChangeEnd());
     this.sliderElements[0].removeEventListener('input', () => this._onInputStart());
     this.sliderElements[1].removeEventListener('input', () => this._onInputEnd());
+    this.removeEventListener('mousemove', (e) => this._onMouseMove(e));
   }
 
   /**
@@ -123,35 +126,51 @@ class BaseSliderRange extends HTMLElement {
   protected render(): string {
     return `${this.renderInput()}`;
   }
-  protected renderInput(): string {
+  protected renderInput(_className: string = this.tagName.toLowerCase()): string {
     return `
       <input
-        class="${this.tagName.toLowerCase()}__input-start"
+        class="${_className}__input start"
         type="range"
         min="${this.min}"
         max="${this.valueEnd}"
-        value="${this.valueStart}" step="${this.step}"
+        value="${this.valueStart ? this.valueStart : this.min}" step="${this.step}"
         aria-valuemin="${this.min}"
         aria-valuemax="${this.valueEnd}"
-        aria-valuenow="${this.valueStart}"
+        aria-valuenow="${this.valueStart ? this.valueStart : this.min}"
         ${this.disabled ? 'disabled' : ''} />
       <input
-        class="${this.tagName.toLowerCase()}__input-end"
+        class="${_className}__input end"
         type="range"
         min="${this.valueStart}"
         max="${this.max}"
-        value="${this.valueEnd}" step="${this.step}"
+        value="${this.valueEnd ? this.valueEnd : this.min}" step="${this.step}"
         aria-valuemin="${this.valueStart}"
         aria-valuemax="${this.max}"
-        aria-valuenow="${this.valueEnd}"
+        aria-valuenow="${this.valueEnd ? this.valueEnd : this.min}"
         ${this.disabled ? 'disabled' : ''} />
     `;
+  }
+
+  protected updateSize(): void {
+    this.sliderElements[0].style.width = `${this.valueEnd - this.min}%`;
+    this.sliderElements[1].style.width = `${this.max - this.valueStart}%`;
   }
 
   /**
    * EVENT
    */
   /** */
+  protected _onMouseMove(e: MouseEvent): void {
+    let rect = this.getBoundingClientRect();
+    let position = ((e.clientX - rect.left) / rect.width) * (this.max - this.min) + this.min;
+    let middleValue = (this.valueStart + this.valueEnd) / 2;
+
+    if (position < middleValue && this.sliderElements[0].style.zIndex !== '2') {
+      this.sliderElements[0].style.zIndex = '2';
+    } else if (position >= middleValue && this.sliderElements[0].style.zIndex !== '0') {
+      this.sliderElements[0].style.zIndex = '0';
+    }
+  }
   protected onChangeStart() {}
   protected _onChangeStart(): void {
     this.dispatchEvent(
@@ -165,6 +184,7 @@ class BaseSliderRange extends HTMLElement {
     this.sliderElements[0].ariaValueNow = this.valueStart.toString();
     this.sliderElements[1].min = this.valueStart.toString();
     this.sliderElements[1].ariaValueMin = this.valueStart.toString();
+    this.updateSize();
     this.onChangeStart();
   }
   protected onChangeEnd() {}
@@ -180,6 +200,7 @@ class BaseSliderRange extends HTMLElement {
     this.sliderElements[1].ariaValueNow = this.valueEnd.toString();
     this.sliderElements[0].max = this.valueEnd.toString();
     this.sliderElements[0].ariaValueMax = this.valueEnd.toString();
+    this.updateSize();
     this.onChangeEnd();
   }
   protected onInputStart() {}
@@ -195,6 +216,7 @@ class BaseSliderRange extends HTMLElement {
     this.sliderElements[0].ariaValueNow = this.valueStart.toString();
     this.sliderElements[1].min = this.valueStart.toString();
     this.sliderElements[1].ariaValueMin = this.valueStart.toString();
+    this.updateSize();
     this.onInputStart();
   }
   protected onInputEnd() {}
@@ -210,6 +232,7 @@ class BaseSliderRange extends HTMLElement {
     this.sliderElements[1].ariaValueNow = this.valueEnd.toString();
     this.sliderElements[0].max = this.valueEnd.toString();
     this.sliderElements[0].ariaValueMax = this.valueEnd.toString();
+    this.updateSize();
     this.onInputEnd();
   }
 }

@@ -126,10 +126,10 @@ class BaseSlider extends HTMLElement {
         type="range"
         min="${this.min}"
         max="${this.max}"
-        value="${this.value ? this.value : 0}" step="${this.step}"
+        value="${this.value ? this.value : this.min}" step="${this.step}"
         aria-valuemin="${this.min}"
         aria-valuemax="${this.max}"
-        aria-valuenow="${this.value}"
+        aria-valuenow="${this.value ? this.value : this.min}"
         ${this.disabled ? 'disabled' : ''} />
     `;
   }
