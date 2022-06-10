@@ -1,19 +1,34 @@
+.md-slider__input-containers {
+  display: flex;
+  gap: -16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.md-slider__input-container {
+  margin: 0 -8px;
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+
 .md-slider__input {
   position: absolute;
   top: 0;
   margin: 0;
+  width: 100%;
   height: 100%;
   cursor: pointer;
   // opacity: 0;
 
   &.start {
     left: -8px;
-    width: calc(var(--md-slider-width-start) + 16px);
-    z-index: 0;
   }
   &.end {
     right: -8px;
-    width: calc(var(--md-slider-width-end) + 16px);
-    z-index: 1;
   }
 }

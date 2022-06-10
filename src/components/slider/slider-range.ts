@@ -37,8 +37,8 @@ class M3SliderRange extends BaseSliderRange {
   }
 
   protected override updateSize(): void {
-    this.sliderElements[0].style.width = `calc(${this.valueEnd - this.min}% + 16px)`;
-    this.sliderElements[1].style.width = `calc(${this.max - this.valueStart}% + 16px)`;
+    this.sliderContainers[0].style.width = `calc(${this.valueEnd - this.min}% + 16px)`;
+    this.sliderContainers[1].style.width = `calc(${this.max - this.valueStart}% + 16px)`;
   }
 }
 

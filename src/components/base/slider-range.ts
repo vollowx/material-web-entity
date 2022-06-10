@@ -15,6 +15,7 @@ class BaseSliderRange extends HTMLElement {
   /**
    * ATTRIBUTES
    */
+  /** */
   static observedAttributesDefault = ['min', 'max', 'step', 'valuestart', 'valueend', 'disabled'];
   static get observedAttributes() {
     return [...this.observedAttributesDefault];
@@ -67,7 +68,8 @@ class BaseSliderRange extends HTMLElement {
 
   static tagName: string;
   sliderElements: NodeListOf<HTMLInputElement>;
-
+  sliderContainers: NodeListOf<HTMLElement>;
+  
   /**
    * LIFE CYCLE
    */
@@ -81,12 +83,12 @@ class BaseSliderRange extends HTMLElement {
     this.shadowRoot.adoptedStyleSheets = this.styleSheet;
 
     this.sliderElements = this.shadowRoot.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
+    this.sliderContainers = this.shadowRoot.querySelectorAll('.md-slider__input-container') as NodeListOf<HTMLElement>;
 
     this.sliderElements[0].addEventListener('change', () => this._onChangeStart());
     this.sliderElements[1].addEventListener('change', () => this._onChangeEnd());
     this.sliderElements[0].addEventListener('input', () => this._onInputStart());
     this.sliderElements[1].addEventListener('input', () => this._onInputEnd());
-    this.addEventListener('mousemove', (e) => this._onMouseMove(e));
     this.updateSize();
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -128,7 +130,8 @@ class BaseSliderRange extends HTMLElement {
   }
   protected renderInput(_className: string = this.tagName.toLowerCase()): string {
     return `
-      <input
+      <div class="${_className}__input-containers">
+      <div class="${_className}__input-container start"><input
         class="${_className}__input start"
         type="range"
         min="${this.min}"
@@ -137,8 +140,8 @@ class BaseSliderRange extends HTMLElement {
         aria-valuemin="${this.min}"
         aria-valuemax="${this.valueEnd}"
         aria-valuenow="${this.valueStart ? this.valueStart : this.min}"
-        ${this.disabled ? 'disabled' : ''} />
-      <input
+        ${this.disabled ? 'disabled' : ''} /></div>
+      <div class="${_className}__input-container end"><input
         class="${_className}__input end"
         type="range"
         min="${this.valueStart}"
@@ -147,7 +150,7 @@ class BaseSliderRange extends HTMLElement {
         aria-valuemin="${this.valueStart}"
         aria-valuemax="${this.max}"
         aria-valuenow="${this.valueEnd ? this.valueEnd : this.min}"
-        ${this.disabled ? 'disabled' : ''} />
+        ${this.disabled ? 'disabled' : ''} /></div></div>
     `;
   }
 

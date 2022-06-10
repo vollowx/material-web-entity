@@ -14,15 +14,6 @@ class BaseButton extends HTMLElement {
 
   /**
    * ATTRIBUTES
-   *
-   * `observedAttributesDefault` is a list of attributes that are observed by default.
-   * When extending this class, use
-   * ```js
-   * static get observedAttributes() {
-   *   return [...this.observedAttributesDefault];
-   * }
-   * ```
-   * setter, getter for setting, getting the attributes easier and more intuitive.
    */
   /** */
   static observedAttributesDefault = ['href', 'target', 'disabled', 'data-aria-label'];
@@ -85,6 +76,9 @@ class BaseButton extends HTMLElement {
     this.shadowRoot.adoptedStyleSheets = this.styleSheet;
 
     this.buttonElement = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
+    this.addEventListener('focus', () => {
+      this.buttonElement.focus();
+    })
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.buttonElement) {

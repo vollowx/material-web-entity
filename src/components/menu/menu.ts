@@ -194,7 +194,7 @@ class M3Menu extends HTMLElement {
     }
     if (this.sub) {
       if (rect.left + rect.width + this.menuElement.offsetWidth > window.innerWidth) {
-        this.menuElement.style.left = rect.left - this.menuElement.offsetWidth + 'px';
+        this.menuElement.style.left = rect.right - 48 - this.menuElement.offsetWidth + 'px';
         this.menuElement.classList.add('md-menu--right');
       } else {
         this.menuElement.style.left = rect.left + rect.width + 'px';

@@ -11,8 +11,8 @@ sheet.replaceSync(M3RippleStyles);
 class M3Ripple extends HTMLElement {
   static tagName: string = 'md-ripple';
 
-  parentE: HTMLElement;
-  containerE: HTMLElement;
+  parentsElement: HTMLElement;
+  containerElement: HTMLElement;
   radius: number;
   centerRadius: number;
 
@@ -27,10 +27,21 @@ class M3Ripple extends HTMLElement {
   }
 
   addActiveLayer(_event: { clientX: number; clientY: number }) {
+    const _onUp = () => {
+      this.removeAllActiveLayers();
+      window.removeEventListener('mouseup', _onUp);
+      window.removeEventListener('touchmove', _onUp);
+    };
+    window.addEventListener('mouseup', _onUp);
+    window.addEventListener('touchmove', _onUp);
+    if (this.disabled) {
+      return;
+    }
+
     let ripple = document.createElement('span');
     ripple.classList.add('md-ripple__element');
 
-    let rect = this.parentE.getBoundingClientRect();
+    let rect = this.parentsElement.getBoundingClientRect();
     let x = _event.clientX - rect.left,
       y = _event.clientY - rect.top;
     this.radius = Math.max(
@@ -41,7 +52,7 @@ class M3Ripple extends HTMLElement {
     );
     this.centerRadius = Math.sqrt((rect.width / 2) ** 2 + (rect.height / 2) ** 2);
 
-    this.containerE.appendChild(ripple);
+    this.containerElement.appendChild(ripple);
     setTimeout(() => {
       ripple.style.cssText = `
       top: ${this.centered ? rect.height / 2 - this.centerRadius : y - this.radius}px;
@@ -74,7 +85,7 @@ class M3Ripple extends HTMLElement {
     }
   }
   removeAllActiveLayers() {
-    let _ripples = this.containerE.querySelectorAll('.md-ripple__element');
+    let _ripples = this.containerElement.querySelectorAll('.md-ripple__element');
     _ripples.forEach((_ripple: HTMLElement) => this.removeActiveLayer(_ripple));
   }
 
@@ -116,21 +127,13 @@ class M3Ripple extends HTMLElement {
     this.shadowRoot.innerHTML = this.render();
     this.shadowRoot.adoptedStyleSheets = [sheet];
 
-    this.parentE = this.parentElement as HTMLElement;
-    this.containerE = this.shadowRoot.querySelector('.md-ripple__container');
+    this.parentsElement = this.parentElement as HTMLElement;
+    this.containerElement = this.shadowRoot.querySelector('.md-ripple__container');
 
-    this.parentE.addEventListener('pointerdown', (event) => this.addActiveLayer(event));
-    this.parentE.addEventListener('mouseleave', () => this.removeAllActiveLayers());
-    this.parentE.addEventListener('mouseup', () => this.removeAllActiveLayers());
-    this.parentE.addEventListener('touchmove', () => this.removeAllActiveLayers());
-    this.parentE.addEventListener('touchend', () => this.removeAllActiveLayers());
+    this.parentsElement.addEventListener('pointerdown', (event) => this.addActiveLayer(event));
   }
   disconnectedCallback() {
-    this.parentE.removeEventListener('pointerdown', (event) => this.addActiveLayer(event));
-    this.parentE.removeEventListener('mouseleave', () => this.removeAllActiveLayers());
-    this.parentE.removeEventListener('mouseup', () => this.removeAllActiveLayers());
-    this.parentE.removeEventListener('touchmove', () => this.removeAllActiveLayers());
-    this.parentE.removeEventListener('touchend', () => this.removeAllActiveLayers());
+    this.parentsElement.removeEventListener('pointerdown', (event) => this.addActiveLayer(event));
   }
 }
 
