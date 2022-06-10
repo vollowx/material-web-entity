@@ -1,4 +1,4 @@
-import BaseCheck from '../base/check-default';
+import BaseCheck from '../shared/check-default';
 import M3SwitchStyles from './switch-styles.scss';
 
 const sheet = new CSSStyleSheet();

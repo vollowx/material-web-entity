@@ -1,4 +1,7 @@
-:host {
+$buttonOrinigalPadding: 24px;
+$buttonTextPadding: 12px;
+
+@mixin _root {
   position: relative;
   display: inline-flex;
   -webkit-tap-highlight-color: transparent;
@@ -6,12 +9,8 @@
   --md-icon-size: 16px;
 }
 
-:host([disabled]) {
-  pointer-events: none;
-}
-
-.md-button {
-  padding: 0 24px;
+@mixin _button {
+  padding: 0 ($buttonOrinigalPadding - 8px);
   position: relative;
   box-sizing: border-box;
   width: var(--md-button-width, auto);
@@ -37,15 +36,68 @@
   overflow: visible;
   transition: 240ms cubic-bezier(0.4, 0, 0.2, 1);
   appearance: none;
+}
+
+@mixin _tonal {
+  color: rgb(var(--md-sys-color-on-secondary-container));
+  background: rgb(var(--md-sys-color-secondary-container));
+}
+
+@mixin _elevated {
+  color: rgb(var(--md-sys-color-primary));
+  background-color: rgb(var(--md-sys-color-surface));
+  box-shadow: var(--md-sys-elev-shadow-1);
+}
+
+@mixin _outlined {
+  padding: 0 ($buttonOrinigalPadding - 9px);
+  color: rgb(var(--md-sys-color-important-color, var(--md-sys-color-primary)));
+  background-color: rgb(var(--md-sys-color-surface));
+  border: 1px solid rgb(var(--md-sys-color-outline));
+  box-shadow: none;
+}
+
+@mixin _outlinedDisabled {
+  color: rgba(var(--md-sys-color-on-surface), 0.38);
+  border: 1px solid rgba(var(--md-sys-color-on-surface), 0.12);
+}
+
+@mixin _text {
+  padding: 0 ($buttonTextPadding - 8px);
+  color: rgb(var(--md-sys-color-important-color, var(--md-sys-color-primary)));
+  background: transparent;
+  box-shadow: none;
+}
+
+@mixin _filledTonalElevatedDisabled {
+  color: rgba(var(--md-sys-color-on-surface), 0.38);
+  background-color: rgba(var(--md-sys-color-on-surface), 0.12);
+  cursor: default;
+  box-shadow: none;
+}
+
+:host {
+  @include _root;
+}
+
+:host([disabled]) {
+  pointer-events: none;
+}
+
+.md-button {
+  @include _button;
 
   & * {
     pointer-events: none;
   }
 
+  .md-button__label {
+    margin: 0 8px;
+  }
+
   &:hover {
     box-shadow: var(--md-sys-elev-shadow-2);
   }
-
   &:focus-visible,
   &:active {
     box-shadow: none;
@@ -55,85 +107,59 @@
 @include state-layer('.md-button', '240ms');
 
 :host([tonal]) .md-button {
-  color: rgb(var(--md-sys-color-on-secondary-container));
-  background: rgb(var(--md-sys-color-secondary-container));
+  @include _tonal;
 }
 
 :host([elevated]) .md-button {
-  color: rgb(var(--md-sys-color-primary));
-  background-color: rgb(var(--md-sys-color-surface));
-  box-shadow: var(--md-sys-elev-shadow-1);
-}
-:host([elevated]) .md-button:hover {
-  box-shadow: var(--md-sys-elev-shadow-2);
-}
-:host([elevated].focus-visible) .md-button {
-  box-shadow: var(--md-sys-elev-shadow-1);
-}
-:host([elevated]) .md-button:active {
-  box-shadow: var(--md-sys-elev-shadow-1);
+  @include _elevated;
+
+  &:hover {
+    box-shadow: var(--md-sys-elev-shadow-2);
+  }
+  &:focus-visible,
+  &:active {
+    box-shadow: var(--md-sys-elev-shadow-1);
+  }
 }
 
-:host([outlined]) .md-button {
-  padding: 0 23px;
-  color: rgb(var(--md-sys-color-important-color, var(--md-sys-color-primary)));
-  background-color: rgb(var(--md-sys-color-surface));
-  border: 1px solid rgb(var(--md-sys-color-outline));
-  box-shadow: none;
-}
-:host([outlined].focus-visible) .md-button {
-  border-color: rgb(var(--md-sys-color-primary));
-}
-:host([outlined]) .md-button:active {
-  border-color: rgb(var(--md-sys-color-outline));
-}
-:host([outlined]) .md-button:disabled {
-  color: rgba(var(--md-sys-color-on-surface), 0.38);
-  border: 1px solid rgba(var(--md-sys-color-on-surface), 0.12);
-}
-:host([outlined]) md-ripple,
-:host([outlined]) .md-button::before {
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
-}
-
-:host([text]) .md-button {
-  padding: 0 12px;
-  color: rgb(var(--md-sys-color-important-color, var(--md-sys-color-primary)));
-  background: transparent;
-  box-shadow: none;
-}
-
-:host([text]) .md-button:disabled {
-  color: rgba(var(--md-sys-color-on-surface), 0.38);
-}
 .md-button:disabled,
 :host([tonal]) .md-button:disabled,
 :host([elevated]) .md-button:disabled {
-  color: rgba(var(--md-sys-color-on-surface), 0.38);
-  background-color: rgba(var(--md-sys-color-on-surface), 0.12);
-  cursor: default;
-  box-shadow: none;
+  @include _filledTonalElevatedDisabled;
 }
-.md-button:disabled md-ripple,
-.md-button:disabled::before {
-  display: none;
+
+:host([outlined]) .md-button {
+  @include _outlined;
+
+  &:focus-visible {
+    border-color: rgb(var(--md-sys-color-primary));
+  }
+  &:active {
+    border-color: rgb(var(--md-sys-color-outline));
+  }
+  &:disabled {
+    @include _outlinedDisabled;
+  }
+  md-ripple,
+  &::before {
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+  }
 }
-::slotted(md-icon) {
-  margin-left: -8px;
-  margin-right: 8px;
-}
-::slotted(md-icon[after]) {
-  margin-left: 8px;
-  margin-right: -8px;
-}
-:host([text]) ::slotted(md-icon) {
-  margin-left: -4px;
-  margin-right: 8px;
-}
-:host([text]) ::slotted(md-icon[after]) {
-  margin-left: 8px;
-  margin-right: -4px;
+
+:host([text]) .md-button {
+  @include _text;
+
+  ::slotted([slot="leading-icon"]) {
+    margin-left: 8px;
+  }
+  ::slotted([slot="trailing-icon"]) {
+    margin-right: 8px;
+  }
+
+  &:disabled {
+    color: rgba(var(--md-sys-color-on-surface), 0.38);
+  }
 }

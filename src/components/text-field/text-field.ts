@@ -1,4 +1,4 @@
-import BaseTextField from '../base/text-field';
+import BaseTextField from '../shared/text-field';
 import M3TextFieldStyles from './text-field-styles.scss';
 
 const sheet = new CSSStyleSheet();
@@ -46,7 +46,7 @@ class M3TextField extends BaseTextField {
   counterElement: HTMLElement;
 
   /**
-   * LIFE CYCLE
+   * Life cycle
    */
   /** */
   connectedCallback() {
@@ -74,7 +74,7 @@ class M3TextField extends BaseTextField {
   };
 
   /**
-   * RENDERING
+   * Render
    */
   /** */
   protected override render(): string {
@@ -117,7 +117,7 @@ class M3TextField extends BaseTextField {
   }
 
   /**
-   * EVENTS
+   * Events
    */
   /** */
   protected override _onFocus() {

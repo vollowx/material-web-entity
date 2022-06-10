@@ -5,7 +5,7 @@
  */
 class BaseSlider extends HTMLElement {
   /**
-   * STYLE SHEET
+   * Style sheet
    */
   /** */
   get styleSheet() {
@@ -13,7 +13,7 @@ class BaseSlider extends HTMLElement {
   }
 
   /**
-   * ATTRIBUTES
+   * Attributes
    *
    * `observedAttributesDefault` is a list of attributes that are observed by default.
    * When extending this class, use
@@ -72,7 +72,7 @@ class BaseSlider extends HTMLElement {
   sliderElement: HTMLInputElement;
 
   /**
-   * LIFE CYCLE
+   * Life cycle
    */
   constructor() {
     super();
@@ -114,7 +114,7 @@ class BaseSlider extends HTMLElement {
   }
 
   /**
-   * RENDERING
+   * Render
    */
   protected render(): string {
     return `${this.renderInput()}`;

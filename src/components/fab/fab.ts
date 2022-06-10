@@ -1,4 +1,4 @@
-import BaseButtonLabeled from '../base/button-labeled';
+import ActionElementLabeled from '../shared/button-labeled';
 import M3FABStyles from './fab-styles.scss';
 
 const sheet = new CSSStyleSheet();
@@ -7,9 +7,9 @@ sheet.replaceSync(M3FABStyles);
 /**
  * Floating action button component.
  */
-class M3FAB extends BaseButtonLabeled {
+class M3FAB extends ActionElementLabeled {
   /**
-   * STYLE SHEET
+   * Style sheet
    */
   /** */
   override get styleSheet() {
@@ -19,7 +19,7 @@ class M3FAB extends BaseButtonLabeled {
   static tagName: string = 'md-fab';
 
   /**
-   * RENDERING
+   * Render
    */
   /** */
   protected render(): string {

@@ -5,7 +5,7 @@
  */
 class BaseCheck extends HTMLElement {
   /**
-   * ATTRIBUTES
+   * Attributes
    *
    * `observedAttributesDefault` is a list of attributes that are observed by default.
    * When extending this class, use
@@ -57,7 +57,7 @@ class BaseCheck extends HTMLElement {
   checkElement: HTMLInputElement;
 
   /**
-   * LIFE CYCLE
+   * Life cycle
    */
   /** */
   constructor() {
@@ -91,7 +91,7 @@ class BaseCheck extends HTMLElement {
   }
 
   /**
-   * RENDERING
+   * Render
    */
   /** */
   protected render(): string {

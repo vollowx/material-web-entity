@@ -1,4 +1,4 @@
-import BaseButton from '../base/button-default';
+import ActionElement from '../shared/action-element';
 import M3MenuItemStyles from './menu-item-styles.scss';
 
 const sheet = new CSSStyleSheet();
@@ -9,7 +9,7 @@ sheet.replaceSync(M3MenuItemStyles);
  *
  * TODO: be 'list-item'
  */
-class M3MenuItem extends BaseButton {
+class M3MenuItem extends ActionElement {
   override get styleSheet() {
     return [sheet];
   }

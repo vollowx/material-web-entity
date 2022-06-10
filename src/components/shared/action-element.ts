@@ -1,11 +1,11 @@
 /**
- * Base button component.
+ * Action element component.
  *
- * All the custom with actions like a button should extend this class.
+ * All the custom with actions should extend this class.
  */
-class BaseButton extends HTMLElement {
+class ActionElement extends HTMLElement {
   /**
-   * STYLE SHEET
+   * Style sheet
    */
   /** */
   get styleSheet() {
@@ -13,7 +13,7 @@ class BaseButton extends HTMLElement {
   }
 
   /**
-   * ATTRIBUTES
+   * Attributes
    */
   /** */
   static observedAttributesDefault = ['href', 'target', 'disabled', 'data-aria-label'];
@@ -63,7 +63,7 @@ class BaseButton extends HTMLElement {
   buttonElement: HTMLLinkElement;
 
   /**
-   * LIFE CYCLE
+   * Life cycle
    */
   /** */
   constructor() {
@@ -78,7 +78,7 @@ class BaseButton extends HTMLElement {
     this.buttonElement = this.shadowRoot.querySelector(`.${this.tagName.toLowerCase()}`) as HTMLLinkElement;
     this.addEventListener('focus', () => {
       this.buttonElement.focus();
-    })
+    });
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (this.buttonElement) {
@@ -113,7 +113,12 @@ class BaseButton extends HTMLElement {
   }
 
   /**
-   * RENDERING
+   * Events
+   */
+  /** */
+
+  /**
+   * Render
    */
   /** */
   protected render(): string {
@@ -132,4 +137,4 @@ class BaseButton extends HTMLElement {
   }
 }
 
-export default BaseButton;
+export default ActionElement;

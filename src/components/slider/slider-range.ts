@@ -1,4 +1,4 @@
-import BaseSliderRange from '../base/slider-range';
+import BaseSliderRange from '../shared/slider-range';
 import M3SliderSharedStyles from './slider-styles-shared.scss';
 import M3SliderRangeStyles from './slider-styles-range.scss';
 

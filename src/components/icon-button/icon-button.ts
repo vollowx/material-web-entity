@@ -1,4 +1,4 @@
-import BaseButton from '../base/button-default';
+import ActionElement from '../shared/action-element';
 import M3IconButtonStyles from './icon-button-styles.scss';
 import M3Icon from '../icon/icon';
 
@@ -8,7 +8,7 @@ sheet.replaceSync(M3IconButtonStyles);
 /**
  * Icon button component.
  */
-class M3IconButton extends BaseButton {
+class M3IconButton extends ActionElement {
   override get styleSheet() {
     return [sheet];
   }

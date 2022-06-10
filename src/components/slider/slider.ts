@@ -1,4 +1,4 @@
-import BaseSlider from '../base/slider-default';
+import BaseSlider from '../shared/slider-default';
 import M3SliderSharedStyles from './slider-styles-shared.scss';
 import M3SliderStyles from './slider-styles.scss';
 
@@ -36,7 +36,7 @@ class M3Slider extends BaseSlider {
   activeFillElement: HTMLElement;
 
   /**
-   * LIFE CYCLE
+   * Life cycle
    */
   connectedCallback() {
     super.connectedCallback();
@@ -55,7 +55,7 @@ class M3Slider extends BaseSlider {
   }
 
   /**
-   * RENDERING
+   * Render
    */
   protected override render(): string {
     return `

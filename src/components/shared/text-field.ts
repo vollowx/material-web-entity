@@ -5,7 +5,7 @@
  */
 class BaseTextField extends HTMLElement {
   /**
-   * STYLE SHEET
+   * Style sheet
    */
   /** */
   get styleSheet() {
@@ -13,7 +13,7 @@ class BaseTextField extends HTMLElement {
   }
 
   /**
-   * ATTRIBUTES
+   * Attributes
    *
    * `observedAttributesDefault` is a list of attributes that are observed by default.
    * When extending this class, use
@@ -106,7 +106,7 @@ class BaseTextField extends HTMLElement {
   inputElement: HTMLInputElement;
 
   /**
-   * LIFE CYCLE
+   * Life cycle
    */
   /** */
   constructor() {
@@ -147,7 +147,7 @@ class BaseTextField extends HTMLElement {
   }
 
   /**
-   * RENDERING
+   * Render
    */
   /** */
   protected render(): string {
@@ -176,7 +176,7 @@ class BaseTextField extends HTMLElement {
   }
 
   /**
-   * EVENTS
+   * Events
    *
    * ALl the functions with '_' prefix are for internal use only.
    * To extend this class, override the functions with '_' prefix,

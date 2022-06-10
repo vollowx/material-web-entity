@@ -1,4 +1,4 @@
-import BaseButtonLabeled from '../base/button-labeled';
+import ActionElementLabeled from '../shared/button-labeled';
 import M3ChipStyles from './chip-styles.scss';
 
 const sheet = new CSSStyleSheet();
@@ -17,9 +17,9 @@ sheet.replaceSync(M3ChipStyles);
  * </md-chip>
  * ```
  */
-class M3Chip extends BaseButtonLabeled {
+class M3Chip extends ActionElementLabeled {
   /**
-   * STYLE SHEET
+   * Style sheet
    */
   /** */
   override get styleSheet() {
@@ -29,7 +29,7 @@ class M3Chip extends BaseButtonLabeled {
   static tagName: string = 'md-chip';
 
   /**
-   * RENDERING
+   * Render
    */
   /** */
   protected override render(): string {

@@ -1,4 +1,4 @@
-import BaseButtonLabeled from '../base/button-labeled';
+import ActionElementLabeled from '../shared/button-labeled';
 import M3ButtonStyles from './button-styles.scss';
 
 const sheet = new CSSStyleSheet();
@@ -17,7 +17,7 @@ sheet.replaceSync(M3ButtonStyles);
  * </md-button>
  * ```
  */
-class M3Button extends BaseButtonLabeled {
+class M3Button extends ActionElementLabeled {
   static tagName: string = 'md-button';
 
   override get styleSheet() {
@@ -25,13 +25,15 @@ class M3Button extends BaseButtonLabeled {
   }
 
   /**
-   * RENDERING
+   * Render
    */
   /** */
   protected override render(): string {
     return this.renderButton(
       `<md-ripple></md-ripple>
+      <slot name="leading-icon"></slot>
       <span class="md-button__label">${this.label ? this.label : ''}</span>
+      <slot name="trailing-icon"></slot>
       <slot></slot>`
     );
   }

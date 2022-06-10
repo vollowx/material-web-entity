@@ -1,22 +1,13 @@
-import BaseButton from './button-default';
+import ActionElement from './action-element';
 
 /**
  * Base button component with label.
  *
  * All the custom with actions like a button with label should extend this class.
  */
-class BaseButtonLabeled extends BaseButton {
+class ActionElementLabeled extends ActionElement {
   /**
-   * ATTRIBUTES
-   *
-   * `observedAttributesDefault` is a list of attributes that are observed by default.
-   * When extending this class, use
-   * ```js
-   * static get observedAttributes() {
-   *   return [...this.observedAttributesDefault];
-   * }
-   * ```
-   * setter, getter for setting, getting the attributes easier and more intuitive.
+   * Attributes
    */
   /** */
   static observedAttributesDefault = ['label', 'href', 'target', 'disabled', 'data-aria-label'];
@@ -30,7 +21,7 @@ class BaseButtonLabeled extends BaseButton {
   labelElement: HTMLElement;
 
   /**
-   * LIFE CYCLE
+   * Life cycle
    */
   /** */
   connectedCallback() {
@@ -54,7 +45,7 @@ class BaseButtonLabeled extends BaseButton {
   }
 
   /**
-   * RENDERING
+   * Render
    */
   /** */
   protected override renderButton(
@@ -74,4 +65,4 @@ class BaseButtonLabeled extends BaseButton {
   }
 }
 
-export default BaseButtonLabeled;
+export default ActionElementLabeled;

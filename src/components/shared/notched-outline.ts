@@ -12,7 +12,7 @@ class NotchedOutlined extends HTMLElement {
   static tagName: string = 'md-notched-outline';
 
   /**
-   * LIFE CYCLE
+   * Life cycle
    */
   constructor() {
     super();
@@ -25,7 +25,7 @@ class NotchedOutlined extends HTMLElement {
   }
 
   /**
-   * RENDERING
+   * Render
    */
   protected render(): string {
     return `

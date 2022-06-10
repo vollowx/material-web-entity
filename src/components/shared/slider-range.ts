@@ -5,7 +5,7 @@
  */
 class BaseSliderRange extends HTMLElement {
   /**
-   * STYLE SHEET
+   * Style sheet
    */
   /** */
   get styleSheet() {
@@ -13,7 +13,7 @@ class BaseSliderRange extends HTMLElement {
   }
 
   /**
-   * ATTRIBUTES
+   * Attributes
    */
   /** */
   static observedAttributesDefault = ['min', 'max', 'step', 'valuestart', 'valueend', 'disabled'];
@@ -71,7 +71,7 @@ class BaseSliderRange extends HTMLElement {
   sliderContainers: NodeListOf<HTMLElement>;
   
   /**
-   * LIFE CYCLE
+   * Life cycle
    */
   constructor() {
     super();
@@ -123,7 +123,7 @@ class BaseSliderRange extends HTMLElement {
   }
 
   /**
-   * RENDERING
+   * Render
    */
   protected render(): string {
     return `${this.renderInput()}`;
